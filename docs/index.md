@@ -11,5 +11,5 @@ Siit leiad õppematerjalid järgmistel teemadel:
 ### [JavaScript](/javascript/sissejuhatus-moodulisse)
 JavaScripti alused ja edasijõudnud teemad: muutujad, funktsioonid, asünkroonne programmeerimine, moodulid.
 
-### [Testimine](/testing/fundamentals)
+### [Testimine](/testing/sissejuhatus)
 Tarkvara testimise alused, TDD, mockimine, Jest, Supertest, API testimine, kihiline arhitektuur.

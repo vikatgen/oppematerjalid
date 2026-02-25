@@ -79,8 +79,9 @@ export default {
             },
             {
                 text: "Testimine",
-                collapsed: false,
+                collapsed: true,
                 items: [
+                    { text: "Sissejuhatus moodulisse", link: "/testing/sissejuhatus" },
                     { text: "Testimise alused ja TDD", link: "/testing/fundamentals" },
                     { text: "Mockimine ja arhitektuur", link: "/testing/tdd-and-mocking" },
                     { text: "API testimine (scaffold)", link: "/testing/api-testing" },
