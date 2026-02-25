@@ -1,32 +1,27 @@
-# Node.js Testimise Käsiraamat
+# Tarkvaraarenduse Õppematerjalid
 
-Tere tulemast testimise moodulisse.
+Tere tulemast Kuressaare Ametikooli tarkvaraarenduse õppematerjalide lehele.
 
-Selle materjali eesmärk on anda sulle tugev arusaam:
-
-- Mis on tarkvara testimine
-- Miks testimine on professionaalses arenduses kriitiline
-- Mis on TDD (Test Driven Development)
-- Mis vahe on unit, integration ja end-to-end testidel
-- Kuidas testida Node.js ja Express API-sid
-- Kuidas kasutada test-andmebaase
-- Mis roll on Swaggeril ja API lepingutel (API contract)
+Siit leiad õppematerjalid järgmistel teemadel:
 
 ---
 
-## Õpieesmärk
+## Teemad
 
-Selle mooduli lõpuks peaksid sa:
+### [JavaScript](/javascript/sissejuhatus-moodulisse)
+JavaScripti alused ja edasijõudnud teemad: muutujad, funktsioonid, asünkroonne programmeerimine, moodulid.
 
-- Mõistma testimise rolli pärisprojektides
-- Oskama kirjutada unit teste Jestiga
-- Oskama testida Express API route’e
-- Mõistma test-andmebaasi vajalikkust
-- Mõtlema arendajana nii, et süsteem oleks testitav
+### [Node.js](/nodejs/introduction)
+Node.js ja Express.js: serveripoolne JavaScript, REST API-de loomine, middleware, routing.
 
----
+### [Testimine](/testing/fundamentals)
+Tarkvara testimise alused, TDD, mockimine, Jest, Supertest, API testimine, kihiline arhitektuur.
 
-## Päevad
+### [Docker](/docker/basics)
+Konteinerite alused, Dockerfile, Docker Compose, mitme konteineri rakendused.
 
-- Päev 1 – Testimise alused ja TDD
-- Päev 2 – API testimine, Swagger ja test-andmebaas
+### [Nginx](/nginx/basics)
+Veebiserveri alused, staatiliste failide serveerimine, reverse proxy, SSL/TLS.
+
+### [Andmebaasid](/databases/sql-basics)
+SQL-i alused, PostgreSQL, Prisma ORM, migratsioonid, andmebaasi disain.

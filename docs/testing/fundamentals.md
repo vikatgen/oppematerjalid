@@ -1,8 +1,8 @@
-# Päev 1 – Testimise alused ja TDD
+# Testimise alused ja TDD
 
 ## Õpieesmärgid
 
-Selle päeva lõpuks peaks õppija:
+Selle peatüki lõpuks peaks õppija:
 
 - Mõistma tarkvara testimise rolli professionaalses arenduses
 - Oskama selgitada unit-, integration- ja end-to-end testide erinevust
@@ -32,15 +32,14 @@ Testimine on mehhanism, mis võimaldab:
 Professionaalses arenduses ei käsitleta testimist kui lisategevust, vaid kui arendusprotsessi lahutamatut osa.
 
 ### Allikad
-- ISTQB Glossary – Software Testing Definition  
+- ISTQB Glossary – Software Testing Definition
   https://glossary.istqb.org/
-- Martin Fowler – The Practical Test Pyramid  
+- Martin Fowler – The Practical Test Pyramid
   https://martinfowler.com/articles/practical-test-pyramid.html
 
 ---
 
 # 2. Testimise tasemed
-
 ## 2.1 Unit test
 
 Unit test kontrollib väikest, iseseisvat funktsionaalsust (tavaliselt ühte funktsiooni või meetodit).
@@ -71,9 +70,9 @@ test("ei luba broneerida kui kohad on täis", () => {
 Unit testide eesmärk on kontrollida äriloogikat eraldatult.
 
 ### Allikad
-- Jest Documentation  
+- Jest Documentation
   https://jestjs.io/docs/getting-started
-- Kent C. Dodds – Write Tests, Not Too Many, Mostly Integration  
+- Kent C. Dodds – Write Tests, Not Too Many, Mostly Integration
   https://kentcdodds.com/blog/write-tests
 
 ---
@@ -97,9 +96,9 @@ POST /users
 Integration test võib kasutada test-andmebaasi ja reaalset HTTP päringut (Supertest kaudu).
 
 ### Allikad
-- Supertest GitHub  
+- Supertest GitHub
   https://github.com/ladjs/supertest
-- Martin Fowler – Integration Tests  
+- Martin Fowler – Integration Tests
   https://martinfowler.com/bliki/IntegrationTest.html
 
 ---
@@ -118,9 +117,9 @@ Näide:
 Need testid on aeglasemad ja kallimad, kuid annavad kõrge kindlustunde.
 
 ### Allikad
-- Cypress Documentation (näide E2E testidest)  
+- Cypress Documentation (näide E2E testidest)
   https://docs.cypress.io/
-- Testimise püramiidi käsitlus  
+- Testimise püramiidi käsitlus
   https://martinfowler.com/articles/practical-test-pyramid.html
 
 ---
@@ -148,7 +147,7 @@ Miks?
 Vale jaotus (liiga palju E2E teste) muudab arenduse aeglaseks ja ebastabiilseks.
 
 ### Allikad
-- Martin Fowler – Practical Test Pyramid  
+- Martin Fowler – Practical Test Pyramid
   https://martinfowler.com/articles/practical-test-pyramid.html
 
 ---
@@ -181,7 +180,7 @@ test("ei luba broneerida kui capacity on täis", () => {
 Seejärel kirjutame funktsiooni.
 
 ### Allikad
-- Martin Fowler – Test Driven Development  
+- Martin Fowler – Test Driven Development
   https://martinfowler.com/bliki/TestDrivenDevelopment.html
 - Kent Beck – Test-Driven Development: By Example
 
@@ -294,7 +293,7 @@ See test kontrollib:
 
 # 10. Kokkuvõte
 
-Testimine ei ole lisategevus.  
+Testimine ei ole lisategevus.
 Testimine on kvaliteetse tarkvara loomise fundamentaalne osa.
 
 Professionaalne arendaja:

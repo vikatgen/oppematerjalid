@@ -1,10 +1,10 @@
-# Päev 2 – Praktiline töötuba (ülesanded)
+# Praktiline töötuba (ülesanded)
 
 ## Enne alustamist
 
 Veendu, et:
 
-- Oled lugenud läbi [scaffold projekti ülevaate](/day-2/practical-api-testing)
+- Oled lugenud läbi [scaffold projekti ülevaate](/testing/api-testing)
 - Docker töötab (`docker compose ps`)
 - Node.js >= 18
 - Projekt on kloonitud ja `npm install` tehtud
@@ -76,7 +76,7 @@ Ava järgmised failid ja vaata, kuidas päring liigub läbi kihtide:
 4. `src/repositories/bookingRepository.js` — milliseid Prisma päringuid tehakse?
 
 ::: tip Küsimus
-Kas sa näed, kuidas see vastab eilsele teooriale (sektsioon 13 — kihiline arhitektuur)? Controller ei tea andmebaasist midagi, service ei tea Expressist midagi.
+Kas sa näed, kuidas see vastab testimise teooria peatükile (kihiline arhitektuur)? Controller ei tea andmebaasist midagi, service ei tea Expressist midagi.
 :::
 
 ## 1.4 Käivita olemasolevad testid
@@ -91,7 +91,7 @@ Vaata, mis testid juba olemas on. Kas kõik lähevad läbi?
 
 # Faas 2: Unit testid — service kihi testimine
 
-Unit testides testime äriloogikat **ilma andmebaasita**, kasutades mock repository objekte. See on täpselt see, mida eile teoorias õppisime (sektsioon 11 — mockimine).
+Unit testides testime äriloogikat **ilma andmebaasita**, kasutades mock repository objekte. See on täpselt see, mida teoorias õppisime (mockimine).
 
 ## 2.1 Baastase: BookingService testid
 

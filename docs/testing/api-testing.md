@@ -1,13 +1,13 @@
-# Päev 2 – Scaffold projekti ülevaade
+# Scaffold projekti ülevaade
 
-## Päeva eesmärk
+## Eesmärk
 
-Täna töötame päris Express API projektiga. Enne ülesannete juurde asumist tutvume põhjalikult projekti struktuuriga.
+Siin töötame päris Express API projektiga. Enne ülesannete juurde asumist tutvume põhjalikult projekti struktuuriga.
 
-Päev 2 koosneb kahest osast:
+See peatükk koosneb kahest osast:
 
 1. **See leht** — scaffold projekti selgitus (loe läbi enne ülesannete alustamist)
-2. **Ülesanded** — samm-sammult juhendatud harjutused
+2. **[Ülesanded](/testing/workshop)** — samm-sammult juhendatud harjutused
 
 ---
 
@@ -66,14 +66,14 @@ workshop-booking-api/
 ```
 
 ::: tip Miks nii palju faile?
-Eilne teooria (sektsioon 13) selgitas, miks äriloogika, andmebaas ja HTTP käsitlemine peavad eraldi olema. See scaffold rakendab täpselt seda kihilist arhitektuuri.
+Testimise teooria selgitas, miks äriloogika, andmebaas ja HTTP käsitlemine peavad eraldi olema. See scaffold rakendab täpselt seda kihilist arhitektuuri.
 :::
 
 ---
 
 # 3. Kihiline arhitektuur praktikas
 
-Eile lugesime teoorias kihilisest arhitektuurist. Siin on see päriselt rakendatud:
+Testimise teooria peatükis lugesime kihilisest arhitektuurist. Siin on see päriselt rakendatud:
 
 ```
 Route → Controller → Service → Repository → Database
@@ -91,7 +91,7 @@ Route → Controller → Service → Repository → Database
 - **Service kihti** saab testida unit testiga — anname talle mock repository
 - **Kogu API'd** saab testida integration testiga — teeme päris HTTP päringu
 
-See on täpselt see, mida eile teoorias õppisime (dependency injection, mockimine).
+See on täpselt see, mida teoorias õppisime (dependency injection, mockimine).
 
 ---
 
@@ -223,7 +223,7 @@ beforeEach(async () => {
 
 - Iga test alustab puhtast olekust
 - Testid ei sõltu üksteisest ega käivitamise järjekorrast
-- See on testide isolatsiooni põhimõte (mida eile teoorias käsitlesime)
+- See on testide isolatsiooni põhimõte
 
 ---
 
@@ -272,7 +272,7 @@ Swagger ei ole ainult dokumentatsioon — see on **leping** frontendi ja backend
 ### Unit testid (service kiht)
 
 ```js
-// Anname service'ile mock repository (nagu eile teoorias)
+// Anname service'ile mock repository (nagu teoorias)
 const mockRepository = {
   countBookings: jest.fn(),
   createBooking: jest.fn()
@@ -314,7 +314,7 @@ Veendu, et mõistad:
 - **resetDb()** — miks puhastatakse andmebaas enne iga testi
 - **Kaht tüüpi testid** — unit (mock repository) vs integration (Supertest + päris DB)
 
-Nüüd mine edasi [ülesannete juurde](/day-2/practical-workshop)!
+Nüüd mine edasi [ülesannete juurde](/testing/workshop)!
 
 ---
 

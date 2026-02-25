@@ -1,6 +1,8 @@
-# 11. Test Double'id ja mockimine
+# Mockimine, arhitektuur ja Jest workshop
 
-## 11.1 Mis on Test Double?
+## 11. Test Double'id ja mockimine
+
+### 11.1 Mis on Test Double?
 
 Test Double on objekt, mis asendab päris sõltuvuse (dependency) testimise käigus.
 
@@ -22,14 +24,14 @@ Test Double tüübid (Gerard Meszaros):
 - Spy – salvestab infot selle kohta, kuidas teda kutsuti
 - Mock – kontrollib, et teda kutsuti kindlal viisil
 
-### Allikas
+#### Allikas
 - Gerard Meszaros – xUnit Test Patterns
-- Martin Fowler – Test Double  
+- Martin Fowler – Test Double
   https://martinfowler.com/bliki/TestDouble.html
 
 ---
 
-## 11.2 Miks me ei taha päris andmebaasi unit testis?
+### 11.2 Miks me ei taha päris andmebaasi unit testis?
 
 Näide halvast unit testist:
 
@@ -49,7 +51,7 @@ Unit test peaks testima ainult äriloogikat, mitte infrastruktuuri.
 
 ---
 
-## 11.3 Mockimine Node.js kontekstis (Jest)
+### 11.3 Mockimine Node.js kontekstis (Jest)
 
 `jest.fn()` loob mock-funktsiooni, millele saab ette anda soovitud tagastusväärtuse:
 
@@ -83,13 +85,13 @@ test("ei luba broneerida kui kohad on täis", () => {
 Siin ei kasutata päris andmebaasi.
 Me kontrollime ainult äriloogikat, andes service'ile "võlts" repository.
 
-### Allikas
-- Jest Mock Functions  
+#### Allikas
+- Jest Mock Functions
   https://jestjs.io/docs/mock-functions
 
 ---
 
-# 12. Isolatsioon (Isolation)
+## 12. Isolatsioon (Isolation)
 
 Isolation tähendab, et testitav üksus (unit) ei sõltu välisest seisundist.
 
@@ -124,9 +126,9 @@ See on dependency injection.
 
 ---
 
-# 13. Testitav arhitektuur (Testable Design)
+## 13. Testitav arhitektuur (Testable Design)
 
-## 13.0 Probleem: kõik ühes route'is
+### 13.0 Probleem: kõik ühes route'is
 
 Tõenäoliselt oled seni kirjutanud Express koodi umbes nii:
 
@@ -166,7 +168,7 @@ See töötab. Aga kuidas seda testida?
 
 ---
 
-## 13.1 Lahendus: kihiline arhitektuur
+### 13.1 Lahendus: kihiline arhitektuur
 
 Mõte on lihtne: **eralda vastutused erinevatesse kihtidesse.**
 
@@ -185,9 +187,9 @@ Iga kiht teeb ühte asja:
 
 ---
 
-## 13.2 Samm-sammult refaktoreerimine
+### 13.2 Samm-sammult refaktoreerimine
 
-### Samm 1: Eralda andmebaasi päringud → Repository
+#### Samm 1: Eralda andmebaasi päringud → Repository
 
 ```js
 // repositories/bookingRepository.js
@@ -202,7 +204,7 @@ class BookingRepository {
 }
 ```
 
-### Samm 2: Eralda äriloogika → Service
+#### Samm 2: Eralda äriloogika → Service
 
 ```js
 // services/bookingService.js
@@ -224,7 +226,7 @@ class BookingService {
 }
 ```
 
-### Samm 3: Route jääb "õhukeseks"
+#### Samm 3: Route jääb "õhukeseks"
 
 ```js
 // routes/bookings.js
@@ -241,7 +243,7 @@ router.post("/bookings", async (req, res) => {
 });
 ```
 
-### Mis me saavutasime?
+#### Mis me saavutasime?
 
 - **Service** ei tea midagi Expressist (pole `req`, `res`)
 - **Service** ei tea midagi andmebaasist (kasutab ainult repository liidest)
@@ -251,7 +253,7 @@ See tähendab, et **Service kihti saab testida unit testiga ilma andmebaasita.**
 
 ---
 
-## 13.1 Dependency Injection
+### 13.3 Dependency Injection
 
 Dependency Injection tähendab, et sõltuvus antakse funktsioonile väljastpoolt.
 
@@ -277,13 +279,13 @@ Nüüd saab testis anda mock repository.
 
 See muudab süsteemi testitavaks.
 
-### Allikas
-- Martin Fowler – Inversion of Control  
+#### Allikas
+- Martin Fowler – Inversion of Control
   https://martinfowler.com/bliki/InversionOfControl.html
 
 ---
 
-# 14. Millal kasutada mocke ja millal mitte?
+## 14. Millal kasutada mocke ja millal mitte?
 
 Mocke kasutatakse:
 
@@ -301,7 +303,7 @@ Liigne mockimine võib muuta testid habrasteks.
 
 ---
 
-# 15. Arhitektuuriline mõtlemine
+## 15. Arhitektuuriline mõtlemine
 
 Testimine ei ole ainult kvaliteedikontroll.
 
@@ -318,7 +320,7 @@ Hea testitavus on sageli märk heast arhitektuurist.
 
 ---
 
-# 16. Aruteluküsimused (edasijõudnud)
+## 16. Aruteluküsimused (edasijõudnud)
 
 - Kas dependency injection muudab süsteemi keerulisemaks?
 - Kas iga sõltuvus tuleks mockida?
@@ -327,7 +329,7 @@ Hea testitavus on sageli märk heast arhitektuurist.
 
 ---
 
-# 17. Kokkuvõte (edasijõudnud osa)
+## 17. Kokkuvõte (edasijõudnud osa)
 
 Testimine ei ole lihtsalt testide kirjutamine.
 
@@ -340,9 +342,9 @@ See on:
 
 Professionaalne arendaja mõtleb testitavusele enne implementatsiooni.
 
-# 18. Praktiline workshop – Jest ja puhtad funktsioonid
+## 18. Praktiline workshop – Jest ja puhtad funktsioonid
 
-## Eesmärk
+### Eesmärk
 
 Nüüd rakendame teooria praktikas! Selles workshopis:
 
@@ -352,14 +354,14 @@ Nüüd rakendame teooria praktikas! Selles workshopis:
 - Koged, kuidas testid juhivad koodi kirjutamist
 
 ::: tip Miks puhtad funktsioonid?
-Puhtad funktsioonid on kõige lihtsam viis testimist õppida — neil pole sõltuvusi, nad tagastavad alati sama tulemuse samade sisenditega. Express ja andmebaas tulevad Päeval 2.
+Puhtad funktsioonid on kõige lihtsam viis testimist õppida — neil pole sõltuvusi, nad tagastavad alati sama tulemuse samade sisenditega. Express ja andmebaas tulevad API testimise peatükis.
 :::
 
 ---
 
-## 18.1 Projekti seadistamine
+### 18.1 Projekti seadistamine
 
-### Samm 1: Loo uus projekt
+#### Samm 1: Loo uus projekt
 
 ```bash
 mkdir jest-workshop
@@ -367,13 +369,13 @@ cd jest-workshop
 npm init -y
 ```
 
-### Samm 2: Paigalda Jest
+#### Samm 2: Paigalda Jest
 
 ```bash
 npm install --save-dev jest
 ```
 
-### Samm 3: Seadista package.json
+#### Samm 3: Seadista package.json
 
 Ava `package.json` ja muuda `scripts` osa:
 
@@ -385,7 +387,7 @@ Ava `package.json` ja muuda `scripts` osa:
 }
 ```
 
-### Samm 4: Loo failide struktuur
+#### Samm 4: Loo failide struktuur
 
 ```
 jest-workshop/
@@ -406,7 +408,7 @@ Loo kaustad:
 mkdir src tests
 ```
 
-### Samm 5: Kontrolli, et Jest töötab
+#### Samm 5: Kontrolli, et Jest töötab
 
 Loo fail `tests/setup.test.js`:
 
@@ -428,11 +430,11 @@ Kustuta `tests/setup.test.js` enne järgmise sammuga jätkamist.
 
 ---
 
-## 18.2 Harjutus 1: canBook() – TDD tsükkel
+### 18.2 Harjutus 1: canBook() – TDD tsükkel
 
 Siin harjutame TDD'd samm-sammult.
 
-### Red: kirjuta ebaõnnestuv test
+#### Red: kirjuta ebaõnnestuv test
 
 Loo fail `tests/booking.test.js`:
 
@@ -456,7 +458,7 @@ describe("canBook", () => {
 
 Käivita `npm test` — testid **peavad ebaõnnestuma** (Red).
 
-### Green: kirjuta minimaalne kood
+#### Green: kirjuta minimaalne kood
 
 Loo fail `src/booking.js`:
 
@@ -470,15 +472,15 @@ module.exports = { canBook };
 
 Käivita `npm test` — testid **peavad läbi minema** (Green).
 
-### Refactor: kas koodi saab paremaks teha?
+#### Refactor: kas koodi saab paremaks teha?
 
 Siin on kood juba lihtne, seega refaktoreerimine pole vajalik. Aga TDD tsükkel näeb ette, et selles faasis vaatad koodi üle.
 
 ---
 
-## 18.3 Harjutus 2: validateEmail()
+### 18.3 Harjutus 2: validateEmail()
 
-### Red: kirjuta testid kõigepealt
+#### Red: kirjuta testid kõigepealt
 
 Loo fail `tests/validation.test.js`:
 
@@ -506,7 +508,7 @@ describe("validateEmail", () => {
 
 Käivita `npm test` — Red.
 
-### Green: implementeeri
+#### Green: implementeeri
 
 Loo fail `src/validation.js`:
 
@@ -521,7 +523,7 @@ module.exports = { validateEmail };
 
 Käivita `npm test` — Green.
 
-### Refactor: lisa edge case'id
+#### Refactor: lisa edge case'id
 
 Nüüd mõtle: kas on veel olukordi, mida peaks testima?
 
@@ -533,9 +535,9 @@ Vajadusel paranda implementatsiooni.
 
 ---
 
-## 18.4 Harjutus 3: divide() – veakäsitlus
+### 18.4 Harjutus 3: divide() – veakäsitlus
 
-### Red: testid
+#### Red: testid
 
 Loo fail `tests/math.test.js`:
 
@@ -557,7 +559,7 @@ describe("divide", () => {
 });
 ```
 
-### Green: implementeeri
+#### Green: implementeeri
 
 Loo fail `src/math.js`:
 
@@ -578,11 +580,11 @@ Kui tahad testida, et funktsioon viskab vea, pead selle mähkima `() =>` sisse. 
 
 ---
 
-## 18.5 Iseseisvad ülesanded
+### 18.5 Iseseisvad ülesanded
 
 Nüüd on sinu kord! Rakenda TDD tsüklit ise — **kirjuta test enne koodi**.
 
-### Ülesanne A: Lisa canBook() reeglid
+#### Ülesanne A: Lisa canBook() reeglid
 
 Lisa `src/booking.js` faili uus funktsioon ja testi seda:
 
@@ -596,7 +598,7 @@ Lisa `src/booking.js` faili uus funktsioon ja testi seda:
 
 **TDD:** kirjuta kõigepealt testid `tests/booking.test.js` faili, siis implementeeri.
 
-### Ülesanne B: calculatePrice()
+#### Ülesanne B: calculatePrice()
 
 Kirjuta funktsioon ja testid:
 
@@ -611,7 +613,7 @@ Kirjuta funktsioon ja testid:
 // Näide: calculatePrice(100, 3, 10) → 270 (300 - 10%)
 ```
 
-### Ülesanne C (edasijõudnutele): parseBookingInput()
+#### Ülesanne C (edasijõudnutele): parseBookingInput()
 
 ```js
 // Funktsioon: parseBookingInput(input)
@@ -628,7 +630,7 @@ Kirjuta funktsioon ja testid:
 
 ---
 
-## 18.6 Refleksioon
+### 18.6 Refleksioon
 
 Arutage paaris:
 
@@ -636,9 +638,3 @@ Arutage paaris:
 - Kas TDD tsükkel (Red → Green → Refactor) tundus loomulik?
 - Milliseid vigu oleksid teinud ilma testideta?
 - Kuidas aitavad puhtad funktsioonid testitavusele kaasa?
-
-::: tip Mida homme teeme?
-Päeval 2 rakendame neid samu põhimõtteid päris Express API projektis — testime service kihti mockidega ja API endpointe Supertestiga. Seal tuleb kasuks ka kihilise arhitektuuri teooria, mida täna lugesid (sektsioonid 13–17).
-:::
-
-
