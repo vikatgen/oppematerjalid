@@ -1,5 +1,5 @@
 export default {
-    base: "/oppematerjalid/",
+    base: process.env.VITEPRESS_BASE ?? "/oppematerjalid/",
     lang: "et-EE",
     title: "J-SWE",
     description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: JavaScript, Node.js, testimine, Docker, Nginx, andmebaasid",

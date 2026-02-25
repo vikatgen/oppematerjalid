@@ -21,4 +21,4 @@ jobs:
             git fetch --tags
             git checkout ${{ github.ref_name }}
             npm ci
-            npm run docs:build
+            VITEPRESS_BASE=/ npm run docs:build
