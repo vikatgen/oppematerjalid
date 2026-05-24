@@ -1,104 +1,91 @@
-# Praktiline töötuba (ülesanded)
+# Praktiline töötuba — capstone
+
+## Miks see töötuba?
+
+Seni õpid teooriat ja väikesi harjutusi eraldi. **Capstone** ühendab kõik:
+
+- Unit testid (Vitest + mock)
+- Integration testid (Supertest)
+- UI testid (Playwright — kui frontend on olemas)
+- Jõudlus (Postman)
+
+Sama **broneerimise API** kogu päeva vältel — nagu päris meeskonnas enne release'i.
+
+---
 
 ## Enne alustamist
 
-Veendu, et:
-
-- Oled lugenud läbi [scaffold projekti ülevaate](/testing/api-testing)
-- Docker töötab (`docker compose ps`)
-- Node.js >= 18
-- Projekt on kloonitud ja `npm install` tehtud
-- Migratsioonid on käivitatud mõlema andmebaasi jaoks
+- [ ] Loe [API projekti ülevaade](/testing/api-testing)
+- [ ] Loe [Unit testid](/testing/unit-testing) ja [Mockimine](/testing/mocking)
+- [ ] Docker töötab (`docker compose ps`)
+- [ ] Node.js >= 18, projekt kloonitud, `npm install`
+- [ ] Migratsioonid: `npx prisma migrate dev` ja `npm run migrate:test`
 
 ```bash
 docker compose up -d
-npx prisma migrate dev
-npm run migrate:test
+npm run dev   # Swagger: http://localhost:3000/docs
+npm test      # olemasolevad testid
 ```
+
+Töötate paarides. Rollivahetus ~40 min.
 
 ---
 
-Te töötate paarides. Rollivahetus iga ~40 min.
+# Faas 0: Vitest unit testid (kui pole veel teinud)
+
+Kui unit harjutus on juba [Unit testid Vitestiga](/testing/unit-testing) lehel tehtud, võid liikuda Faas 1 juurde.
+
+Kiirkontroll scaffold projektis — service unit test mockidega (vt Faas 2).
 
 ---
 
-# Faas 1: Tutvu scaffold projektiga
+# Faas 1: Tutvu API-ga käsitsi
 
-Enne testide kirjutamist tuleb süsteem tundma õppida.
+## 1.1 Swagger ja Postman
 
-## 1.1 Käivita rakendus
+Ava `http://localhost:3000/docs`. Tee käsitsi:
 
-```bash
-npm run dev
-```
+- Loo kasutaja
+- Loo workshop
+- Tee broneering
+- Proovi topeltbroneeringut
 
-Ava brauseris: `http://localhost:3000/docs`
-
-See on Swagger UI. Siin näed kõiki API endpointe.
-
-## 1.2 Tee käsitsi API päringuid
-
-Kasuta Swagger UI'd või cURL/Postman'i, et testida endpointe käsitsi:
-
-**Loo kasutaja:**
-```bash
-curl -X POST http://localhost:3000/users \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Ada", "email": "ada@test.com"}'
-```
-
-**Loo workshop:**
-```bash
-curl -X POST http://localhost:3000/workshops \
-  -H "Content-Type: application/json" \
-  -d '{"title": "Node.js Testing", "capacity": 3}'
-```
-
-**Tee broneering:**
-```bash
-curl -X POST http://localhost:3000/bookings \
-  -H "Content-Type: application/json" \
-  -d '{"userId": 1, "workshopId": 1}'
-```
-
-**Kontrolli tervist:**
-```bash
-curl http://localhost:3000/health
-```
-
-## 1.3 Uuri koodi
-
-Ava järgmised failid ja vaata, kuidas päring liigub läbi kihtide:
-
-1. `src/routes/bookingRoutes.js` — milline URL millist controllerit kutsub?
-2. `src/controllers/bookingController.js` — kuidas controller service'it kasutab?
-3. `src/services/bookingService.js` — milline äriloogika siin on?
-4. `src/repositories/bookingRepository.js` — milliseid Prisma päringuid tehakse?
-
-::: tip Küsimus
-Kas sa näed, kuidas see vastab testimise teooria peatükile (kihiline arhitektuur)? Controller ei tea andmebaasist midagi, service ei tea Expressist midagi.
+::: tip Miks käsitsi?
+Automaattestid eeldavad, et sa **mõistad õiget käitumist**. Käsitsi test on kiireim viis seda õppida.
 :::
 
-## 1.4 Käivita olemasolevad testid
+Postman collection loomine: [Jõudluse testimine Postmaniga](/testing/performance-testing-postman) — võid alustada juba siin.
+
+## 1.2 Uuri koodi
+
+Jälgi päringut:
+
+1. `routes/bookingRoutes.js`
+2. `controllers/bookingController.js`
+3. `services/bookingService.js`
+4. `repositories/bookingRepository.js`
+
+**Küsimus:** Kus on äriloogika? Kuidas seda unit testida ilma DB-ta?
+
+## 1.3 Käivita testid
 
 ```bash
 npm test
 ```
 
-Vaata, mis testid juba olemas on. Kas kõik lähevad läbi?
+Millised testid on juba olemas? Unit vs integration?
 
 ---
 
-# Faas 2: Unit testid — service kihi testimine
+# Faas 2: Unit testid — service kiht (Vitest)
 
-Unit testides testime äriloogikat **ilma andmebaasita**, kasutades mock repository objekte. See on täpselt see, mida teoorias õppisime (mockimine).
+Testime **äriloogikat mock repository'ga** — [Mockimine](/testing/mocking).
 
-## 2.1 Baastase: BookingService testid
-
-Loo fail `tests/unit/bookingService.test.js`:
+Loo `tests/unit/bookingService.test.js`:
 
 ```js
-const BookingService = require("../../src/services/bookingService");
+import { describe, test, expect, vi, beforeEach } from "vitest";
+import { BookingService } from "../../src/services/bookingService.js";
 
 describe("BookingService", () => {
   let mockBookingRepo;
@@ -106,77 +93,41 @@ describe("BookingService", () => {
   let bookingService;
 
   beforeEach(() => {
-    // Loome mock repository objektid
     mockBookingRepo = {
-      countBookings: jest.fn(),
-      createBooking: jest.fn(),
-      findByUserAndWorkshop: jest.fn()
+      countBookings: vi.fn(),
+      createBooking: vi.fn(),
+      findByUserAndWorkshop: vi.fn()
     };
-
     mockWorkshopRepo = {
-      findById: jest.fn()
+      findById: vi.fn()
     };
-
-    // Anname mock-id service'ile (dependency injection!)
     bookingService = new BookingService(mockBookingRepo, mockWorkshopRepo);
   });
 
   test("loob broneeringu kui kohti on", async () => {
-    // Arrange — seadistame mockide tagastusväärtused
     mockWorkshopRepo.findById.mockResolvedValue({
-      id: 1,
-      title: "Testing",
-      capacity: 10
+      id: 1, title: "Testing", capacity: 10
     });
     mockBookingRepo.countBookings.mockResolvedValue(3);
     mockBookingRepo.findByUserAndWorkshop.mockResolvedValue(null);
     mockBookingRepo.createBooking.mockResolvedValue({
-      id: 1,
-      userId: 1,
-      workshopId: 1
+      id: 1, userId: 1, workshopId: 1
     });
 
-    // Act — kutsume testitavat meetodit
     const result = await bookingService.createBooking(1, 1);
-
-    // Assert — kontrollime tulemust
     expect(result).toEqual({ id: 1, userId: 1, workshopId: 1 });
     expect(mockBookingRepo.createBooking).toHaveBeenCalled();
   });
 });
 ```
 
-::: tip Arrange-Act-Assert
-See on levinud testide muster:
-- **Arrange** — seadista andmed ja mockid
-- **Act** — kutsu testitavat funktsiooni
-- **Assert** — kontrolli tulemust
-:::
+**Sinu ülesanded:**
 
-**Sinu ülesanne:** lisa samasse faili testid järgmiste stsenaariumide jaoks:
+1. Workshop täis → viga, `createBooking` ei kutsuta
+2. Kasutaja juba broneerinud → viga
+3. Workshop puudub → viga
 
-1. Workshop on täis → peaks viskama vea
-2. Kasutaja on juba broneerinud → peaks viskama vea
-3. Workshop ei eksisteeri → peaks viskama vea
-
-Näpunäide — veajuhtumi test:
-
-```js
-test("viskab vea kui workshop on täis", async () => {
-  mockWorkshopRepo.findById.mockResolvedValue({
-    id: 1,
-    title: "Testing",
-    capacity: 5
-  });
-  mockBookingRepo.countBookings.mockResolvedValue(5);
-
-  await expect(
-    bookingService.createBooking(1, 1)
-  ).rejects.toThrow("Workshop is full");
-});
-```
-
-**Käivita testid:**
+Lisa testid `UserService` ja `WorkshopService` jaoks (sama muster).
 
 ```bash
 npm test -- tests/unit/bookingService.test.js
@@ -184,265 +135,134 @@ npm test -- tests/unit/bookingService.test.js
 
 ---
 
-## 2.2 Kesktase: UserService ja WorkshopService testid
+# Faas 3: Integration testid — Supertest
 
-Kirjuta unit testid ka teiste service'ite jaoks:
+Testime **kogu stacki** — [Integration testid](/testing/integration-testing).
 
-**UserService** (`tests/unit/userService.test.js`):
-- Kasutaja loomine õnnestub
-- Duplikaat-email viskab vea
+## 3.1 GET /health
 
-**WorkshopService** (`tests/unit/workshopService.test.js`):
-- Workshop loomine õnnestub
-- Capacity peab olema positiivne arv
-
-Kasuta sama mustrit: loo mock repository `beforeEach`'is, testi äriloogikat.
-
----
-
-## 2.3 Edasijõudnud: kontrolli mock-meetodi väljakutseid
-
-Lisaks tulemuse kontrollile, kontrolli et mock meetodeid kutsuti **õigete argumentidega**:
+`tests/integration/health.test.js`:
 
 ```js
-test("kutsub createBooking õigete andmetega", async () => {
-  // ... seadistus ...
-
-  await bookingService.createBooking(1, 1);
-
-  expect(mockBookingRepo.createBooking).toHaveBeenCalledWith({
-    userId: 1,
-    workshopId: 1
-  });
-});
-```
-
-Ja kontrolli, et teatud meetodeid **ei kutsutud**:
-
-```js
-test("ei kutsu createBooking kui workshop on täis", async () => {
-  // ... seadistus kus workshop on täis ...
-
-  await expect(
-    bookingService.createBooking(1, 1)
-  ).rejects.toThrow();
-
-  expect(mockBookingRepo.createBooking).not.toHaveBeenCalled();
-});
-```
-
----
-
-# Faas 3: Integration testid — API testimine
-
-Integration testides testime **kogu süsteemi** — teeme päris HTTP päringu, mis läbib kõik kihid kuni andmebaasini.
-
-## 3.1 Baastase: GET /health
-
-Loo fail `tests/integration/health.test.js`:
-
-```js
-const request = require("supertest");
-const app = require("../../src/app");
+import { describe, test, expect } from "vitest";
+import request from "supertest";
+import { app } from "../../src/app.js";
 
 describe("GET /health", () => {
-  test("tagastab status 200", async () => {
+  test("tagastab 200", async () => {
     const res = await request(app).get("/health");
-
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty("status", "ok");
   });
 });
 ```
 
-**Käivita:**
-
-```bash
-npm test -- tests/integration/health.test.js
-```
-
----
-
-## 3.2 Baastase: POST /users
-
-Loo fail `tests/integration/users.test.js`:
+## 3.2 POST /users
 
 ```js
-const request = require("supertest");
-const app = require("../../src/app");
-const { resetDb } = require("../helpers/resetDb");
+import { describe, test, expect, beforeEach } from "vitest";
+import request from "supertest";
+import { app } from "../../src/app.js";
+import { resetDb } from "../helpers/resetDb.js";
 
 describe("POST /users", () => {
   beforeEach(async () => {
     await resetDb();
   });
 
-  test("loob uue kasutaja", async () => {
+  test("loob kasutaja", async () => {
     const res = await request(app)
       .post("/users")
       .send({ name: "Ada", email: "ada@test.com" });
 
     expect(res.statusCode).toBe(201);
-    expect(res.body).toHaveProperty("id");
-    expect(res.body.name).toBe("Ada");
     expect(res.body.email).toBe("ada@test.com");
   });
-
-  test("tagastab 400 kui nimi puudub", async () => {
-    const res = await request(app)
-      .post("/users")
-      .send({ email: "ada@test.com" });
-
-    expect(res.statusCode).toBe(400);
-  });
 });
 ```
 
-::: warning resetDb() on oluline!
-`beforeEach` puhastab andmebaasi enne iga testi. Ilma selleta võivad testid üksteist mõjutada (nt duplikaat-email viga).
-:::
+**Lisa:** duplikaat-email, puuduv email, POST /workshops, POST /bookings (happy + 409 + 404).
 
-**Sinu ülesanne:** lisa testid:
-- Duplikaat-email → peaks tagastama 400 või 409
-- Puuduv email → peaks tagastama 400
-
----
-
-## 3.3 Kesktase: POST /workshops
-
-Loo fail `tests/integration/workshops.test.js` ja testi:
-
-- Workshop loomine (happy path) → 201
-- Puuduv title → 400
-- Capacity 0 või negatiivne → 400
-
----
-
-## 3.4 Kesktase: POST /bookings
-
-Loo fail `tests/integration/bookings.test.js` ja testi:
-
-**Happy path:**
-```js
-test("loob broneeringu", async () => {
-  // Loo esmalt kasutaja ja workshop
-  const user = await request(app)
-    .post("/users")
-    .send({ name: "Ada", email: "ada@test.com" });
-
-  const workshop = await request(app)
-    .post("/workshops")
-    .send({ title: "Testing", capacity: 10 });
-
-  // Nüüd tee broneering
-  const res = await request(app)
-    .post("/bookings")
-    .send({
-      userId: user.body.id,
-      workshopId: workshop.body.id
-    });
-
-  expect(res.statusCode).toBe(201);
-});
-```
-
-**Sinu ülesanne — lisa testid:**
-1. Workshop on täis → 409
-2. Topeltbroneering (sama kasutaja, sama workshop) → 409
-3. Olematu workshop → 404
-4. Olematu kasutaja → 404
-
-::: tip Kuidas testida "workshop on täis"?
-Loo workshop capacity'ga 1, tee üks broneering (peaks õnnestuma), seejärel tee teine broneering (peaks ebaõnnestuma 409-ga).
+::: warning resetDb
+Ilma `beforeEach` puhastuseta testid mõjutavad üksteist.
 :::
 
 ---
 
-## 3.5 Edasijõudnud: error vastuse struktuur
+# Faas 4: Postman — jõudlus ja testiplaan
 
-Kontrolli, et veateated tagastavad ühtlase struktuuri:
+1. Impordi või loo collection (health → user → workshop → booking)
+2. Lisa response time testid (< 500 ms)
+3. Käivita Collection Runner 10 iteratsiooniga
+4. Täida lihtne testiplaan tabel ([juhend](/testing/performance-testing-postman))
 
-```js
-test("error vastus sisaldab error välja", async () => {
-  const res = await request(app)
-    .post("/bookings")
-    .send({ userId: 999, workshopId: 999 });
-
-  expect(res.statusCode).toBeGreaterThanOrEqual(400);
-  expect(res.body).toHaveProperty("error");
-});
-```
+**Arutelu:** Kas mõni endpoint on aeglasem? Miks POST /bookings võib olla aeglasem kui GET /health?
 
 ---
 
-## 3.6 Edasijõudnud: concurrency test
+# Faas 5: UI testid — Playwright (kui frontend on olemas)
 
-Mis juhtub, kui kaks päringut tulevad samaaegselt?
+Kui kursusel on Vite frontend samale API-le:
+
+1. Seadista Playwright (`npm init playwright@latest`)
+2. Kirjuta E2E test: broneerimise vorm või nupp
+3. Kirjuta test veateatele (täis workshop)
+
+Juhend: [UI testimine](/testing/ui-testing)
+
+Kui frontend puudub, harjuta Playwright eraldi Vite demo lehel — oskus on üle kantav.
+
+---
+
+# Faas 6: Edasijõudnud
+
+- Mock-meetodite argumentide kontroll
+- Error body struktuuri ühtlus kõigil 4xx vastustel
+- Concurrency test (2 paralleelset broneeringut, capacity 1)
+- Lisa `GET /workshops` + test + Swagger
+
+Concurrency näide:
 
 ```js
 test("ainult üks broneering õnnestub kui 1 koht", async () => {
-  // Loo kasutajad ja workshop (capacity: 1)
-  // ...
-
-  // Tee kaks päringut paralleelselt
+  // ... loo 2 kasutajat, workshop capacity 1
   const [res1, res2] = await Promise.all([
-    request(app).post("/bookings").send({ userId: user1.body.id, workshopId: ws.body.id }),
-    request(app).post("/bookings").send({ userId: user2.body.id, workshopId: ws.body.id })
+    request(app).post("/bookings").send({ userId: u1.body.id, workshopId: ws.body.id }),
+    request(app).post("/bookings").send({ userId: u2.body.id, workshopId: ws.body.id })
   ]);
-
-  // Üks peaks õnnestuma, teine ebaõnnestuma
   const statuses = [res1.statusCode, res2.statusCode].sort();
   expect(statuses).toEqual([201, 409]);
 });
 ```
 
-**Arutelu:**
-- Kas see test läheb alati läbi?
-- Mis on race condition?
-- Kuidas Prisma `$transaction` aitab?
-
 ---
 
-# 4. Noorematele sobiv laiendus
+# Hindamiskriteeriumid
 
-## Lisa GET /workshops endpoint
-
-Kui booking testid on valmis, proovi:
-
-1. Lisa `GET /workshops` endpoint, mis tagastab kõik workshopid
-2. Kirjuta integration test selle jaoks
-3. Lisa endpoint Swagger dokumentatsiooni
-
----
-
-# 5. Hindamiskriteeriumid
-
-### Baastase (kõik peavad tegema):
-- GET /health test
-- POST /users happy path + veajuhtum
+### Baastase
+- GET /health integration test
+- POST /users happy path + viga
 - POST /bookings happy path
-- `beforeEach` puhastab andmebaasi
+- `resetDb` enne teste
+- Postman collection vähemalt 3 requestiga
 
-### Kesktase:
-- POST /workshops testid
-- POST /bookings veajuhtumid (täis, topelt, olematu)
-- Unit testid service kihile
+### Kesktase
+- Unit testid service kihile (mock)
+- POST /bookings veajuhtumid
+- Postman response time testid
 
-### Edasijõudnud:
-- Mock-meetodite väljakutsete kontroll
-- Error vastuse struktuuri kontroll
-- Concurrency test
-- GET /workshops lisamine
+### Edasijõudnud
+- Playwright E2E (või Testing Library komponent)
+- Concurrency või GET /workshops laiendus
+- Testiplaan dokumenteeritud
 
 ---
 
-# 6. Päeva lõpu refleksioon
+# Päeva lõpu refleksioon
 
-Arutage paaris:
+- Mis vahe on unit ja integration testil **selles projektis**?
+- Kas unit testid andsid kindlust? Kas integration test leidis midagi uut?
+- Millal Postman, millal Supertest?
+- Mida Playwright testiks, mida API test ei kata?
 
-- Mis vahe on unit testil ja integration testil **praktikas** (mitte ainult teoorias)?
-- Kas unit testid (mock repository) andsid kindlust, et äriloogika töötab?
-- Kas integration testid (Supertest + DB) leidsid vigu, mida unit testid ei leidnud?
-- Kumb tüüp oli keerulisem kirjutada? Kumb andis rohkem kindlust?
-- Kuidas Docker ja test-andmebaas muutsid testimist lihtsamaks?
-- Kui palju teste oleks piisav enne deploy'd?
+**Järgmine samm:** [Ülesanded](/testing/assignments) iseseisevaks harjutamiseks.

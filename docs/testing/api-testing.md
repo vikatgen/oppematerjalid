@@ -1,19 +1,28 @@
-# Scaffold projekti ülevaade
+# API testimine — projekti ülevaade
 
-## Eesmärk
+## Miks eraldi API projekt?
 
-Siin töötame päris Express API projektiga. Enne ülesannete juurde asumist tutvume põhjalikult projekti struktuuriga.
+Unit testid Vitestiga ([Unit testid](/testing/unit-testing)) on isoleeritud. **Päris API** ühendab HTTP, äriloogika, andmebaasi ja migratsioonid. Selle projektiga harjutad [integration teste](/testing/integration-testing) Supertestiga ja saad sama API'd testida [Postmaniga](/testing/performance-testing-postman).
 
-See peatükk koosneb kahest osast:
-
-1. **See leht** — scaffold projekti selgitus (loe läbi enne ülesannete alustamist)
-2. **[Ülesanded](/testing/workshop)** — samm-sammult juhendatud harjutused
+See leht selgitab **projekti struktuuri**. Hands-on ülesanded on [töötuba](/testing/workshop).
 
 ---
 
-# 1. Projekti kloonimine ja käivitamine
+## Eesmärk
 
-Õpetaja annab teile scaffold projekti lingi. Kloonige see:
+Töötame **töötoa broneerimise API**-ga — sama äri stsenaarium kogu mooduli vältel:
+
+- Loo kasutajaid ja töötubasid
+- Broneeri kohti
+- Kontrolli reegleid (täis workshop, topeltbroneering)
+
+Projekt kasutab kihilist arhitektuuri, mida [mockimise](/testing/mocking) peatükis õpitud.
+
+---
+
+## 1. Projekti kloonimine ja käivitamine
+
+Õpetaja annab scaffold projekti lingi:
 
 ```bash
 git clone https://github.com/vikatgen/test-handbook-nodejs-express-application.git
@@ -21,308 +30,160 @@ cd test-handbook-nodejs-express-application
 npm install
 ```
 
-Kontrollige, et kõik on paigas:
+Kontrolli:
 
 ```bash
-node --version   # peaks olema >= 18
-docker --version # peaks olema paigaldatud
+node --version   # >= 18
+docker --version
 ```
 
 ---
 
-# 2. Projekti struktuur
+## 2. Projekti struktuur
 
 ```
 workshop-booking-api/
 ├── src/
-│   ├── app.js              ← Express rakenduse seadistus
-│   ├── server.js           ← Serveri käivitamine (port)
+│   ├── app.js              ← Express rakendus (export testidele)
+│   ├── server.js           ← Porti kuulav server
 │   ├── routes/
-│   │   ├── healthRoutes.js
-│   │   ├── userRoutes.js
-│   │   ├── workshopRoutes.js
-│   │   └── bookingRoutes.js
 │   ├── controllers/
-│   │   ├── userController.js
-│   │   ├── workshopController.js
-│   │   └── bookingController.js
-│   ├── services/
-│   │   ├── userService.js
-│   │   ├── workshopService.js
-│   │   └── bookingService.js
-│   └── repositories/
-│       ├── userRepository.js
-│       ├── workshopRepository.js
-│       └── bookingRepository.js
+│   ├── services/           ← Unit testide sihtmärk (mock repo)
+│   └── repositories/       ← Andmebaas
 ├── prisma/
-│   └── schema.prisma       ← Andmebaasi skeem
+│   └── schema.prisma
 ├── tests/
+│   ├── unit/
+│   ├── integration/
 │   └── helpers/
-│       └── resetDb.js      ← Test-andmebaasi puhastamine
-├── docker-compose.yml       ← Postgres konteinerid
-├── .env                     ← Arenduskeskkonna seaded
-├── .env.test                ← Testkeskkonna seaded
+│       └── resetDb.js
+├── docker-compose.yml
+├── .env
+├── .env.test
 └── package.json
 ```
 
-::: tip Miks nii palju faile?
-Testimise teooria selgitas, miks äriloogika, andmebaas ja HTTP käsitlemine peavad eraldi olema. See scaffold rakendab täpselt seda kihilist arhitektuuri.
+::: tip Seos teooriaga
+**Service** → unit test mockidega. **Kogu stack** → integration test Supertest + test DB.
 :::
 
 ---
 
-# 3. Kihiline arhitektuur praktikas
-
-Testimise teooria peatükis lugesime kihilisest arhitektuurist. Siin on see päriselt rakendatud:
+## 3. Kihiline arhitektuur
 
 ```
 Route → Controller → Service → Repository → Database
 ```
 
-| Kiht | Fail (näide) | Mida teeb? |
-|------|-------------|------------|
-| **Route** | `routes/bookingRoutes.js` | Seob URL-i ja HTTP meetodi controlleriga |
-| **Controller** | `controllers/bookingController.js` | Loeb `req.body`, kutsub service'it, saadab `res` vastuse |
-| **Service** | `services/bookingService.js` | Äriloogika: "Kas workshop on täis? Kas kasutaja on juba broneerinud?" |
-| **Repository** | `repositories/bookingRepository.js` | Andmebaasi päringud Prisma kaudu |
-
-### Miks see on testimiseks oluline?
-
-- **Service kihti** saab testida unit testiga — anname talle mock repository
-- **Kogu API'd** saab testida integration testiga — teeme päris HTTP päringu
-
-See on täpselt see, mida teoorias õppisime (dependency injection, mockimine).
+| Kiht | Näide | Testimine |
+|------|-------|-----------|
+| Route | `bookingRoutes.js` | Integration |
+| Controller | `bookingController.js` | Integration |
+| Service | `bookingService.js` | **Unit** (mock) |
+| Repository | `bookingRepository.js` | Integration |
 
 ---
 
-# 4. Docker ja Postgres
-
-## Miks Docker?
-
-Docker võimaldab käivitada Postgresi andmebaasi ilma, et peaksid seda oma arvutisse otse paigaldama. Kõik on konteineris.
-
-## Kaks andmebaasi
-
-Projektis on **kaks** Postgresi andmebaasi:
-
-| Andmebaas | Kasutus | Env fail |
-|-----------|---------|----------|
-| `app_dev` | Arendus — siin on "päris" andmed | `.env` |
-| `app_test` | Testimine — puhastatakse enne iga testi | `.env.test` |
-
-**Miks eraldi test-andmebaas?**
-
-- Testid peavad olema korduvkäivitatavad — iga kord puhas olek
-- Testid ei tohi rikkuda arendusandmeid
-- Test-andmebaasi saab enne iga testi tühjendada
-
-## Docker Compose käivitamine
+## 4. Docker ja kaks andmebaasi
 
 ```bash
 docker compose up -d
 ```
 
-See käivitab Postgresi konteineri taustal. `-d` tähendab "detached" ehk taustal.
+| Andmebaas | Env | Kasutus |
+|-----------|-----|---------|
+| `app_dev` | `.env` | Arendus |
+| `app_test` | `.env.test` | Automaattestid |
 
-Kontrolli, et konteiner töötab:
+Migratsioonid:
 
 ```bash
-docker compose ps
+npx prisma migrate dev
+npm run migrate:test
 ```
+
+::: warning
+Mõlemad andmebaasid peavad migratsioonid saama — muidu integration testid ebaõnnestuvad.
+:::
 
 ---
 
-# 5. Prisma – andmebaasi ORM
-
-## Mis on Prisma?
-
-Prisma on ORM (Object-Relational Mapping), mis võimaldab andmebaasiga suhelda JavaScripti kaudu ilma SQL-i kirjutamata.
-
-## Schema
-
-`prisma/schema.prisma` defineerib andmebaasi tabelid:
+## 5. Prisma skeem (lühidalt)
 
 ```prisma
-model User {
-  id       Int       @id @default(autoincrement())
-  name     String
-  email    String    @unique
-  bookings Booking[]
-}
-
-model Workshop {
-  id       Int       @id @default(autoincrement())
-  title    String
-  capacity Int
-  bookings Booking[]
-}
-
 model Booking {
   id         Int      @id @default(autoincrement())
-  user       User     @relation(fields: [userId], references: [id])
   userId     Int
-  workshop   Workshop @relation(fields: [workshopId], references: [id])
   workshopId Int
+  user       User     @relation(...)
+  workshop   Workshop @relation(...)
 
   @@unique([userId, workshopId])
 }
 ```
 
-::: tip @@unique([userId, workshopId])
-See tähendab, et üks kasutaja saab samasse workshop'i broneerida ainult ühe korra. Andmebaas ise tagab selle reegli.
-:::
-
-## Migratsioonid
-
-Migratsioonid loovad/muudavad andmebaasi tabeleid vastavalt schemale.
-
-Arenduse andmebaas:
-
-```bash
-npx prisma migrate dev
-```
-
-Test-andmebaas:
-
-```bash
-npm run migrate:test
-```
-
-::: warning Oluline
-Käivita migratsioonid **mõlema** andmebaasi jaoks! Muidu testid ei tööta.
-:::
+`@@unique` — sama kasutaja ei saa sama workshop'i kaks korda broneerida.
 
 ---
 
-# 6. Testkeskkonna seadistus
+## 6. Testkeskkond
 
-## .env vs .env.test
-
-```
-# .env (arendus)
-DATABASE_URL="postgresql://user:pass@localhost:5432/app_dev"
-
-# .env.test (testimine)
-DATABASE_URL="postgresql://user:pass@localhost:5432/app_test"
-```
-
-Kui käivitad `npm test`, kasutab Jest automaatselt `.env.test` faili, mis ühendub test-andmebaasiga.
-
-## resetDb() — andmebaasi puhastamine
-
-Failis `tests/helpers/resetDb.js` on funktsioon, mis puhastab kõik tabelid enne iga testi:
+`npm test` / `vitest` kasutab `.env.test` — ühendus test-andmebaasiga.
 
 ```js
-// Näide resetDb kasutamisest testis
 beforeEach(async () => {
   await resetDb();
 });
 ```
 
-**Miks see oluline on?**
-
-- Iga test alustab puhtast olekust
-- Testid ei sõltu üksteisest ega käivitamise järjekorrast
-- See on testide isolatsiooni põhimõte
+Iga integration test algab puhtast olekust.
 
 ---
 
-# 7. API endpointid
-
-Scaffold sisaldab järgmisi endpointe:
+## 7. API endpointid
 
 | Meetod | URL | Kirjeldus |
 |--------|-----|-----------|
 | GET | `/health` | Tervisekontroll |
-| POST | `/users` | Loo uus kasutaja |
-| POST | `/workshops` | Loo uus workshop |
-| POST | `/bookings` | Loo uus broneering |
+| POST | `/users` | Loo kasutaja |
+| POST | `/workshops` | Loo workshop |
+| POST | `/bookings` | Loo broneering |
 
-### Ärireeglid (bookings):
+**Ärireeglid (bookings):**
 
 - Workshop peab eksisteerima
-- Workshop ei tohi olla täis (capacity kontroll)
-- Sama kasutaja ei tohi sama workshop'i kaks korda broneerida
+- Workshop ei tohi olla täis
+- Topeltbroneering keelatud
+
+Swagger: `http://localhost:3000/docs`
 
 ---
 
-# 8. Swagger dokumentatsioon
+## 8. Kolm viisi sama API testida
 
-Kui rakendus töötab, on Swagger kättesaadav:
-
-```
-http://localhost:3000/docs
-```
-
-Swagger näitab:
-
-- Kõiki endpointe
-- Sisendi struktuuri (mis andmed saata)
-- Vastuse struktuuri (mis tagasi tuleb)
-- HTTP staatuskoode
-
-::: tip Swagger kui API leping
-Swagger ei ole ainult dokumentatsioon — see on **leping** frontendi ja backendi vahel. Kui API käitumine ei vasta Swaggerile, siis on API vale.
-:::
+| Viis | Millal? | Leht |
+|------|---------|------|
+| **Vitest + Supertest** | CI, regressioon | [Integration](/testing/integration-testing), [Töötuba](/testing/workshop) |
+| **Postman** | Käsitsi, jõudlus, demo | [Postman](/testing/performance-testing-postman) |
+| **Playwright** | Kui on Vite frontend API-le | [UI testimine](/testing/ui-testing) |
 
 ---
 
-# 9. Kuidas testid töötavad selles projektis
+## 9. Enne töötuba — kontrollnimekiri
 
-### Unit testid (service kiht)
+- [ ] Docker töötab
+- [ ] Migratsioonid mõlemas DB-s
+- [ ] `npm run dev` — Swagger avaneb
+- [ ] `npm test` — olemasolevad testid läbivad
+- [ ] Mõistan service vs integration testi vahet
 
-```js
-// Anname service'ile mock repository (nagu teoorias)
-const mockRepository = {
-  countBookings: jest.fn(),
-  createBooking: jest.fn()
-};
-const service = new BookingService(mockRepository);
-```
-
-- Ei kasuta andmebaasi
-- Testivad ainult äriloogikat
-- Kiired, isoleeritud
-
-### Integration testid (API tase)
-
-```js
-// Teeme päris HTTP päringu Supertestiga
-const request = require("supertest");
-const app = require("../src/app");
-
-const res = await request(app)
-  .post("/users")
-  .send({ name: "Ada", email: "ada@test.com" });
-
-expect(res.statusCode).toBe(201);
-```
-
-- Kasutavad päris test-andmebaasi
-- Testivad kogu süsteemi koostööd (route → controller → service → repository → DB)
-- Aeglasemad, aga annavad suurema kindluse
+**Järgmine samm:** [Praktiline töötuba](/testing/workshop)
 
 ---
 
-# 10. Kokkuvõte — enne ülesannete juurde minekut
+## 10. Lisamaterjalid
 
-Veendu, et mõistad:
-
-- **Kihiline arhitektuur** — miks on route, controller, service ja repository eraldi
-- **Kaks andmebaasi** — arendus vs test, miks eraldi
-- **Prisma** — kuidas schema defineerib tabeleid ja kuidas migratsioonid töötavad
-- **resetDb()** — miks puhastatakse andmebaas enne iga testi
-- **Kaht tüüpi testid** — unit (mock repository) vs integration (Supertest + päris DB)
-
-Nüüd mine edasi [ülesannete juurde](/testing/workshop)!
-
----
-
-# 11. Lisamaterjalid
-
-- Docker: https://docs.docker.com/
-- PostgreSQL: https://www.postgresql.org/docs/
-- Prisma: https://www.prisma.io/docs
-- Supertest: https://github.com/ladjs/supertest
-- OpenAPI/Swagger: https://swagger.io/specification/
-- Testimise strateegia: https://martinfowler.com/articles/practical-test-pyramid.html
+- [Vitest](https://vitest.dev/)
+- [Supertest](https://github.com/ladjs/supertest)
+- [Prisma](https://www.prisma.io/docs)
+- [Docker Compose](https://docs.docker.com/compose/)

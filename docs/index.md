@@ -12,7 +12,7 @@ Siit leiad õppematerjalid järgmistel teemadel:
 JavaScripti alused ja edasijõudnud teemad: muutujad, funktsioonid, asünkroonne programmeerimine, moodulid.
 
 ### [Testimine](/testing/sissejuhatus)
-Tarkvara testimise alused, TDD, mockimine, Jest, Supertest, API testimine, kihiline arhitektuur.
+Testimise alused, unit testid Vitestiga, mockimine, integration testid, API testimine, UI testid Playwrightiga, jõudlus Postmaniga.
 
 ### [Arendusvahendid I](/arendusvahendid-i/sissejuhatus)
 Terminali, shelli, failisüsteemi, Node.js-i, npm-i, `nvm`-i, Giti, GitHubi ja dokumenteerimise praktilised alused.
