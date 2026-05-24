@@ -1,223 +1,175 @@
-# Testimise alused ja TDD
+# Testimise alused
+
+## Miks me testime?
+
+Oled lõpetanud broneerimissüsteemi. Kõik toimib. Nädal hiljem lisad uue feature'i ja järsku ei saa kasutajad enam broneerida — vana loogika läks katki. Klient on pahane, sa otsid bugi mitu tundi.
+
+**Automaattest oleks selle ära hoidnud.** Test ütleks kohe: "broneerimine ei tööta enam."
+
+Testimine ei ole vigade otsimine pärast valmimist. See on mehhanism, mis:
+
+- valideerib äriloogikat
+- vähendab regressioonivigu (vana funktsioon katki minemist)
+- võimaldab turvalist refaktoreerimist
+- annab kindlust enne deploy'd
+
+---
 
 ## Õpieesmärgid
 
 Selle peatüki lõpuks peaks õppija:
 
-- Mõistma tarkvara testimise rolli professionaalses arenduses
-- Oskama selgitada unit-, integration- ja end-to-end testide erinevust
-- Mõistma testimise püramiidi loogikat
-- Oskama rakendada TDD tsüklit
-- Oskama kirjutada esimesi teste Jestiga
-- Mõistma Express API testimise põhimõtteid
+- mõistma, miks testimine on arendusprotsessi osa
+- oskama eristada unit-, integration- ja UI/E2E teste
+- mõistma testimise püramiidi loogikat
+- oskama kasutada Arrange–Act–Assert mustrit
+- teadma levinumaid algaja vigu
 
 ---
 
-# 1. Tarkvara testimise olemus
+## 1. Käsitsi vs automaattest
 
-Kujuta ette: oled lõpetanud broneerimissüsteemi arenduse ja teed deploy. Kõik toimib. Nädal hiljem lisad uue feature'i ja järsku ei saa kasutajad enam broneerida — vana loogika läks katki. Klient on pahane, sa otsid bugi mitu tundi.
+| | Käsitsi test | Automaattest |
+|---|-------------|--------------|
+| **Kuidas?** | Ava brauser, kliki, vaata | Käivita `npm test` |
+| **Kiirus** | Aeglane, kordub iga kord | Sekundid |
+| **Korduvus** | Inimene unustab samu asju | Sama test iga kord |
+| **Millal?** | Uue feature'i avastamine | Regressioon, CI/CD |
 
-**Testid oleksid selle ära hoidnud.** Automaatne test oleks kohe öelnud, et broneerimine ei tööta enam.
-
-Tarkvara testimine on süsteemne protsess, mille eesmärk on hinnata tarkvara kvaliteeti ja tuvastada kõrvalekaldeid ootuspärasest käitumisest.
-
-Testimine ei ole pelgalt vigade leidmine.
-Testimine on mehhanism, mis võimaldab:
-
-- valideerida äriloogikat
-- vähendada regressioonivigu
-- võimaldada turvalist refaktoreerimist
-- tagada süsteemi töökindlus
-
-Professionaalses arenduses ei käsitleta testimist kui lisategevust, vaid kui arendusprotsessi lahutamatut osa.
-
-### Allikad
-- ISTQB Glossary – Software Testing Definition
-  https://glossary.istqb.org/
-- Martin Fowler – The Practical Test Pyramid
-  https://martinfowler.com/articles/practical-test-pyramid.html
+**Mõlemad on vajalikud.** Automaattest ei asenda mõtlemist — see kaitseb seda, mida juba tead, et peab töötama.
 
 ---
 
-# 2. Testimise tasemed
-## 2.1 Unit test
+## 2. Testimise tasemed — üks näide, neli vaatenurka
 
-Unit test kontrollib väikest, iseseisvat funktsionaalsust (tavaliselt ühte funktsiooni või meetodit).
+Meie broneerimissüsteem: kas kasutaja saab broneerida töötoa?
 
-Iseloomulikud omadused:
+### 2.1 Unit test
 
-- Ei kasuta andmebaasi
-- Ei käivita HTTP serverit
-- Ei sõltu välistest süsteemidest
-- On kiire ja deterministlik
-
-Näide:
+Testib **ühte väikest osa** eraldi — tavaliselt ühte funktsiooni.
 
 ```js
 function canBook(capacity, currentBookings) {
   return currentBookings < capacity;
 }
+
+// Unit test — ei vaja andmebaasi ega serverit
+expect(canBook(10, 5)).toBe(true);
+expect(canBook(10, 10)).toBe(false);
 ```
 
-Unit test:
+**Omadused:** kiire, isoleeritud, deterministlik.
+
+### 2.2 Integration test
+
+Testib **mitme komponendi koostööd** — näiteks API route + service + andmebaas.
 
 ```js
-test("ei luba broneerida kui kohad on täis", () => {
-  expect(canBook(5, 5)).toBe(false);
-});
+// HTTP päring läbi kogu stacki
+const res = await request(app)
+  .post("/bookings")
+  .send({ userId: 1, workshopId: 1 });
+
+expect(res.statusCode).toBe(201);
 ```
 
-Unit testide eesmärk on kontrollida äriloogikat eraldatult.
+**Omadused:** aeglasem, annab suurema kindluse, et osad töötavad koos.
 
-### Allikad
-- Jest Documentation
-  https://jestjs.io/docs/getting-started
-- Kent C. Dodds – Write Tests, Not Too Many, Mostly Integration
-  https://kentcdodds.com/blog/write-tests
+### 2.3 UI test (komponent)
+
+Testib **kasutajaliidese osa** — kas nupp on nähtav, kas vorm valideerib.
+
+```js
+// Testing Library — testib seda, mida kasutaja näeb
+render(<BookingForm />);
+await userEvent.click(screen.getByRole("button", { name: /broneeri/i }));
+expect(screen.getByText(/täis/i)).toBeInTheDocument();
+```
+
+### 2.4 E2E test (brauser)
+
+Simuleerib **täielikku kasutajateekonda** brauseris.
+
+```js
+// Playwright — avab päris brauseri
+await page.goto("http://localhost:5173");
+await page.getByRole("button", { name: "Broneeri" }).click();
+await expect(page.getByText("Broneering kinnitatud")).toBeVisible();
+```
+
+**Omadused:** aeglasemad, kallimad, annavad kõrge kindlustunde enne release'i.
 
 ---
 
-## 2.2 Integration test
-
-Integration test kontrollib mitme komponendi koostööd.
-
-Näiteks:
-
-- Express route
-- Service layer
-- Andmebaasi ühendus
-
-Näide:
-
-```
-POST /users
-```
-
-Integration test võib kasutada test-andmebaasi ja reaalset HTTP päringut (Supertest kaudu).
-
-### Allikad
-- Supertest GitHub
-  https://github.com/ladjs/supertest
-- Martin Fowler – Integration Tests
-  https://martinfowler.com/bliki/IntegrationTest.html
-
----
-
-## 2.3 End-to-End test (E2E)
-
-End-to-End test simuleerib kasutaja tegelikku käitumist ja testib kogu süsteemi voogu.
-
-Näide:
-
-1. Loo kasutaja
-2. Loo töötuba
-3. Tee broneering
-4. Kontrolli tulemust
-
-Need testid on aeglasemad ja kallimad, kuid annavad kõrge kindlustunde.
-
-### Allikad
-- Cypress Documentation (näide E2E testidest)
-  https://docs.cypress.io/
-- Testimise püramiidi käsitlus
-  https://martinfowler.com/articles/practical-test-pyramid.html
-
----
-
-# 3. Testimise püramiid
-
-Testimise püramiid kirjeldab testide optimaalset jaotust:
+## 3. Testimise püramiid
 
 ```
         /‾‾‾‾‾‾‾\
-       /  E2E    \          ← vähe, aeglased, kallid
+       /  E2E    \          ← vähe, aeglased (Playwright)
       /‾‾‾‾‾‾‾‾‾‾‾\
-     / Integration  \       ← mõõdukas arv
+     / Integration  \       ← mõõdukas (Supertest, API)
     /‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\
-   /   Unit Tests      \    ← palju, kiired, odavad
+   /   Unit Tests      \    ← palju, kiired (Vitest)
   /‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\
 ```
 
-Miks?
+**Miks nii?**
 
-- Unit testid on kiired ja odavad
-- Integration testid on aeglasemad
-- E2E testid on kõige ressursimahukamad
+- Unit testid on odavad — kirjuta neid palju
+- Integration testid kontrollivad koostööd — mõõdukas arv
+- E2E testid on kallid — ainult kriitilised teekonnad
 
-Vale jaotus (liiga palju E2E teste) muudab arenduse aeglaseks ja ebastabiilseks.
-
-### Allikad
-- Martin Fowler – Practical Test Pyramid
-  https://martinfowler.com/articles/practical-test-pyramid.html
+Vale jaotus (liiga palju E2E) muudab `npm test` aeglaseks ja CI ebastabiilseks.
 
 ---
 
-# 4. TDD – Test Driven Development
+## 4. Arrange – Act – Assert (AAA)
 
-TDD on arendusmetoodika, kus test kirjutatakse enne implementatsiooni.
-
-TDD tsükkel:
-
-1. 🔴 RED – kirjuta test (ebaõnnestub)
-2. 🟢 GREEN – kirjuta minimaalne kood, mis testi läbib
-3. 🔵 REFACTOR – paranda koodi struktuuri
-
-TDD eesmärk ei ole ainult testimine, vaid:
-
-- parem disain
-- väiksemad funktsioonid
-- selgem API
-- vähem üleliigset loogikat
-
-Näide:
+Iga hea test järgib kolme sammu:
 
 ```js
-test("ei luba broneerida kui capacity on täis", () => {
-  expect(canBook(2, 2)).toBe(false);
+test("ei luba broneerida kui workshop on täis", () => {
+  // Arrange — seadista andmed
+  const capacity = 10;
+  const currentBookings = 10;
+
+  // Act — tee midagi
+  const result = canBook(capacity, currentBookings);
+
+  // Assert — kontrolli tulemust
+  expect(result).toBe(false);
 });
 ```
 
-Seejärel kirjutame funktsiooni.
-
-### Allikad
-- Martin Fowler – Test Driven Development
-  https://martinfowler.com/bliki/TestDrivenDevelopment.html
-- Kent Beck – Test-Driven Development: By Example
+See muster teeb testid loetavaks ja hõlbustab debugimist.
 
 ---
 
-# 5. Hea testi omadused
+## 5. Hea test vs halb test
 
-Hea test:
-
-- On loetav
-- Testib ühte konkreetset käitumist
-- Ei sõltu välistest süsteemidest (unit testide puhul)
-- On korduvkäivitatav ja deterministlik
-
-Halb test:
+**Halb test** — ei testi midagi kasulikku:
 
 ```js
 expect(true).toBe(true);
 ```
 
-Hea test:
+**Hea test** — kirjeldab käitumist:
 
 ```js
 expect(validateEmail("test@test.com")).toBe(true);
+expect(validateEmail("vale-email")).toBe(false);
 ```
 
-Test peaks kirjeldama süsteemi käitumist, mitte implementatsiooni detaile.
+Hea test:
 
-### Allikad
-- Clean Code – Robert C. Martin
-- Kent C. Dodds – Testing Implementation Details
+- on loetav (nimi ütleb, mida kontrollitakse)
+- testib **ühte** konkreetset asja
+- ei sõltu juhuslikkusest ega ajast
+- on korduvkäivitatav
 
 ---
 
-# 6. Edge case mõtlemine
-
-Näide:
+## 6. Edge case'id — mida veel testida?
 
 ```js
 function divide(a, b) {
@@ -225,80 +177,55 @@ function divide(a, b) {
 }
 ```
 
-Küsimused:
+Küsimused enne testide kirjutamist:
 
-- Mis juhtub kui b = 0?
-- Mis juhtub kui sisend on string?
+- Mis juhtub, kui `b = 0`?
+- Mis juhtub stringidega?
 - Kas funktsioon peaks viskama vea?
 
-Testimine sunnib defineerima süsteemi piirid ja käitumise.
+Testimine sunnib defineerima süsteemi piirid **enne** implementeerimist.
 
 ---
 
-# 7. Jest – Node.js testimisraamistik
+## 7. Levinumad algaja vead
 
-Paigaldamine:
-
-```bash
-npm install --save-dev jest
-```
-
-package.json:
-
-```json
-"scripts": {
-  "test": "jest"
-}
-```
-
-Näide:
-
-```js
-test("liidab kaks arvu", () => {
-  expect(2 + 3).toBe(5);
-});
-```
+| Viga | Parem lahendus |
+|------|----------------|
+| Testid implementatsiooni detaile, mitte käitumist | Testi tulemust, mitte sisemist muutujat |
+| Üks suur test kõigele | Palju väikeseid teste |
+| Testid sõltuvad üksteisest | Iga test alustab puhtalt olekust |
+| Ainult "happy path" | Lisa veajuhtumid ja piirid |
+| Testid ei käivitu CI-s | Lisa `npm test` pipeline'i |
 
 ---
 
-# 8. Express API testimine (Supertest)
+## 8. TDD — lühidalt
 
-Supertest võimaldab testida Express rakendust ilma serverit käivitamata.
+**Test Driven Development** tähendab: kirjuta test **enne** koodi.
 
-```js
-const request = require("supertest");
-const app = require("../app");
+1. **Red** — test ebaõnnestub (funktsiooni pole)
+2. **Green** — minimaalne kood, mis testi läbib
+3. **Refactor** — paranda struktuuri ilma teste rikkumata
 
-test("GET /health tagastab 200", async () => {
-  const res = await request(app).get("/health");
-  expect(res.statusCode).toBe(200);
-});
-```
-
-See test kontrollib:
-
-- HTTP staatust
-- Vastuse sisu
-- Endpointi olemasolu
+TDD ei ole kohustuslik, aga unit testide õppimisel aitab see mõtteviisi kujundada. Praktiline harjutus: [Unit testid Vitestiga](/testing/unit-testing).
 
 ---
 
-# 9. Aruteluküsimused
+## 9. Kontrollküsimused
 
-- Kas testimine muudab arenduse aeglasemaks või kiiremaks pikemas perspektiivis?
-- Kas TDD parandab süsteemi disaini?
-- Kui palju teste on piisav arv teste?
+- Miks unit test ei peaks kasutama päris andmebaasi?
+- Millal integration test annab rohkem väärtust kui unit test?
+- Miks E2E teste peaks olema vähe?
+- Mis on Arrange–Act–Assert?
 
 ---
 
-# 10. Kokkuvõte
+## 10. Edasi
 
-Testimine ei ole lisategevus.
-Testimine on kvaliteetse tarkvara loomise fundamentaalne osa.
+Järgmine samm: [Unit testid Vitestiga](/testing/unit-testing) — seadistame Vite projekti ja kirjutame esimesed testid.
 
-Professionaalne arendaja:
+### Allikad
 
-- Mõtleb enne implementatsiooni
-- Testib äriloogikat
-- Kontrollib API käitumist
-- Kaitseb süsteemi regressioonide eest
+- [Martin Fowler — Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
+- [Kent C. Dodds — Write Tests](https://kentcdodds.com/blog/write-tests)
+- [Vitest dokumentatsioon](https://vitest.dev/)

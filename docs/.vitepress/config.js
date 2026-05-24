@@ -82,9 +82,13 @@ export default {
                 collapsed: true,
                 items: [
                     { text: "Sissejuhatus moodulisse", link: "/testing/sissejuhatus" },
-                    { text: "Testimise alused ja TDD", link: "/testing/fundamentals" },
-                    { text: "Mockimine ja arhitektuur", link: "/testing/tdd-and-mocking" },
-                    { text: "API testimine (scaffold)", link: "/testing/api-testing" },
+                    { text: "Testimise alused", link: "/testing/fundamentals" },
+                    { text: "Unit testid (Vitest)", link: "/testing/unit-testing" },
+                    { text: "Mockimine ja testitav kood", link: "/testing/mocking" },
+                    { text: "Integration testid", link: "/testing/integration-testing" },
+                    { text: "API testimine", link: "/testing/api-testing" },
+                    { text: "UI testimine (Playwright)", link: "/testing/ui-testing" },
+                    { text: "Jõudlus (Postman)", link: "/testing/performance-testing-postman" },
                     { text: "Praktiline töötuba", link: "/testing/workshop" },
                     { text: "Ülesanded", link: "/testing/assignments" }
                 ]
