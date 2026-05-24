@@ -90,6 +90,16 @@ export default {
                 ]
             },
             {
+                text: "Arendusvahendid I",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus moodulisse", link: "/arendusvahendid-i/sissejuhatus" },
+                    { text: "Terminal ja shell", link: "/arendusvahendid-i/terminal-ja-shell" },
+                    { text: "Node.js, npm ja nvm", link: "/arendusvahendid-i/nodejs-ja-nvm" },
+                    { text: "Ülesanded", link: "/arendusvahendid-i/assignments" }
+                ]
+            },
+            {
                 text: "Arendusvahendid II",
                 collapsed: true,
                 items: [

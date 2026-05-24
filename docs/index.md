@@ -13,3 +13,6 @@ JavaScripti alused ja edasijõudnud teemad: muutujad, funktsioonid, asünkroonne
 
 ### [Testimine](/testing/sissejuhatus)
 Tarkvara testimise alused, TDD, mockimine, Jest, Supertest, API testimine, kihiline arhitektuur.
+
+### [Arendusvahendid I](/arendusvahendid-i/sissejuhatus)
+Terminali, shelli, `PATH` muutuja, Node.js ja `nvm` praktilised alused.
