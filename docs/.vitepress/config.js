@@ -95,7 +95,13 @@ export default {
                 items: [
                     { text: "Sissejuhatus moodulisse", link: "/arendusvahendid-i/sissejuhatus" },
                     { text: "Terminal ja shell", link: "/arendusvahendid-i/terminal-ja-shell" },
+                    { text: "Failisüsteem ja projektistruktuur", link: "/arendusvahendid-i/failisusteem-ja-projektistruktuur" },
                     { text: "Node.js, npm ja nvm", link: "/arendusvahendid-i/nodejs-ja-nvm" },
+                    { text: "npm ja package.json", link: "/arendusvahendid-i/npm-ja-package-json" },
+                    { text: "Keskkonnamuutujad", link: "/arendusvahendid-i/keskkonnamuutujad" },
+                    { text: "Git ja GitHub", link: "/arendusvahendid-i/git-ja-github" },
+                    { text: "Markdown ja README", link: "/arendusvahendid-i/markdown-ja-readme" },
+                    { text: "Tõrkeotsingu töövoog", link: "/arendusvahendid-i/troubleshooting" },
                     { text: "Ülesanded", link: "/arendusvahendid-i/assignments" }
                 ]
             },
