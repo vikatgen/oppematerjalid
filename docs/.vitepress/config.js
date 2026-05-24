@@ -75,6 +75,8 @@ export default {
                             }
                         ],
                     },
+                    { text: "JavaScripti ülesanded", link: "/javascript/assignments" },
+                    { text: "Edasijõudnud teemad", link: "/javascript/advanced" },
                 ]
             },
             {
