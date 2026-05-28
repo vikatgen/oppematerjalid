@@ -11,6 +11,9 @@ Siit leiad õppematerjalid järgmistel teemadel:
 ### [JavaScript](/javascript/sissejuhatus-moodulisse)
 JavaScripti alused ja edasijõudnud teemad: muutujad, funktsioonid, asünkroonne programmeerimine, moodulid.
 
+### [Rakenduste loomine](/rakenduste-loomine/sissejuhatus)
+Ehita veebiarenduse template nullist: Vite, Tailwind, ESLint, Prettier, build ja GitHub template repository.
+
 ### [Testimine](/testing/sissejuhatus)
 Testimise alused, unit testid Vitestiga, mockimine, integration testid, API testimine, UI testid Playwrightiga, jõudlus Postmaniga.
 

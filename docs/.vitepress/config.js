@@ -80,6 +80,23 @@ export default {
                 ]
             },
             {
+                text: "Rakenduste loomine",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus moodulisse", link: "/rakenduste-loomine/sissejuhatus" },
+                    { text: "Eelteadmiste kordamine", link: "/rakenduste-loomine/eelteadmiste-kordamine" },
+                    { text: "Bundler ja Vite", link: "/rakenduste-loomine/bundler-ja-vite" },
+                    { text: "Projekti loomine nullist", link: "/rakenduste-loomine/projekti-loomine-nullist" },
+                    { text: "Keskkonnamuutujad Vite'iga", link: "/rakenduste-loomine/keskkonnamuutujad-vitega" },
+                    { text: "Build ja preview", link: "/rakenduste-loomine/build-ja-preview" },
+                    { text: "Tailwind Vite'iga", link: "/rakenduste-loomine/tailwind-vitega" },
+                    { text: "ESLint", link: "/rakenduste-loomine/eslint" },
+                    { text: "Prettier ja koodistiil", link: "/rakenduste-loomine/prettier-ja-koodistiil" },
+                    { text: "Template repository GitHubis", link: "/rakenduste-loomine/template-repository-githubis" },
+                    { text: "Ülesanded", link: "/rakenduste-loomine/assignments" }
+                ]
+            },
+            {
                 text: "Testimine",
                 collapsed: true,
                 items: [
