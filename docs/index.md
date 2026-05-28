@@ -19,3 +19,6 @@ Testimise alused, unit testid Vitestiga, mockimine, integration testid, API test
 
 ### [Arendusvahendid I](/arendusvahendid-i/sissejuhatus)
 Terminali, shelli, failisüsteemi, Node.js-i, npm-i, `nvm`-i, Giti, GitHubi ja dokumenteerimise praktilised alused.
+
+### [Linux](/linux/sissejuhatus)
+Linuxi kasutajate ja gruppide haldamine WSL-is: kasutaja loomine, õigused, Dockeri grupp.

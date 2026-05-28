@@ -2,7 +2,7 @@ export default {
     base: process.env.VITEPRESS_BASE ?? "/oppematerjalid/",
     lang: "et-EE",
     title: "J-SWE",
-    description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: JavaScript, Node.js, testimine, Docker, Nginx, andmebaasid",
+    description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: JavaScript, Node.js, testimine, Linux, Docker, Nginx, andmebaasid",
 
     themeConfig: {
         nav: [
@@ -126,6 +126,14 @@ export default {
                     { text: "Markdown ja README", link: "/arendusvahendid-i/markdown-ja-readme" },
                     { text: "Tõrkeotsingu töövoog", link: "/arendusvahendid-i/troubleshooting" },
                     { text: "Ülesanded", link: "/arendusvahendid-i/assignments" }
+                ]
+            },
+            {
+                text: "Linux",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus moodulisse", link: "/linux/sissejuhatus" },
+                    { text: "Kasutajad ja grupid", link: "/linux/kasutajad-ja-grupid" }
                 ]
             },
             {
