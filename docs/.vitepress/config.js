@@ -133,7 +133,8 @@ export default {
                 collapsed: true,
                 items: [
                     { text: "Sissejuhatus moodulisse", link: "/linux/sissejuhatus" },
-                    { text: "Kasutajad ja grupid", link: "/linux/kasutajad-ja-grupid" }
+                    { text: "Kasutajad ja grupid", link: "/linux/kasutajad-ja-grupid" },
+                    { text: "Õiguste süsteem", link: "/linux/oiguste-susteem" }
                 ]
             },
             {
