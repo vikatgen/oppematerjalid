@@ -134,7 +134,8 @@ export default {
                 items: [
                     { text: "Sissejuhatus moodulisse", link: "/linux/sissejuhatus" },
                     { text: "Kasutajad ja grupid", link: "/linux/kasutajad-ja-grupid" },
-                    { text: "Õiguste süsteem", link: "/linux/oiguste-susteem" }
+                    { text: "Õiguste süsteem", link: "/linux/oiguste-susteem" },
+                    { text: "Protsesside haldus", link: "/linux/protsesside-haldus" }
                 ]
             },
             {

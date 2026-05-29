@@ -21,12 +21,16 @@ Selle mooduli lõpuks peaks õppija:
 - oskama vahetada kasutajat terminalis (`su`)
 - oskama seadistada WSL-i vaikimisi kasutaja
 - oskama kontrollida kasutaja- ja grupiinfot (`whoami`, `id`, `/etc/passwd`, `/etc/group`)
+- oskama lugeda ja muuta failiõigusi (`ls -l`, `chmod`, `chown`)
+- oskama vaadata ja hallata protsesse (`ps`, `kill`, `htop`)
 
 ---
 
 ## Soovitatud õppejärjekord
 
 1. [Kasutajad ja grupid](/linux/kasutajad-ja-grupid) — kasutaja loomine, grupid, WSL seadistus
+2. [Õiguste süsteem](/linux/oiguste-susteem) — `ls -l`, `chmod`, `chown`
+3. [Protsesside haldus](/linux/protsesside-haldus) — `ps`, `kill`, taustatööd
 
 ---
 
