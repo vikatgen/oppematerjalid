@@ -26,6 +26,7 @@ export default {
                             { text: "Tingimuslaused", link: "/javascript/alused/tingimuslaused" },
                             { text: "Korduslaused (tsükkel)", link: "/javascript/alused/korduslaused" },
                             { text: "Funktsioonid", link: "/javascript/alused/funktsioonid" },
+                            { text: "Strict mode", link: "/javascript/alused/strict" },
                             { text: "Mooduli vahekaitsmine", link: "/javascript/alused/kaitsmine" },
                         ]
                     },
