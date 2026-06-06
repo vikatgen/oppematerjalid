@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: school-production
+  group: production
   cancel-in-progress: false
 
 env:
@@ -23,7 +23,7 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
     environment:
-      name: school-production
+      name: production
       url: https://vikat.itmajakas.ee/oppematerjalid/
 
     steps:
