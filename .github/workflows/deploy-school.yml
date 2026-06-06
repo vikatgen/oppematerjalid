@@ -52,7 +52,12 @@ jobs:
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          sed -i 's/\r$//' ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
+          ssh-keygen -F "$SSH_HOST" -f ~/.ssh/known_hosts > /dev/null || {
+            echo "::error::SSH_KNOWN_HOSTS must contain an entry matching the HOST secret"
+            exit 1
+          }
           cat >> ~/.ssh/config <<EOF
           Host school-hosting
             HostName $SSH_HOST
