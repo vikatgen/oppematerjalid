@@ -1,24 +1,77 @@
-name: Deploy to School Server
+name: Deploy to School Hosting
 
 on:
+  workflow_dispatch:
   push:
     tags:
-      - 'v*'
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: school-production
+  cancel-in-progress: false
+
+env:
+  VITEPRESS_BASE: /oppematerjalid/
+  DEPLOY_PATH: domeenid/www.vikat.itmajakas.ee/htdocs/oppematerjalid/
+  PUBLIC_URL: https://vikat.itmajakas.ee/oppematerjalid/
 
 jobs:
   deploy:
+    name: Build and deploy
     runs-on: ubuntu-latest
+    environment:
+      name: school-production
+      url: https://vikat.itmajakas.ee/oppematerjalid/
+
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            cd ~/domeenid/www.ta19vikat.itmajakas.ee/oppematerjalid
-            git fetch --tags
-            git checkout ${{ github.ref_name }}
-            npm ci
-            VITEPRESS_BASE=/ npm run docs:build
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run docs:build
+
+      - name: Configure SSH
+        env:
+          SSH_HOST: ${{ secrets.HOST }}
+          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          cat >> ~/.ssh/config <<EOF
+          Host school-hosting
+            HostName $SSH_HOST
+            User ${{ secrets.USERNAME }}
+            Port ${{ secrets.PORT }}
+            IdentityFile ~/.ssh/deploy_key
+            IdentitiesOnly yes
+            StrictHostKeyChecking yes
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Verify SSH connection
+        run: ssh -o BatchMode=yes school-hosting "test -d ~/domeenid/www.vikat.itmajakas.ee/htdocs"
+
+      - name: Deploy static site
+        run: |
+          rsync -az --delete \
+            docs/.vitepress/dist/ \
+            "school-hosting:$DEPLOY_PATH"
+
+      - name: Verify deployment
+        run: curl --fail --silent --show-error --location "$PUBLIC_URL" > /dev/null
