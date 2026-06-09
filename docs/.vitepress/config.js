@@ -8,6 +8,7 @@ export default {
         nav: [
             { text: "Avaleht", link: "/" },
             { text: "JavaScript", link: "/javascript/sissejuhatus-moodulisse" },
+            { text: "Kuidas veeb töötab", link: "/veeb/sissejuhatus" },
             { text: "Node.js", link: "/nodejs/introduction" },
         ],
 
@@ -21,63 +22,116 @@ export default {
                         text: "Programmeerimise alused",
                         collapsed: true,
                         items: [
+                            { text: "Probleemi lahendamine", link: "/javascript/alused/probleemi-lahendamine" },
                             { text: "Muutujad", link: "/javascript/alused/muutujad" },
                             { text: "Andmetüübid", link: "/javascript/alused/andmetuubid" },
+                            { text: "Objektid ja massiivid", link: "/javascript/alused/objektid-ja-massiivid" },
                             { text: "Tingimuslaused", link: "/javascript/alused/tingimuslaused" },
                             { text: "Korduslaused (tsükkel)", link: "/javascript/alused/korduslaused" },
                             { text: "Funktsioonid", link: "/javascript/alused/funktsioonid" },
-                            { text: "Strict mode", link: "/javascript/alused/strict" },
+                            { text: "Koodi jälgimine ja silumine", link: "/javascript/alused/koodi-jalgimine-ja-silumine" },
                             { text: "Mooduli vahekaitsmine", link: "/javascript/alused/kaitsmine" },
+                            {
+                                text: "Lisalugemine",
+                                collapsed: true,
+                                items: [
+                                    { text: "Kuidas muutuja töötab?", link: "/javascript/lisalugemine/kuidas-muutuja-tootab" },
+                                    { text: "Kuidas funktsioon töötab?", link: "/javascript/lisalugemine/kuidas-funktsioon-tootab" },
+                                    { text: "Massiivimeetodid ja callback'id", link: "/javascript/lisalugemine/massiivimeetodid-ja-callbackid" },
+                                    { text: "Väärtuste võrdlemine", link: "/javascript/lisalugemine/vaartuste-vordlemine" },
+                                    { text: "Levinud veateated", link: "/javascript/lisalugemine/levinud-veateated" },
+                                    { text: "Strict mode", link: "/javascript/lisalugemine/strict-mode" },
+                                ]
+                            },
                         ]
                     },
                     {
-                        text: "Brauser keskkond",
+                        text: "Brauserikeskkond",
                         collapsed: true,
                         items: [
+                            { text: "Sissejuhatus", link: "/javascript/brauser/sissejuhatus" },
                             {
-                                text: "DOM",
+                                text: "DOM: leia ja muuda",
                                 collapsed: true,
                                 items: [
-                                    { text: "Arenduskeskkond - brauser", link: "/javascript/brauser/dom/arenduskeskkond" },
-                                    { text: "Window objekt", link: "/javascript/brauser/dom/brauser-window" },
-                                    { text: "DOM puu", link: "/javascript/brauser/dom/dom-puu" },
-                                    { text: "DOM elementide otsimine", link: "/javascript/brauser/dom/dom-elementide-otsimine" },
-                                    { text: "Nodede lisamine ja eemaldamine", link: "/javascript/brauser/dom/nodede-lisamine-ja-eemaldamine" },
+                                    { text: "Brauseri arenduskeskkond", link: "/javascript/brauser/dom/arenduskeskkond" },
+                                    { text: "JavaScripti käivitamine", link: "/javascript/brauser/dom/dokumendi-laadimine" },
+                                    { text: "DOM-puu", link: "/javascript/brauser/dom/dom-puu" },
+                                    { text: "DOM-elementide otsimine", link: "/javascript/brauser/dom/dom-elementide-otsimine" },
                                     { text: "Attribuudid ja omadused", link: "/javascript/brauser/dom/atribuudid-ja-omadused" },
-                                    { text: "Dokumendi muutmine", link: "/javascript/brauser/dom/dokumendi-muutmine" },
+                                    { text: "Dokumendi sisu muutmine", link: "/javascript/brauser/dom/dokumendi-muutmine" },
                                     { text: "Stiilid ja klassid", link: "/javascript/brauser/dom/stiilid-ja-klassid" },
-                                    { text: "Koordinaadid", link: "/javascript/brauser/dom/koordinaadid" },
+                                    { text: "Elementide lisamine ja eemaldamine", link: "/javascript/brauser/dom/nodede-lisamine-ja-eemaldamine" },
                                 ]
                             },
                             {
-                                text: "Sündmused",
+                                text: "Sündmused: reageeri",
                                 collapsed: true,
                                 items: [
                                     { text: "Mis on brauseri sündmused?", link: "/javascript/brauser/sundmused/sissejuhatus" },
-                                    { text: "Sündmuste delegeerimine", link: "/javascript/brauser/sundmused/sundmuste-delegeerimine" },
-                                    { text: "Brauseri vaikimisi käitumine", link: "/javascript/brauser/sundmused/brauser-vaikimisi-kaitumine" },
-                                    { text: "Kohandatud sündmused", link: "/javascript/brauser/sundmused/kohandatud-sundmused" },
                                     { text: "UI sündmused", link: "/javascript/brauser/sundmused/ui-sundmused" },
+                                    { text: "Brauseri vaikimisi käitumine", link: "/javascript/brauser/sundmused/brauser-vaikimisi-kaitumine" },
                                     { text: "Vormid", link: "/javascript/brauser/sundmused/vormid" },
-                                    { text: "Dokumendi laadimine", link: "/javascript/brauser/sundmused/dokumendi-laadimine" },
-                                    { text: "Event loop: mikro ja makro", link: "/javascript/brauser/sundmused/event-loop-mikro-ja-makro" },
-                                    { text: "Mutatsiooni jälgimine", link: "/javascript/brauser/sundmused/mutatsiooni-jalgimine" },
+                                    { text: "Sündmuste delegeerimine", link: "/javascript/brauser/sundmused/sundmuste-delegeerimine" },
                                 ]
                             },
                             {
-                                text: "Andmed brauseris",
+                                text: "Andmed brauseris: salvesta",
                                 collapsed: true,
                                 items: [
+                                    { text: "LocalStorage: püsiv olek", link: "/javascript/brauser/andmed-brauseris/localstorage" },
+                                    { text: "SessionStorage: ajutine olek", link: "/javascript/brauser/andmed-brauseris/sessionstorage" },
+                                ]
+                            },
+                            {
+                                text: "Asünkroonsus: küsi serverist",
+                                collapsed: true,
+                                items: [
+                                    { text: "Asünkroonne JavaScript", link: "/javascript/brauser/asunkroonsus/sissejuhatus" },
+                                    { text: "Promise", link: "/javascript/brauser/asunkroonsus/promise" },
+                                    { text: "Async ja await", link: "/javascript/brauser/asunkroonsus/async-await" },
+                                    { text: "Fetch: küsi serverist", link: "/javascript/brauser/asunkroonsus/fetch" },
+                                    { text: "Laadimis- ja veaolekud", link: "/javascript/brauser/asunkroonsus/laadimis-ja-veaolekud" },
+                                ]
+                            },
+                            { text: "Praktiline töö", link: "/javascript/brauser/praktiline-too" },
+                            {
+                                text: "Brauseriosa lisamaterjalid",
+                                collapsed: true,
+                                items: [
+                                    { text: "Window objekt", link: "/javascript/brauser/dom/brauser-window" },
+                                    { text: "Elemendi koordinaadid", link: "/javascript/brauser/dom/koordinaadid" },
+                                    { text: "Kohandatud sündmused", link: "/javascript/brauser/sundmused/kohandatud-sundmused" },
+                                    { text: "Mutatsiooni jälgimine", link: "/javascript/brauser/sundmused/mutatsiooni-jalgimine" },
+                                    { text: "Event loop: mikro ja makro", link: "/javascript/brauser/sundmused/event-loop-mikro-ja-makro" },
                                     { text: "Küpsised", link: "/javascript/brauser/andmed-brauseris/kupsised" },
-                                    { text: "LocalStorage", link: "/javascript/brauser/andmed-brauseris/localstorage" },
-                                    { text: "SessionStorage", link: "/javascript/brauser/andmed-brauseris/sessionstorage" },
                                     { text: "IndexedDB", link: "/javascript/brauser/andmed-brauseris/indexed-db" },
                                 ]
-                            }
+                            },
                         ],
                     },
-                    { text: "JavaScripti ülesanded", link: "/javascript/assignments" },
-                    { text: "Edasijõudnud teemad", link: "/javascript/advanced" },
+                    {
+                        text: "JavaScripti praktilised töövahendid",
+                        collapsed: true,
+                        items: [
+                            { text: "URL ja URLSearchParams", link: "/javascript/toovahendid/url" },
+                            { text: "Date ja ajahetked", link: "/javascript/toovahendid/date" },
+                            { text: "Intl ja vormindamine", link: "/javascript/toovahendid/intl" },
+                        ]
+                    },
+                ]
+            },
+            {
+                text: "Kuidas veeb töötab",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/veeb/sissejuhatus" },
+                    { text: "Veebipäringu teekond", link: "/veeb/paringuteekond" },
+                    { text: "URL, domeen ja DNS", link: "/veeb/url-domeen-ja-dns" },
+                    { text: "HTTP päring ja vastus", link: "/veeb/http-paring-ja-vastus" },
+                    { text: "Meetodid ja staatusekoodid", link: "/veeb/meetodid-ja-staatusekoodid" },
+                    { text: "Päritolu ja CORS", link: "/veeb/cors" },
+                    { text: "Network-paneel", link: "/veeb/network-paneel" },
                 ]
             },
             {
@@ -95,6 +149,31 @@ export default {
                     { text: "Prettier ja koodistiil", link: "/rakenduste-loomine/prettier-ja-koodistiil" },
                     { text: "Template repository GitHubis", link: "/rakenduste-loomine/template-repository-githubis" },
                     { text: "Ülesanded", link: "/rakenduste-loomine/assignments" }
+                ]
+            },
+            {
+                text: "Objektimudel ja OOP",
+                collapsed: true,
+                items: [
+                    { text: "JavaScripti objektimudel", link: "/javascript/objektimudel/sissejuhatus" },
+                    { text: "Prototüübid ja pärilikkus", link: "/javascript/objektimudel/prototuubid-ja-parilikkus" },
+                    { text: "Klassid ja instantsid", link: "/javascript/objektimudel/klassid-ja-instantsid" },
+                    { text: "this ja meetodi väljakutse", link: "/javascript/objektimudel/this-ja-meetodid" },
+                    { text: "Kapseldamine, pärimine ja kompositsioon", link: "/javascript/objektimudel/oop-pohimotted" },
+                    { text: "Praktiline töö: ostukorvi mudel", link: "/javascript/objektimudel/praktiline-too" },
+                ]
+            },
+            {
+                text: "Node.js keskkond",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/nodejs/introduction" },
+                    { text: "Faili käivitamine ja keskkond", link: "/nodejs/kaivituskeskkond" },
+                    { text: "Moodulid ja package.json", link: "/nodejs/moodulid" },
+                    { text: "Failisüsteem ja protsess", link: "/nodejs/failisusteem-ja-protsess" },
+                    { text: "Esimene HTTP-server", link: "/nodejs/http-server" },
+                    { text: "Lihtsa API loomine", link: "/nodejs/api-loomine" },
+                    { text: "Express ja middleware", link: "/nodejs/express" },
                 ]
             },
             {
