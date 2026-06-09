@@ -1,158 +1,137 @@
+---
+title: Programmeerimise aluste vahekaitsmine
+description: Suulise vahekaitsmise nõuded ja valmistumise juhend.
+outline: deep
+---
+
 # Mooduli vahekaitsmine
 
 ## Eesmärk
 
-Vahekaitsmise eesmärk on kontrollida, kas programmeerimise alustõed on arusaadavad nii koodi lugemisel kui ka oma sõnadega selgitamisel.
+Vahekaitsmine kontrollib, kas oskad etteantud JavaScripti koodi lugeda, selle käitumist oma sõnadega selgitada ning põhjendada, kuidas tulemust kontrolliksid.
 
-See ei ole ainult süntaksi päheõppimine. Õppija peaks oskama selgitada, miks mingit lahendust kasutatakse ja mis juhtub programmi töö ajal.
+Vahekaitsmine on suuline arutelu, mitte süntaksi päheõppimise kontroll.
 
-## Mida peab oskama selgitada?
+## Läbivad küsimused
 
-### Muutujad
+Iga koodinäite juures ole valmis selgitama:
 
-Õppija peaks oskama selgitada:
+1. Millised on programmi sisendid ja väljund?
+2. Millised sammud viivad sisendist väljundini?
+3. Kuidas muutujate väärtused täitmise ajal muutuvad?
+4. Miks kasutatakse objekti, massiivi, tingimust, tsüklit või funktsiooni?
+5. Millise näidisandme või piirjuhuga tulemust kontrolliksid?
+6. Kuidas otsiksid vea põhjust, kui tulemus oleks vale?
 
-- mis on muutuja
-- mis vahe on deklaratsioonil ja omistamisel
-- millal kasutada `let` ja millal `const`
-- miks `var` kasutamist uues koodis välditakse
-- mis on skoop
-- mida tähendab hoisting
+## Põhimõisted
 
-Näiteküsimus:
+### Muutujad ja andmetüübid
 
-```js
-let score = 0;
-score = score + 1;
-```
+Oskad selgitada:
 
-Selgita, mis juhtub mõlemal real.
-
-### Andmetüübid
-
-Õppija peaks oskama selgitada:
-
-- mis vahe on primitiividel ja objektidel
-- mis on `string`, `number`, `boolean`, `null` ja `undefined`
-- miks `typeof null` annab tulemuseks `"object"`
-- miks kasutatakse `===` operaatorit
-- miks mõnel tüübil on meetodid, näiteks `toUpperCase()` või `filter()`
-
-Näiteküsimus:
+- deklaratsiooni ja omistamise erinevust;
+- `const` ja `let` valikut;
+- tähenduslike nimede kasu;
+- põhilisi andmetüüpe;
+- sisendväärtuse teadlikku tüübiteisendust.
 
 ```js
-console.log("5" + 2);
-console.log(Number("5") + 2);
+const quantityInput = "2";
+const quantity = Number(quantityInput);
 ```
 
-Selgita, miks tulemused erinevad.
+Selgita mõlema muutuja tüüpi ja miks teisendus on vajalik.
+
+### Objektid ja massiivid
+
+Oskad selgitada:
+
+- miks ühe olemi omadused sobivad objekti;
+- miks väärtuste kogum sobib massiivi;
+- kuidas lugeda objekti omadust ja massiivi elementi;
+- mida näitavad indeks ja `length`.
+
+```js
+const student = {
+  name: "Mari",
+  grades: [4, 5, 3]
+};
+```
+
+Selgita, miks `student` on objekt ja `grades` massiiv.
 
 ### Tingimuslaused
 
-Õppija peaks oskama:
+Oskad selgitada:
 
-- koostada lihtsat `if`/`else` tingimust
-- kasutada võrdlusoperaatoreid
-- ühendada tingimusi operaatoritega `&&`, `||` ja `!`
-- selgitada, mis on `truthy` ja `falsy`
-
-Näiteküsimus:
-
-```js
-const userName = "";
-
-if (!userName) {
-  console.log("Nimi on puudu");
-}
-```
-
-Selgita, miks sõnum väljastatakse.
+- kuidas valitakse esimene sobiv haru;
+- võrdlus- ja loogikaoperaatorite rolli;
+- tingimuste järjekorda ja piirväärtuseid;
+- `truthy` ja `falsy` väärtuste põhimõtet.
 
 ### Korduslaused
 
-Õppija peaks oskama:
+Oskad selgitada:
 
-- kirjutada lihtsat `for` tsüklit
-- läbida massiivi `for...of` tsükliga
-- selgitada tsüklimuutuja ja tsüklitingimuse rolli
-- märgata lõpmatu tsükli ohtu
-
-Näiteküsimus:
-
-```js
-const grades = [4, 5, 3];
-
-for (const grade of grades) {
-  console.log(grade);
-}
-```
-
-Selgita, mitu korda tsükkel käivitub ja mida iga kord väljastatakse.
+- mitu korda tsükkel käivitub;
+- millise väärtuse saab tsüklimuutuja igal ringil;
+- kuidas kogutakse summat või loendurit;
+- kuidas tekib lõpmatu tsükkel.
 
 ### Funktsioonid
 
-Õppija peaks oskama:
+Oskad selgitada:
 
-- kirjutada lihtsat funktsiooni
-- kasutada parameetreid ja argumente
-- kasutada `return` võtmesõna
-- selgitada funktsiooni skoobi põhimõtet
-- eristada `return` ja `console.log()` kasutamist
+- funktsiooni parameetreid ja kutse argumente;
+- `return` ja `console.log()` erinevust;
+- funktsiooni kohalikku skoopi;
+- miks funktsiooni kontrollitakse erinevate argumentidega.
 
-Näiteküsimus:
+## Arutelunäide
 
 ```js
-function calculateTotal(price, quantity) {
-  return price * quantity;
+function getAverageGrade(grades) {
+  if (grades.length === 0) {
+    return null;
+  }
+
+  let total = 0;
+
+  for (const grade of grades) {
+    total = total + grade;
+  }
+
+  return total / grades.length;
 }
 
-const total = calculateTotal(10, 3);
+const student = {
+  name: "Mari",
+  grades: [4, 5, 3]
+};
+
+const average = getAverageGrade(student.grades);
 ```
 
-Selgita, mis on parameetrid, mis on argumendid ja mis väärtus salvestatakse muutujasse `total`.
+Ole valmis selgitama:
+
+- programmi sisendit ja tulemust;
+- objekti ja massiivi rolli;
+- `total` väärtust pärast iga tsükliringi;
+- tühja massiivi kontrolli;
+- parameetri ja argumendi erinevust;
+- kuidas kontrolliksid funktsiooni käitumist.
 
 ## Kuidas valmistuda?
 
-1. Käivita iga peatüki näited ise läbi.
-2. Muuda näidetes väärtuseid ja jälgi, kuidas tulemus muutub.
-3. Selgita iga näidet valjusti oma sõnadega.
-4. Kirjuta iga teema kohta vähemalt üks enda näide.
-5. Harjuta vigade lugemist: mis on `undefined`, `NaN` või `ReferenceError`?
-
-## Miniülesanne harjutamiseks
-
-Kirjuta väike programm, mis:
-
-1. hoiab massiivis vähemalt viit hinnet
-2. arvutab hinnete keskmise
-3. kontrollib, kas keskmine hinne on vähemalt 3
-4. väljastab sobiva sõnumi
-5. kasutab vähemalt ühte funktsiooni
-
-Näiteks:
-
-```js
-const grades = [4, 5, 3, 2, 5];
-
-function getAverageGrade(values) {
-  let total = 0;
-
-  for (const value of values) {
-    total = total + value;
-  }
-
-  return total / values.length;
-}
-
-const average = getAverageGrade(grades);
-
-if (average >= 3) {
-  console.log("Aine on positiivne");
-} else {
-  console.log("Tuleb veel harjutada");
-}
-```
+1. Käivita põhiloengute näited ise läbi.
+2. Ennusta väljund enne käivitamist.
+3. Koosta muutuvate väärtuste jälgimistabel.
+4. Muuda näidisandmeid ja selgita, miks tulemus muutub.
+5. Harjuta ühe vea põhjuse leidmist ning paranduse kontrollimist.
+6. Selgita koodi valjusti ilma ridu lihtsalt ümber lugemata.
 
 ## Hindamise mõte
 
-Vahekaitsmisel on kõige olulisem arusaamine. Kui koodis tekib viga, ei ole see kohe probleem. Oluline on osata rahulikult selgitada, mida kood peaks tegema, kust viga võib tulla ja kuidas seda kontrollida.
+Kõige olulisem on arusaamine. Koodis tekkinud viga ei tähenda automaatselt ebaõnnestumist. Oluline on osata kirjeldada oodatavat tulemust, jälgida väärtuseid, leida tõenäoline põhjus ja põhjendada kontrolli.
+
+Valikulised lisalugemised, näiteks hoisting, strict mode ja massiivimeetodid, ei kuulu vahekaitsmise nõutava taseme alla.

@@ -12,8 +12,10 @@ See kursus aitab õppijal mõista programmeerimise algtõdesid ja kasutada JavaS
 
 Kursuse lõpuks peaks õppija:
 
+- oskama jagada väikese programmeerimisprobleemi kontrollitavateks sammudeks
 - mõistma, kuidas JavaScripti abil andmeid hoida, muuta ja kontrollida
-- oskama selgitada muutujate, andmetüüpide, tingimuslausete, tsüklite ja funktsioonide rolli
+- oskama valida lihtsa andmemudeli, kasutada tingimusi, tsükleid ja funktsioone
+- oskama jälgida koodi täitmist ning leida lihtsa vea põhjuse
 - mõistma, miks brauseris kasutatakse DOM-i ja sündmuseid
 - oskama kirjutada lihtsat JavaScripti koodi, mis reageerib kasutaja tegevustele
 - oskama kasutada brauseri arendustööriistu lihtsate vigade leidmiseks
@@ -38,13 +40,18 @@ Kursus on jagatud kaheks suuremaks osaks.
 
 Esimene osa keskendub programmeerimise alustele. Selle osa kontrollimiseks tuleb arutelu vormis eksam. Eksami toimumisaja anname teada vähemalt kuu aega enne, et jõuaksite valmistuda.
 
-Esimese osa raames arutame, kuidas arvuti hoiab andmeid mälus, kuidas infot salvestada, muuta, võrrelda ja korduvkasutada.
-Eksami alla kuuluvad programmeerimise alustõed:
-- muutujad, skoop, hoisting, omistamine, deklareerimine
-- andmetüübid, matemaatilised operaatorid, andmetüüpide sisseehitatud meetodid
-- tingimuslaused, tingimuste loomine, operaatorid
-- korduslaused, tsükliloogika, tsüklimuutuja kasutamine, tsüklitingimus
-- funktsioonid, parameetrid, `return` võtmesõna
+Esimese osa raames õpime probleemi enne koodi kavandama, andmeid modelleerima, otsuseid ja korduseid koostama, tegevusi funktsioonidesse jagama ning vigu süsteemselt otsima.
+
+Vahekaitsmisel peab õppija oskama etteantud koodi oma sõnadega selgitada:
+
+- millised on programmi sisendid, sammud ja väljund;
+- kuidas kasutatakse muutujaid ja andmetüüpe;
+- miks sobib andmete hoidmiseks objekt või massiiv;
+- kuidas tingimused, tsüklid ja funktsioonid tulemuseni jõuavad;
+- kuidas väärtused programmi täitmise ajal muutuvad;
+- kuidas õppija kontrolliks tulemust või otsiks vea põhjust.
+
+Lisalugemised, näiteks hoisting, strict mode ja massiivimeetodid, aitavad teemadest sügavamalt aru saada, kuid ei kuulu nõutava taseme alla.
 
 Kui programmeerimise alustõed on selged, alustame JavaScripti brauseripõhise osaga: DOM, sündmused, asünkroonne programmeerimine ja lubadused.
 
@@ -65,3 +72,4 @@ JavaScripti õppimisel on oluline koodi ise käivitada. Iga näite juures tasub 
 - millist probleemi see lahendab?
 - millal mul seda päris rakenduses vaja läheb?
 - mis viga võib tekkida, kui ma seda valesti kasutan?
+- kuidas ma kontrollin, et tulemus on õige?

@@ -1,322 +1,375 @@
-# JavaScripti andmetüübid
+---
+title: JavaScripti andmetüübid
+description: Õpi väärtuse tüüpi tuvastama ja sisendandmeid enne kasutamist sobivaks tüübiks teisendama.
+outline: deep
+---
 
-## Õpieesmärgid
+# Andmetüübid
 
-Selle peatüki lõpuks peaks õppija:
-
-- oskama nimetada JavaScripti põhilisi andmetüüpe
-- mõistma primitiivide ja objektide erinevust
-- oskama kasutada `typeof` operaatorit tüübi kontrollimiseks
-- mõistma, miks `null` ja `undefined` tähendavad erinevaid asju
-- oskama tuua näiteid stringide, numbrite, objektide ja massiivide meetoditest
-- mõistma, miks `===` on turvalisem kui `==`
-
-JavaScriptis on **8 põhitüüpi**, mis jagunevad kaheks: **primitiivid** ja **objektid**.
-
-**Primitiivsed andmetüübid (Väärtuspõhised)**
-
-Primitiivid on mälus kergekaalulised ja hoiavad ühte konkreetset väärtust. JavaScriptis on **7 primitiivset tüüpi:**
-
-- **`Number`** — kasutatakse nii täisarvude kui ka ujukomaarvude jaoks (piiranguga ±2⁵³). Lisaks tavalistele arvudele on olemas eriväärtused: `Infinity`, `-Infinity` ja `NaN` (*Not a Number*).
-- **`BigInt`** — võimaldab töötada suvalise pikkusega täisarvudega, mis ületavad `Number` tüübi piire.
-- **`String`** — teksti jaoks. JavaScriptis puudub eraldi tüüp üksiku sümboli jaoks. Teksti saab ümbritseda kolme tüüpi jutumärkidega, kusjuures *backticks* (`` ` ``) võimaldab teksti sisse panna muutujaid (`${...}`).
-- **`Boolean`** — ainult kaks väärtust: `true` (tõene) ja `false` (väär).
-- **`null`** — iseseisev tüüp, millel on vaid üks väärtus `null`. Tähistab tavaliselt *"tühja"* või *"teadmata"* väärtust.
-- **`undefined`** — iseseisev tüüp väärtusega `undefined`. Tähendab, et muutuja on deklareeritud, kuid sellele pole veel väärtust omistatud.
-- **`Symbol`** — kasutatakse objektidele unikaalsete identifikaatorite loomiseks.
-
-**Objektid (Viitepõhised)**
-
-Erinevalt primitiividest kasutatakse **`Object`** tüüpi andmekogumite ja keerukamate olemite salvestamiseks. Objektide alla kuuluvad ka erivormid nagu **massiivid** (*Arrays*) ja **funktsioonid**.
-
-**Primitiivide "objekt-ümbrised"**
-
-Kuigi primitiivid peavad olema kiired ja kerged, lubab JavaScript neil kasutada meetodeid (nt `str.toUpperCase()`). Selleks luuakse meetodi väljakutsumise hetkel ajutine **objekt-ümbris** (`String`, `Number`, `Boolean`, `Symbol`), mis pärast operatsiooni sooritamist kohe hävitatakse.
-
-> `null` ja `undefined` puhul selliseid ümbriseid pole — neil **puuduvad meetodid**.
-
-**Andmetüübid ja nende sisseehitatud meetodid**
-
-Iga andmetüübiga tulevad kaasa kindlad tööriistad ehk **meetodid**, mida saab selle väärtuse peal kasutada. Meetod on funktsioon, mis kuulub mingi väärtuse või objekti juurde.
-
-Näiteks stringi puhul saame muuta teksti suurteks tähtedeks:
-
-```js
-const nimi = "mari";
-
-console.log(nimi.toUpperCase()); // "MARI"
-```
-
-Massiivide puhul saame andmeid läbi käia, filtreerida või muuta:
-
-```js
-const hinded = [2, 4, 5, 3, 5];
-
-const positiivsedHinded = hinded.filter((hinne) => hinne >= 3);
-console.log(positiivsedHinded); // [4, 5, 3, 5]
-
-const hindedTekstina = hinded.map((hinne) => `Hinne: ${hinne}`);
-console.log(hindedTekstina); // ["Hinne: 2", "Hinne: 4", "Hinne: 5", "Hinne: 3", "Hinne: 5"]
-```
-
-See on oluline, sest päris rakendustes ei kirjuta me kõike nullist ise. JavaScript annab meile juba palju valmis tööriistu:
-
-| Tüüp | Näited meetoditest | Milleks kasutatakse? |
-|---|---|---|
-| `String` | `toUpperCase()`, `toLowerCase()`, `trim()`, `includes()` | teksti muutmine ja otsimine |
-| `Number` | `toFixed()`, `toString()` | arvude vormindamine ja tekstiks muutmine |
-| `Array` | `map()`, `filter()`, `find()`, `includes()`, `push()` | nimekirjade töötlemine |
-| `Object` | `Object.keys()`, `Object.values()`, `Object.entries()` | objekti võtmete ja väärtuste lugemine |
-
-Näiteks veebivormi kontrollimisel võib `trim()` aidata eemaldada kasutaja sisestatud üleliigsed tühikud:
-
-```js
-const email = "  mari@example.com  ";
-
-console.log(email.trim()); // "mari@example.com"
-```
-
-::: info Pea meeles
-Meetodid sõltuvad andmetüübist. Stringil on tekstiga seotud meetodid, massiivil on nimekirjaga seotud meetodid. `null` ja `undefined` ei luba meetodeid kasutada, sest nende väärtus tähendab, et tegelikku andmeobjekti pole olemas.
+::: info Õpiväljund
+Pärast peatüki läbimist oskad tuvastada JavaScripti väärtuse tüübi ning teisendada sisendandmed enne arvutamist sobivaks tüübiks.
 :::
 
-**Massiivid ja objektid päris rakenduses**
+## Eeldused ja töövahendid
 
-Massiiv sobib nimekirjade jaoks. Näiteks klassi hinded, ostukorvi tooted või kasutaja teavitused.
+- Oskad luua `const` muutujat ja kasutada `console.log()` käsku.
+- Kasutad brauseri DevTools Console'it või Node.js-i.
+- Soovituslik kestus on 60–75 minutit.
+
+## Miks andmetüübid on olulised?
+
+Veebivormist saadud väärtus on tavaliselt tekst, isegi kui kasutaja sisestas numbri. Kui programm liidab teksti ja arvu, võib tulemus olla ootamatu:
 
 ```js
-const cartItems = ["hiir", "klaviatuur", "monitor"];
+const ticketCount = "2";
+const ticketPrice = 8;
 
-console.log(cartItems.length); // 3
-console.log(cartItems.includes("monitor")); // true
+console.log(ticketCount + ticketPrice); // "28"
 ```
 
-Objekt sobib ühe asja omaduste kirjeldamiseks. Näiteks kasutaja, toode või õpilane.
+JavaScript ei näe jutumärkides olevat `"2"` arvu, vaid teksti. Operaator `+` ühendab sellisel juhul väärtused üheks stringiks.
+
+```js
+const ticketCount = Number("2");
+const ticketPrice = 8;
+
+console.log(ticketCount + ticketPrice); // 10
+```
+
+Andmetüüp määrab, millist väärtust programm hoiab ja milliseid tegevusi selle väärtusega teha saab.
+
+## JavaScripti põhilised andmetüübid
+
+JavaScripti väärtused jagunevad **primitiivideks** ja **objektideks**.
+
+Primitiiv hoiab ühte lihtsat väärtust:
+
+| Tüüp | Näide | Milleks sobib? |
+|---|---|---|
+| `string` | `"Mari"` | tekst |
+| `number` | `16`, `4.5`, `NaN` | arvutused |
+| `boolean` | `true`, `false` | jah/ei otsused |
+| `undefined` | `undefined` | väärtust pole veel määratud |
+| `null` | `null` | väärtus on teadlikult tühi |
+| `bigint` | `9007199254740993n` | väga suured täisarvud |
+| `symbol` | `Symbol("id")` | unikaalsed identifikaatorid |
+
+Objekt koondab mitu omavahel seotud väärtust. Ka massiiv on JavaScriptis objekt.
 
 ```js
 const student = {
-  name: "Marta",
+  name: "Mari",
   age: 16,
   isActive: true
 };
 
-console.log(student.name); // "Marta"
-console.log(Object.keys(student)); // ["name", "age", "isActive"]
+const grades = [4, 5, 3];
 ```
 
-**`typeof` operaator**
+::: tip Oluline
+Selles peatükis kasutame kõige rohkem tüüpe `string`, `number`, `boolean`, `undefined`, `null` ja `object`. `bigint` ning `symbol` muutuvad vajalikuks erijuhtudel.
+:::
 
-Tüübi kontrollimiseks kasutatakse `typeof` operaatorit, mis tagastab tüübi nime sõnena:
-```js
-typeof 42;        // "number"
-typeof "tere";    // "string"
-typeof true;      // "boolean"
-typeof undefined; // "undefined"
-typeof null;      // "object"
-typeof alert;     // "function"
-```
+## Tüübi kontrollimine operaatoriga `typeof`
 
-Kaks olulist eripära:
-
-- **`typeof null`** tagastab `"object"` — see on keele algusaegadest pärit **viga**, mis on säilitatud ühilduvuse huvides, kuigi `null` ei ole tegelikult objekt.
-- **`typeof alert`** tagastab `"function"`, kuigi funktsioonid on tehniliselt objektid.
-
-**Tüübimuundamine (Type Conversion)**
-
-JavaScriptis saab tüüpe muuta kahel viisil: **eksplitsiitselt** (teadlikult) või **implitsiitselt** (automaatselt).
-
-*Eksplitsiitne muundamine (Explicit Conversion)*
-
-Arendaja muundab tüübi ise, kasutades sisseehitatud funktsioone:
-```js
-String(123);       // "123"
-String(true);      // "true"
-String(null);      // "null"
-
-Number("42");      // 42
-Number("tere");    // NaN
-Number(true);      // 1
-Number(false);     // 0
-Number(null);      // 0
-Number(undefined); // NaN
-
-Boolean(1);        // true
-Boolean(0);        // false
-Boolean("");       // false
-Boolean("tere");   // true
-Boolean(null);     // false
-```
-
-*Implitsiitne muundamine (Implicit Coercion)*
-
-JavaScript muundab tüüpe automaatselt, kui operandid ei ühti. See võib tekitada ootamatuid tulemusi:
-```js
-"5" + 1;   // "51"  — number muundatakse stringiks
-"5" - 1;   // 4     — string muundatakse numbriks
-"5" * "2"; // 10    — mõlemad muundatakse numbriks
-true + 1;  // 2     — boolean muundatakse numbriks
-false + 1; // 1
-```
-
-> `+` operaator eelistab string-ühendamist, kuid `-`, `*`, `/` eelistavad arvulist tehet — seega käituvad need erinevalt.
-
-**Matemaatilised ja võrdlusoperaatorid**
-
-Andmetüübid mõjutavad seda, kuidas operaatorid töötavad. Numbritega kasutatakse matemaatilisi operaatoreid:
+Operaator `typeof` tagastab väärtuse tüübi nime stringina.
 
 ```js
-const price = 20;
-const discount = 5;
-
-console.log(price + discount); // 25
-console.log(price - discount); // 15
-console.log(price * 2);        // 40
-console.log(price / 4);        // 5
-console.log(price % 6);        // 2
+console.log(typeof "2");       // "string"
+console.log(typeof 2);         // "number"
+console.log(typeof true);      // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof {});        // "object"
 ```
 
-`%` on jäägi operaator. Seda kasutatakse näiteks kontrollimiseks, kas arv jagub kahega:
+Ennusta enne järgmise näite käivitamist iga rea tulemus:
 
 ```js
-const number = 8;
+const userInput = "15";
+const age = 15;
+const hasPermission = false;
 
-console.log(number % 2 === 0); // true
+console.log(typeof userInput);
+console.log(typeof age);
+console.log(typeof hasPermission);
 ```
 
-Võrdlusoperaatorid annavad tulemuseks alati `boolean` väärtuse ehk `true` või `false`:
+::: details Kontrolli vastust
+```txt
+string
+number
+boolean
+```
+
+`userInput` väärtus on jutumärkides ja on seetõttu string. Muutuja nimi ei mõjuta väärtuse tüüpi.
+:::
+
+### Kaks olulist eripära
 
 ```js
-const age = 17;
-
-console.log(age >= 16); // true
-console.log(age < 18);  // true
-console.log(age === 17); // true
+console.log(typeof null);        // "object"
+console.log(typeof function() {}); // "function"
 ```
 
-**Truthy ja falsy väärtused**
+- `typeof null` tagastab ajaloolise eripära tõttu `"object"`, kuigi `null` ei ole objekt.
+- Funktsioonid on tehniliselt objektid, kuid `typeof` tagastab nende puhul `"function"`.
 
-Kui väärtust kasutatakse tingimuslauses, muudab JavaScript selle vajadusel `boolean` väärtuseks. Mõned väärtused käituvad nagu `false`; neid nimetatakse **falsy** väärtusteks.
-
-| Väärtus | Boolean väärtus |
-|---|---|
-| `false` | `false` |
-| `0` | `false` |
-| `""` | `false` |
-| `null` | `false` |
-| `undefined` | `false` |
-| `NaN` | `false` |
-
-Kõik ülejäänud väärtused on üldiselt **truthy**:
+Massiivi eristamiseks tavalisest objektist kasuta `Array.isArray()`:
 
 ```js
-Boolean("tere"); // true
-Boolean(42);     // true
-Boolean([]);     // true
-Boolean({});     // true
+const grades = [4, 5, 3];
+
+console.log(typeof grades);         // "object"
+console.log(Array.isArray(grades)); // true
 ```
 
-See on oluline näiteks vormi kontrollimisel:
+## Tüübi teadlik teisendamine
+
+Väärtuse ühest tüübist teise muutmist nimetatakse **tüübiteisenduseks** (*type conversion*).
+
+Kasuta teisendamiseks funktsioone `Number()`, `String()` ja `Boolean()`:
 
 ```js
-const userName = "";
+const count = Number("3");
+const message = String(404);
+const hasName = Boolean("Mari");
 
-if (!userName) {
-  console.log("Kasutajanimi on puudu");
-}
+console.log(count);   // 3
+console.log(message); // "404"
+console.log(hasName); // true
 ```
 
-**Range võrdlus: `===` vs `==`**
+### Teksti teisendamine arvuks
 
-`==` (*loose equality*) teeb enne võrdlemist automaatse tüübimuundamise, mis võib anda üllatavaid tulemusi. `===` (*strict equality*) kontrollib nii **väärtust** kui ka **tüüpi** — muundamist ei toimu.
+Kasutaja sisendit ei saa alati arvuks teisendada. Ebaõnnestunud arvuteisenduse tulemus on `NaN` (*Not a Number*).
+
 ```js
-0 == "0";   // true | string muundatakse numbriks
-0 === "0";  // false | eri tüübid
+const validNumber = Number("12");
+const invalidNumber = Number("kaksteist");
 
-1 == true;  // true | boolean muundatakse numbriks
-1 === true; // false
-
-null == undefined;  // true 
-null === undefined; // false
+console.log(validNumber);                 // 12
+console.log(invalidNumber);               // NaN
+console.log(Number.isNaN(invalidNumber)); // true
 ```
 
-> **Hea tava:** kasuta alati `===`, välja arvatud juhul, kui soovid teadlikult kontrollida nii `null` kui `undefined` korraga (ainus põhjendatud `==` kasutus).
+::: warning `typeof NaN` ei näita teisenduse ebaõnnestumist
+`typeof NaN` tagastab `"number"`. Kontrolli ebaõnnestunud arvuteisendust meetodiga `Number.isNaN()`.
+:::
+
+### Väärtuse teisendamine tõeväärtuseks
+
+`Boolean()` teisendab väärtuse väärtuseks `true` või `false`.
+
 ```js
-// Ainus levinud erand — kontrollib mõlemat korraga:
-if (value == null) {
-  // value on kas null või undefined
-}
+console.log(Boolean("Mari")); // true
+console.log(Boolean(""));     // false
+console.log(Boolean(1));      // true
+console.log(Boolean(0));      // false
+console.log(Boolean(null));   // false
 ```
 
-**`null` vs `undefined` — praktiline erinevus**
+Tühja stringi, arvu `0`, väärtuseid `null`, `undefined` ja `NaN` käsitletakse tõeväärtuseks teisendamisel kui `false`. Seda teadmist kasutame hiljem [tingimuslausete](./tingimuslaused.md) juures.
 
-Mõlemad tähistavad "väärtuse puudumist", kuid nende tähendus ja kasutus on erinev.
+## Automaatne tüübiteisendus
 
-`undefined` tekib **automaatselt**, kui muutuja on deklareeritud, kuid väärtust pole omistatud, funktsioon ei tagasta midagi, või objektiväli ei eksisteeri:
+JavaScript võib eri tüüpi väärtustega tehet tehes tüüpe automaatselt teisendada. Seda nimetatakse **tüübisunniks** (*type coercion*).
+
 ```js
-let x;
-console.log(x); // undefined
-
-function foo() {}
-console.log(foo()); // undefined
-
-const obj = {};
-console.log(obj.nimi); // undefined
+console.log("5" + 1);   // "51"
+console.log("5" - 1);   // 4
+console.log("5" * "2"); // 10
 ```
 
-`null` pannakse **teadlikult** arendaja poolt, et tähistada "tühja" või "lähtestatud" väärtust:
+Operaator `+` võib tähendada nii arvude liitmist kui ka stringide ühendamist. Operaatorid `-` ja `*` proovivad väärtused arvudeks teisendada.
+
+::: tip Praktiline reegel
+Teisenda väljastpoolt programmi saabunud andmed teadlikult enne arvutamist. Nii on koodi tulemus lihtsamini ennustatav.
+:::
+
+## Proovi ise: piletiarvutus
+
+Kopeeri kood brauseri DevTools Console'isse või Node.js faili:
+
 ```js
-let kasutaja = null; // kasutaja pole veel laaditud
+const ticketPrice = 8;
+const ticketCountInput = "3";
 
-// hiljem, kui andmed on saadud:
-kasutaja = { nimi: "Marta" };
+const ticketCount = Number(ticketCountInput);
+const totalPrice = ticketPrice * ticketCount;
+
+console.log(typeof ticketCountInput);
+console.log(typeof ticketCount);
+console.log(`Kokku: ${totalPrice} €`);
 ```
 
-Kokkuvõte erinevustest:
+Enne käivitamist ennusta:
 
-| | `undefined` | `null` |
-|---|---|---|
-| **Tekib** | automaatselt | teadlikult |
-| **Tähendus** | väärtus puudub / pole omistatud | väärtus on tahtlikult tühi |
-| **`typeof`** | `"undefined"` | `"object"` |
-| **Numbrina** | `NaN` | `0` |
+1. Millise tüübi väljastab esimene `typeof`?
+2. Millise tüübi väljastab teine `typeof`?
+3. Milline on piletiarvutuse tulemus?
+
+::: details Kontrolli vastust
+```txt
+string
+number
+Kokku: 24 €
+```
+
+`Number(ticketCountInput)` loob sisendteksti põhjal arvu, millega saab teha arvutuse.
+:::
+
+## Praktiline ülesanne: tellimuse kokkuvõte
+
+Veebipoest saabusid järgmised sisendandmed:
+
+```js
+const productNameInput = "Klaviatuur";
+const unitPriceInput = "45";
+const quantityInput = "2";
+const discountInput = "5";
+```
+
+Koosta programm, mis:
+
+1. kontrollib `typeof` abil kõigi sisendväärtuste tüüpe;
+2. teisendab ühikuhinna, koguse ja allahindluse arvudeks;
+3. arvutab lõpphinna valemiga `ühikuhind * kogus - allahindlus`;
+4. kontrollib `Number.isNaN()` abil, kas arvutamine ebaõnnestus;
+5. väljastab tellimuse kokkuvõtte.
+
+Oodatav kokkuvõte:
+
+```txt
+Klaviatuur: 2 tk, kokku 85 €
+```
+
+Valmis lahendus:
+
+- arvutuses kasutatud väärtuste tüüp on `number`;
+- lõpphind on `85`, mitte string;
+- programm kontrollib meetodiga `Number.isNaN()`, kas arvutamine ebaõnnestus;
+- väljund sisaldab toote nime, kogust ja lõpphinda.
+
+::: details Vihje 1
+Kasuta iga arvulise sisendi puhul funktsiooni `Number()`.
+:::
+
+::: details Vihje 2
+Loo teisendatud väärtuste jaoks uued selge nimega muutujad, näiteks `unitPrice`.
+:::
+
+::: details Vihje 3
+Kontroll võib välja näha selline:
+
+```js
+console.log(Number.isNaN(totalPrice)); // korrektse arvutuse korral false
+```
+:::
+
+::: details Üks võimalik lahendus
+```js
+const productNameInput = "Klaviatuur";
+const unitPriceInput = "45";
+const quantityInput = "2";
+const discountInput = "5";
+
+console.log(typeof productNameInput);
+console.log(typeof unitPriceInput);
+console.log(typeof quantityInput);
+console.log(typeof discountInput);
+
+const unitPrice = Number(unitPriceInput);
+const quantity = Number(quantityInput);
+const discount = Number(discountInput);
+const totalPrice = unitPrice * quantity - discount;
+
+console.log(Number.isNaN(totalPrice));
+console.log(`${productNameInput}: ${quantity} tk, kokku ${totalPrice} €`);
+```
+:::
+
+## Mõtesta
+
+- Miks on parem teisendada sisendväärtus arvuks enne arvutamist, selle asemel et loota JavaScripti automaatsele tüübiteisendusele?
+- Miks ei piisa ebaõnnestunud arvuteisenduse leidmiseks kontrollist `typeof value === "number"`?
+
+## Järgmine tase
+
+Järgmised teemad on kasulikud, kuid ei ole praktilise ülesande lahendamiseks kohustuslikud.
+
+### Range võrdlus
+
+Operaator `===` võrdleb nii väärtust kui ka tüüpi. Operaator `==` võib enne võrdlemist tüüpe automaatselt teisendada.
+
+```js
+console.log(5 == "5");  // true
+console.log(5 === "5"); // false
+```
+
+Kasuta üldjuhul ranget võrdlust `===`, sest selle tulemus on lihtsamini ennustatav.
+
+### `null` ja `undefined`
+
+Mõlemad tähistavad väärtuse puudumist, kuid erineval põhjusel:
+
+```js
+let selectedProduct;
+const loggedInUser = null;
+
+console.log(selectedProduct); // undefined
+console.log(loggedInUser);    // null
+```
+
+- `undefined` tähendab tavaliselt, et väärtust pole veel määratud.
+- `null` tähendab tavaliselt, et arendaja määras väärtuse teadlikult tühjaks.
 
 ## Levinud vead
 
-Üks sagedane viga on arvude ja stringide segamine:
+### Arvu asemel kasutatakse stringi
 
 ```js
-const input = "5";
+const quantity = "2";
 
-console.log(input + 2); // "52", mitte 7
+console.log(quantity + 1); // "21"
 ```
 
-Kui kasutaja sisestab vormi arvu, tuleb see tihti ise numbriks muuta:
+Teisenda väärtus enne arvutamist:
 
 ```js
-const input = "5";
-const number = Number(input);
+const quantity = Number("2");
 
-console.log(number + 2); // 7
+console.log(quantity + 1); // 3
 ```
 
-Teine levinud viga on meetodi kasutamine `null` või `undefined` väärtusel:
+### Eeldatakse, et muutuja nimi määrab tüübi
 
 ```js
-const userName = null;
+const age = "16";
 
-// userName.toUpperCase(); // viga
+console.log(typeof age); // "string"
 ```
 
-Enne meetodi kasutamist peab olema kindel, et väärtus on olemas.
+Tüübi määrab muutuja väärtus, mitte nimi.
+
+### Massiivi kontrollitakse ainult `typeof` abil
+
+```js
+const grades = [4, 5, 3];
+
+console.log(typeof grades);         // "object"
+console.log(Array.isArray(grades)); // true
+```
 
 ## Kokkuvõte
 
-Andmetüüp ütleb JavaScriptile, millise väärtusega on tegemist ja milliseid operatsioone selle väärtusega teha saab. Stringidega töötame tekstina, numbritega arvutame, boolean väärtustega otsustame, objektide ja massiividega hoiame keerukamat infot.
+- Andmetüüp määrab, milliseid tegevusi väärtusega teha saab.
+- `typeof` aitab väärtuse tüüpi kontrollida.
+- Väljastpoolt programmi saabunud sisend on sageli string.
+- `Number()`, `String()` ja `Boolean()` teisendavad väärtuse teadlikult teise tüüpi.
+- Ebaõnnestunud arvuteisendust kontrollitakse meetodiga `Number.isNaN()`.
 
-## Harjutused
+## Allikad
 
-1. Loo string `fullName` ja kasuta selle peal `toUpperCase()` meetodit.
-2. Loo massiiv vähemalt viie hindega ja kasuta `filter()` meetodit, et leida kõik positiivsed hinded.
-3. Loo objekt `product`, millel on nimi, hind ja laoseisu väärtus.
-4. Proovi brauseri konsoolis, mis vahe on avaldistel `"5" + 2` ja `Number("5") + 2`.
-5. Selgita oma sõnadega, miks `null` ja `undefined` ei ole sama asi.
+- [MDN: JavaScript data types and data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Data_structures) — andmetüüpide põhjalik teatmematerjal.
+- [MDN: `typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof) — operaatori käitumine ja erijuhud.
+- [MDN: Type coercion](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion) — automaatse tüübiteisenduse selgitus.

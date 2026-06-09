@@ -1,244 +1,230 @@
+---
+title: JavaScripti muutujad
+description: Õpi väärtustele nimesid andma ning valima const ja let vahel.
+outline: deep
+---
+
 # Muutujad
 
-## Õpieesmärgid
-
-Selle peatüki lõpuks peaks õppija:
-
-- oskama selgitada, mis on muutuja ja miks seda kasutatakse
-- oskama luua muutujaid märksõnadega `let` ja `const`
-- mõistma, miks `var` tekitab rohkem segadust kui `let` ja `const`
-- mõistma deklaratsiooni, omistamise ja väärtuse muutmise erinevust
-- oskama selgitada skoobi ja hoisting'u põhimõtet lihtsate näidete abil
-- mõistma üldiselt, miks primitiivid ja objektid käituvad mälus erinevalt
+::: info Õpiväljund
+Pärast peatüki läbimist oskad luua tähenduslike nimedega muutujaid, valida `const` ja `let` vahel ning selgitada oma valikut.
+:::
 
 ## Miks muutujad on olulised?
 
-Rakendused peavad kogu aeg infot meeles hoidma. Kui kasutaja lisab e-poes toote ostukorvi, peab programm teadma ostukorvi kogusummat. Kui õpilane sisestab hinde, peab programm selle väärtuse salvestama, et hiljem otsustada, kas töö on arvestatud.
+Rakendus peab töö käigus infot kasutama ja muutma. Veebipoes on vaja meeles hoida näiteks toote nime, hinda ja ostukorvi kogusummat.
 
-Muutuja annab väärtusele nime. Ilma muutujateta peaksime samu väärtuseid korduvalt käsitsi kirjutama ja programm muutuks kiiresti raskesti loetavaks.
+Muutuja seob väärtuse nimega, mille kaudu saab kood seda väärtust hiljem kasutada.
 
 ```js
 const productName = "Kõrvaklapid";
-let cartTotal = 59.99;
-let isInStock = true;
+const productPrice = 59.99;
+let cartTotal = 0;
+
+cartTotal = cartTotal + productPrice;
+
+console.log(cartTotal); // 59.99
 ```
 
-Nende nimede põhjal on kohe näha, millist infot programm hoiab: toote nime, ostukorvi summat ja laoseisu.
+Nimede põhjal on kohe näha, millist infot programm kasutab. Muutuja väärtus võib olla näiteks tekst, arv või tõeväärtus.
 
-#### Muutujate olemus ja deklaratsioon
+## Muutuja loomine ja väärtuse omistamine
 
-Muutuja on **nimega mäluala andmete salvestamiseks**, mida võib kujutleda kui sildistatud "karpi", kuhu pannakse info. JavaScriptis kasutatakse muutujate loomiseks ehk deklareerimiseks kolme peamist märksõna:
-- ```let``` – kaasaegne viis muutuja deklareerimiseks. See on **plokipõhise skoobiga (block scoped)**, mis tähendab, et muutuja on nähtav vaid selles koodiplokis (nt loogeliste sulgude vahel), kus ta loodi.
-- ```const``` – sarnane ```let```-iga, kuid seda kasutatakse **konstantide** jaoks, mille väärtust ei saa pärast määramist enam muuta. **Konstanti ei saa deklareerida ilma seda kohe väärtustamata.**
-- ```var``` – vanem viis muutujate loomiseks, mis on **globaalse** või **funktsiooni** skoobiga. Erinevalt ```let```-ist saab ```var```-i samas skoobis korduvalt deklareerida, mis võib tekitada vigu, ning **tänapäeval seda üldiselt enam kasutada ei soovitata.**
-
-##### Väärtuste omistamine
-
-Väärtuse salvestamiseks muutujasse kasutatakse **omistamisoperaatorit** ```=```
-- **Algväärtustamine:** Deklareerimist ja omistamist saab teha korraga: ```let message = "Hello!";```.
-- **Väärtuse muutmine:** ```let```-iga loodud muutuja sisu saab muuta nii palju kui vaja, kusjuures uus väärtus asendab vana.
-- **Kopeerimine:** Andmeid saab kopeerida ühest muutujast teise: ```message = hello;```.
-- **Range režiimi olulisus:** Ilma **strict mode**-ita oli võimalik luua muutuja pelgalt väärtuse omistamisega (nt num = 5;), kuid see on halb tava ja tekitab ranges režiimis vea
-
-##### Muutujate nimetamise reeglid
-
-Muutujate nimedele kehtivad JavaScriptis kindlad piirangud:
-1. Nimi tohib sisaldada ainult **tähti, numbreid ning sümboleid** ```$``` **ja** ```_```.
-2. Esimene karakter **ei tohi olla number.**
-3. JavaScript on **tõstutundlik (case-sensitive)** – muutujad ```apple``` ja ```APPLE``` on erinevad.
-4. Kasutada ei tohi **reserveeritud sõnu**, mis on keele enda poolt kasutusel (nt ```let```, ```class```, ```return```)
-
-**Head tavad nimetamisel**
-- Kasutage **tähendusrikkaid ja kirjeldavaid nimesid** (nt ```userName``` või ```shoppingCart```), vältides lühidendeid nagu ```a``` või ```b```, kui nende sisu pole koodi kontekstis ilmselge.
-- Liitnimede puhul on tavaks kasutada **camelCase** stiili (nt ```myVeryLongName```)
-- **Suuri tähti** kasutatakse konstantide puhul, mille väärtus on teada enne koodi käivitamist ehk n-ö kõvasti kodeeritud (hard-coded) väärtuste (nt ```COLOR_RED = "#F00"```) puhul.
-- Parem on luua uus muutuja kui taaskasutada olemasolevat erineva sisu jaoks – see aitab vältida vigu ja võimaldab mootoril koodi paremini optimeerida.
-
-##### Millal kasutada `let`, `const` ja `var`?
-
-Tänapäevases JavaScriptis kasutatakse peamiselt `const` ja `let`.
-
-- Kasuta `const`, kui muutuja ei pea hiljem uut väärtust saama.
-- Kasuta `let`, kui väärtus muutub programmi töö käigus.
-- Väldi `var` kasutamist uues koodis, sest selle skoop ja hoisting võivad algajale anda ootamatuid tulemusi.
+Muutuja loomist nimetatakse **deklareerimiseks**. Märksõna järel tuleb muutuja nimi:
 
 ```js
-const userName = "Kati"; // nimi ei muutu selles näites
-let score = 0;           // skoor muutub mängu jooksul
-
-score = score + 1;
+let score;
 ```
 
-::: info Hea harjumus
-Alusta `const`-iga. Kui hiljem selgub, et väärtust on vaja muuta, vaheta see `let` vastu. Nii tekib vähem juhuslikke muudatusi.
-::::
-
-#### Skoop: kus muutuja nähtav on?
-
-**Skoop** tähendab piirkonda, kus muutujat saab kasutada. JavaScriptis on oluline eristada globaalset skoopi, funktsiooni skoopi ja plokiskoopi.
+Väärtuse andmist nimetatakse **omistamiseks**:
 
 ```js
-const schoolName = "Kuressaare Ametikool"; // globaalne skoop
-
-if (true) {
-  const courseName = "JavaScript"; // plokiskoop
-  console.log(courseName);
-}
-
-console.log(schoolName);
-// console.log(courseName); // viga: courseName ei ole siin nähtav
+score = 10;
 ```
 
-Plokiskoop tekib näiteks `{ ... }` sulgude vahel. `let` ja `const` järgivad plokiskoopi, mis teeb koodi turvalisemaks ja paremini ennustatavaks.
-
-#### Hoisting ja temporal dead zone
-
-JavaScript loeb enne koodi käivitamist läbi, millised muutujad ja funktsioonid failis olemas on. Seda nimetatakse **hoisting'uks**. Algajale on kõige olulisem teada, et `let` ja `const` muutujat ei tohi kasutada enne selle deklaratsiooni.
+Enamasti deklareeritakse muutuja ja antakse sellele algväärtus samal real:
 
 ```js
-console.log(age); // viga
-
-let age = 16;
+const courseName = "JavaScript";
+let completedTasks = 0;
 ```
 
-Seda piirkonda enne `let` või `const` deklaratsiooni nimetatakse **temporal dead zone**. Muutuja nimi on JavaScriptile juba teada, aga seda ei saa veel kasutada.
-
-`var` käitub teistmoodi ja võib vea asemel anda `undefined`, mis teeb vigade leidmise raskemaks:
+::: warning `=` ei tähenda võrdlemist
+Märk `=` omistab paremal oleva väärtuse vasakul olevale muutujale.
 
 ```js
-console.log(points); // undefined
-
-var points = 10;
+completedTasks = completedTasks + 1;
 ```
 
-Seetõttu kasutame õppematerjalis uue koodi kirjutamisel `let` ja `const`.
-
-#### `const` objektide ja massiividega
-
-`const` tähendab, et muutujale ei saa anda uut väärtust. Kui `const` hoiab objekti või massiivi, võib objekti või massiivi sisu siiski muutuda.
-
-```js
-const grades = [4, 5, 3];
-
-grades.push(5);
-
-console.log(grades); // [4, 5, 3, 5]
-```
-
-See töötab, sest `grades` viitab samale massiivile. Keelatud oleks muutujale täiesti uue massiivi omistamine:
-
-```js
-const grades = [4, 5, 3];
-
-grades = [5, 5, 4]; // viga
-```
-
--------
-
-#### Muutujate käitlemine mälus
-
-Et mõista, kuidas arvuti muutujaid käsitleb, on kõige parem kasutada allikates toodud **"kasti"** analoogiat. Siin on visuaalne selgitus protsessist, mis toimub arvuti mällu salvestamisel ja andmete töötlemisel:
-
-1. **Muutuja deklareerimine - "Kasti loomine"** - Kui kirjutad koodis ```let message;```, siis arvuti jaoks tähendab see uue nimega hoiupaiga loomist:
-- **Visuaalselt:** Kujuta ette tühja kasti, millele on peale kleebitud kleebis nimega "message".
-- **Mälus:** Arvuti eraldab mäluala selle nimega sidumiseks.
-
-2. **Väärtuse omistamine – "Sisu kasti panemine"** - Kui lisad väärtuse (nt ```message = 'Hello!';```), salvestatakse see info muutuja nimega seotud mälualasse.
-- **Visuaalselt:** Paned kasti sisse sildi tekstiga "Hello!"
-- **Mälus:** Sellesse konkreetsesse mälupessa kirjutatakse andmed (nt ```string 'Hello!'```)
-
-3. **Väärtuse muutmine ja ülekirjutamine** - JavaScriptis saab muutujate sisu muuta nii palju kui vaja (v.a **konstante**)
-- **Toiming:** Kui annad uue väärtuse ```message = 'World!';```, siis vana sisu eemaldatakse ja asendatakse uuega.
-- **Mälus:** Vana väärtus kustutatakse mälust ja asendatakse uute andmetega.
-
-4. **Andmete kopeerimine** - Kui deklareerid kaks muutujat ja kopeerid andmed ühest teise (nt ```let message = hello;```), siis nüüd hoiavad **kaks erinevat kasti sama sisu**.
-- **Visuaalselt:** Sa ei tõsta sisu ühest kastist teise, vaid teed sisust koopia ja paned selle teise kasti.
-
-5. **Kuidas andmetüübid mälu mõjutavad** - Arvuti käsitleb mällu salvestamist erinevalt sõltuvalt andmetüübist:
-- **Primitiivsed tüübid (väärtuspõhised):** Näiteks numbrid ja stringid salvestatakse otse "kasti" ehk muutuja väärtusena
-- **Objektid (viitepõhised):** Massiivid ja objektid on keerulisemad. Muutuja ei hoia mitte objekti ennast, vaid **viidet** (reference - aadress) sellele kohale mälus, kus objekt asub
-
-Lihtsustatud kujul võib seda ette kujutada nii:
-
-```txt
-muutuja nimi -> väärtus
-message      -> "Hello!"
-count        -> 3
-isLoggedIn   -> true
-```
-
-Objektide ja massiivide puhul hoiab muutuja viidet:
-
-```txt
-student -> viide objektile mälus
-          {
-            name: "Marta",
-            grade: 5
-          }
-```
-
-::: info Oluline märkus
-Kaasaegsed JavaScripti mootorid on väga nutikad. Nad optimeerivad koodi nii, et kui kasutad iga väärtuse jaoks eraldi muutujat (selle asmele, et ühte kasti pidevalt tühjendada ja täita), suudab mootor koodi kiiremini käivitada.
+JavaScript arvutab esmalt parema poole ning salvestab tulemuse seejärel muutujasse `completedTasks`.
 :::
 
-#### Mälujaotus RAM-is: Stack vs Heap
+## Millal kasutada `const` ja millal `let`?
 
-JavaScripti mootor ei kasuta mälu suvaliselt, vaid jagab selle kaheks peamiseks piirkonnaks: **Stack (pinu)** ja **Heap (hulk)**.
+Kasuta vaikimisi `const`. Vali `let` ainult siis, kui muutujale on hiljem vaja uus väärtus omistada.
 
-**Stack Memory (Pinumälu)**
-
-Siia salvestatakse primitiivsed andmetüübid (näiteks `number`, `string`, `boolean`, `null`, `undefined`) ja funktsioonide väljakutsed. See on väga kiire ja järgib põhimõtet *"viimasena sisse, esimesena välja"* (LIFO). Primitiivsed väärtused on mälus kergekaalulised ja nende suurus on fikseeritud (näiteks numbrid on 64-bitised ujukomaarvud).
-
-**Heap Memory (Hulgimälu)**
-
-Siia salvestatakse keerulisemad struktuurid nagu objektid, massiivid ja funktsioonid. Kuna need on mahukamad ja nende suurus võib muutuda, siis Stack-mälu ei hoia neid otse. Selle asemel hoitakse Stackis ainult **viidet (aadressi)**, mis näitab, kus tegelikud andmed Heap-mälus asuvad.
-
-#### Protsessori (CPU) roll
-
-Kuigi me räägime andmete salvestamisest muutujatesse, on CPU see, mis koodi tegelikult käivitab.
-
-CPU on nagu *"tööline"*, kes ei hoia muutujaid püsivalt. Ta kutsub (*fetch*) andmed RAM-ist (Stackist või Heapist), töötleb neid (teeb arvutusi või muudab teksti) ja saadab tulemused tagasi mälusse. See on põhjus, miks range režiim on kasulik – see aitab JavaScripti mootoril koodi paremini analüüsida ja CPU jaoks optimeerida, muutes täitmise kiiremaks.
-```js
-"use strict";
+::: code-group
+```js [const: väärtust ei omistata uuesti]
+const userName = "Kati";
+const birthYear = 2008;
 ```
 
-#### Püsiv salvestus (Kõvaketas HDD/SSD)
+```js [let: väärtus muutub]
+let score = 0;
 
-Tavapärased JavaScripti muutujad on **ajutised**. Niipea kui veebileht värskendatakse või programm suletakse, tühjendatakse RAM-is olevad andmed ja kaovad.
+score = score + 1;
+score = score + 1;
+```
+:::
 
-Kõvaketast ei kasutata muutujate hoidmiseks automaatselt. Kui andmeid on vaja säilitada püsivalt, peab arendaja need ise salvestama, kasutades näiteks `localStorage`-it, `IndexedDB`-d või väliseid andmebaase.
+`const` ei tähenda, et väärtus on kogu maailmas igavesti muutumatu. See tähendab, et sellele muutujale ei saa pärast loomist uut väärtust omistada.
 
-#### Muutuja elutsükkel: "Kasti" analoogia süvitsi
+```js
+const userName = "Kati";
 
-**Deklareerimine (`let`, `const`)**
+userName = "Mari"; // TypeError
+```
 
-Arvuti märgistab RAM-is mäluala ja kleebib sellele sildi (nime).
+::: tip Otsustusreegel
+Küsi: **kas sellele muutujale omistatakse hiljem uus väärtus?**
 
-**Omistamine (`=`)**
+- Ei või ma pole kindel: kasuta `const`.
+- Jah: kasuta `let`.
+:::
 
-Väärtus kirjutatakse mälusse. Kui tegu on primitiiviga, läheb see otse Stacki; kui objektiga, läheb see Heapi ja muutujasse pannakse vaid **viide**.
+### Miks me `var` ei kasuta?
 
-**Muutmine**
+`var` on JavaScripti vanem muutujate loomise viis. Selle skoobi- ja hoisting'u reeglid erinevad `let`-ist ning võivad põhjustada raskemini leitavaid vigu.
 
-Kui muutuja sisu asendatakse, eemaldatakse vana väärtus mälust ja asendatakse uuega. Kui andmeid enam ei kasutata, tegeleb JavaScripti mootori **"prügikoristaja"** (*garbage collector*) mäluala vabastamisega.
+Uue koodi kirjutamisel kasuta `const` ja `let`. Vanemat koodi lugedes pead siiski teadma, et `var` võib seal esineda.
 
-::: info **Kokkuvõtteks**
-Muutuja on mugav viis viidata kindlale kohale RAM-is, kus CPU saab andmeid kiiresti lugeda ja kirjutada, samas kui püsivaks säilitamiseks tuleb kasutada kõvaketast.
-::::
+## Tähenduslikud nimed
+
+Hea muutuja nimi ütleb, mida väärtus programmis tähendab.
+
+::: code-group
+```js [Raske lugeda]
+const n = "Mari";
+const x = 4.5;
+```
+
+```js [Lihtne lugeda]
+const studentName = "Mari";
+const averageGrade = 4.5;
+```
+:::
+
+JavaScripti muutujate nimed:
+
+- kasutavad tavaliselt `camelCase` kirjaviisi: `shoppingCartTotal`;
+- võivad sisaldada tähti, numbreid, `_` ja `$` märke;
+- ei tohi alata numbriga;
+- ei tohi olla JavaScripti reserveeritud sõnad, näiteks `const` või `return`;
+- on tõstutundlikud: `userName` ja `username` on erinevad nimed.
+
+::: details Kontrolli, millised nimed sobivad
+Sobivad nimed:
+
+```js
+const firstName = "Mari";
+const course2 = "JavaScript";
+const isActive = true;
+```
+
+Ei sobi:
+
+```js
+const 2course = "JavaScript"; // algab numbriga
+const user-name = "Mari";     // sidekriips ei ole lubatud
+const return = true;          // reserveeritud sõna
+```
+:::
+
+## Proovi ise: ostukorv
+
+Kopeeri kood brauseri DevTools Console'isse või Node.js faili.
+
+```js
+const productName = "Klaviatuur";
+const productPrice = 45;
+let quantity = 1;
+
+quantity = quantity + 2;
+
+const cartTotal = productPrice * quantity;
+
+console.log(`${productName}: ${quantity} tk, kokku ${cartTotal} €`);
+```
+
+Enne käivitamist ennusta:
+
+1. Millise väärtuse saab `quantity`?
+2. Millise väärtuse saab `cartTotal`?
+3. Miks on `quantity` loodud `let`-iga, aga `cartTotal` `const`-iga?
+
+::: details Kontrolli vastust
+Konsooli ilmub:
+
+```txt
+Klaviatuur: 3 tk, kokku 135 €
+```
+
+`quantity` saab uue väärtuse, seega kasutame `let`-i. `cartTotal` arvutatakse ja sellele selles näites uut väärtust ei omistata, seega kasutame `const`-i.
+:::
+
+### Praktiline ülesanne
+
+Loo lihtne kinopileti arvutus.
+
+1. Loo `const` muutujad filmi nime ja ühe pileti hinna jaoks.
+2. Loo `let` muutuja piletite koguse jaoks.
+3. Suurenda piletite kogust kahe võrra.
+4. Arvuta koguhind uude `const` muutujasse.
+5. Väljasta tähenduslik lause `console.log()` abil.
+
+Valmis lahendus:
+
+- kasutab vähemalt kolme tähendusliku nimega muutujat;
+- kasutab `let`-i ainult väärtuse jaoks, millele omistatakse uus väärtus;
+- väljastab filmi nime, piletite koguse ja koguhinna.
+
+::: details Vihje 1
+Alusta väärtustest, mida programm peab teadma: filmi nimi, pileti hind ja piletite kogus.
+:::
+
+::: details Vihje 2
+Koguhinna saad arvutada pileti hinna ja koguse korrutamisel.
+:::
+
+::: details Üks võimalik lahendus
+```js
+const movieName = "Kevade";
+const ticketPrice = 8;
+let ticketCount = 1;
+
+ticketCount = ticketCount + 2;
+
+const totalPrice = ticketPrice * ticketCount;
+
+console.log(`${movieName}: ${ticketCount} piletit, kokku ${totalPrice} €`);
+```
+:::
 
 ## Levinud vead
 
+### Muutuja jäetakse deklareerimata
+
 ```js
-userName = "Mari"; // halb: muutuja pole deklareeritud
+userName = "Mari"; // halb: muutujat pole deklareeritud
 ```
 
-Kasuta alati `let` või `const`:
+Kasuta `const` või `let`:
 
 ```js
 const userName = "Mari";
 ```
 
-Teine levinud viga on ühe muutuja kasutamine mitme erineva tähendusega väärtuse jaoks:
+### Üks nimi saab mitu erinevat tähendust
 
 ```js
 let value = "Mari";
@@ -246,7 +232,7 @@ value = 17;
 value = true;
 ```
 
-Sellist koodi on raske lugeda. Parem on anda igale väärtusele selge nimi:
+Anna igale väärtusele selge nimi:
 
 ```js
 const userName = "Mari";
@@ -254,9 +240,20 @@ const userAge = 17;
 const isActive = true;
 ```
 
-## Harjutused
+## Kontrollküsimused
 
-1. Loo muutujad õpilase nime, vanuse ja keskmise hinde jaoks.
-2. Loo muutuja `cartTotal` ja muuda selle väärtust pärast uue toote lisamist.
-3. Kirjuta näide, kus `const` massiivi saab muuta `push()` meetodiga, aga muutujale uut massiivi omistada ei saa.
-4. Selgita oma sõnadega, miks `let` ja `const` on algajale turvalisemad kui `var`.
+1. Mis vahe on muutuja deklareerimisel ja väärtuse omistamisel?
+2. Millal valid `let`-i asemel `const`-i?
+3. Miks on nimi `cartTotal` parem kui nimi `x`?
+4. Mis juhtub, kui proovid `const` muutujale uue väärtuse omistada?
+
+## Edasi
+
+- Järgmine teema: [JavaScripti andmetüübid](/javascript/alused/andmetuubid).
+- Lisalugemine: [MDN — JavaScript Grammar and types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types).
+
+::: tip Valikuline lisalugemine
+Kui soovid mõista, kuidas JavaScript seob muutujate nimed väärtustega, otsib nimesid skoopidest ning käsitleb objektiviiteid ja mälu, loe peatükki [Kuidas muutuja töötab?](/javascript/lisalugemine/kuidas-muutuja-tootab).
+
+Lisalugemine ei kuulu programmeerimise aluste nõutava taseme ega mooduli vahekaitsmise alla.
+:::
