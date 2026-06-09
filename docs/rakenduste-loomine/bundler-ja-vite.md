@@ -72,7 +72,12 @@ Bundlerid (Webpack, Vite, Parcel) on ise **Node.js rakendused**. Nad vajavad:
 
 Seetõttu käivitad terminalis käske nagu `npm run dev` — need käivitavad Node.js programmi, mis haldab sinu projekti.
 
-Lisainfo: [Node.js, npm ja nvm](/arendusvahendid-i/nodejs-ja-nvm)
+- Node.js-i paigaldamine ja versioonid: [Node.js, npm ja nvm](/arendusvahendid-i/nodejs-ja-nvm)
+- Node.js-i roll käivituskeskkonna ja serverina: [Node.js keskkond](/nodejs/introduction)
+
+::: info Kaks JavaScripti programmi võivad töötada korraga
+Vite töötab Node.js keskkonnas ja sinu veebirakendus töötab brauseris. Need kasutavad sama JavaScripti keelt, kuid kummalgi keskkonnal on erinevad võimalused.
+:::
 
 ---
 

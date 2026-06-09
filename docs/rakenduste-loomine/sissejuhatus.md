@@ -19,14 +19,31 @@ Selle mooduli lõpuks **ehitad sellise template'i ise samm-sammult** — iga pea
 
 ---
 
-## Meie läbiv projekt: sinu veebi template
+## Kus meie rakendus töötab?
 
-Kogu moodul toimub ühes projektis, mida loed **nullist**:
+Selles moodulis kohtad Node.js-i eelkõige **arendustööriistade käivitajana**:
 
-1. Lood tühja kausta ja Git repository
-2. Lisad tööriistu ükshaaval (iga peatükk üks teema)
-3. Pushid valmis projekti GitHubi
-4. Märgid repo **template repository'ks**
+```text
+Node.js käitab Vite'i, ESLinti ja Prettierit
+                  ↓
+Vite serveerib rakenduse failid
+                  ↓
+veebirakenduse JavaScript töötab brauseris
+```
+
+Käsu `npm run dev` käivitamisel töötab Vite Node.js keskkonnas, kuid sinu DOM-i kasutav rakendus töötab endiselt brauseris. Node.js võib käitada ka serverirakendusi, kuid seda õpid eraldi [Node.js keskkonna moodulis](/nodejs/introduction).
+
+---
+
+## Meie läbiv projekt: tootekataloog ja veebi template
+
+Moodul jätkab JavaScripti brauseriosas loodud Fake Store API tootekataloogi. Viid töötava rakenduse professionaalsesse Vite'i töövoogu ning muudad selle seadistuse hiljem taaskasutatavaks template'iks.
+
+1. Lood tootekataloogi jaoks Vite projekti ja Git repository.
+2. Tood brauseriosas valminud DOM-i, sündmuste ja Fake Store API lahenduse projekti.
+3. Lisad tööriistu ükshaaval: keskkonnamuutujad, build, Tailwind, ESLint ja Prettier.
+4. Pushid valmis projekti GitHubi.
+5. Eraldad taaskasutatava seadistuse template repository'ks.
 
 Järgmised projektid algavad nii: **Use this template → clone → npm install → npm run dev**.
 
@@ -37,6 +54,7 @@ Järgmised projektid algavad nii: **Use this template → clone → npm install 
 Selle mooduli lõpuks peaks õppija:
 
 - oskama luua Vite projekti nullist
+- oskama selgitada brauseri ja Node.js-i rolli arendustöövoos
 - mõistma, miks bundlerit ja arendusserverit kasutatakse
 - oskama kasutada `.env` faili ja `import.meta.env` muutujaid
 - mõistma erinevust arendusserveri, build'i ja preview vahel
