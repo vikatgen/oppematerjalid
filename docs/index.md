@@ -8,17 +8,17 @@ Siit leiad õppematerjalid järgmistel teemadel:
 
 ## Teemad
 
-### [JavaScript](/javascript/sissejuhatus-moodulisse)
-JavaScripti alused, brauserikeskkond ja praktilised töövahendid: programmilise lahenduse kavandamine, DOM, sündmused, andmed ja asünkroonsus.
-
-### [Kuidas veeb töötab](/veeb/sissejuhatus)
+### [Internet](/veeb/sissejuhatus)
 Veebipäringu teekond, URL, DNS, HTTP päringud ja vastused, staatusekoodid, CORS ning Network-paneel.
+
+### [JavaScript](/javascript/sissejuhatus-moodulisse)
+JavaScripti alused, brauseri- ja Node.js-i keskkond ning praktilised töövahendid: programmilise lahenduse kavandamine, DOM, sündmused, andmed, asünkroonsus ja serverirakendused.
 
 ### [Rakenduste loomine](/rakenduste-loomine/sissejuhatus)
 Ehita veebiarenduse template nullist: Vite, Tailwind, ESLint, Prettier, build ja GitHub template repository.
 
-### [Node.js](/nodejs/introduction)
-Käivita JavaScripti väljaspool brauserit, tööta failide ja protsessiga ning loo HTTP-server ja lihtne API.
+### [TypeScript](/typescript/sissejuhatus)
+Muuda JavaScripti rakendused kontrollitavamaks: modelleeri andmed, käsitle puuduvaid ja väliseid väärtusi ning migreeri brauseri- ja Node.js-projekt TypeScriptiks.
 
 ### [Testimine](/testing/sissejuhatus)
 Testimise alused, unit testid Vitestiga, mockimine, integration testid, API testimine, UI testid Playwrightiga, jõudlus Postmaniga.

@@ -2,17 +2,30 @@ export default {
     base: process.env.VITEPRESS_BASE ?? "/oppematerjalid/",
     lang: "et-EE",
     title: "J-SWE",
-    description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: JavaScript, Node.js, testimine, Linux, Docker, Nginx, andmebaasid",
+    description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: JavaScript, TypeScript, Node.js, testimine, Linux, Docker, Nginx, andmebaasid",
 
     themeConfig: {
         nav: [
             { text: "Avaleht", link: "/" },
+            { text: "Internet", link: "/veeb/sissejuhatus" },
             { text: "JavaScript", link: "/javascript/sissejuhatus-moodulisse" },
-            { text: "Kuidas veeb töötab", link: "/veeb/sissejuhatus" },
-            { text: "Node.js", link: "/nodejs/introduction" },
+            { text: "TypeScript", link: "/typescript/sissejuhatus" },
         ],
 
         sidebar: [
+            {
+                text: "Internet",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/veeb/sissejuhatus" },
+                    { text: "Veebipäringu teekond", link: "/veeb/paringuteekond" },
+                    { text: "URL, domeen ja DNS", link: "/veeb/url-domeen-ja-dns" },
+                    { text: "HTTP päring ja vastus", link: "/veeb/http-paring-ja-vastus" },
+                    { text: "Meetodid ja staatusekoodid", link: "/veeb/meetodid-ja-staatusekoodid" },
+                    { text: "Päritolu ja CORS", link: "/veeb/cors" },
+                    { text: "Network-paneel", link: "/veeb/network-paneel" },
+                ]
+            },
             {
                 text: "JavaScript",
                 collapsed: true,
@@ -111,6 +124,19 @@ export default {
                         ],
                     },
                     {
+                        text: "Node.js keskkond",
+                        collapsed: true,
+                        items: [
+                            { text: "Sissejuhatus", link: "/nodejs/introduction" },
+                            { text: "Faili käivitamine ja keskkond", link: "/nodejs/kaivituskeskkond" },
+                            { text: "Moodulid, npm ja package.json", link: "/nodejs/moodulid" },
+                            { text: "Failisüsteem ja protsess", link: "/nodejs/failisusteem-ja-protsess" },
+                            { text: "Esimene HTTP-server", link: "/nodejs/http-server" },
+                            { text: "Lihtsa API loomine", link: "/nodejs/api-loomine" },
+                            { text: "Express ja middleware", link: "/nodejs/express" },
+                        ]
+                    },
+                    {
                         text: "JavaScripti praktilised töövahendid",
                         collapsed: true,
                         items: [
@@ -119,19 +145,6 @@ export default {
                             { text: "Intl ja vormindamine", link: "/javascript/toovahendid/intl" },
                         ]
                     },
-                ]
-            },
-            {
-                text: "Kuidas veeb töötab",
-                collapsed: true,
-                items: [
-                    { text: "Sissejuhatus", link: "/veeb/sissejuhatus" },
-                    { text: "Veebipäringu teekond", link: "/veeb/paringuteekond" },
-                    { text: "URL, domeen ja DNS", link: "/veeb/url-domeen-ja-dns" },
-                    { text: "HTTP päring ja vastus", link: "/veeb/http-paring-ja-vastus" },
-                    { text: "Meetodid ja staatusekoodid", link: "/veeb/meetodid-ja-staatusekoodid" },
-                    { text: "Päritolu ja CORS", link: "/veeb/cors" },
-                    { text: "Network-paneel", link: "/veeb/network-paneel" },
                 ]
             },
             {
@@ -164,16 +177,25 @@ export default {
                 ]
             },
             {
-                text: "Node.js keskkond",
+                text: "TypeScript",
                 collapsed: true,
                 items: [
-                    { text: "Sissejuhatus", link: "/nodejs/introduction" },
-                    { text: "Faili käivitamine ja keskkond", link: "/nodejs/kaivituskeskkond" },
-                    { text: "Moodulid ja package.json", link: "/nodejs/moodulid" },
-                    { text: "Failisüsteem ja protsess", link: "/nodejs/failisusteem-ja-protsess" },
-                    { text: "Esimene HTTP-server", link: "/nodejs/http-server" },
-                    { text: "Lihtsa API loomine", link: "/nodejs/api-loomine" },
-                    { text: "Express ja middleware", link: "/nodejs/express" },
+                    { text: "Sissejuhatus moodulisse", link: "/typescript/sissejuhatus" },
+                    { text: "Miks TypeScript?", link: "/typescript/miks-typescript" },
+                    { text: "Projekt ja tsconfig.json", link: "/typescript/projekt-ja-tsconfig" },
+                    { text: "Põhitüübid ja tüübijäreldus", link: "/typescript/pohituubid-ja-tuubijareldus" },
+                    { text: "Funktsioonide tüübid", link: "/typescript/funktsioonide-tuubid" },
+                    { text: "Objektide tüübid", link: "/typescript/objektide-tuubid" },
+                    { text: "Union-tüübid ja kitsendamine", link: "/typescript/union-ja-kitsendamine" },
+                    { text: "Puuduvad ja tundmatud väärtused", link: "/typescript/null-ja-unknown" },
+                    { text: "DOM ja sündmused", link: "/typescript/dom-ja-sundmused" },
+                    { text: "Asünkroonsus ja API-andmed", link: "/typescript/api-andmed" },
+                    { text: "TypeScript Node.js-is ja pakettides", link: "/typescript/nodejs-ja-paketid" },
+                    { text: "Klassid ja liidesed", link: "/typescript/klassid-ja-liidesed" },
+                    { text: "Geneerikud ja utility-tüübid", link: "/typescript/geneerikud-ja-utility-tuubid" },
+                    { text: "JavaScriptist TypeScriptiks", link: "/typescript/migreerimine" },
+                    { text: "Praktiline töö", link: "/typescript/praktiline-too" },
+                    { text: "Ülesanded", link: "/typescript/assignments" },
                 ]
             },
             {
