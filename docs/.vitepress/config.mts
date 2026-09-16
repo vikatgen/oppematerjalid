@@ -1,4 +1,6 @@
-export default {
+import { withMermaid } from "vitepress-plugin-mermaid";
+
+export default withMermaid({
     base: process.env.VITEPRESS_BASE ?? "/oppematerjalid/",
     lang: "et-EE",
     title: "J-SWE",
@@ -11,6 +13,86 @@ export default {
 
         sidebar: {
             "/": [
+            {
+                text: "Tehisintellekt",
+                collapsed: true,
+                items: [
+                    { text: "Ülevaade", link: "/tehisintellekt/" },
+                    {
+                        text: "Mis on tehisintellekt?",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-01-mis-on-ai/" },
+                            { text: "Mis on AI?", link: "/tehisintellekt/moodul-01-mis-on-ai/tund-01-mis-on-ai" },
+                            { text: "AI ajalugu", link: "/tehisintellekt/moodul-01-mis-on-ai/tund-02-ai-ajalugu" },
+                            { text: "Kus AI-d kasutatakse?", link: "/tehisintellekt/moodul-01-mis-on-ai/tund-03-kus-kasutatakse" },
+                            { text: "Erinevad AI tüübid", link: "/tehisintellekt/moodul-01-mis-on-ai/tund-04-ai-tuubid" },
+                            { text: "AI-müüdid ja tegelikkus", link: "/tehisintellekt/moodul-01-mis-on-ai/tund-05-muudid" },
+                        ]
+                    },
+                    {
+                        text: "Kuidas AI töötab?",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-02-kuidas-ai-tootab/" },
+                            { text: "Tehisnärvivõrk", link: "/tehisintellekt/moodul-02-kuidas-ai-tootab/tund-01-narvivorgud" },
+                            { text: "Masinõppe alused", link: "/tehisintellekt/moodul-02-kuidas-ai-tootab/tund-02-masinope" },
+                            { text: "Treeningandmed", link: "/tehisintellekt/moodul-02-kuidas-ai-tootab/tund-03-treeningandmed" },
+                            { text: "Tokenid ja LLM-id", link: "/tehisintellekt/moodul-02-kuidas-ai-tootab/tund-04-tokenid" },
+                            { text: "Miks AI eksib?", link: "/tehisintellekt/moodul-02-kuidas-ai-tootab/tund-05-miks-eksib" },
+                        ]
+                    },
+                    {
+                        text: "Promptimine",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-03-promptimine/" },
+                            { text: "Mis on prompt?", link: "/tehisintellekt/moodul-03-promptimine/tund-01-mis-on-prompt" },
+                            { text: "Hea prompti anatoomia", link: "/tehisintellekt/moodul-03-promptimine/tund-02-prompti-anatoomia" },
+                            { text: "Rollid, näited ja mõtlemise suunamine", link: "/tehisintellekt/moodul-03-promptimine/tund-03-rollid-ja-naited" },
+                            { text: "Iteratiivne promptimine ja vestluse juhtimine", link: "/tehisintellekt/moodul-03-promptimine/tund-04-iteratiivne-promptimine" },
+                            { text: "Promptimine äriprotsessides", link: "/tehisintellekt/moodul-03-promptimine/tund-05-promptimine-ariprotsessides" },
+                            { text: "Praktikas — PRD kui kontekstifail", link: "/tehisintellekt/moodul-03-promptimine/tund-06-prd-naide" },
+                        ]
+                    },
+                    {
+                        text: "AI tööriistad",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-04-ai-tooriistad/" },
+                            { text: "Vestlusassistendid", link: "/tehisintellekt/moodul-04-ai-tooriistad/tund-01-vestlusassistendid" },
+                            { text: "Otsingu- ja uurimistööriistad", link: "/tehisintellekt/moodul-04-ai-tooriistad/tund-02-otsing-ja-uurimine" },
+                            { text: "Loovsisu tööriistad äriliseks kasutuseks", link: "/tehisintellekt/moodul-04-ai-tooriistad/tund-03-loovsisu-tooriistad" },
+                            { text: "Kontoritöö ja tootlikkuse tööriistad", link: "/tehisintellekt/moodul-04-ai-tooriistad/tund-04-kontoritoo-tooriistad" },
+                            { text: "Kuidas valida õige tööriist", link: "/tehisintellekt/moodul-04-ai-tooriistad/tund-05-oige-tooriista-valik" },
+                        ]
+                    },
+                    {
+                        text: "AI eetika ja riskid",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-07-eetika-ja-riskid/" },
+                            { text: "Kallutatus ja õiglus", link: "/tehisintellekt/moodul-07-eetika-ja-riskid/tund-01-kallutatus-ja-oiglus" },
+                            { text: "Privaatsus ja andmeturve", link: "/tehisintellekt/moodul-07-eetika-ja-riskid/tund-02-privaatsus-ja-andmeturve" },
+                            { text: "Deepfake'id ja sisu autentsus", link: "/tehisintellekt/moodul-07-eetika-ja-riskid/tund-03-deepfake-ja-autentsus" },
+                            { text: "Riskijuhtimise raamistikud", link: "/tehisintellekt/moodul-07-eetika-ja-riskid/tund-04-riskijuhtimise-raamistikud" },
+                            { text: "Regulatsioon ja vastutus", link: "/tehisintellekt/moodul-07-eetika-ja-riskid/tund-05-regulatsioon-ja-vastutus" },
+                        ]
+                    },
+                    {
+                        text: "AI ettevõttes: rakendamine ja mõju",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/" },
+                            { text: "Eesti näited — Bürokratt ja LHV \"Uku\"", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/tund-01-eesti-naited" },
+                            { text: "Klarna juhtumiuuring", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/tund-02-klarna-juhtumiuuring" },
+                            { text: "Tööjõu ja töökorralduse mõju", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/tund-03-tooturg-ja-tookorraldus" },
+                            { text: "Kuidas rakendada AI-d äriprobleemi lahendamisel", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/tund-04-rakendamise-raamistik" },
+                            { text: "Kokkuvõte — AI kasutuselevõtu tervikpilt", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/tund-05-kokkuvote" },
+                        ]
+                    },
+                ]
+            },
             {
                 text: "Internet",
                 collapsed: true,
@@ -304,4 +386,4 @@ export default {
             copyright: "©"
         }
     }
-};
+});

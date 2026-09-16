@@ -8,6 +8,9 @@ Siit leiad õppematerjalid järgmistel teemadel:
 
 ## Teemad
 
+### [Tehisintellekt](/tehisintellekt/)
+Mis on tehisintellekt, kuidas see töötab ja kuidas seda kasutada: mõisted, ajalugu, AI tüübid, müüdid, promptimine, tööriistad ja eetika.
+
 ### [Internet](/veeb/sissejuhatus)
 Veebipäringu teekond, URL, DNS, HTTP päringud ja vastused, staatusekoodid, CORS ning Network-paneel.
 
