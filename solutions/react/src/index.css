@@ -1,0 +1,20 @@
+* { box-sizing: border-box; }
+body { margin: 0; color: #182632; background: #f8fafb; font: 1rem/1.6 system-ui, sans-serif; }
+header, main, footer { max-width: 64rem; margin: auto; padding: 1.5rem; }
+header { border-bottom: 1px solid #bcc9d2; }
+nav { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+a { color: #1854ac; text-underline-offset: .2em; }
+nav a[aria-current] { font-weight: 700; text-decoration-thickness: 3px; }
+h1, h2, p { overflow-wrap: anywhere; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; padding: .45rem .8rem; }
+button[aria-pressed="true"] { background: #163f6a; color: white; }
+input:not([type="checkbox"]), textarea { display: block; width: min(100%, 36rem); padding: .6rem; margin-bottom: 1rem; border: 1px solid #687b8b; }
+label { display: block; }
+.checkbox { margin: 1rem 0; }
+.posts { list-style: none; padding: 0; }
+.posts article { padding: 1.2rem 0; border-bottom: 1px solid #bcc9d2; }
+form { margin-top: 3rem; }
+:focus-visible { outline: 3px solid #ce6600; outline-offset: 3px; }
+.skip-link { position: absolute; top: -5rem; left: 1rem; background: white; padding: .5rem; }
+.skip-link:focus { top: 0; }

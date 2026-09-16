@@ -17,6 +17,12 @@ JavaScripti alused, brauseri- ja Node.js-i keskkond ning praktilised töövahend
 ### [Rakenduste loomine](/rakenduste-loomine/sissejuhatus)
 Ehita veebiarenduse template nullist: Vite, Tailwind, ESLint, Prettier, build ja GitHub template repository.
 
+### [React](/react/)
+Ehita komponentidest koosnev veebirakendus: props, state, sündmused, efektid, API-andmed ja React Router.
+
+### [Objektimudel ja OOP](/javascript/objektimudel/sissejuhatus)
+JavaScripti objektimudel, prototüübid ja pärilikkus, klassid ja instantsid, `this`, kapseldamine ja kompositsioon.
+
 ### [TypeScript](/typescript/sissejuhatus)
 Muuda JavaScripti rakendused kontrollitavamaks: modelleeri andmed, käsitle puuduvaid ja väliseid väärtusi ning migreeri brauseri- ja Node.js-projekt TypeScriptiks.
 
@@ -28,3 +34,9 @@ Terminali, shelli, failisüsteemi, Node.js-i, npm-i, `nvm`-i, Giti, GitHubi ja d
 
 ### [Linux](/linux/sissejuhatus)
 Linuxi kasutajate ja gruppide haldamine WSL-is: kasutaja loomine, õigused, Dockeri grupp.
+
+### [Arendusvahendid II](/nginx/basics)
+Nginx alused ja reverse proxy ning Docker ja Docker Compose.
+
+### [Andmebaasid](/databases/prisma)
+Andmebaasi tööga alustamine Prisma ORM-iga.

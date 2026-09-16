@@ -7,12 +7,10 @@ export default {
     themeConfig: {
         nav: [
             { text: "Avaleht", link: "/" },
-            { text: "Internet", link: "/veeb/sissejuhatus" },
-            { text: "JavaScript", link: "/javascript/sissejuhatus-moodulisse" },
-            { text: "TypeScript", link: "/typescript/sissejuhatus" },
         ],
 
-        sidebar: [
+        sidebar: {
+            "/": [
             {
                 text: "Internet",
                 collapsed: true,
@@ -165,6 +163,29 @@ export default {
                 ]
             },
             {
+                text: "React",
+                collapsed: true,
+                items: [
+                    { text: "Õpitee", link: "/react/" },
+                    { text: "1. Reacti mõtteviis", link: "/react/01-reacti-motteviis" },
+                    { text: "2. Projekt ja Vite", link: "/react/02-projekt-ja-vite" },
+                    { text: "3. JSX ja komponendid", link: "/react/03-jsx-ja-komponendid" },
+                    { text: "4. Props ja kompositsioon", link: "/react/04-props-ja-kompositsioon" },
+                    { text: "5. Sündmused ja state", link: "/react/05-sundmused-ja-state" },
+                    { text: "6. Loendid ja tingimused", link: "/react/06-loendid-ja-tingimused" },
+                    { text: "7. Vormid", link: "/react/07-vormid" },
+                    { text: "8. State'i asukoht", link: "/react/08-statei-asukoht" },
+                    { text: "9. Efektid", link: "/react/09-efektid" },
+                    { text: "10. API-andmed", link: "/react/10-api-andmed" },
+                    { text: "11. React Router", link: "/react/11-react-router" },
+                    { text: "12. Dünaamilised marsruudid", link: "/react/12-dunaamilised-marsruudid" },
+                    { text: "13. Rakenduse tervik", link: "/react/13-rakenduse-tervik" },
+                    { text: "14. Kontrollimine ja esitlus", link: "/react/14-kontrollimine-ja-esitlus" },
+                    { text: "Praktiline töö ja hindamine", link: "/react/praktiline-too" },
+                    { text: "Sõnastik", link: "/react/sonastik" },
+                ]
+            },
+            {
                 text: "Objektimudel ja OOP",
                 collapsed: true,
                 items: [
@@ -271,7 +292,8 @@ export default {
                     { text: "Prisma ORM", link: "/databases/prisma" },
                 ]
             }
-        ],
+            ]
+        },
 
         socialLinks: [
             { icon: "github", link: "https://github.com/vikatgen/testing-handbook/tree/master" }
