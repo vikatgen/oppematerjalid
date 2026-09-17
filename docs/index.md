@@ -40,6 +40,3 @@ Linuxi kasutajate ja gruppide haldamine WSL-is: kasutaja loomine, õigused, Dock
 
 ### [Arendusvahendid II](/nginx/basics)
 Nginx alused ja reverse proxy ning Docker ja Docker Compose.
-
-### [Andmebaasid](/databases/prisma)
-Andmebaasi tööga alustamine Prisma ORM-iga.

@@ -3,7 +3,7 @@ import { withMermaid } from "vitepress-plugin-mermaid";
 export default withMermaid({
     base: process.env.VITEPRESS_BASE ?? "/oppematerjalid/",
     lang: "et-EE",
-    title: "J-SWE",
+    title: "SWE",
     description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: JavaScript, TypeScript, Node.js, testimine, Linux, Docker, Nginx, andmebaasid",
 
     themeConfig: {
@@ -393,13 +393,6 @@ export default withMermaid({
                     },
                 ],
             },
-            {
-                text: "Andmebaasid",
-                collapsed: true,
-                items: [
-                    { text: "Prisma ORM", link: "/databases/prisma" },
-                ]
-            }
             ]
         },
 
