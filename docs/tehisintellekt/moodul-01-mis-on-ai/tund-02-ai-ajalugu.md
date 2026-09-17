@@ -38,6 +38,8 @@ timeline
 - **1950** — Briti matemaatik Alan Turing avaldab kuulsa artikli "Computing Machinery and Intelligence", milles esitab küsimuse: "Kas masinad võivad mõelda?" Sinna sisse jääb ka Turingi test — kui inimene ei suuda vestluses eristada, kas ta räägib arvuti või inimesega, siis on masin läbinud testi.
 - **1956** — Dartmouthi konverentsil võtab John McCarthy esimest korda kasutusele mõiste *artificial intelligence*. See on AI kui teadusvaldkonna ametlik sünnihetk.
 
+> Täpsem selgitus, kuidas Turingi test täpselt üles on ehitatud ja kuidas seda on aastakümnete jooksul päriselt proovitud läbi viia (ELIZA, Loebneri auhind, Eugene Goostman jt): [Turingi test — Vikipeedia](https://et.wikipedia.org/wiki/Turingi_test).
+
 ## Ajastu 2: optimism ja "AI talved" (1956–1990)
 
 Esimestel kümnenditel arvasid teadlased, et üldine tehisintellekt on "paarikümne aasta kaugusel". Rahastust tuli palju, aga tulemused jäid kesiseks. Ekspertsüsteemid — programmid, mis kasutavad käsitsi kirjutatud reegleid — töötasid mõnes kitsas valdkonnas (näiteks meditsiiniline diagnostika), aga ei suutnud kohaneda ega üldistada.
@@ -95,6 +97,7 @@ Alates 2023. aastast on turule tulnud Claude (Anthropic), Gemini (Google) ja ava
 
 - [Wikipedia — History of artificial intelligence](https://en.wikipedia.org/wiki/History_of_artificial_intelligence)
 - [Wikipedia — Computing Machinery and Intelligence](https://en.wikipedia.org/wiki/Computing_Machinery_and_Intelligence)
+- [Turingi test — Vikipeedia](https://et.wikipedia.org/wiki/Turingi_test)
 - [Wikipedia — Dartmouth workshop](https://en.wikipedia.org/wiki/Dartmouth_workshop)
 - [Wikipedia — Deep Blue versus Garry Kasparov](https://en.wikipedia.org/wiki/Deep_Blue_versus_Garry_Kasparov)
 - [Wikipedia — AlexNet](https://en.wikipedia.org/wiki/AlexNet)
