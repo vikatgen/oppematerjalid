@@ -81,6 +81,19 @@ export default withMermaid({
                         ]
                     },
                     {
+                        text: "AI tarkvaraarenduses",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-06-ai-arenduses/" },
+                            { text: "Ülevaade — täiendajast agendini", link: "/tehisintellekt/moodul-06-ai-arenduses/tund-01-ulevaade" },
+                            { text: "Reaalsed näited ettevõtetest", link: "/tehisintellekt/moodul-06-ai-arenduses/tund-02-ettevotete-naited" },
+                            { text: "Dogfooding — Anthropic ise", link: "/tehisintellekt/moodul-06-ai-arenduses/tund-03-anthropic-dogfooding" },
+                            { text: "AGENTS.md — tööstuse standard", link: "/tehisintellekt/moodul-06-ai-arenduses/tund-04-agents-md" },
+                            { text: "Kas AI kiirendab arendajaid?", link: "/tehisintellekt/moodul-06-ai-arenduses/tund-05-teaduslik-pilt" },
+                            { text: "Kokkuvõte", link: "/tehisintellekt/moodul-06-ai-arenduses/tund-06-kokkuvote" },
+                        ]
+                    },
+                    {
                         text: "AI eetika ja riskid",
                         collapsed: true,
                         items: [

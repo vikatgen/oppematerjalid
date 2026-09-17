@@ -19,9 +19,10 @@ Alustasime küsimusest "mis on tehisintellekt" ja jõudsime välja reaalsete ett
 flowchart LR
     A["Mis on AI ja kuidas<br/>see töötab?<br/>(moodulid 1–2)"] --> B["Kuidas sellega<br/>suhelda?<br/>(moodul 3)"]
     B --> C["Milliseid tööriistu<br/>kasutada?<br/>(moodul 4)"]
-    C --> D["Milliste riskidega<br/>arvestada?<br/>(moodul 7)"]
-    D --> E["Kuidas see organisatsioonis<br/>reaalselt välja näeb?<br/>(moodul 8)"]
-    E -.->|"õppetunnid tagasi süsteemi"| A
+    C --> D["Kus seda rakendada:<br/>õppimine (moodul 5) ja<br/>tarkvaraarendus (moodul 6)"]
+    D --> E["Milliste riskidega<br/>arvestada?<br/>(moodul 7)"]
+    E --> F["Kuidas see organisatsioonis<br/>reaalselt välja näeb?<br/>(moodul 8)"]
+    F -.->|"õppetunnid tagasi süsteemi"| A
 ```
 
 ## Viis küsimust, mida iga AI-algatuse juures küsida
@@ -34,11 +35,9 @@ Selle kursuse põhjal saab kokku panna lühikese kontrollnimekirja, mida rakenda
 4. **Kuidas me mõõdame, kas see tegelikult töötab?** ([tund 8.2](./tund-02-klarna-juhtumiuuring)) — Klarna näitas, et esialgne edu ei taga püsivat edu ilma pideva mõõtmiseta.
 5. **Mida see tähendab inimeste, mitte ainult tehnoloogia jaoks?** ([tund 8.3](./tund-03-tooturg-ja-tookorraldus)) — rollide muutus, ümberõppe vajadus, mitte ainult tehniline juurutus.
 
-## Mida see kursus veel katab
+## Kogu kursus on nüüd valmis
 
-See moodul (8) lõpetab hetkel valminud osa kursusest. [Tehisintellekti teema ülevaates](/tehisintellekt/) on kirjas ka [moodul 5 — AI kasutamine õppimises](/tehisintellekt/moodul-05-ai-oppimises/), ja üks moodul, mida käesolev sessioon veel ei käsitlenud:
-
-- **Moodul 6 — AI tarkvaraarenduses**: kood, testimine, dokumentatsioon, GitHub — sh koodi-tööriistad (GitHub Copilot, Claude Code jt), mille [moodul 4](/tehisintellekt/moodul-04-ai-tooriistad/) teadlikult sinna edasi lükkas.
+Kõik kaheksa moodulit — [1. Mis on tehisintellekt?](/tehisintellekt/moodul-01-mis-on-ai/), [2. Kuidas AI töötab?](/tehisintellekt/moodul-02-kuidas-ai-tootab/), [3. Promptimine](/tehisintellekt/moodul-03-promptimine/), [4. AI tööriistad](/tehisintellekt/moodul-04-ai-tooriistad/), [5. AI kasutamine õppimises](/tehisintellekt/moodul-05-ai-oppimises/), [6. AI tarkvaraarenduses](/tehisintellekt/moodul-06-ai-arenduses/), [7. AI eetika ja riskid](/tehisintellekt/moodul-07-eetika-ja-riskid/) ja see, 8. moodul — on nüüd valmis. [Tehisintellekti teema ülevaade](/tehisintellekt/) annab kogu kursusest tervikliku sissejuhatuse.
 
 ## Kokkuvõte
 
