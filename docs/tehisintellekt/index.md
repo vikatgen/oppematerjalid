@@ -18,7 +18,7 @@ Teema on üles ehitatud kaheksast moodulist, mis liiguvad alustest praktiliste o
 2. **[Kuidas AI töötab?](/tehisintellekt/moodul-02-kuidas-ai-tootab/)** — närvivõrgud, masinõpe, treeningandmed, tokenid ja LLM-id, miks AI eksib.
 3. **[Promptimine](/tehisintellekt/moodul-03-promptimine/)** — hea prompti anatoomia, rollid, näited, mõtlemise suunamine, iteratsioon ja promptimine äriprotsesside toetamiseks.
 4. **[AI tööriistad](/tehisintellekt/moodul-04-ai-tooriistad/)** — vestlusassistendid, otsingu- ja uurimistööriistad, loovsisu tööriistad, kontoritöö AI ning kuidas valida õige tööriist.
-5. AI koolis — õppimine, allikakontroll, viitamine, akadeemiline ausus. *(lisandub)*
+5. **[AI kasutamine õppimises](/tehisintellekt/moodul-05-ai-oppimises/)** — teaduslik alus (Bloomi kahe sigma probleem), ülikoolide juhtumiuuringud, praktilised tehnikad keeruliste tehniliste mõistete õppimiseks, allikakontroll ja akadeemiline ausus.
 6. AI tarkvaraarenduses — kood, testimine, dokumentatsioon, GitHub. *(lisandub)*
 7. **[AI eetika ja riskid](/tehisintellekt/moodul-07-eetika-ja-riskid/)** — kallutatus, privaatsus, deepfake'id, riskijuhtimise raamistikud (NIST AI RMF, OWASP LLM Top 10), EU AI Act ja vastutus.
 8. **[AI ettevõttes: rakendamine ja mõju](/tehisintellekt/moodul-08-rakendamine-ja-moju/)** — Eesti ja rahvusvahelised juhtumid, tööturu mõju, praktiline rakendamise raamistik ja kursuse kokkuvõte.

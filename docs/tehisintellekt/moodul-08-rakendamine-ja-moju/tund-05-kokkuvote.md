@@ -36,9 +36,8 @@ Selle kursuse põhjal saab kokku panna lühikese kontrollnimekirja, mida rakenda
 
 ## Mida see kursus veel katab
 
-See moodul (8) lõpetab hetkel valminud osa kursusest. [Tehisintellekti teema ülevaates](/tehisintellekt/) on kirjas ka kaks moodulit, mida käesolev sessioon veel ei käsitlenud:
+See moodul (8) lõpetab hetkel valminud osa kursusest. [Tehisintellekti teema ülevaates](/tehisintellekt/) on kirjas ka [moodul 5 — AI kasutamine õppimises](/tehisintellekt/moodul-05-ai-oppimises/), ja üks moodul, mida käesolev sessioon veel ei käsitlenud:
 
-- **Moodul 5 — AI koolis**: õppimine, allikakontroll, viitamine, akadeemiline ausus.
 - **Moodul 6 — AI tarkvaraarenduses**: kood, testimine, dokumentatsioon, GitHub — sh koodi-tööriistad (GitHub Copilot, Claude Code jt), mille [moodul 4](/tehisintellekt/moodul-04-ai-tooriistad/) teadlikult sinna edasi lükkas.
 
 ## Kokkuvõte

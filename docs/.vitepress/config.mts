@@ -68,6 +68,19 @@ export default withMermaid({
                         ]
                     },
                     {
+                        text: "AI kasutamine õppimises",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-05-ai-oppimises/" },
+                            { text: "Miks AI õppimises üldse toimib", link: "/tehisintellekt/moodul-05-ai-oppimises/tund-01-miks-ai-oppimises-toimib" },
+                            { text: "Kuidas ülikoolid AI-d integreerivad", link: "/tehisintellekt/moodul-05-ai-oppimises/tund-02-ulikoolide-naited" },
+                            { text: "Praktikas — keeruliste mõistete õppimine", link: "/tehisintellekt/moodul-05-ai-oppimises/tund-03-keeruliste-mistete-oppimine" },
+                            { text: "Millal AI kasutamine õppimist kahjustab", link: "/tehisintellekt/moodul-05-ai-oppimises/tund-04-millal-ai-kahjustab" },
+                            { text: "Lühidalt — AI äriprotsesside õppimises", link: "/tehisintellekt/moodul-05-ai-oppimises/tund-05-ariprotsesside-oppimine" },
+                            { text: "Allikakontroll ja akadeemiline ausus", link: "/tehisintellekt/moodul-05-ai-oppimises/tund-06-allikakontroll-ja-akadeemiline-ausus" },
+                        ]
+                    },
+                    {
                         text: "AI eetika ja riskid",
                         collapsed: true,
                         items: [
