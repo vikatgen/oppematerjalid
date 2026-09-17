@@ -339,7 +339,6 @@ export default withMermaid({
                     { text: "Mockimine ja testitav kood", link: "/testing/mocking" },
                     { text: "Integration testid", link: "/testing/integration-testing" },
                     { text: "API testimine", link: "/testing/api-testing" },
-                    { text: "UI testimine (Playwright)", link: "/testing/ui-testing" },
                     { text: "Jõudlus (Postman)", link: "/testing/performance-testing-postman" },
                     { text: "Praktiline töötuba", link: "/testing/workshop" },
                     { text: "Ülesanded", link: "/testing/assignments" }

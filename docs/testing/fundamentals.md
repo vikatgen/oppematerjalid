@@ -40,9 +40,13 @@ Selle peatüki lõpuks peaks õppija:
 
 ---
 
-## 2. Testimise tasemed — üks näide, neli vaatenurka
+## 2. Testimise tasemed — üks näide, mitu vaatenurka
 
 Meie broneerimissüsteem: kas kasutaja saab broneerida töötoa?
+
+::: tip Selle kursuse fookus
+Testimisel on üldiselt neli taset — unit, integration, UI-komponent ja brauseri-E2E. Meie kursusel testime **tagarakendust** (API endpointid ja äriloogika), seega keskendume **unit- ja integration-testidele**. UI/E2E testid (allpool 2.3 ja 2.4) on siin ainult teadmiseks — kui ühel päeval on olemas frontend, mida testida, on need samad põhimõtted üle kantavad.
+:::
 
 ### 2.1 Unit test
 

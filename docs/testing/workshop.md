@@ -6,7 +6,6 @@ Seni õpid teooriat ja väikesi harjutusi eraldi. **Capstone** ühendab kõik:
 
 - Unit testid (Vitest + mock)
 - Integration testid (Supertest)
-- UI testid (Playwright — kui frontend on olemas)
 - Jõudlus (Postman)
 
 Sama **broneerimise API** kogu päeva vältel — nagu päris meeskonnas enne release'i.
@@ -200,21 +199,7 @@ Ilma `beforeEach` puhastuseta testid mõjutavad üksteist.
 
 ---
 
-# Faas 5: UI testid — Playwright (kui frontend on olemas)
-
-Kui kursusel on Vite frontend samale API-le:
-
-1. Seadista Playwright (`npm init playwright@latest`)
-2. Kirjuta E2E test: broneerimise vorm või nupp
-3. Kirjuta test veateatele (täis workshop)
-
-Juhend: [UI testimine](/testing/ui-testing)
-
-Kui frontend puudub, harjuta Playwright eraldi Vite demo lehel — oskus on üle kantav.
-
----
-
-# Faas 6: Edasijõudnud
+# Faas 5: Edasijõudnud
 
 - Mock-meetodite argumentide kontroll
 - Error body struktuuri ühtlus kõigil 4xx vastustel
@@ -252,7 +237,7 @@ test("ainult üks broneering õnnestub kui 1 koht", async () => {
 - Postman response time testid
 
 ### Edasijõudnud
-- Playwright E2E (või Testing Library komponent)
+- Mock-meetodite argumentide kontroll ja error body struktuuri ühtlus
 - Concurrency või GET /workshops laiendus
 - Testiplaan dokumenteeritud
 
@@ -263,6 +248,5 @@ test("ainult üks broneering õnnestub kui 1 koht", async () => {
 - Mis vahe on unit ja integration testil **selles projektis**?
 - Kas unit testid andsid kindlust? Kas integration test leidis midagi uut?
 - Millal Postman, millal Supertest?
-- Mida Playwright testiks, mida API test ei kata?
 
 **Järgmine samm:** [Ülesanded](/testing/assignments) iseseisevaks harjutamiseks.

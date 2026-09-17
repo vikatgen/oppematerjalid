@@ -16,8 +16,7 @@ Selle mooduli lõpuks oskad:
 - kirjutada **unit teste** Vitestiga Vite projektis
 - kasutada **mocke** ja mõista testitavat arhitektuuri
 - kirjutada **integration teste** — komponentide ja API koostööd
-- testida **kasutajaliidest** Testing Library ja Playwrightiga
-- teha ** jõudluse kontrolli** Postmaniga
+- teha **jõudluse kontrolli** Postmaniga
 
 ---
 
@@ -30,7 +29,6 @@ Kogu moodul kasutab üht ja sama stsenaariumi erinevates tasemetes:
 | Unit | Kas saab broneerida, kui kohti on? | Vitest |
 | Mock | Kas service viskab vea, kui workshop täis? | Vitest + mock |
 | Integration | Kas API endpoint tagastab 409, kui täis? | Supertest |
-| UI | Kas nupp "Broneeri" töötab brauseris? | Playwright |
 | Performance | Kas API vastab alla 500 ms? | Postman |
 
 See lähenemine aitab mõista, et **erinevad testid kontrollivad erinevaid asju** — mitte üks test ei asenda teist.
@@ -40,14 +38,13 @@ See lähenemine aitab mõista, et **erinevad testid kontrollivad erinevaid asju*
 ## Soovitatud õppejärjekord
 
 1. [Testimise alused](/testing/fundamentals) — miks, millal, mis tüübid
-2. [Unit testid Vitestiga](/testing/unit-testing) — esimesed testid Vite projektis
+2. [Unit testid Vitestiga](/testing/unit-testing) — esimesed testid
 3. [Mockimine ja testitav kood](/testing/mocking) — sõltuvuste asendamine, arhitektuur
-4. [Integration testid](/testing/integration-testing) — komponentide ja API koostöö
+4. [Integration testid](/testing/integration-testing) — kihtide koostöö, API testimine Supertestiga
 5. [API testimine](/testing/api-testing) — scaffold projekti ülevaade
-6. [UI testimine](/testing/ui-testing) — Testing Library + Playwright
-7. [Jõudluse testimine Postmaniga](/testing/performance-testing-postman) — response time, koormus
-8. [Praktiline töötuba](/testing/workshop) — kõik kokku
-9. [Ülesanded](/testing/assignments) — iseseisev harjutamine
+6. [Jõudluse testimine Postmaniga](/testing/performance-testing-postman) — response time, koormus
+7. [Praktiline töötuba](/testing/workshop) — kõik kokku
+8. [Ülesanded](/testing/assignments) — iseseisev harjutamine
 
 ---
 
@@ -70,10 +67,7 @@ Enne alustamist peaks sul olema:
 
 | Tööriist | Kasutus |
 |----------|---------|
-| **Vite** | Arenduskeskkond — sama, mida kasutate teistes projektides |
-| **Vitest** | Unit ja integration testid — Jest-sarnane API, Vite'iga integreeritud |
-| **Testing Library** | UI komponentide testid — testib seda, mida kasutaja näeb |
-| **Playwright** | Brauseripõhised UI/E2E testid — laialt kasutusel ka AI automatiseerimises |
+| **Vitest** | Unit ja integration testid — Jest-sarnane API, kiire käivitus |
 | **Supertest** | Express API HTTP testid |
 | **Postman** | API käsitsi test, collection runner, jõudluse mõõtmine |
 

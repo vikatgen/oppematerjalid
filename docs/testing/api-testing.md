@@ -159,13 +159,12 @@ Swagger: `http://localhost:3000/docs`
 
 ---
 
-## 8. Kolm viisi sama API testida
+## 8. Kaks viisi sama API testida
 
 | Viis | Millal? | Leht |
 |------|---------|------|
 | **Vitest + Supertest** | CI, regressioon | [Integration](/testing/integration-testing), [Töötuba](/testing/workshop) |
 | **Postman** | Käsitsi, jõudlus, demo | [Postman](/testing/performance-testing-postman) |
-| **Playwright** | Kui on Vite frontend API-le | [UI testimine](/testing/ui-testing) |
 
 ---
 

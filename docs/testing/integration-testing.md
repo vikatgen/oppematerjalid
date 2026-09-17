@@ -30,34 +30,7 @@ Mõlemad on vajalikud. Unit testid on palju; integration testid kattavad kriitil
 
 ---
 
-## 2. Frontend integration (lühidalt)
-
-Vite + React/Vue projektis võid testida, kas komponent + hook + util töötavad koos Vitest + Testing Libraryga:
-
-```js
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { BookingButton } from "./BookingButton.jsx";
-
-test("näitab veateadet kui API tagastab 409", async () => {
-  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
-    ok: false,
-    status: 409,
-    json: async () => ({ error: "Workshop is full" })
-  }));
-
-  render(<BookingButton workshopId={1} />);
-  await userEvent.click(screen.getByRole("button", { name: /broneeri/i }));
-
-  expect(await screen.findByText(/täis/i)).toBeInTheDocument();
-});
-```
-
-See on **integration test komponendi tasemel** — mitte täis brauser (see on [UI testimine](/testing/ui-testing)).
-
----
-
-## 3. API integration Supertestiga
+## 2. API integration Supertestiga
 
 ### Miks Supertest?
 
@@ -106,7 +79,7 @@ describe("POST /bookings", () => {
 
 ---
 
-## 4. Test-andmebaas
+## 3. Test-andmebaas
 
 Integration testid **ei tohi** rikkuda arendusandmeid.
 
@@ -129,7 +102,7 @@ Täpsemalt: [API testimine — scaffold projekt](/testing/api-testing).
 
 ---
 
-## 5. Mida integration testis kontrollida?
+## 4. Mida integration testis kontrollida?
 
 - HTTP staatuskood (`201`, `400`, `409`, `404`)
 - Vastuse body struktuur (`id`, `error`)
@@ -149,7 +122,7 @@ test("error vastus sisaldab error välja", async () => {
 
 ---
 
-## 6. Vitest + Supertest samas projektis
+## 5. Vitest + Supertest samas projektis
 
 `vitest.config.js` (või `vite.config.js`):
 
@@ -184,7 +157,7 @@ Skriptid:
 
 ---
 
-## 7. Levinumad vead
+## 6. Levinumad vead
 
 | Viga | Lahendus |
 |------|----------|
@@ -195,7 +168,7 @@ Skriptid:
 
 ---
 
-## 8. Kontrollküsimused
+## 7. Kontrollküsimused
 
 - Miks integration test on aeglasem kui unit test?
 - Mis juhtub, kui unustad `resetDb()`?
@@ -203,7 +176,7 @@ Skriptid:
 
 ---
 
-## 9. Edasi
+## 8. Edasi
 
 - [API testimine](/testing/api-testing) — scaffold projekti struktuur
 - [Praktiline töötuba](/testing/workshop) — integration harjutused

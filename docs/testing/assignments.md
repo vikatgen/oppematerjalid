@@ -65,26 +65,7 @@
 
 ---
 
-## Taseme 4: UI testid (Playwright)
-
-**Eesmärk:** Testid kasutajateekonda brauseris.
-
-1. Seadista Playwright Vite frontend projektis (või õpetaja antud UI)
-2. Kirjuta vähemalt 2 E2E testi:
-   - Edukas broneerimine (või vormi submit)
-   - Veateade (nt täis workshop või valideerimine)
-3. (Valikuline) Lisa 1 komponendi test Testing Libraryga
-
-**Juhend:** [UI testimine](/testing/ui-testing)
-
-**Kontroll:**
-
-- [ ] `npm run test:e2e` läbib lokaalselt
-- [ ] Kasutad `getByRole` / `getByLabel`, mitte ainult CSS selektoreid
-
----
-
-## Taseme 5: Jõudlus (Postman)
+## Taseme 4: Jõudlus (Postman)
 
 **Eesmärk:** Mõõdad API response time ja dokumenteerid tulemused.
 
@@ -106,8 +87,7 @@
 
 Vasta paaris või portfolio kirjelduseks:
 
-1. Mis vahe on unit, integration ja E2E testil **sinu projektis**?
+1. Mis vahe on unit ja integration testil **sinu projektis**?
 2. Milline test leidis vea, mida teine tüüp ei leidnud?
-3. Miks Vitest sobib Vite projektiga?
+3. Miks Vitest sobib selle projektiga?
 4. Millal kasutaksid Postmanit vs Supertesti?
-5. Miks Playwright on oluline oskus (sh AI/automatiseerimise kontekstis)?

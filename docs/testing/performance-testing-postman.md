@@ -18,13 +18,12 @@ Aeglane API = halb kasutajakogemus, timeoutid, katkine frontend. Postman sobib k
 
 ---
 
-## 1. Postman vs Supertest vs Playwright
+## 1. Postman vs Supertest
 
 | Tööriist | Peamine roll |
 |----------|--------------|
 | **Supertest / Vitest** | Automaattestid CI-s, regressioon |
 | **Postman** | Käsitsi uurimine, dokumentatsioon, jõudlus, meeskonna collection |
-| **Playwright** | UI ja kasutajateekond |
 
 Postman **ei asenda** unit/integration teste — see täiendab neid, eriti arenduse ja demo faasis.
 
@@ -194,7 +193,7 @@ Näide broneerimise API-le:
 
 ## 11. Edasi
 
-[Praktiline töötuba](/testing/workshop) — ühenda Vitest, Supertest, Playwright ja Postman ühes projektis.
+[Praktiline töötuba](/testing/workshop) — ühenda Vitest, Supertest ja Postman ühes projektis.
 
 ### Allikad
 
