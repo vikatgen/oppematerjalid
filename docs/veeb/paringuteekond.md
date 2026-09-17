@@ -14,18 +14,44 @@ Kui avad aadressi või JavaScript käivitab `fetch()` päringu, peab brauser lei
 
 ## Lihtsustatud teekond
 
-```text
-1. Brauser loeb URL-i
-2. DNS leiab domeenile IP-aadressi
-3. Brauser loob serveriga ühenduse
-4. HTTPS korral luuakse turvaline TLS-ühendus
-5. Brauser saadab HTTP-päringu
-6. Server töötleb päringut
-7. Server saadab HTTP-vastuse
-8. Brauser töötleb vastuse
+```mermaid
+sequenceDiagram
+    participant B as Brauser
+    participant D as DNS
+    participant S as Server
+
+    B->>B: 1. Loeb URL-i
+    B->>D: 2. Küsib domeenile IP-aadressi
+    D-->>B: Tagastab IP-aadressi
+    B->>S: 3. Loob TCP-ühenduse
+    opt HTTPS
+        B->>S: 4. TLS käepigistus
+        S-->>B: Sertifikaat, turvaline kanal loodud
+    end
+    B->>S: 5. Saadab HTTP-päringu
+    S->>S: 6. Töötleb päringut
+    S-->>B: 7. Saadab HTTP-vastuse
+    B->>B: 8. Töötleb vastuse, uuendab kasutajaliidest
 ```
 
 Kõik sammud ei toimu iga päringu puhul nullist. Brauser võib kasutada vahemälu, olemasolevat ühendust ja varem leitud DNS-vastust.
+
+## Miks HTTPS? TLS lühidalt
+
+Samm 4 ("TLS käepigistus") ei ole detail, mille võib vahele jätta — see on põhjus, miks veebis üldse saab turvaliselt andmeid saata.
+
+Ilma TLS-ita liiguks HTTP-päring võrgus avatud tekstina: iga vahepealne võrguseade (nt sama WiFi-võrgu teine kasutaja) saaks seda lugeda või muuta. TLS-käepigistuse käigus:
+
+1. brauser ja server lepivad kokku ühises krüpteerimisvõtmes;
+2. server tõendab oma identiteeti sertifikaadiga, mille on välja andnud usaldusväärne sertifitseerimisasutus;
+3. kõik selle järel saadetud andmed krüpteeritakse.
+
+```text
+https://example.com  → TLS tagab konfidentsiaalsuse, tervikluse ja serveri autentsuse
+http://example.com   → andmed liiguvad krüpteerimata
+```
+
+TLS-käepigistus lisab enne esimest päringut ühe täiendava võrgu edasi-tagasi käigu (*round trip*) — seepärast on esimene HTTPS-päring alati veidi aeglasem kui hilisemad sama ühenduse päringud.
 
 ## Brauser ja server täidavad eri rolle
 
@@ -72,3 +98,6 @@ Ava tootekataloog ja DevToolsi Network-paneel.
 ## Allikad
 
 - [MDN: How the web works](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works)
+- Brown University CSCI-1680: [TCP käepigistus (Transport Layer I)](https://cs.brown.edu/courses/csci1680/f17/lectures/13-tcp1.pdf)
+- Brown University CSCI-1680: [TLS ja PKI](https://cs.brown.edu/courses/csci1680/f24/lectures/f24/24-tls-pki-notes.pdf)
+- Ilya Grigorik, [*High Performance Browser Networking* — TLS peatükk](https://hpbn.co/transport-layer-security-tls/)

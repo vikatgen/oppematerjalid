@@ -128,7 +128,9 @@ export default withMermaid({
                     { text: "URL, domeen ja DNS", link: "/veeb/url-domeen-ja-dns" },
                     { text: "HTTP päring ja vastus", link: "/veeb/http-paring-ja-vastus" },
                     { text: "Meetodid ja staatusekoodid", link: "/veeb/meetodid-ja-staatusekoodid" },
+                    { text: "Küpsised ja sessioonid", link: "/veeb/kupsised-ja-sessioonid" },
                     { text: "Päritolu ja CORS", link: "/veeb/cors" },
+                    { text: "HTTP/1.1, HTTP/2 ja HTTP/3", link: "/veeb/http-versioonid" },
                     { text: "Network-paneel", link: "/veeb/network-paneel" },
                 ]
             },

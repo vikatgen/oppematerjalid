@@ -71,6 +71,32 @@ HTTP keha võib sisaldada näiteks:
 
 Klient ja server peavad keha kuju osas kokku leppima.
 
+## HTTP vahemälu (caching)
+
+`Cache-Control` päis ütleb brauserile, kas ja kui kaua tohib vastust taaskasutada ilma serverit uuesti küsimata.
+
+```http
+Cache-Control: max-age=3600
+Cache-Control: no-store
+Cache-Control: no-cache
+```
+
+| Väärtus | Tähendus |
+| --- | --- |
+| `max-age=3600` | vastust võib vahemälust kasutada 1 tund |
+| `no-store` | vastust ei tohi üldse salvestada |
+| `no-cache` | tohib salvestada, kuid enne kasutamist tuleb serveriga kontrollida, kas see on endiselt kehtiv |
+
+Kehtivuse kontrollimiseks kasutatakse `ETag` päist — serveri antud "sõrmejälge" vastuse sisule:
+
+```http
+ETag: "a1b2c3"
+```
+
+Järgmisel päringul saadab brauser selle tagasi (`If-None-Match: "a1b2c3"`). Kui sisu pole muutunud, vastab server `304 Not Modified` ja jätab keha saatmata — see säästab võrguliiklust.
+
+Vahemälu on ka üks levinud "miks ma näen vana andmed" vea allikas: kui `Cache-Control` on liiga pikk või puudub kontroll, näitab brauser kasutajale aegunud vastust ilma serverit uuestigi küsimata.
+
 ## Praktiline uurimine
 
 Vali Network-paneelis Fake Store API päring.
@@ -87,3 +113,5 @@ Kirjelda:
 
 - [MDN: HTTP messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages)
 - [MDN: HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers)
+- [MDN: HTTP caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching) (tugineb RFC 9111-le)
+- University of Illinois CS 240: [HTTP Caching](https://courses.grainger.illinois.edu/cs240/fa2021/static/lectures/cs240fa21_20-slides.pdf)

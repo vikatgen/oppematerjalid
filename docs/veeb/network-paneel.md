@@ -29,6 +29,18 @@ Pärast õppetundi oskad Network-paneeli põhjal kirjeldada päringu teekonda ni
 - **Response** – algne vastuse keha;
 - **Timing** – päringu etappide kestused.
 
+Nii näeb **Headers** vaade välja `https://fakestoreapi.com/products` päringu peal — General plokis URL, meetod ja staatus, all pool päringu enda päised:
+
+![Chrome DevTools Network-paneeli Headers vaade fakestoreapi.com/products päringu jaoks, näidatud General ja Request headers plokid.](/veeb/network-headers.jpg)
+
+**Preview** näitab sama vastust mugavalt avatava puuna:
+
+![Chrome DevTools Network-paneeli Preview vaade — fakestoreapi.com/products vastuse JSON-massiiv avatava puuna.](/veeb/network-preview.jpg)
+
+**Response** näitab vastuse toorkeha täpselt nii, nagu server selle saatis:
+
+![Chrome DevTools Network-paneeli Response vaade — fakestoreapi.com/products vastuse toores JSON-tekst.](/veeb/network-response.jpg)
+
 ## Harjutus Fake Store API-ga
 
 Uuri `https://fakestoreapi.com/products` päringut ja kirjelda:

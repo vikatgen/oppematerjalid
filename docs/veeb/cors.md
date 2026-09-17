@@ -35,13 +35,26 @@ CORS-i ligipääsu lubab server. Frontendi JavaScript ei saa puuduvat CORS-luba 
 
 ## Lihtne ja preflight-päring
 
-Mõne ristpäritolu päringu eel saadab brauser `OPTIONS` päringu:
+Mõne ristpäritolu päringu eel saadab brauser `OPTIONS` päringu. Seda nimetatakse preflight-päringuks — brauser kontrollib enne tegelikku päringut, kas server lubab soovitud meetodit ja päiseid.
 
-```text
-OPTIONS /products
+```mermaid
+sequenceDiagram
+    participant B as Brauser (JS, localhost:5173)
+    participant A as API (localhost:3000)
+
+    B->>A: OPTIONS /products (preflight)
+    A-->>B: 204, Access-Control-Allow-Origin/Methods/Headers
+
+    alt Server lubab origin'i, meetodi ja päised
+        B->>A: POST /products (tegelik päring)
+        A-->>B: 201 Created + Access-Control-Allow-Origin
+        Note over B: JavaScript saab vastuse lugeda
+    else Server ei luba
+        Note over B: Brauser blokeerib vastuse lugemise<br/>Console näitab CORS-viga
+    end
 ```
 
-Seda nimetatakse preflight-päringuks. Brauser kontrollib enne tegelikku päringut, kas server lubab soovitud meetodit ja päiseid.
+Vastuse päised näevad välja nii:
 
 ```http
 Access-Control-Allow-Origin: http://localhost:5173
