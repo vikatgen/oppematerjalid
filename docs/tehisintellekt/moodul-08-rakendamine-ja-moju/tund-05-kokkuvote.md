@@ -22,7 +22,8 @@ flowchart LR
     C --> D["Kus seda rakendada:<br/>õppimine (moodul 5) ja<br/>tarkvaraarendus (moodul 6)"]
     D --> E["Milliste riskidega<br/>arvestada?<br/>(moodul 7)"]
     E --> F["Kuidas see organisatsioonis<br/>reaalselt välja näeb?<br/>(moodul 8)"]
-    F -.->|"õppetunnid tagasi süsteemi"| A
+    F --> G["Tehniline süvidimensioon:<br/>keelemudelid lähemalt<br/>(moodul 9)"]
+    G -.->|"õppetunnid tagasi süsteemi"| A
 ```
 
 ## Viis küsimust, mida iga AI-algatuse juures küsida
@@ -37,7 +38,7 @@ Selle kursuse põhjal saab kokku panna lühikese kontrollnimekirja, mida rakenda
 
 ## Kogu kursus on nüüd valmis
 
-Kõik kaheksa moodulit — [1. Mis on tehisintellekt?](/tehisintellekt/moodul-01-mis-on-ai/), [2. Kuidas AI töötab?](/tehisintellekt/moodul-02-kuidas-ai-tootab/), [3. Promptimine](/tehisintellekt/moodul-03-promptimine/), [4. AI tööriistad](/tehisintellekt/moodul-04-ai-tooriistad/), [5. AI kasutamine õppimises](/tehisintellekt/moodul-05-ai-oppimises/), [6. AI tarkvaraarenduses](/tehisintellekt/moodul-06-ai-arenduses/), [7. AI eetika ja riskid](/tehisintellekt/moodul-07-eetika-ja-riskid/) ja see, 8. moodul — on nüüd valmis. [Tehisintellekti teema ülevaade](/tehisintellekt/) annab kogu kursusest tervikliku sissejuhatuse.
+Kõik üheksa moodulit — [1. Mis on tehisintellekt?](/tehisintellekt/moodul-01-mis-on-ai/), [2. Kuidas AI töötab?](/tehisintellekt/moodul-02-kuidas-ai-tootab/), [3. Promptimine](/tehisintellekt/moodul-03-promptimine/), [4. AI tööriistad](/tehisintellekt/moodul-04-ai-tooriistad/), [5. AI kasutamine õppimises](/tehisintellekt/moodul-05-ai-oppimises/), [6. AI tarkvaraarenduses](/tehisintellekt/moodul-06-ai-arenduses/), [7. AI eetika ja riskid](/tehisintellekt/moodul-07-eetika-ja-riskid/), see, 8. moodul, ja [9. Keelemudelid](/tehisintellekt/moodul-09-keelemudelid/) — on nüüd valmis. Moodul 9 erineb teistest teadlikult: see on kursuse ainus tehniliselt süvitsine, matemaatikat ja valemeid kasutav moodul, mõeldud neile, kes tahavad aru saada, mis toimub keelemudeli "kapoti all". [Tehisintellekti teema ülevaade](/tehisintellekt/) annab kogu kursusest tervikliku sissejuhatuse.
 
 ## Kokkuvõte
 

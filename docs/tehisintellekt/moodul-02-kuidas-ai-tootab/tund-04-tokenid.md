@@ -1,13 +1,14 @@
 ---
 title: 2.4 Tokenid ja suured keelemudelid (LLM-id)
-description: Mis on token, kuidas suur keelemudel teksti töötleb ning miks see eesti keele puhul oluline on.
+description: Mis on token ja sõnavektor, kuidas suur keelemudel teksti genereerib (bigram-mudelist temperatuurini) ning miks see eesti keele puhul oluline on.
 ---
 
 # 2.4 Tokenid ja suured keelemudelid (LLM-id)
 
 ::: tip Selle tunni järel...
 - oskad selgitada, mis on token ja mis on suur keelemudel (LLM);
-- mõistad, kuidas LLM genereerib vastuse token-tokeni haaval;
+- mõistad, kuidas LLM genereerib vastuse token-tokeni haaval, ja miks vastus on iga kord veidi erinev (temperatuur, Top-P);
+- tunned mõisteid sõnavektor ja bigram-mudel;
 - tead, miks eesti keel "maksab" LLM-i kasutamisel sageli rohkem kui inglise keel.
 :::
 
@@ -32,6 +33,28 @@ flowchart LR
 Enamik suuri keelemudeleid on treenitud valdavalt ingliskeelsel tekstil ja nende tokeniseerija (*tokenizer*) on ehitatud inglise keele struktuuri jaoks. Eesti keel on morfoloogiliselt rikas (palju käändeid ja tuletusi), mistõttu sama lause võtab eesti keeles tihti rohkem tokeneid kui inglise keeles — üks 2025. aasta uuring näitas, et eestikeelsele sõnavarale kohandatud tokeniseerija vähendab tokenite arvu sõna kohta ligikaudu 20% võrra ([Kuulmets jt, arXiv 2025](https://arxiv.org/pdf/2501.02631)). Praktikas tähendab see, et eestikeelne prompt või vastus võib maksta rohkem ja mahtuda kehvemini konteksti aknasse kui samasisuline ingliskeelne tekst.
 :::
 
+## Tokenitest tähenduseni: sõnavektorid
+
+Tokenid üksi ei ütle mudelile veel midagi selle kohta, mida sõna *tähendab*. Selle jaoks teisendab mudel iga tokeni **sõnavektoriks** (*word embedding*) — pikaks numbrite jadaks, mis paigutab sõna tähenduse mingisse "tähendusruumi". Sarnase tähendusega sõnad maanduvad selles ruumis üksteisele lähedale, isegi kui nende kirjapilt on täiesti erinev.
+
+```mermaid
+flowchart LR
+    subgraph " "
+    K["koer"] --- P["peni"]
+    A["auto"] --- S["sõiduk"]
+    end
+```
+
+See meetod sai laialt tuntuks Google'i teadlaste 2013. aasta Word2Vec-mudeliga, mis näitas, et sõnavektorite vahel kehtivad isegi omamoodi "tehted" — nt vektor("kuningas") − vektor("mees") + vektor("naine") jõuab matemaatiliselt vektorile, mis on väga lähedal sõnale "kuninganna" ([Mikolov jt, 2013](https://arxiv.org/abs/1301.3781)). Sõnavektorid aitavad mudelil ka **konteksti järgi tähendust eristada** — näiteks kas "pank" tähendab lauses rahaasutust või jõekallast — kuna ümbritsevad sõnad mõjutavad, millisesse tähendusruumi piirkonda konkreetne kasutus paigutub.
+
+## Lihtsam eelkäija: bigram-mudel
+
+Enne kui vaadata, kuidas tänapäeva LLM täpselt järgmist tokenit valib, tasub tunda palju lihtsamat ja vanemat meetodit — **bigram-mudelit** (kahe järjestikuse sõna statistikal põhinev mudel). Bigram-mudel eeldab, et järgmise sõna tõenäosus sõltub ainult **ühest** vahetult eelnevast sõnast, ja arvutab need tõenäosused suure tekstikorpuse põhjal kokku lugedes, kui sageli mingi sõnapaar koos esineb ([Jurafsky & Martin — Speech and Language Processing, ptk 3](https://web.stanford.edu/~jurafsky/slp3/3.pdf)).
+
+Sama põhimõte töötab su telefoni klaviatuuril: kui kirjutad "Tere", pakub klaviatuur järgmiseks sõnaks tõenäoliselt "hommikust" või "päevast" — needki on statistiliselt kõige sagedasemad järgnevad sõnad, õpitud varasemast tekstist.
+
+Bigram-mudeli "mälu" on väga lühike — ta arvestab ainult ühte eelnevat sõna ja unustab kõik enne seda. Tänapäeva LLM-id on sisuliselt sama idee — ennusta järgmine tükk teksti varasema põhjal — aga tohutult suuremas mastaabis: nad ei vaata ainult ühte eelmist sõna, vaid suudavad tänu Transformer-arhitektuuri tähelepanumehhanismile ([tund 1.2](/tehisintellekt/moodul-01-mis-on-ai/tund-02-ai-ajalugu)) arvestada kogu senise vestluse konteksti, isegi kui seosed on teksti alguses ja lõpus üksteisest kaugel.
+
 ## Kuidas LLM vastuse genereerib
 
 LLM ei kirjuta kogu vastust korraga — ta ennustab **ühe tokeni korraga**, lisab selle olemasolevale tekstile ja kordab protsessi:
@@ -44,6 +67,23 @@ flowchart LR
 ```
 
 Sellepärast "kirjutab" ChatGPT vastust ekraanile sõna-sõna haaval, mitte ei ilmuta seda korraga — nii see tehniliselt töötabki.
+
+## Miks vastus on iga kord veidi erinev: temperatuur ja Top-P
+
+Mudel ei vali iga sammu peal automaatselt kõige tõenäolisemat järgmist tokenit — kui ta seda alati teeks, kõlaks vastused igavalt korduvad ja masinlikult. Selle asemel lubab mudel valikusse ka veidi vähem tõenäolisi tokeneid, ning selle "juhuslikkuse" ulatust reguleerib parameeter **temperatuur** (*temperature*).
+
+Anthropicu enda API dokumentatsioon kirjeldab temperatuuri kui "vastusesse lisatava juhuslikkuse hulka" ja soovitab: "kasuta temperatuuri lähemal 0-le analüütiliste/valikvastustega ülesannete jaoks ja lähemal 1-le loovate ja generatiivsete ülesannete jaoks" ([Anthropic — Messages API](https://platform.claude.com/docs/en/api/messages)). Sarnast parameetrit pakuvad oma API-des ka teised suurte keelemudelite loojad.
+
+| Temperatuur | Käitumine |
+|---|---|
+| Madal (lähemal 0-le) | Mudel valib peaaegu alati kõige tõenäolisema tokeni — vastus on ennustatav ja korduv samasuguse küsimuse peale |
+| Kõrge (lähemal 1-le) | Mudel lubab valikusse ka ebatõenäolisemaid tokeneid — vastus on loovam ja varieeruvam, aga vahel ka ebaühtlasem |
+
+Sarnast rolli mängib ka **Top-P** (nucleus sampling) — see piirab valikuvõimalusi nii, et mudel valib ainult kõige tõenäolisemate tokenite hulgast, mille tõenäosused kokku moodustavad P protsenti kogu jaotusest, mitte kogu sõnavarast. Praktikas tähendab see, et Top-P annab veel ühe kontrollnupu selle üle, kui "riskantselt" mudel oma järgmise sõna valib.
+
+::: tip Praktikas
+Sellepärast saad ChatGPT-lt või Claude'ilt sama küsimuse peale iga kord veidi erineva sõnastusega vastuse — see ei ole viga, vaid sisseehitatud käitumine, mis hoiab tekstid loomulikuna.
+:::
 
 ## Kontekstiaken
 
@@ -106,6 +146,9 @@ See on täpselt sama põhimõte, mida see õppematerjal ise kasutab: pikkade pro
 - [OpenAI Help Center — What are tokens and how to count them?](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them)
 - Kuulmets jt (2025). ["Prune or Retrain: Optimizing the Vocabulary of Multilingual Models for Estonian"](https://arxiv.org/pdf/2501.02631)
 - Vaswani, A. jt (2017). ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762)
+- Mikolov, T. jt (2013). ["Efficient Estimation of Word Representations in Vector Space"](https://arxiv.org/abs/1301.3781) (Word2Vec)
+- Jurafsky, D. & Martin, J. H. — [Speech and Language Processing, ptk 3: N-gram Language Models](https://web.stanford.edu/~jurafsky/slp3/3.pdf)
+- [Anthropic — Messages API dokumentatsioon (temperature, top_p)](https://platform.claude.com/docs/en/api/messages)
 - [Anthropic — Using the Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages)
 - Liu, N. jt (2023). ["Lost in the Middle: How Language Models Use Long Contexts"](https://arxiv.org/abs/2307.03172)
 - [Anthropic — Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)

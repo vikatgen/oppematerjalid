@@ -1,6 +1,6 @@
 ---
 title: 7.5 Regulatsioon ja vastutus
-description: EL-i AI-määruse (AI Act) riskitasemed ja ajakava ning küsimus, kes vastutab, kui AI eksib.
+description: EL-i AI-määruse (AI Act) riskitasemed ja ajakava, küsimus, kes vastutab, kui AI eksib, ning taustal käiv vaidlus AI-ohutuse ja kiirendamise leeride vahel.
 ---
 
 # 7.5 Regulatsioon ja vastutus
@@ -8,7 +8,8 @@ description: EL-i AI-määruse (AI Act) riskitasemed ja ajakava ning küsimus, k
 ::: tip Selle tunni järel...
 - tead EL-i AI-määruse (AI Act) nelja riskitaset ja üldist ajakava;
 - oskad seletada, milline AI-kasutus on EL-is otseselt keelatud;
-- mõistad, kes vastutab, kui ettevõtte kasutatav AI-süsteem teeb vea.
+- mõistad, kes vastutab, kui ettevõtte kasutatav AI-süsteem teeb vea;
+- tead, et AI reguleerimise küsimus on valdkonna sees endiselt vaieldud teema, mitte kokkuleppel põhinev fakt.
 :::
 
 ## EL-i AI-määrus (AI Act)
@@ -43,6 +44,18 @@ See ei ole erand, vaid üldpõhimõte, mida ka EL-i AI-määrus kinnitab: **AI-s
 "Inimene otsustuse ahelas" (*human-in-the-loop*) ei ole formaalsus — see on nii NIST AI RMF **Govern**-funktsiooni ([tund 7.4](./tund-04-riskijuhtimise-raamistikud)) kui ka EL-i AI-määruse kõrge riski nõuete keskne element just seetõttu, et vastutust ei saa üle anda süsteemile, mis ei saa seda kanda.
 :::
 
+## Vaidlus taustal: kui kiiresti ja kui palju AI-d reguleerida?
+
+EL-i AI-määrus (eespool) on üks konkreetne poliitiline vastus küsimusele, kui palju AI-d reguleerida. Aga see küsimus ise on AI-valdkonnas töötavate inimeste seas endiselt terav ja lahendamata vaidlusteema — mitte kokkuleppel põhinev fakt. Kaks nähtavat, vastandlikku leeri:
+
+**"AI doomer" ehk AI ohutuse leer.** Eliezer Yudkowsky, tehisintellekti ohutusele pühendunud mittetulundusühingu Machine Intelligence Research Institute (MIRI) kaasasutaja, on aastakümneid avalikult hoiatanud, et kontrollimatu, üliintelligentne AI (ASI, vt [tund 1.4](/tehisintellekt/moodul-01-mis-on-ai/tund-04-ai-tuubid)) kujutab endast inimkonnale eksistentsiaalset ohtu. 2023. aasta märtsis avaldas ta ajakirjas TIME arvamusartikli, milles nõudis kõikjal maailmas kehtivat rahvusvahelist kokkulepet võimsate AI-mudelite treenimise peatamiseks — sealhulgas valmisolekut jõustada seda vajadusel isegi sõjaväeliste vahenditega, näiteks õhurünnakuga reegleid eiravale andmekeskusele ([TIME, 2023](https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/)). See on äärmuslik seisukoht isegi AI-ohutuse liikumise sees, aga see näitab, kui tõsiselt osa valdkonna inimesi riski võtab.
+
+**E/ACC ("effective accelerationism") ehk kiirendamise leer.** 2023. aastal tekkinud liikumine väidab vastupidist: AI ja tehnoloogia arengu kiirendamine on inimkonna jaoks moraalne kohustus, ning liigne reguleerimine pidurdab kasu, mida see areng võiks tuua. Liikumise nähtavaim eestkõneleja oli pseudonüümi "Beff Jezos" taga tegutsenud füüsik Guillaume Verdon, endine Google'i kvantarvutuse teadlane — tema isik avalikustati 2023. aasta detsembris ([Forbes, 2023](https://www.forbes.com/sites/emilybaker-white/2023/12/01/who-is-basedbeffjezos-the-leader-of-effective-accelerationism-eacc/)). E/acc-suunda on avalikult toetanud ka mõjukad investorid nagu Marc Andreessen, kelle 2023. aasta oktoobris avaldatud "Techno-Optimist Manifesto" väljendab sarnaseid seisukohti tehnoloogilise arengu piiramatuse kasulikkusest ([Wikipedia — Effective accelerationism](https://en.wikipedia.org/wiki/Effective_accelerationism)).
+
+::: info Miks see siia kuulub
+Need kaks leeri ei ole "õige vs vale" — need on kaks eri hinnangut samale ebakindlusele: kui suur on AI riskide tõenäosus ja tõsidus, ning kui palju see kaalub üles kiirema arengu kasu. EL-i AI-määrus, mida see tund kirjeldas, on üks konkreetne, mõõdukas vastus sellele vaidlusele — riskipõhine reguleerimine, mitte täielik keeld ega täielik vabadus. Kui kuuled kedagi kindlalt väitmas, et "AI reguleerimise küsimus on lihtne", tasub meeles pidada, et see debatt käib jätkuvalt ka valdkonna sees.
+:::
+
 ## Kokkuvõte
 
 See moodul liikus konkreetsetest juhtumitest (7.1–7.3) läbi struktureeritud raamistike (7.4) kuni seadusandluseni (7.5) — kõik need kirjeldavad sama tuuma: AI toob ettevõttele reaalset väärtust, aga ka reaalset riski, ning selle riski juhtimine ja sellele vastutuse võtmine on organisatsiooni, mitte tehnoloogia enda ülesanne.
@@ -51,3 +64,7 @@ See moodul liikus konkreetsetest juhtumitest (7.1–7.3) läbi struktureeritud r
 
 - [EU AI Act — ametlik kõrgetasemeline kokkuvõte](https://artificialintelligenceact.eu/high-level-summary/)
 - [European Commission — AI Act (Shaping Europe's digital future)](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
+- [TIME (2023) — Pause Giant AI Experiments: An Open Letter](https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/) (Yudkowsky arvamusartikkel)
+- [Wikipedia — Eliezer Yudkowsky](https://en.wikipedia.org/wiki/Eliezer_Yudkowsky)
+- [Forbes (2023) — Who Is @BasedBeffJezos, The Leader Of The Tech Elite's 'E/Acc' Movement?](https://www.forbes.com/sites/emilybaker-white/2023/12/01/who-is-basedbeffjezos-the-leader-of-effective-accelerationism-eacc/)
+- [Wikipedia — Effective accelerationism](https://en.wikipedia.org/wiki/Effective_accelerationism)

@@ -6,6 +6,10 @@ export default withMermaid({
     title: "SWE",
     description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: arvutivõrgud, küberturvalisus, JavaScript, TypeScript, Node.js, testimine, Linux, Docker, Nginx",
 
+    head: [
+        ["meta", { name: "robots", content: "noindex, nofollow" }],
+    ],
+
     themeConfig: {
         nav: [
             { text: "Avaleht", link: "/" },
@@ -115,6 +119,20 @@ export default withMermaid({
                             { text: "Tööjõu ja töökorralduse mõju", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/tund-03-tooturg-ja-tookorraldus" },
                             { text: "Kuidas rakendada AI-d äriprobleemi lahendamisel", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/tund-04-rakendamise-raamistik" },
                             { text: "Kokkuvõte — AI kasutuselevõtu tervikpilt", link: "/tehisintellekt/moodul-08-rakendamine-ja-moju/tund-05-kokkuvote" },
+                        ]
+                    },
+                    {
+                        text: "Keelemudelid",
+                        collapsed: true,
+                        items: [
+                            { text: "Mooduli ülevaade", link: "/tehisintellekt/moodul-09-keelemudelid/" },
+                            { text: "Mis on keelemudel?", link: "/tehisintellekt/moodul-09-keelemudelid/tund-01-mis-on-keelemudel" },
+                            { text: "N-gramm mudelid", link: "/tehisintellekt/moodul-09-keelemudelid/tund-02-n-gramm-mudelid" },
+                            { text: "Sõnavektorid ja närvivõrgupõhised mudelid", link: "/tehisintellekt/moodul-09-keelemudelid/tund-03-sonavektorid-ja-narvivorgud" },
+                            { text: "Transformerid ja suurte mudelite areng", link: "/tehisintellekt/moodul-09-keelemudelid/tund-04-transformerid-ja-suured-mudelid" },
+                            { text: "Toorest mudelist abistajaks", link: "/tehisintellekt/moodul-09-keelemudelid/tund-05-toorest-mudelist-abistajaks" },
+                            { text: "Kitsaskohad ja hind", link: "/tehisintellekt/moodul-09-keelemudelid/tund-06-kitsaskohad-ja-hind" },
+                            { text: "Kokkuvõte", link: "/tehisintellekt/moodul-09-keelemudelid/tund-07-kokkuvote" },
                         ]
                     },
                 ]

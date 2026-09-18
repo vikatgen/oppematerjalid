@@ -57,24 +57,7 @@ AI on jõudnud peaaegu igasse eluvaldkonda. Kui esimeses tunnis vaatasime üksik
 
 Eelnev loend näitab, **mida** AI ettevõttes teeb. Sama tähtis on mõista, **miks** — millise ärieesmärgini konkreetne rakendus viib. See aitab valida õige lahenduse õige probleemi jaoks, selle asemel et kasutada AI-d lihtsalt sellepärast, et see on populaarne.
 
-```mermaid
-flowchart TD
-    E["Ettevõtte eesmärgid"] --> K["Kulude kokkuhoid"]
-    E --> T["Tootlikkus ja tõhusus"]
-    E --> KK["Kliendikogemus"]
-    E --> KA["Käibe kasv ja innovatsioon"]
-    E --> R["Riskijuhtimine ja vastavus"]
-    K --> K1["Arvete ja andmete automaatika"]
-    K --> K2["Ennustav hooldus"]
-    T --> T1["Kirjutamis- ja koodiabid"]
-    T --> T2["Kokkuvõtete ja aruannete koostamine"]
-    KK --> KK1["Klienditoe vestlusrobotid"]
-    KK --> KK2["Personaliseeritud soovitused"]
-    KA --> KA1["Uue sisu ja toodete genereerimine"]
-    KA --> KA2["Turu- ja andmeanalüütika"]
-    R --> R1["Pettuste avastamine"]
-    R --> R2["Vastavuskontroll (compliance)"]
-```
+![AI ja ettevõtte eesmärgid](/tehisintellekt/moodul-01/ettevotte-eesmargid.png)
 
 | Ärieesmärk | Mida see tähendab | Näited |
 |---|---|---|

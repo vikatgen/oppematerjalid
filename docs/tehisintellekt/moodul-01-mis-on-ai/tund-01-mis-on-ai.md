@@ -18,17 +18,7 @@ Tehisintellekt (AI, *Artificial Intelligence*) on arvutisüsteem, mis suudab tä
 
 Erinevalt tavalisest programmist, mis järgib täpseid samm-sammulisi juhiseid, õpib AI andmete pealt ja suudab lahendada ülesandeid, mille kohta programmeerija ei kirjutanud otsest reeglit:
 
-```mermaid
-flowchart LR
-    subgraph T["Traditsiooniline programm"]
-        direction LR
-        A1["Andmed"] --> B1["Reeglid<br/>(programmeerija kirjutab)"] --> C1["Vastus"]
-    end
-    subgraph M["Masinõpe"]
-        direction LR
-        A2["Andmed"] --> B2["Vastused<br/>(näidised)"] --> C2["Reeglid<br/>(AI leiab ise)"]
-    end
-```
+![Klassikaline programmeerimine vs masinõpe](/tehisintellekt/moodul-01/classical-vs-machine-learning.png)
 
 Praktikas tähendab "AI leiab reeglid ise" enamasti seda, et andmed liiguvad läbi tehisnärvivõrgu — paljude lihtsate arvutusüksuste (tehisneuronite) kihtide kaudu, mis on paigutatud inimaju eeskujul, kuid töötavad matemaatiliselt väga erinevalt:
 
@@ -52,12 +42,7 @@ Kui sa täna hommikul avasid telefoni, kasutasid tõenäoliselt AI-d juba enne h
 
 ## Miks just nüüd? Kolm samaaegselt küpsenud tegurit
 
-```mermaid
-flowchart LR
-    D["Andmed<br/>internet, telefonid,<br/>sotsiaalmeedia"] --> X(("AI buum<br/>2020ndad"))
-    C["Arvutusvõimsus<br/>GPU-d, odavnev treening"] --> X
-    Al["Algoritmid<br/>Transformer (2017)"] --> X
-```
+![Tehisintellekti buumimine 2020ndatel](/tehisintellekt/moodul-01/ai-buum-2020.png)
 
 - **Andmed** — internet, nutitelefonid ja sotsiaalmeedia toodavad iga päev tohutul hulgal andmeid, millega mudeleid treenida.
 - **Arvutusvõimsus** — GPU-d (algselt videomängude jaoks) võimaldavad paralleelset arvutust massiivsel skaalal. Sama tulemuseni jõudmine on aastatega läinud järjest odavamaks: 2017. aastal maksis ImageNeti pilditeksti klassifitseerija treenimine 93% täpsuseni üle 1000 dollari, 2021. aastaks langes sama tulemuse hind umbes 5 dollarini ([Epoch AI](https://epoch.ai/blog/trends-in-the-dollar-training-cost-of-machine-learning-systems)).
@@ -69,10 +54,7 @@ Iga tegur eraldi oli olemas juba varem. Aga kolmiku kokkulangemine 2020. aastate
 
 ## Kitsas vs üldine AI
 
-```mermaid
-flowchart LR
-    ANI["ANI<br/>Kitsas AI<br/>(kogu tänane AI:<br/>ChatGPT, Midjourney...)"] --> AGI["AGI<br/>Üldine AI<br/>(ei eksisteeri veel)"] --> ASI["ASI<br/>Üliintellekt<br/>(hüpoteetiline)"]
-```
+![Kitsas vs. üldine AI](/tehisintellekt/moodul-01/kitsas-vs-uldine.png)
 
 - **Kitsas AI (ANI, Narrow AI)** — tehisintellekt, mis lahendab ühte konkreetset ülesannet väga hästi. Näide: male-arvuti, spamifilter, ChatGPT (jah, ChatGPT on kitsas AI — ta ei oska juhtida autot).
 - **Üldine AI (AGI, Artificial General Intelligence)** — hüpoteetiline süsteem, mis oskab kõike, mida inimene oskab, sh õppida uusi valdkondi ilma ümberprogrammeerimiseta. Ei ole veel olemas.

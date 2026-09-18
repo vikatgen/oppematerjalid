@@ -1,6 +1,6 @@
 ---
 title: 1.4 Erinevad AI tüübid
-description: AI liigitused võimekuse, meetodi, väljundi ja mudelistruktuuri järgi.
+description: AI liigitused võimekuse, meetodi, väljundi, mudelistruktuuri ja hübriidsüsteemide järgi.
 ---
 
 # 1.4 Erinevad AI tüübid
@@ -38,6 +38,8 @@ Hüpoteetiline süsteem, mis on inimesest igas intellektuaalses ülesandes märg
 Süsteem, mis kasutab käsitsi kirjutatud reegleid ja loogikat. Nagu ekspertsüsteemid 1980. aastatel. Head, kui reeglid on selged (nt maleprogramm), aga halvad, kui maailm on segane.
 
 Näide: meditsiiniline diagnostikasüsteem, mis küsib "kas patsiendil on palavik? kas köha?" ja järgib otsustuspuud.
+
+Teine tuttav näide on **otsingu- ja planeerimisalgoritmid** — süsteemid, mis otsivad süstemaatiliselt läbi võimalike käikude või teede "puu", kasutades selgeid reegleid, mitte õpitud mustreid. GPS-navigatsioon, mis leiab lühima marsruudi kahe punkti vahel, ja malemootorid, mis arvutavad ette võimalikke käiguid (nagu [tund 1.2](./tund-02-ai-ajalugu) mainitud IBM Deep Blue), kuuluvad samuti sümbolse AI perekonda.
 
 **Statistiline / närvivõrgul põhinev AI**
 
@@ -86,6 +88,24 @@ flowchart LR
 - **Piiratud mäluga** — mäletavad hiljutist konteksti (nt ChatGPT vestluses).
 - **Agendid** — süsteemid, mis planeerivad tegevust, kasutavad tööriistu, otsustavad iseseisvalt (nt agent-tüüpi arendusabid, mis oskavad iseseisvalt koodi kirjutada ja käske käivitada).
 
+## 6. Hübriid-AI süsteemid
+
+Praktikas ei kasuta paljud päris süsteemid ainult üht meetodit — nad **ühendavad** suure keelemudeli keeleoskuse ja loovuse reeglipõhise süsteemi täpsuse ja kontrollitavusega. Põhjus on lihtne: puhtalt LLM-il põhinev süsteem võib hallutsineerida ([tund 2.5](/tehisintellekt/moodul-02-kuidas-ai-tootab/tund-05-miks-eksib)), aga reeglipõhine kiht saab seda piirata.
+
+```mermaid
+flowchart LR
+    LLM["Suur keelemudel<br/>loov, paindlik keel"] --> H(("Hübriidsüsteem"))
+    R["Reeglipõhine süsteem<br/>täpne, kontrollitav"] --> H
+    H --> O["Turvalisem ja<br/>usaldusväärsem väljund"]
+```
+
+Mõned levinud näited:
+
+- **Klienditeeninduse juturobotid** — keelemudel sõnastab sõbraliku vastuse, aga ärireeglid ja andmebaasipäringud kontrollivad, et robot ei lubaks kliendile olematuid allahindlusi ega väära tooteinfot.
+- **RAG (Retrieval-Augmented Generation)** — täpselt see, mida [tund 4.2](/tehisintellekt/moodul-04-ai-tooriistad/tund-02-otsing-ja-uurimine) kirjeldatud AI-otsingutööriistad (nt Perplexity) tegelikult teevad: infootsing käib traditsioonilise, usaldusväärse andmebaasi või otsingumootori kaudu, ning keelemudeli ülesandeks jääb ainult leitud faktide põhjal loetava kokkuvõtte kirjutamine.
+- **Pettuste tuvastamine finantssektoris** — masinõpe tuvastab kahtlikke mustreid suurtes tehingumahtudes, aga kindlad, seadusest tulenevad reeglid otsustavad, millised tehingud automaatselt blokeeritakse.
+- **Autonoomsed sõidukid** — kaamerapilti analüüsitakse süvaõppe abil (objektide tuvastamine), aga auto juhtimine ja liiklusreeglite järgimine käib rangelt reeglipõhiste ohutusalgoritmide kontrolli all.
+
 ## Miks see kõik oluline on?
 
 Kui keegi ütleb "AI teeb kohe kõik tööd ära", tasub küsida:
@@ -102,3 +122,4 @@ Nüansid on olulised. Sama sõna võib tähendada väga erinevaid asju.
 - [Wikipedia — Artificial general intelligence](https://en.wikipedia.org/wiki/Artificial_general_intelligence)
 - [Wikipedia — Generative artificial intelligence](https://en.wikipedia.org/wiki/Generative_artificial_intelligence)
 - [Stanford HAI — AI Index Report](https://aiindex.stanford.edu/report/)
+- [Wikipedia — Retrieval-augmented generation](https://en.wikipedia.org/wiki/Retrieval-augmented_generation)

@@ -9,24 +9,7 @@ description: Tehisintellekti ajalugu 1940. aastatest tänapäevani.
 
 Tehisintellekt ei kukkunud taevast alla 2022. aastal koos ChatGPT-ga. Selle taga on ligi 80 aastat teaduslikku tööd, luhtunud lootusi, kordumatuid läbimurdeid ja hoolikaid katseid. Ajaloo tundmine aitab mõista, miks tänane AI on just selline nagu ta on, ning teha targemaid ennustusi selle kohta, kuhu see edasi liigub.
 
-```mermaid
-timeline
-    title Tehisintellekti ajalugu — peamised verstapostid
-    1943 : Tehisneuroni mudel (McCulloch & Pitts)
-    1950 : Turingi test (Alan Turing)
-    1956 : Mõiste "artificial intelligence" sünnib (Dartmouth)
-    1997 : Deep Blue võidab Kasparovi
-    2006 : Sügavõppe praktilised meetodid (Hinton)
-    2011 : IBM Watson võidab Jeopardy!
-    2012 : AlexNet — sügavõppe revolutsioon
-    2016 : AlphaGo võidab Lee Sedoli
-    2017 : Transformer-arhitektuur ("Attention is All You Need")
-    2018 : GPT-1 (OpenAI)
-    2020 : GPT-3
-    2021 : DALL-E
-    2022 : Midjourney, Stable Diffusion, ChatGPT
-    2023 : Claude, Gemini, Llama
-```
+![Tehisintellekti ajalugu - peamised verstapostid](/tehisintellekt/moodul-01/history-timetable.png)
 
 ## Ajastu 1: sünd (1943–1956)
 
@@ -36,9 +19,12 @@ timeline
 
 - **1943** — Warren McCulloch ja Walter Pitts avaldavad matemaatilise mudeli tehisneuronist. Selle põhjal ehitatakse hiljem närvivõrgud.
 - **1950** — Briti matemaatik Alan Turing avaldab kuulsa artikli "Computing Machinery and Intelligence", milles esitab küsimuse: "Kas masinad võivad mõelda?" Sinna sisse jääb ka Turingi test — kui inimene ei suuda vestluses eristada, kas ta räägib arvuti või inimesega, siis on masin läbinud testi.
-- **1956** — Dartmouthi konverentsil võtab John McCarthy esimest korda kasutusele mõiste *artificial intelligence*. See on AI kui teadusvaldkonna ametlik sünnihetk.
+- **1955–1956** — Allen Newell, Herbert Simon ja Cliff Shaw kirjutavad RAND Corporationis programmi **"Logic Theorist"** — sageli nimetatud esimeseks tehisintellekti programmiks. See suutis tõestada matemaatilisi teoreeme Alfred North Whiteheadi ja Bertrand Russelli teosest *Principia Mathematica* (tõestas 38 esimest 52-st, ühe jaoks isegi originaalist lühema tõestuse). Newell ja Simon tutvustasid programmi 1956. aasta Dartmouthi konverentsil ([Wikipedia — Logic Theorist](https://en.wikipedia.org/wiki/Logic_Theorist)).
+- **1956** — Samal Dartmouthi konverentsil võtab John McCarthy esimest korda kasutusele mõiste *artificial intelligence*. See on AI kui teadusvaldkonna ametlik sünnihetk.
 
 > Täpsem selgitus, kuidas Turingi test täpselt üles on ehitatud ja kuidas seda on aastakümnete jooksul päriselt proovitud läbi viia (ELIZA, Loebneri auhind, Eugene Goostman jt): [Turingi test — Vikipeedia](https://et.wikipedia.org/wiki/Turingi_test).
+
+[Lugemiseks - Computing Machinery and Intelligence](https://courses.cs.umbc.edu/471/papers/turing.pdf)
 
 ## Ajastu 2: optimism ja "AI talved" (1956–1990)
 
@@ -84,12 +70,7 @@ Järgnesid:
 
 **Juuli 2022** — Midjourney ja Stable Diffusion avavad avaliku juurdepääsu, tuues tekstist-pildiks generaatorid laiema publiku ette.
 
-```mermaid
-flowchart LR
-    K["Kättesaadavus<br/>iga inimene sai<br/>tasuta AI-ga vestelda"] --> X(("ChatGPT<br/>lumelaviin<br/>2022"))
-    Kv["Kvaliteet<br/>vastused piisavalt head<br/>päris kasutuseks"] --> X
-    T["Tähelepanu<br/>meedia + ettevõtete huvi"] --> X
-```
+![ChatGPT populaarsuse tõus alates 2022](/tehisintellekt/moodul-01/chatgpt-populaarsuse-tous.png)
 
 Alates 2023. aastast on turule tulnud Claude (Anthropic), Gemini (Google) ja avatud mudelid nagu Llama (Meta) ja Mistral. Koodikirjutamise abilised on osalt vanemad — GitHub Copilot jõudis tehniliseks eelvaateks juba 2021. aastal ([GitHub, 2021](https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/)) — aga alates 2023. aastast on nende ökosüsteem kiiresti laienenud (Cursor, ning loomuliku keelega rakenduste loomise tööriistad nagu Lovable).
 
@@ -98,6 +79,7 @@ Alates 2023. aastast on turule tulnud Claude (Anthropic), Gemini (Google) ja ava
 - [Wikipedia — History of artificial intelligence](https://en.wikipedia.org/wiki/History_of_artificial_intelligence)
 - [Wikipedia — Computing Machinery and Intelligence](https://en.wikipedia.org/wiki/Computing_Machinery_and_Intelligence)
 - [Turingi test — Vikipeedia](https://et.wikipedia.org/wiki/Turingi_test)
+- [Wikipedia — Logic Theorist](https://en.wikipedia.org/wiki/Logic_Theorist)
 - [Wikipedia — Dartmouth workshop](https://en.wikipedia.org/wiki/Dartmouth_workshop)
 - [Wikipedia — Deep Blue versus Garry Kasparov](https://en.wikipedia.org/wiki/Deep_Blue_versus_Garry_Kasparov)
 - [Wikipedia — AlexNet](https://en.wikipedia.org/wiki/AlexNet)
@@ -106,7 +88,4 @@ Alates 2023. aastast on turule tulnud Claude (Anthropic), Gemini (Google) ja ava
 - [Wikipedia — Midjourney](https://en.wikipedia.org/wiki/Midjourney)
 - [Forbes (2023) — ChatGPT Hits 100 Million Users](https://www.forbes.com/sites/martineparis/2023/02/03/chatgpt-hits-100-million-microsoft-unleashes-ai-bots-and-catgpt-goes-viral/)
 - [GitHub Blog (2021) — Introducing GitHub Copilot](https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/)
-
-::: details Toimetaja märkus (faktikontroll lähtematerjali kohta)
-Algses tekstis oli Midjourney paigutatud aastasse 2021 — tegelikult avas Midjourney avaliku beetaversiooni 2022. aasta juulis. Samuti oli GitHub Copilot loetletud "alates 2023" tööriistade seas, kuigi see jõudis tehniliseks eelvaateks juba 2021. aastal. Mõlemad on siin parandatud ja viidatud.
-:::
+- [Lugemiseks - Computing Machinery and Intelligence](https://courses.cs.umbc.edu/471/papers/turing.pdf)

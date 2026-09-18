@@ -10,7 +10,7 @@ outline: deep
 Saad tervikliku ülevaate tehisintellektist — mis see on, kuidas see töötab, kuidas seda praktikas kasutada ning millised on selle piirid ja ohud.
 :::
 
-Teema on üles ehitatud kaheksast moodulist, mis liiguvad alustest praktiliste oskusteni: AI ajaloost ja tööpõhimõtetest kuni promptimise, tööriistade, kooli-, arenduse- ja eetikateemadeni.
+Teema on üles ehitatud üheksast moodulist, mis liiguvad alustest praktiliste oskusteni: AI ajaloost ja tööpõhimõtetest kuni promptimise, tööriistade, kooli-, arenduse- ja eetikateemadeni, ning lõpuks keelemudelite tehnilise sügavdimensioonini.
 
 ## Moodulid
 
@@ -22,6 +22,7 @@ Teema on üles ehitatud kaheksast moodulist, mis liiguvad alustest praktiliste o
 6. **[AI tarkvaraarenduses](/tehisintellekt/moodul-06-ai-arenduses/)** — reaalsed juhtumid suurtelt tarkvaraettevõtetelt (Stripe, Ramp, Rakuten), Anthropicu enda praktika, AGENTS.md tööstuse standard ja teaduslik pilt AI mõjust arendajate tootlikkusele.
 7. **[AI eetika ja riskid](/tehisintellekt/moodul-07-eetika-ja-riskid/)** — kallutatus, privaatsus, deepfake'id, riskijuhtimise raamistikud (NIST AI RMF, OWASP LLM Top 10), EU AI Act ja vastutus.
 8. **[AI ettevõttes: rakendamine ja mõju](/tehisintellekt/moodul-08-rakendamine-ja-moju/)** — Eesti ja rahvusvahelised juhtumid, tööturu mõju, praktiline rakendamise raamistik ja kursuse kokkuvõte.
+9. **[Keelemudelid](/tehisintellekt/moodul-09-keelemudelid/)** — kursuse tehniliselt süvitsisem moodul: tõenäosus, n-grammid, sõnavektorid, Transformerid, peenhäälestamine ja arutlemine, kitsaskohad ja treenimise hind.
 
 ## Kuidas materjali kasutada
 
