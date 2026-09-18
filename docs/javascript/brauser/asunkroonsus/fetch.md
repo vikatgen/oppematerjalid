@@ -36,7 +36,7 @@ Server saadab HTTP-vastuse, mis sisaldab:
 
 Selles tunnis kasutad ainult `GET`-päringut, mis küsib andmeid serverit muutmata.
 
-HTTP mõistete põhjalikumaks selgituseks vaata [HTTP päringut ja vastust](/veeb/http-paring-ja-vastus). Päringu uurimist harjutad [Network-paneeli tunnis](/veeb/network-paneel).
+HTTP mõistete põhjalikumaks selgituseks vaata [HTTP päringut ja vastust](/veebiarendus/http-paring-ja-vastus). Päringu uurimist harjutad [Network-paneeli tunnis](/veebiarendus/network-paneel).
 
 ## Esimene `fetch()` päring
 

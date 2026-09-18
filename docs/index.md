@@ -11,8 +11,11 @@ Siit leiad õppematerjalid järgmistel teemadel:
 ### [Tehisintellekt](/tehisintellekt/)
 Mis on tehisintellekt, kuidas see töötab ja kuidas seda kasutada: mõisted, ajalugu, AI tüübid, müüdid, promptimine, tööriistad ja eetika.
 
-### [Internet](/veeb/sissejuhatus)
-Veebipäringu teekond, URL, DNS, HTTP päringud ja vastused, staatusekoodid, CORS ning Network-paneel.
+### [Arvutivõrgud ja küberturvalisus](/arvutivorgud/sissejuhatus)
+Võrgu alused ja seadmed, kuidas kohalik võrk internetiga ühendub ning küberturvalisuse põhimõisted ja riskid.
+
+### [Veebiarendus](/veebiarendus/sissejuhatus)
+Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL ja DNS, päringud/vastused, meetodid ja staatusekoodid, küpsised/sessioonid, CORS, HTTP versioonid ja Network-paneel.
 
 ### [JavaScript](/javascript/sissejuhatus-moodulisse)
 JavaScripti alused, brauseri- ja Node.js-i keskkond ning praktilised töövahendid: programmilise lahenduse kavandamine, DOM, sündmused, andmed, asünkroonsus ja serverirakendused.

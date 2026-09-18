@@ -4,7 +4,7 @@ export default withMermaid({
     base: process.env.VITEPRESS_BASE ?? "/oppematerjalid/",
     lang: "et-EE",
     title: "SWE",
-    description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: JavaScript, TypeScript, Node.js, testimine, Linux, Docker, Nginx, andmebaasid",
+    description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: arvutivõrgud, küberturvalisus, JavaScript, TypeScript, Node.js, testimine, Linux, Docker, Nginx",
 
     themeConfig: {
         nav: [
@@ -120,18 +120,49 @@ export default withMermaid({
                 ]
             },
             {
-                text: "Internet",
+                text: "Arvutivõrgud ja küberturvalisus",
                 collapsed: true,
                 items: [
-                    { text: "Sissejuhatus", link: "/veeb/sissejuhatus" },
-                    { text: "Veebipäringu teekond", link: "/veeb/paringuteekond" },
-                    { text: "URL, domeen ja DNS", link: "/veeb/url-domeen-ja-dns" },
-                    { text: "HTTP päring ja vastus", link: "/veeb/http-paring-ja-vastus" },
-                    { text: "Meetodid ja staatusekoodid", link: "/veeb/meetodid-ja-staatusekoodid" },
-                    { text: "Küpsised ja sessioonid", link: "/veeb/kupsised-ja-sessioonid" },
-                    { text: "Päritolu ja CORS", link: "/veeb/cors" },
-                    { text: "HTTP/1.1, HTTP/2 ja HTTP/3", link: "/veeb/http-versioonid" },
-                    { text: "Network-paneel", link: "/veeb/network-paneel" },
+                    {
+                        text: "Võrgu alused",
+                        collapsed: true,
+                        items: [
+                            { text: "Sissejuhatus", link: "/arvutivorgud/sissejuhatus" },
+                            { text: "Mis on võrk ja internet?", link: "/arvutivorgud/vork-ja-internet" },
+                            { text: "Võrguseadmed ja koduvõrk", link: "/arvutivorgud/vorguseadmed-ja-koduvork" },
+                            { text: "IP-aadressid ja marsruutimine", link: "/arvutivorgud/ip-aadressid-ja-marsruutimine" },
+                            { text: "Kuidas kohalik võrk internetiga ühendub", link: "/arvutivorgud/internet-uhendab-vorgud" },
+                            { text: "Ülesanded", link: "/arvutivorgud/assignments" },
+                        ]
+                    },
+                    {
+                        text: "Küberturvalisus",
+                        collapsed: true,
+                        items: [
+                            { text: "Sissejuhatus", link: "/kuberturvalisus/sissejuhatus" },
+                            { text: "Alused: CIA, risk, vara, oht", link: "/kuberturvalisus/alused-cia-risk-oht" },
+                            { text: "Paroolid, MFA ja identiteet", link: "/kuberturvalisus/paroolid-ja-mfa" },
+                            { text: "Phishing ja sotsiaalne manipulatsioon", link: "/kuberturvalisus/phishing" },
+                            { text: "Pahavara, uuendused ja Wi-Fi", link: "/kuberturvalisus/pahavara-ja-uuendused" },
+                            { text: "Mini-capstone: turvaline väikevõrk", link: "/kuberturvalisus/mini-projekt" },
+                            { text: "Ülesanded", link: "/kuberturvalisus/assignments" },
+                        ]
+                    },
+                ]
+            },
+            {
+                text: "Veebiarendus",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/veebiarendus/sissejuhatus" },
+                    { text: "Veebipäringu teekond", link: "/veebiarendus/paringuteekond" },
+                    { text: "URL, domeen ja DNS", link: "/veebiarendus/url-domeen-ja-dns" },
+                    { text: "HTTP päring ja vastus", link: "/veebiarendus/http-paring-ja-vastus" },
+                    { text: "Meetodid ja staatusekoodid", link: "/veebiarendus/meetodid-ja-staatusekoodid" },
+                    { text: "Küpsised ja sessioonid", link: "/veebiarendus/kupsised-ja-sessioonid" },
+                    { text: "Päritolu ja CORS", link: "/veebiarendus/cors" },
+                    { text: "HTTP/1.1, HTTP/2 ja HTTP/3", link: "/veebiarendus/http-versioonid" },
+                    { text: "Network-paneel", link: "/veebiarendus/network-paneel" },
                 ]
             },
             {

@@ -1,10 +1,10 @@
 ---
-title: Internet
-description: Õpi tundma interneti ja veebi toimimise aluseid ning kirjeldama veebipäringu teekonda brauserist serverini.
+title: Veebiarendus
+description: "Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL/DNS, päringud/vastused, meetodid, küpsised, CORS ja HTTP versioonid."
 outline: deep
 ---
 
-# Internet
+# Veebiarendus
 
 ::: info Tulemus
 Pärast teema läbimist oskad Network-paneelis nähtava päringu põhjal kirjeldada, kuhu päring saadeti, mida serverilt küsiti ja kuidas server vastas.
@@ -46,6 +46,8 @@ Kui rakendus ei saa andmeid, pead oskama eristada:
 8. [Päringu uurimine Network-paneelis](./network-paneel.md)
 
 ## Seos teiste teemadega
+
+See teema eeldab [Arvutivõrgud ja küberturvalisus → Võrgu aluste](/arvutivorgud/sissejuhatus) baasteadmisi (seade, võrk, IP-aadress, kuidas kodust internetti jõuab) — siin mindakse HTTP-protokolli osas palju süvitsi edasi.
 
 - JavaScripti `fetch()` saadab HTTP-päringu.
 - Node.js server võtab päringu vastu ja koostab vastuse.

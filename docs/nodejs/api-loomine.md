@@ -12,7 +12,7 @@ Pärast õppetundi oskad koostada lihtsa JSON API, mis eristab päringu meetodit
 
 API lubab programmidel omavahel suhelda kokkulepitud kujul. Meie API vastab HTTP-päringutele JSON-andmetega.
 
-Enne alustamist vaata üle [meetodid ja staatusekoodid](/veeb/meetodid-ja-staatusekoodid).
+Enne alustamist vaata üle [meetodid ja staatusekoodid](/veebiarendus/meetodid-ja-staatusekoodid).
 
 ## Marsruut
 

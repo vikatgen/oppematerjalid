@@ -17,7 +17,7 @@ HTTP-server on töötav programm, mis:
 3. otsustab, millise vastuse saata;
 4. lõpetab vastuse.
 
-Enne koodi vaata üle [HTTP päring ja vastus](/veeb/http-paring-ja-vastus).
+Enne koodi vaata üle [HTTP päring ja vastus](/veebiarendus/http-paring-ja-vastus).
 
 ## Minimaalne server
 

@@ -10,7 +10,7 @@ outline: deep
 Pärast õppetundi oskad lugeda URL-i osi ning hoida rakenduse filtreid aadressi päringuparameetrites.
 :::
 
-Kui soovid mõista, kuidas URL aitab brauseril serverini jõuda, vaata ka [URL-i, domeeni ja DNS-i](/veeb/url-domeen-ja-dns).
+Kui soovid mõista, kuidas URL aitab brauseril serverini jõuda, vaata ka [URL-i, domeeni ja DNS-i](/veebiarendus/url-domeen-ja-dns).
 
 URL ei ole ainult tekst. See kirjeldab, kust ressurssi küsitakse ja milline rakenduse vaade kasutajale avatakse.
 

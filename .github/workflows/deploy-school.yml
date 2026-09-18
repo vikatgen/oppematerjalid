@@ -15,8 +15,8 @@ concurrency:
 
 env:
   VITEPRESS_BASE: /oppematerjalid/
-  DEPLOY_PATH: domeenid/www.vikat.itmajakas.ee/htdocs/oppematerjalid/
-  PUBLIC_URL: https://vikat.itmajakas.ee/oppematerjalid/
+  DEPLOY_PATH: domeenid/www.vikat.itmajakas.ee/oppematerjalid/
+  PUBLIC_URL: https://oppematerjalid.vikat.itmajakas.ee/
 
 jobs:
   deploy:
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://vikat.itmajakas.ee/oppematerjalid/
+      url: https://oppematerjalid.vikat.itmajakas.ee/
 
     steps:
       - name: Checkout
@@ -70,7 +70,7 @@ jobs:
           chmod 600 ~/.ssh/config
 
       - name: Verify SSH connection
-        run: ssh -o BatchMode=yes school-hosting "test -d ~/domeenid/www.vikat.itmajakas.ee/htdocs"
+        run: ssh -o BatchMode=yes school-hosting "test -d ~/domeenid/www.vikat.itmajakas.ee/oppematerjalid/"
 
       - name: Deploy static site
         run: |
