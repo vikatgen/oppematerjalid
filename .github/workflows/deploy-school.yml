@@ -42,14 +42,10 @@ jobs:
       - name: Build site
         run: npm run docs:build
 
-      - name: Debug SSH setup
+      - name: Debug HOST checksum
         env:
           SSH_HOST: ${{ secrets.HOST }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-        run: |
-          echo "HOST length: ${#SSH_HOST}"
-          echo "KNOWN_HOSTS length: ${#SSH_KNOWN_HOSTS}"
-          echo "KNOWN_HOSTS line count: $(printf '%s\n' "$SSH_KNOWN_HOSTS" | wc -l)"
+        run: echo -n "$SSH_HOST" | md5sum
 
       - name: Configure SSH
         env:
