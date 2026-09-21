@@ -420,6 +420,119 @@ export default withMermaid({
                 ]
             },
             {
+                text: "Serverid ja võrgud",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/serverid-ja-vorgud/sissejuhatus" },
+                    {
+                        text: "1. Server",
+                        collapsed: true,
+                        items: [
+                            { text: "Server ja tema oma aadress", link: "/serverid-ja-vorgud/server-ja-oma-ip-aadress" },
+                        ]
+                    },
+                    {
+                        text: "2. Virtuaalmasin",
+                        collapsed: true,
+                        items: [
+                            { text: "VirtualBoxi ja võrgu ettevalmistus", link: "/serverid-ja-vorgud/virtualboxi-ja-vorgu-ettevalmistus" },
+                            { text: "Esimese serveri loomine", link: "/serverid-ja-vorgud/esimese-serveri-loomine" },
+                            { text: "Teine server ja esimene snapshot", link: "/serverid-ja-vorgud/teine-server-ja-snapshot" },
+                        ]
+                    },
+                    {
+                        text: "3. Linux",
+                        collapsed: true,
+                        items: [
+                            { text: "Failisüsteem ja failiõigused serveris", link: "/serverid-ja-vorgud/failisusteem-ja-oigused-serveris" },
+                            { text: "Protsessid, teenused ja logid", link: "/serverid-ja-vorgud/protsessid-teenused-ja-logid" },
+                            { text: "SSH ja kaugühenduse võtmed", link: "/serverid-ja-vorgud/ssh-ja-kauguhenduse-votmed" },
+                        ]
+                    },
+                    {
+                        text: "4. Võrk",
+                        collapsed: true,
+                        items: [
+                            { text: "Liidesed ja püsiv IP-aadress", link: "/serverid-ja-vorgud/liidesed-ja-pusiv-ip-aadress" },
+                            { text: "Pordid, localhost ja oma DNS", link: "/serverid-ja-vorgud/pordid-localhost-ja-oma-dns" },
+                            { text: "Veaotsingu järjekord ja oma DHCP katse", link: "/serverid-ja-vorgud/veaotsing-ja-oma-dhcp-katse" },
+                        ]
+                    },
+                    {
+                        text: "5. Veebiserver",
+                        collapsed: true,
+                        items: [
+                            { text: "Nginx ja staatiline sait", link: "/serverid-ja-vorgud/nginx-ja-staatiline-sait" },
+                            { text: "Rakendus ja pöördproksi", link: "/serverid-ja-vorgud/rakendus-ja-poordproksi" },
+                            { text: "Teenuse tervis ja veaotsing", link: "/serverid-ja-vorgud/teenuse-tervis-ja-veaotsing" },
+                        ]
+                    },
+                    {
+                        text: "6. Andmebaas",
+                        collapsed: true,
+                        items: [
+                            { text: "SSH-ühendus ja andmebaasi põhitõed", link: "/serverid-ja-vorgud/ssh-uhendus-ja-andmebaasi-pohitoed" },
+                            { text: "Kasutajad, õigused ja tehingud", link: "/serverid-ja-vorgud/kasutajad-oigused-ja-tehingud" },
+                            { text: "SSH tunnel ja graafiline haldus", link: "/serverid-ja-vorgud/ssh-tunnel-ja-graafiline-haldus" },
+                        ]
+                    },
+                    {
+                        text: "7. Turvalisus",
+                        collapsed: true,
+                        items: [
+                            { text: "Tulemüür ja UFW", link: "/serverid-ja-vorgud/tulemuur-ja-ufw" },
+                            { text: "HTTPS ja TLS", link: "/serverid-ja-vorgud/https-ja-tls" },
+                            { text: "SSH kõvendamine ja negatiivne test", link: "/serverid-ja-vorgud/ssh-kovendamine-ja-negatiivne-test" },
+                        ]
+                    },
+                    {
+                        text: "8. Meil",
+                        collapsed: true,
+                        items: [
+                            { text: "Meiliserveri põhitõed ja postkastid", link: "/serverid-ja-vorgud/meiliserveri-pohitoed-ja-postkastid" },
+                            { text: "Postfix ja Dovecot seadistus", link: "/serverid-ja-vorgud/postfix-ja-dovecot-seadistus" },
+                            { text: "srv2 tulemüür ja avatud edastus", link: "/serverid-ja-vorgud/srv2-tulemuur-ja-avatud-edastus" },
+                            { text: "Thunderbird ja meili tõendamine", link: "/serverid-ja-vorgud/thunderbird-ja-meili-toendamine" },
+                        ]
+                    },
+                    {
+                        text: "9. Varundamine",
+                        collapsed: true,
+                        items: [
+                            { text: "Varunduse põhimõtted ja CLI dump", link: "/serverid-ja-vorgud/varunduse-pohimotted-ja-cli-dump" },
+                            { text: "Taastamine teise serverisse", link: "/serverid-ja-vorgud/taastamine-teise-serverisse" },
+                            { text: "GUI varundus DBeaveriga", link: "/serverid-ja-vorgud/gui-varundus-dbeaveriga" },
+                            { text: "Teenuse teisaldamine ja sõltumatu koopia", link: "/serverid-ja-vorgud/teenuse-teisaldamine-ja-soltumatu-koopia" },
+                        ]
+                    },
+                    {
+                        text: "10. Seire",
+                        collapsed: true,
+                        items: [
+                            { text: "Cockpit ja teenuste inventar", link: "/serverid-ja-vorgud/cockpit-ja-teenuste-inventar" },
+                            { text: "Perioodiline tervisekontroll", link: "/serverid-ja-vorgud/perioodiline-tervisekontroll" },
+                            { text: "Paketipüük ja rikkepäevik", link: "/serverid-ja-vorgud/paketipuuk-ja-rikkepaevik" },
+                        ]
+                    },
+                    {
+                        text: "11. Füüsiline turve",
+                        collapsed: true,
+                        items: [
+                            { text: "Lüliti, marsruuter ja võrguseadme tulemüür", link: "/serverid-ja-vorgud/luliti-marsruuter-ja-vorguseadme-tulemuur" },
+                            { text: "Füüsiline tõend ja ühise taristu töökorraldus", link: "/serverid-ja-vorgud/fuusiline-toend-ja-uhise-taristu-tookorraldus" },
+                        ]
+                    },
+                    {
+                        text: "12. Lõppprojekt",
+                        collapsed: true,
+                        items: [
+                            { text: "Ülesanne ja vastuvõtukatsed", link: "/serverid-ja-vorgud/loppprojekt-ulesanne-ja-vastuvotukatsed" },
+                            { text: "Rikked, kaitsmine ja üleandmine", link: "/serverid-ja-vorgud/rikked-kaitsmine-ja-uleandmine" },
+                        ]
+                    },
+                ]
+            },
+            {
                 text: "Arendusvahendid II",
                 collapsed: true,
                 items: [
