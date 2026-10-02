@@ -226,6 +226,24 @@ export default withMermaid({
                 ]
             },
             {
+                text: "M7. Testimise alused",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/testimise-alused/sissejuhatus" },
+                    { text: "1. Testimise terminoloogia", link: "/testimise-alused/kohtumine-01-terminoloogia" },
+                    { text: "2. Testimine kvaliteedi kindlustamiseks", link: "/testimise-alused/kohtumine-02-kvaliteet" },
+                    { text: "3. Vigade tekkimine ja veaaruanne", link: "/testimise-alused/kohtumine-03-vigade-tekkimine" },
+                    { text: "4. Testimise seitse põhimõtet", link: "/testimise-alused/kohtumine-04-pohimotted" },
+                    { text: "5. Valge, must ja hall kast", link: "/testimise-alused/kohtumine-05-meetodid" },
+                    { text: "6. Staatiline ja dünaamiline testimine", link: "/testimise-alused/kohtumine-06-staatiline-ja-dunaamiline" },
+                    { text: "7. Funktsionaalsed ja mittefunktsionaalsed testid", link: "/testimise-alused/kohtumine-07-testituubid" },
+                    { text: "8. Jõudluse ja turvalisuse testimine", link: "/testimise-alused/kohtumine-08-joudlus-ja-turvalisus" },
+                    { text: "9. Testimise standardid", link: "/testimise-alused/kohtumine-09-standardid" },
+                    { text: "10. Kokkuvõte ja lähteülesanne", link: "/testimise-alused/kohtumine-10-kokkuvote-ja-lahteulesanne" },
+                    { text: "Ülesanded", link: "/testimise-alused/assignments" },
+                ]
+            },
+            {
                 text: "Veebiarendus",
                 collapsed: true,
                 items: [
