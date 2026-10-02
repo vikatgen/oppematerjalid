@@ -1,16 +1,21 @@
 import { withMermaid } from "vitepress-plugin-mermaid";
 
+const base = process.env.VITEPRESS_BASE ?? "/oppematerjalid/";
+
 export default withMermaid({
-    base: process.env.VITEPRESS_BASE ?? "/oppematerjalid/",
+    base,
     lang: "et-EE",
     title: "SWE",
     description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: arvutivõrgud, küberturvalisus, JavaScript, TypeScript, Node.js, testimine, Linux, Docker, Nginx",
 
     head: [
         ["meta", { name: "robots", content: "noindex, nofollow" }],
+        ["link", { rel: "icon", href: `${base}system/favicon.ico`, sizes: "any" }],
     ],
 
     themeConfig: {
+        logo: { src: "/system/ikt_logo_kompaktne.png", alt: "Kuressaare Ametikool IKT" },
+        siteTitle: false,
         nav: [
             { text: "Avaleht", link: "/" },
         ],
@@ -200,6 +205,24 @@ export default withMermaid({
                     { text: "4. Minu oskused ja karjäärivõimalused", link: "/toomaailm/kohtumine-04-oskused-ja-karjaar" },
                     { text: "5. Ressursid: raha, aeg ja inimesed", link: "/toomaailm/kohtumine-05-ressursid" },
                     { text: "Ülesanded", link: "/toomaailm/assignments" },
+                ]
+            },
+            {
+                text: "PÕ. IT-taristu",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/it-taristu/sissejuhatus" },
+                    { text: "1. Organisatsioon ja IT roll", link: "/it-taristu/kohtumine-01-organisatsioon-ja-it" },
+                    { text: "2. Teenusekvaliteedi parameetrid", link: "/it-taristu/kohtumine-02-teenusekvaliteet" },
+                    { text: "3. Teenustaseme lepingud (SLA)", link: "/it-taristu/kohtumine-03-teenustaseme-lepingud" },
+                    { text: "4. Autoriõigus ja litsentsid", link: "/it-taristu/kohtumine-04-autorioigus-ja-litsentsid" },
+                    { text: "5. Etalonturve ja turvatehnoloogiad", link: "/it-taristu/kohtumine-05-etalonturve-ja-turvatehnoloogiad" },
+                    { text: "6. Taristu ülesehitus", link: "/it-taristu/kohtumine-06-taristu-ulesehitus" },
+                    { text: "7. Taristu toimimine", link: "/it-taristu/kohtumine-07-taristu-toimimine" },
+                    { text: "8. Standardid ja raamistikud", link: "/it-taristu/kohtumine-08-standardid-ja-raamistikud" },
+                    { text: "9. Teenusetaseme mittevastavus", link: "/it-taristu/kohtumine-09-mittevastavus" },
+                    { text: "10. Meeskond ja kokkuvõte", link: "/it-taristu/kohtumine-10-meeskond-ja-kokkuvote" },
+                    { text: "Ülesanded", link: "/it-taristu/assignments" },
                 ]
             },
             {

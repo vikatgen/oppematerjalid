@@ -1,3 +1,9 @@
+<div class="home-banner">
+
+![IT Majakas: Tule õppima tulevikuoskusi. IT Majakas viib sind järgmisele tasemele. Infotehnoloogia, raamatupidamine, ettevõtlus, ärikorraldus. Kuressaare Ametikool](/system/itmajakas-banner.png)
+
+</div>
+
 # Tarkvaraarenduse Õppematerjalid
 
 Tere tulemast Kuressaare Ametikooli tarkvaraarenduse õppematerjalide lehele.
@@ -19,6 +25,9 @@ Digiteenused, netikett, failide jagamine (OneDrive, SharePoint), meeskonnatöö,
 
 ### [Valdkonna töömaailm](/toomaailm/sissejuhatus)
 Tööturu toimimine, haridus ja palk, töösuhte õigused ja lepingud, oskused ja karjäärivõimalused, raha, aeg ja inimesed.
+
+### [IT-taristu](/it-taristu/sissejuhatus)
+IT roll organisatsioonis, teenusekvaliteet ja SLA, litsentsid, etalonturve, taristu ülesehitus ja toimimine, standardid ja audit, teenusetaseme mittevastavus, meeskonna rollid.
 
 ### [Veebiarendus](/veebiarendus/sissejuhatus)
 Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL ja DNS, päringud/vastused, meetodid ja staatusekoodid, küpsised/sessioonid, CORS, HTTP versioonid ja Network-paneel.
@@ -49,3 +58,13 @@ Linuxi kasutajate ja gruppide haldamine WSL-is: kasutaja loomine, õigused, Dock
 
 ### [Arendusvahendid II](/nginx/basics)
 Nginx alused ja reverse proxy ning Docker ja Docker Compose.
+
+<style>
+.home-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 0 24px;
+}
+</style>
