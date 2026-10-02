@@ -423,7 +423,7 @@ export default withMermaid({
                 ]
             },
             {
-                text: "Serverid ja võrgud",
+                text: "VM. Serverid ja võrgud",
                 collapsed: true,
                 items: [
                     { text: "Sissejuhatus", link: "/serverid-ja-vorgud/sissejuhatus" },
