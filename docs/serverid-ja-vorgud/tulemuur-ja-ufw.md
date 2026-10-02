@@ -15,7 +15,7 @@ Pärast seda osa oskad koostada lihtsa ohumudeli, selgitada, miks vaikimisi keel
 Kõik meie senised teenused (veeb, andmebaas) töötavad, aga praegu ei ole midagi, mis piiraks, kes serveriga üldse rääkida tohib peale meie enda kontrollitud host-only võrgu. Meeskonna turbevastutaja küsib otse: "kas keegi teine peaks pääsema `3306` porti proovima?"
 
 ::: tip Kui CIA-mudel juba tuttav
-[Küberturvalisuse alused: CIA, risk, vara, oht](/kuberturvalisus/alused-cia-risk-oht) osa kattis juba konfidentsiaalsuse, tervikluse ja käideldavuse mõisted üldiselt. Siin rakendame samu mõisteid **konkreetselt oma serverile**, mitte üldiselt.
+[Küberturvalisuse põhimõisted](/kuberturvalisus/pohimoisted) osa kattis juba konfidentsiaalsuse, tervikluse ja käideldavuse mõisted üldiselt. Siin rakendame samu mõisteid **konkreetselt oma serverile**, mitte üldiselt.
 :::
 
 ## Ohumudel — enne reegleid, mõtle läbi
@@ -132,4 +132,4 @@ Kontrolli hosti terminalist, et olemasolev SSH-ühendus (võtmega, [SSH-ühendus
 ## Allikad
 
 - [Ubuntu Server — UFW tulemüüri juhend](https://ubuntu.com/server/docs/how-to/security/firewalls/)
-- [Küberturvalisuse alused: CIA, risk, vara, oht](/kuberturvalisus/alused-cia-risk-oht)
+- [Küberturvalisuse põhimõisted](/kuberturvalisus/pohimoisted)

@@ -1,70 +1,68 @@
 # Võrgu aluste ülesanded
 
-Kodused kinnistamisülesanded iga tunni järel — igaüks võtab aega umbes 35 minutit.
+Iga kohtumise lõpus esitad ühe töö. Töö kirjeldus on vastavas tunnis, siin on kontroll-loend.
 
 ---
 
-## Ülesanne 1: Mõistekaardid
+## 1. Kommenteeritud võrguskeem
 
-**Eesmärk:** Kinnistada tund 1 põhimõisted.
-
-Joonista (paberile või digitaalselt) mõistekaart, mis seob järgmised mõisted: **internet, võrk, klient, server, pakett**. Näita nooltega, kuidas need mõisted seotud on (nt "klient saadab päringu → jagatakse pakettideks → ...").
-
-**Juhend:** [Mis on võrk ja internet?](/arvutivorgud/vork-ja-internet)
+**Tund:** [Arvutivõrk ja andmeedastus](/arvutivorgud/vork-ja-andmeedastus)
 
 **Kontroll:**
 
-- [ ] Kõik 5 mõistet on kaardil olemas
-- [ ] Seosed mõistete vahel on nooltega selgitatud
+- [ ] Skeemil on lõppseadmed, võrguseadmed ja ühendused (kaabel või Wi-Fi)
+- [ ] Märgitud on, kus lõpeb LAN ja algab WAN
+- [ ] Ühe andmevahetuse teekond on nooltega nummerdatud
+- [ ] Olemas on kommentaar füüsilise ja loogilise pildi kohta
+- [ ] Skeemil pole paroole ega päris aadresse
 
 ---
 
-## Ülesanne 2: Minu koduvõrk
+## 2. Aadresside tööleht ja andmevahetuse selgitus
 
-**Eesmärk:** Kinnistada tund 2 seadmete rollid.
-
-Joonista oma kodu (või kooli) võrgu skeem: milliseid seadmeid kasutate (telefonid, arvutid, ruuter, Wi-Fi), kuidas need omavahel ühendatud on.
-
-::: warning Turvalisus
-Ära lisa joonisele oma Wi-Fi parooli ega IP-aadresse — ainult seadmete tüübid ja nendevahelised ühendused.
-:::
-
-**Juhend:** [Võrguseadmed ja koduvõrk](/arvutivorgud/vorguseadmed-ja-koduvork)
+**Tund:** [Võrgumudelid ja adresseerimine](/arvutivorgud/vorgumudelid-ja-aadressid)
 
 **Kontroll:**
 
-- [ ] Joonisel on vähemalt ruuter, üks juhtmevaba ja üks juhtmega seade
-- [ ] Ühendused (kaabel vs Wi-Fi) on eristatavad
+- [ ] Leitud on IP-aadress, alamvõrgumask, vaikelüüs ja MAC-aadress
+- [ ] Põhjendatud on, kas IP on privaatne või avalik
+- [ ] Veebilehe avamise näites on seotud domeen, port, IP ja MAC õigete kihtidega
+- [ ] Vaikelüüsi roll on selgitatud oma sõnadega
 
 ---
 
-## Ülesanne 3: Milline seade kuhu kuulub?
+## 3. Käskude tulemused koos tõlgendusega
 
-**Eesmärk:** Kinnistada tund 3 IP-aadressi ja marsruutimise mõisted.
-
-Vasta lühidalt:
-
-1. Mis on IP-aadressi ülesanne?
-2. Mida näitab `traceroute` väljund?
-3. Miks ei liigu kõik ühe faili paketid alati sama teed pidi?
-
-**Juhend:** [IP-aadressid, paketid ja marsruutimine](/arvutivorgud/ip-aadressid-ja-marsruutimine)
+**Tund:** [Protokollid ja marsruutimine](/arvutivorgud/protokollid-ja-marsruutimine)
 
 **Kontroll:**
 
-- [ ] Kõigile kolmele küsimusele on vastatud oma sõnadega, mitte definitsiooni ümber kirjutades
+- [ ] Olemas on `ping`, `nslookup` ja `tracert` / `traceroute` väljund
+- [ ] Iga väljundi juures on 1–2 lauset tõlgendust (aeg, IP-aadress, hüpete arv)
+- [ ] Selgitatud on, miks vastuseta ping ei tõenda, et teenus ei tööta
 
 ---
 
-## Ülesanne 4: Suurem pilt
+## 4. Mõõtmistabel
 
-**Eesmärk:** Kinnistada tund 4 — kuidas kohalik võrk internetiga ühendub.
-
-Joonista või kirjelda sammud, mis toimuvad, kui sisestad brauserisse `kool.ee`: alates sinu seadmest kuni sihtserverini välja. Märgi ära, kus tuleb mängu DNS ja kus IP-aadress/marsruutimine.
-
-**Juhend:** [Kuidas kohalik võrk internetiga ühendub](/arvutivorgud/internet-uhendab-vorgud)
+**Tund:** [Võrgu koormuse mõõtmine](/arvutivorgud/vorgu-koormuse-mootmine)
 
 **Kontroll:**
 
-- [ ] Skeemil/kirjelduses on olemas: seade, koduruuter, internetiteenuse pakkuja, sihtserver
-- [ ] DNS-i roll on selgelt märgitud
+- [ ] Kolm olukorda (jõudeolek, allalaadimine, video) on mõõdetud
+- [ ] Ühikud on selged ja `Mbit/s` / `MB/s` õigesti teisendatud
+- [ ] Märgitud on mõõtmise aeg, tingimused ja mõõtevahend
+- [ ] Järeldustes on nimetatud vähemalt kaks mõõtmise piirangut
+
+---
+
+## 5. Võrgunõuete arvutus
+
+**Tund:** [Võrgunõuete arvutamine ja hindamine](/arvutivorgud/vorgunouete-arvutamine)
+
+**Kontroll:**
+
+- [ ] Eeldused on kirjas (samaaegsus, kiirused, varu)
+- [ ] Alla- ja üleslaadimine on arvutatud eraldi
+- [ ] Kitsaskoht on leitud
+- [ ] On põhjendatud, miks ainult kasutajate arvust ei piisa

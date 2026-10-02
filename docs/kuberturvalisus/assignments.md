@@ -1,67 +1,75 @@
 # Küberturvalisuse ülesanded
 
-Kodused kinnistamisülesanded iga tunni järel — igaüks võtab aega umbes 35 minutit.
+Iga kohtumise lõpus esitad ühe töö. Töö kirjeldus on vastavas tunnis, siin on kontroll-loend. Praktilisi töid dokumenteeri [vormi](/kuberturvalisus/dokumenteerimisvorm) järgi.
 
 ---
 
-## Ülesanne 1: CIA, risk, oht
+## 6. Riskitabel (HK 4.1)
 
-**Eesmärk:** Kinnistada tund 6 põhimõisted.
-
-Vali üks päriselulise juhtumi näide (ise mõeldud või internetist leitud) ja liigita see: milline CIA-mudeli osa (confidentiality/integrity/availability) sai rikutud? Mis oli vara, oht ja risk?
-
-**Juhend:** [Küberturvalisuse alused](/kuberturvalisus/alused-cia-risk-oht)
+**Tund:** [Küberturvalisuse põhimõisted](/kuberturvalisus/pohimoisted)
 
 **Kontroll:**
 
-- [ ] Juhtum on kirjeldatud 2-3 lausega
-- [ ] Vara, oht, risk ja rikutud CIA-osa on eraldi välja toodud
+- [ ] Vähemalt kolm rida: vara, oht, nõrkus, tõenäosus, mõju, risk, meede
+- [ ] Mõisted on õigesti kasutatud (oht ja nõrkus ei ole segamini)
+- [ ] Märgitud on, milline CIA osa on ohus
+- [ ] Eristatud on lubatud turvatestimine loata tegevusest
 
 ---
 
-## Ülesanne 2: Turvalise parooli reeglistik
+## 7. Täiendatud riskitabel (HK 4.1)
 
-**Eesmärk:** Kinnistada tund 7.
-
-Koosta 4–5-punktiline reeglistik "Kuidas teha tugev parool" ja selgita iga reegli juures lühidalt, *miks* see reegel kehtib.
-
-::: warning
-Ära kirjuta üles ega jaga oma päris paroole — reeglistik peab olema üldine, mitte sinu enda parool.
-:::
-
-**Juhend:** [Paroolid, MFA ja identiteet](/kuberturvalisus/paroolid-ja-mfa)
+**Tund:** [Küberohud ja kaitsemeetmete valimine](/kuberturvalisus/ohud)
 
 **Kontroll:**
 
-- [ ] Reeglistikus on vähemalt 4 punkti
-- [ ] Iga punkti juures on lühike põhjendus
+- [ ] Tabel hõlmab nii tarkvara kui riistvara seadistusriski
+- [ ] Iga rea juures on konkreetne mõju organisatsioonile
+- [ ] Vähemalt kaks meedet ohu kohta ja põhjendus, miks ühest ei piisa
 
 ---
 
-## Ülesanne 3: Phishingu tuvastamise kontrollnimekiri
+## 8. Paroolipoliitika ja õiguste protokoll (HK 4.2)
 
-**Eesmärk:** Kinnistada tund 8.
-
-Koosta kontrollnimekiri (checklist), mida saaks kasutada iga kahtlase e-kirja/sõnumi hindamiseks enne sellele reageerimist (vähemalt 5 punkti).
-
-**Juhend:** [Phishing ja sotsiaalne manipulatsioon](/kuberturvalisus/phishing)
+**Tund:** [Kontod, paroolid ja ligipääsuõigused](/kuberturvalisus/kontod-ja-oigused)
 
 **Kontroll:**
 
-- [ ] Nimekirjas on vähemalt 5 kontrollpunkti
-- [ ] Punktid on sõnastatud küsimustena, millele saab vastata jah/ei
+- [ ] Algseis, muudatus ja kontroll on kirjas
+- [ ] Paroolinõude puhul on kontrollitud nii tagasilükatud kui vastuvõetud parool
+- [ ] Õiguste puhul on kontrollitud nii lubatud kui keelatud tegevust
+- [ ] Protokollis ei ole paroole ega saladusi
 
 ---
 
-## Ülesanne 4: Turvaplaani mustand
+## 9. Tööarvuti tööprotokoll (HK 4.2)
 
-**Eesmärk:** Ettevalmistus [mini-capstone'iks](/kuberturvalisus/mini-projekt).
-
-Koosta mustand turvaplaanist oma kodu- või koolivõrgu jaoks: milliseid riske sa tead ([tund 6](/kuberturvalisus/alused-cia-risk-oht)–[9](/kuberturvalisus/pahavara-ja-uuendused)) ja milliseid kaitsemeetmeid juba kasutad või peaksid kasutama hakkama.
-
-**Juhend:** [Pahavara, uuendused, varukoopiad ja Wi-Fi turvalisus](/kuberturvalisus/pahavara-ja-uuendused)
+**Tund:** [Tööarvuti turvaseadistused](/kuberturvalisus/tooarvuti-turvaseadistused)
 
 **Kontroll:**
 
-- [ ] Mustandis on vähemalt 3 riski koos vastava kaitsemeetmega
-- [ ] Mustand on valmis kaasa võtmiseks järgmisesse (mini-capstone) tundi
+- [ ] Algseis (uuendused, viirusetõrje, tulemüür, lukustus) on kirjas
+- [ ] Uuendus on tehtud ja versioon kontrollitud
+- [ ] Lukustus on seadistatud ja toimimist on kontrollitud
+- [ ] Lukustuse ja väljalogimise erinevus on selgitatud
+
+---
+
+## 10. Ruuteri seadistusprotokoll (HK 4.1 ja HK 4.2)
+
+**Tund:** [Riistvara turvaline seadistamine](/kuberturvalisus/ruuteri-turvaline-seadistamine)
+
+**Kontroll:**
+
+- [ ] Vähemalt kolm riski tuvastatud ja mõju selgitatud
+- [ ] Vähemalt kaks seadistust parandatud
+- [ ] Iga muudatuse tulemus on kontrollitud
+- [ ] Minu enda panus on protokollis nähtav
+
+---
+
+## 11. Kokkuvõttev praktiline hindamine
+
+**Tund:** [Kokkuvõttev praktiline hindamine](/kuberturvalisus/lopphindamine)
+
+Individuaalne töö, mis tõendab HK 4.1 ja HK 4.2.

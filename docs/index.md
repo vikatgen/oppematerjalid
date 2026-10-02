@@ -12,7 +12,7 @@ Siit leiad õppematerjalid järgmistel teemadel:
 Mis on tehisintellekt, kuidas see töötab ja kuidas seda kasutada: mõisted, ajalugu, AI tüübid, müüdid, promptimine, tööriistad ja eetika.
 
 ### [Arvutivõrgud ja küberturvalisus](/arvutivorgud/sissejuhatus)
-Võrgu alused ja seadmed, kuidas kohalik võrk internetiga ühendub ning küberturvalisuse põhimõisted ja riskid.
+Arvutivõrkude alused (andmeedastus, mudelid, protokollid, koormuse mõõtmine) ning sissejuhatus küberturvalisusesse: põhimõisted, ohud, turvameetmed ja nende rakendamine.
 
 ### [Veebiarendus](/veebiarendus/sissejuhatus)
 Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL ja DNS, päringud/vastused, meetodid ja staatusekoodid, küpsised/sessioonid, CORS, HTTP versioonid ja Network-paneel.

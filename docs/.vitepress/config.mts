@@ -18,7 +18,7 @@ export default withMermaid({
         sidebar: {
             "/": [
             {
-                text: "Tehisintellekt",
+                text: "VM. Tehisintellekt",
                 collapsed: true,
                 items: [
                     { text: "Ülevaade", link: "/tehisintellekt/" },
@@ -138,7 +138,7 @@ export default withMermaid({
                 ]
             },
             {
-                text: "Arvutivõrgud ja küberturvalisus",
+                text: "M3. Arvutivõrgud ja küberturvalisus",
                 collapsed: true,
                 items: [
                     {
@@ -146,10 +146,11 @@ export default withMermaid({
                         collapsed: true,
                         items: [
                             { text: "Sissejuhatus", link: "/arvutivorgud/sissejuhatus" },
-                            { text: "Mis on võrk ja internet?", link: "/arvutivorgud/vork-ja-internet" },
-                            { text: "Võrguseadmed ja koduvõrk", link: "/arvutivorgud/vorguseadmed-ja-koduvork" },
-                            { text: "IP-aadressid ja marsruutimine", link: "/arvutivorgud/ip-aadressid-ja-marsruutimine" },
-                            { text: "Kuidas kohalik võrk internetiga ühendub", link: "/arvutivorgud/internet-uhendab-vorgud" },
+                            { text: "1. Arvutivõrk ja andmeedastus", link: "/arvutivorgud/vork-ja-andmeedastus" },
+                            { text: "2. Võrgumudelid ja adresseerimine", link: "/arvutivorgud/vorgumudelid-ja-aadressid" },
+                            { text: "3. Protokollid ja marsruutimine", link: "/arvutivorgud/protokollid-ja-marsruutimine" },
+                            { text: "4. Võrgu koormuse mõõtmine", link: "/arvutivorgud/vorgu-koormuse-mootmine" },
+                            { text: "5. Võrgunõuete arvutamine", link: "/arvutivorgud/vorgunouete-arvutamine" },
                             { text: "Ülesanded", link: "/arvutivorgud/assignments" },
                         ]
                     },
@@ -158,11 +159,13 @@ export default withMermaid({
                         collapsed: true,
                         items: [
                             { text: "Sissejuhatus", link: "/kuberturvalisus/sissejuhatus" },
-                            { text: "Alused: CIA, risk, vara, oht", link: "/kuberturvalisus/alused-cia-risk-oht" },
-                            { text: "Paroolid, MFA ja identiteet", link: "/kuberturvalisus/paroolid-ja-mfa" },
-                            { text: "Phishing ja sotsiaalne manipulatsioon", link: "/kuberturvalisus/phishing" },
-                            { text: "Pahavara, uuendused ja Wi-Fi", link: "/kuberturvalisus/pahavara-ja-uuendused" },
-                            { text: "Mini-capstone: turvaline väikevõrk", link: "/kuberturvalisus/mini-projekt" },
+                            { text: "6. Põhimõisted", link: "/kuberturvalisus/pohimoisted" },
+                            { text: "7. Ohud ja kaitsemeetmed", link: "/kuberturvalisus/ohud" },
+                            { text: "8. Kontod, paroolid ja õigused", link: "/kuberturvalisus/kontod-ja-oigused" },
+                            { text: "9. Tööarvuti turvaseadistused", link: "/kuberturvalisus/tooarvuti-turvaseadistused" },
+                            { text: "10. Riistvara turvaline seadistamine", link: "/kuberturvalisus/ruuteri-turvaline-seadistamine" },
+                            { text: "11. Kokkuvõttev hindamine", link: "/kuberturvalisus/lopphindamine" },
+                            { text: "Dokumenteerimisvorm", link: "/kuberturvalisus/dokumenteerimisvorm" },
                             { text: "Ülesanded", link: "/kuberturvalisus/assignments" },
                         ]
                     },
