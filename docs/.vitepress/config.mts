@@ -226,21 +226,45 @@ export default withMermaid({
                 ]
             },
             {
-                text: "M7. Testimise alused",
+                text: "M7. Tarkvarasüsteemide testimine",
                 collapsed: true,
                 items: [
-                    { text: "Sissejuhatus", link: "/testimise-alused/sissejuhatus" },
-                    { text: "1. Testimise terminoloogia", link: "/testimise-alused/kohtumine-01-terminoloogia" },
-                    { text: "2. Testimine kvaliteedi kindlustamiseks", link: "/testimise-alused/kohtumine-02-kvaliteet" },
-                    { text: "3. Vigade tekkimine ja veaaruanne", link: "/testimise-alused/kohtumine-03-vigade-tekkimine" },
-                    { text: "4. Testimise seitse põhimõtet", link: "/testimise-alused/kohtumine-04-pohimotted" },
-                    { text: "5. Valge, must ja hall kast", link: "/testimise-alused/kohtumine-05-meetodid" },
-                    { text: "6. Staatiline ja dünaamiline testimine", link: "/testimise-alused/kohtumine-06-staatiline-ja-dunaamiline" },
-                    { text: "7. Funktsionaalsed ja mittefunktsionaalsed testid", link: "/testimise-alused/kohtumine-07-testituubid" },
-                    { text: "8. Jõudluse ja turvalisuse testimine", link: "/testimise-alused/kohtumine-08-joudlus-ja-turvalisus" },
-                    { text: "9. Testimise standardid", link: "/testimise-alused/kohtumine-09-standardid" },
-                    { text: "10. Kokkuvõte ja lähteülesanne", link: "/testimise-alused/kohtumine-10-kokkuvote-ja-lahteulesanne" },
-                    { text: "Ülesanded", link: "/testimise-alused/assignments" },
+                    {
+                        text: "Testimise alused",
+                        collapsed: true,
+                        items: [
+                            { text: "Sissejuhatus", link: "/testimise-alused/sissejuhatus" },
+                            { text: "1. Testimise terminoloogia", link: "/testimise-alused/kohtumine-01-terminoloogia" },
+                            { text: "2. Testimine kvaliteedi kindlustamiseks", link: "/testimise-alused/kohtumine-02-kvaliteet" },
+                            { text: "3. Vigade tekkimine ja veaaruanne", link: "/testimise-alused/kohtumine-03-vigade-tekkimine" },
+                            { text: "4. Testimise seitse põhimõtet", link: "/testimise-alused/kohtumine-04-pohimotted" },
+                            { text: "5. Valge, must ja hall kast", link: "/testimise-alused/kohtumine-05-meetodid" },
+                            { text: "6. Staatiline ja dünaamiline testimine", link: "/testimise-alused/kohtumine-06-staatiline-ja-dunaamiline" },
+                            { text: "7. Funktsionaalsed ja mittefunktsionaalsed testid", link: "/testimise-alused/kohtumine-07-testituubid" },
+                            { text: "8. Jõudluse ja turvalisuse testimine", link: "/testimise-alused/kohtumine-08-joudlus-ja-turvalisus" },
+                            { text: "9. Testimise standardid", link: "/testimise-alused/kohtumine-09-standardid" },
+                            { text: "10. Kokkuvõte ja lähteülesanne", link: "/testimise-alused/kohtumine-10-kokkuvote-ja-lahteulesanne" },
+                            { text: "Ülesanded", link: "/testimise-alused/assignments" },
+                        ]
+                    },
+                    {
+                        text: "Testimine II",
+                        collapsed: true,
+                        items: [
+                            { text: "Sissejuhatus", link: "/testimine-ii/sissejuhatus" },
+                            { text: "1. Nõuetest testiplaanini", link: "/testimine-ii/kohtumine-01-nouded-ja-testiplaan" },
+                            { text: "2. Automatiseerida või mitte", link: "/testimine-ii/kohtumine-02-vahendid-ja-keskkond" },
+                            { text: "3. Ühiktestid ja testiandmed", link: "/testimine-ii/kohtumine-03-uhiktestid" },
+                            { text: "4. Mockid ja mock-klassid", link: "/testimine-ii/kohtumine-04-mockid" },
+                            { text: "5. Otsustustabel ja olekud", link: "/testimine-ii/kohtumine-05-otsustustabel-ja-olekud" },
+                            { text: "6. Integratsioonitestid I", link: "/testimine-ii/kohtumine-06-integratsioon-i" },
+                            { text: "7. Integratsioonitestid II", link: "/testimine-ii/kohtumine-07-integratsioon-ii" },
+                            { text: "8. Mõõtmised ja mutatsioonid", link: "/testimine-ii/kohtumine-08-moodikud" },
+                            { text: "9. Jõudlus: Postman ja Newman", link: "/testimine-ii/kohtumine-09-joudlus" },
+                            { text: "10. Vea elutsükkel ja testiaruanne", link: "/testimine-ii/kohtumine-10-vead-ja-testiaruanne" },
+                            { text: "Ülesanded", link: "/testimine-ii/assignments" },
+                        ]
+                    },
                 ]
             },
             {

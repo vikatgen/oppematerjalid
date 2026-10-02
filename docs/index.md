@@ -29,8 +29,9 @@ Tööturu toimimine, haridus ja palk, töösuhte õigused ja lepingud, oskused j
 ### [IT-taristu](/it-taristu/sissejuhatus)
 IT roll organisatsioonis, teenusekvaliteet ja SLA, litsentsid, etalonturve, taristu ülesehitus ja toimimine, standardid ja audit, teenusetaseme mittevastavus, meeskonna rollid.
 
-### [Testimise alused](/testimise-alused/sissejuhatus)
-Testimise terminoloogia, kvaliteet, vigade tekkimine, testimise põhimõtted, valge/musta/halli kasti meetodid, testitüübid, jõudluse ja turvalisuse testimine, testimise standardid (ISO/IEC/IEEE 29119).
+### [M7. Tarkvarasüsteemide testimine](/testimise-alused/sissejuhatus)
+**Testimise alused:** terminoloogia, kvaliteet, vigade tekkimine, testimise põhimõtted, valge/musta/halli kasti meetodid, testitüübid, jõudluse ja turvalisuse testimine, testimise standardid (ISO/IEC/IEEE 29119).
+**[Testimine II](/testimine-ii/sissejuhatus):** nõuetest testiplaanini, testimisvahendid, ühiktestid ja mock-klassid, integratsioonitestid, mõõtmised, veaaruanded ja testiaruanne.
 
 ### [Veebiarendus](/veebiarendus/sissejuhatus)
 Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL ja DNS, päringud/vastused, meetodid ja staatusekoodid, küpsised/sessioonid, CORS, HTTP versioonid ja Network-paneel.
