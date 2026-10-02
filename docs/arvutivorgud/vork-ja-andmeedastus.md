@@ -102,7 +102,7 @@ Siia ei ole ruuterit vaja, sest saatja ja vastuvõtja on **samas võrgus**.
 ### 2. Mari veebilehega: väljas internetis
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[Mari sülearvuti] -->|Wi-Fi| B[Pääsupunkt]
     B --> C[Kommutaator]
     C --> D[Ruuter]

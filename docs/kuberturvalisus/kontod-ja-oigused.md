@@ -25,7 +25,7 @@ Siim tuleb hommikul kontorisse. Uksel ootab turvamees.
 | **Autoriseerimine** (*authorization*) | Mida sul on lubatud teha? | Tohib lugeda müügi kausta, aga mitte kustutada |
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[Siim] -->|kasutajanimi + parool| B{Autentimine<br/>Kas oled see, kes väidad?}
     B -- Ei --> X[Ligipääs keelatud]
     B -- Jah --> C{Autoriseerimine<br/>Kas sul on selleks õigus?}

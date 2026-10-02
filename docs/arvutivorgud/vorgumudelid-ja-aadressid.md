@@ -199,7 +199,7 @@ Kui sihtkoht on teises võrgus, annab arvuti paketi **vaikelüüsile** (*default
 Mari paketi teekond MAC- ja IP-aadressidega:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Mari<br/>IP 192.168.1.25<br/>MAC ...90"] -->|"1. hüpe: MAC-id Mari → ruuter"| B["Ruuter<br/>IP 192.168.1.1<br/>MAC ...A3"]
     B -->|"2. hüpe: uued MAC-id ruuter → ISP"| C[Internetipakkuja]
     C --> D[...]

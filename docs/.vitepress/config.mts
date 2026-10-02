@@ -172,6 +172,24 @@ export default withMermaid({
                 ]
             },
             {
+                text: "ÕV2. Suhtlus ja koostöö digikeskkonnas",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/digisuhtlus/sissejuhatus" },
+                    { text: "1. Digiteenused I: riik ja autentimine", link: "/digisuhtlus/kohtumine-01-riik-ja-autentimine" },
+                    { text: "2. Digiteenused II: kool, pank ja ettevõte", link: "/digisuhtlus/kohtumine-02-kool-pank-ettevote" },
+                    { text: "3. Digitaalne identiteet I: kes ma võrgus olen", link: "/digisuhtlus/kohtumine-03-identiteet" },
+                    { text: "4. Digitaalne identiteet II: kaitse", link: "/digisuhtlus/kohtumine-04-identiteedi-kaitse" },
+                    { text: "5. Digisuhtlus ja netikett", link: "/digisuhtlus/kohtumine-05-netikett" },
+                    { text: "6. Info ja failide jagamine", link: "/digisuhtlus/kohtumine-06-failide-jagamine" },
+                    { text: "7. Digisuhtlus ja meeskonnatöö vahendid", link: "/digisuhtlus/kohtumine-07-meeskonnatoo" },
+                    { text: "8. Ühismeedia ja sisu loomine I: planeerimine", link: "/digisuhtlus/kohtumine-08-uhismeedia-planeerimine" },
+                    { text: "9. Ühismeedia ja sisu loomine II: loomine", link: "/digisuhtlus/kohtumine-09-uhismeedia-sisu" },
+                    { text: "10. Digitaalne jalajälg ja kokkuvõte", link: "/digisuhtlus/kohtumine-10-jalajalg-ja-kokkuvote" },
+                    { text: "Ülesanded", link: "/digisuhtlus/assignments" },
+                ]
+            },
+            {
                 text: "Veebiarendus",
                 collapsed: true,
                 items: [

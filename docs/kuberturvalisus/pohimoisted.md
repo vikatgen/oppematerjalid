@@ -31,7 +31,7 @@ Kujutle Siimu esimest päeva ja küsi ennast: mis võib valesti minna?
 | **Mõju** (*impact*) | Mida organisatsioon kaotab, kui see juhtub | Kolm päeva tööseisak, klientide andmete leke, trahv |
 
 ```mermaid
-flowchart LR
+flowchart TD
     O["Oht<br/>lunavara"] -->|kasutab ära| N["Nõrkus<br/>uuendamata Windows"]
     N -->|kahjustab| V["Vara<br/>Siimu sülearvuti ja failid"]
     V --> M["Mõju<br/>3 päeva tööseisak"]

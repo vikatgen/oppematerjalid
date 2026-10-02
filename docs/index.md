@@ -14,6 +14,9 @@ Mis on tehisintellekt, kuidas see töötab ja kuidas seda kasutada: mõisted, aj
 ### [Arvutivõrgud ja küberturvalisus](/arvutivorgud/sissejuhatus)
 Arvutivõrkude alused (andmeedastus, mudelid, protokollid, koormuse mõõtmine) ning sissejuhatus küberturvalisusesse: põhimõisted, ohud, turvameetmed ja nende rakendamine.
 
+### [Suhtlus ja koostöö digikeskkonnas](/digisuhtlus/sissejuhatus)
+Digiteenused, netikett, failide jagamine (OneDrive, SharePoint), meeskonnatöö, ühismeedia, digitaalne identiteet ja jalajälg.
+
 ### [Veebiarendus](/veebiarendus/sissejuhatus)
 Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL ja DNS, päringud/vastused, meetodid ja staatusekoodid, küpsised/sessioonid, CORS, HTTP versioonid ja Network-paneel.
 
