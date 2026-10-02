@@ -190,6 +190,19 @@ export default withMermaid({
                 ]
             },
             {
+                text: "ÕV5. Valdkonna töömaailm",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/toomaailm/sissejuhatus" },
+                    { text: "1. Tööturg ja majandus muutuvas maailmas", link: "/toomaailm/kohtumine-01-tooturg-ja-majandus" },
+                    { text: "2. Haridus, oskused ja palk", link: "/toomaailm/kohtumine-02-haridus-oskused-palk" },
+                    { text: "3. Töösuhe: õigused, kohustused ja leping", link: "/toomaailm/kohtumine-03-toosuhe-ja-leping" },
+                    { text: "4. Minu oskused ja karjäärivõimalused", link: "/toomaailm/kohtumine-04-oskused-ja-karjaar" },
+                    { text: "5. Ressursid: raha, aeg ja inimesed", link: "/toomaailm/kohtumine-05-ressursid" },
+                    { text: "Ülesanded", link: "/toomaailm/assignments" },
+                ]
+            },
+            {
                 text: "Veebiarendus",
                 collapsed: true,
                 items: [

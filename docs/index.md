@@ -17,6 +17,9 @@ Arvutivõrkude alused (andmeedastus, mudelid, protokollid, koormuse mõõtmine) 
 ### [Suhtlus ja koostöö digikeskkonnas](/digisuhtlus/sissejuhatus)
 Digiteenused, netikett, failide jagamine (OneDrive, SharePoint), meeskonnatöö, ühismeedia, digitaalne identiteet ja jalajälg.
 
+### [Valdkonna töömaailm](/toomaailm/sissejuhatus)
+Tööturu toimimine, haridus ja palk, töösuhte õigused ja lepingud, oskused ja karjäärivõimalused, raha, aeg ja inimesed.
+
 ### [Veebiarendus](/veebiarendus/sissejuhatus)
 Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL ja DNS, päringud/vastused, meetodid ja staatusekoodid, küpsised/sessioonid, CORS, HTTP versioonid ja Network-paneel.
 
