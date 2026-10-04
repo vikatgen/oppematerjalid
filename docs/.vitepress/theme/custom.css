@@ -1,0 +1,18 @@
+/* Ülesannete loendid (- [ ]): märkeruut ilma täpita */
+.vp-doc ul.contains-task-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.vp-doc li.task-list-item {
+    list-style: none;
+}
+
+.vp-doc li.task-list-item::marker {
+    content: none;
+}
+
+.vp-doc .task-list-item-checkbox {
+    margin-right: 0.5em;
+    vertical-align: middle;
+}

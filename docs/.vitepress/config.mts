@@ -1,4 +1,5 @@
 import { withMermaid } from "vitepress-plugin-mermaid";
+import taskLists from "markdown-it-task-lists";
 
 const base = process.env.VITEPRESS_BASE ?? "/oppematerjalid/";
 
@@ -7,6 +8,12 @@ export default withMermaid({
     lang: "et-EE",
     title: "SWE",
     description: "Kuressaare Ametikooli tarkvaraarenduse õppematerjalid: arvutivõrgud, küberturvalisus, JavaScript, TypeScript, Node.js, testimine, Linux, Docker, Nginx",
+
+    markdown: {
+        config: (md) => {
+            md.use(taskLists);
+        },
+    },
 
     head: [
         ["meta", { name: "robots", content: "noindex, nofollow" }],

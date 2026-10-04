@@ -10,5 +10,8 @@
     "mermaid": "^10.9.1",
     "vitepress": "^1.0.0",
     "vitepress-plugin-mermaid": "^2.0.17"
+  },
+  "dependencies": {
+    "markdown-it-task-lists": "^2.1.1"
   }
 }
