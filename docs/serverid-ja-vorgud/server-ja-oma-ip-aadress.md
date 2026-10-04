@@ -30,7 +30,7 @@ Kui rakendus "ei tööta", ei tähenda see automaatselt, et kood on katki. Kood 
 
 Selleks, et klient saaks serverile üldse päringu saata, vajab server **aadressi** — täpselt nagu kiri vajab saaja aadressi, et kohale jõuda. Seda aadressi arvutivõrgus nimetatakse **IP-aadressiks**.
 
-Kui IP-aadress, pakett ja ruuter on sulle täiesti uued sõnad, loe kõigepealt läbi [Arvutivõrk ja andmeedastus](/arvutivorgud/vork-ja-andmeedastus) ja [Võrgumudelid ja adresseerimine](/arvutivorgud/vorgumudelid-ja-aadressid) — need selgitavad põhimõtte üldiselt, avalike näidete peal (nagu `8.8.8.8`). Siin läheme sammu edasi: kust tuleb **meie enda** serveri aadress, ja miks see erineb avalikest näidetest.
+Kui IP-aadress, pakett ja ruuter on sulle täiesti uued sõnad, loe kõigepealt läbi [Seadmed, ühendused ja andmete teekond](/arvutivorgud/kohtumine-02-seadmed-ja-teekonnad) ja [IPv4 ja aadressiplaan](/arvutivorgud/kohtumine-04-ipv4-ja-aadressiplaan) — need selgitavad põhimõtte üldiselt, avalike näidete peal (nagu `8.8.8.8`). Siin läheme sammu edasi: kust tuleb **meie enda** serveri aadress, ja miks see erineb avalikest näidetest.
 
 ### Avalik ja privaatne aadress
 
