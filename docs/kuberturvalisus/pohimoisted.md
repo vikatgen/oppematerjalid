@@ -1,20 +1,20 @@
 ---
 title: Küberturvalisuse põhimõisted
-description: "Tund 6: uus töötaja Siim alustab esmaspäeval. Mida kaitsta, millest ja kui tõsiselt: vara, oht, nõrkus, risk, CIA, krüptograafia, häkkerite mütsid, nullpäeva haavatavus ja läbistustestimine."
+description: "Peatükk 1: uus töötaja Siim alustab esmaspäeval. Mida kaitsta, millest ja kui tõsiselt: vara, oht, nõrkus, risk, CIA, krüptograafia, häkkerite mütsid, nullpäeva haavatavus ja läbistustestimine."
 outline: deep
 ---
 
 # Küberturvalisuse põhimõisted
 
 ::: info Õpiväljund
-Pärast tundi oskad kasutada küberturvalisuse põhimõisteid õigesti ja koostada lihtsa riskitabeli (HK 4.1).
+Pärast peatüki lugemist oskad kasutada küberturvalisuse põhimõisteid õigesti ja koostada lihtsa riskitabeli (HK 4.1).
 :::
 
 ## Siim alustab esmaspäeval
 
-Eelmistes tundides õppisid, kuidas võrk töötab. Nüüd lisandub küsimus: **kuidas seda kaitsta?** Selle osa läbiv lugu on järgmine.
+Selle osa läbiv küsimus on: **kuidas arvutit ja kontorit kaitsta?** Läbiv lugu on järgmine.
 
-Mari firmasse (20 töötajat, väike kontor) tuleb esmaspäeval uus töötaja Siim. Sinu ülesanne, kui oled firma IT-inimene, on **valmistada Siimu arvuti ja kontorivõrk ette nii, et seda oleks turvaline kasutada**. Kursuse lõpuks oled seda ka tegelikult teinud.
+Mari firmasse (20 töötajat, väike kontor) tuleb esmaspäeval uus töötaja Siim. Sinu ülesanne, kui oled firma IT-inimene, on **valmistada Siimu arvuti ja kontorivõrk ette nii, et seda oleks turvaline kasutada**. Selle osa lõpuks oled seda ka tegelikult teinud.
 
 Alustada tuleb mõistetest. Neid on viis ja need käivad alati koos.
 
@@ -88,7 +88,7 @@ Kui brauseri aadressiribal on `https://` ja lukk, on Siimu ja serveri vaheline l
 
 ## Parool
 
-**Parool** on saladus, mis tõendab, et oled see, kes väidad end olevat. Parool on ka krüptograafia osa, sest paljud süsteemid kasutavad sinu parooli, et sinu andmeid krüpteerida. Tugevast paroolist räägime [kontode tunnis](./kontod-ja-oigused).
+**Parool** on saladus, mis tõendab, et oled see, kes väidad end olevat. Parool on ka krüptograafia osa, sest paljud süsteemid kasutavad sinu parooli, et sinu andmeid krüpteerida. Tugevast paroolist räägime [kontode peatükis](./kontod-ja-oigused).
 
 ## Kolme mütsiga häkkerid
 
@@ -103,7 +103,7 @@ Kujutle, et kolm erinevat inimest märkab, et firma veebiserveri uks on valesti 
 Sõna "häkker" ise tähendab inimest, kes süsteeme sügavalt mõistab. Mütsivärv kirjeldab, mida ta teeb ja kas tal on luba.
 
 ::: warning Hea kavatsus ei muuda lubamatut tegevust lubatuks
-Süsteemi testimine ilma omaniku selge loata on ebaseaduslik, ka heade kavatsuste korral. Seepärast on selle kursuse praktilised tööd tehtud ainult õpetaja antud testkeskkonnas.
+Süsteemi testimine ilma omaniku selge loata on ebaseaduslik, ka heade kavatsuste korral. Seepärast on selle materjali ülesanded analüüsiülesanded ja ära proovi kunagi võõrast süsteemi.
 :::
 
 ## Nullpäeva haavatavus: kui parandust veel pole
@@ -114,7 +114,7 @@ Seda nimetatakse **nullpäeva haavatavuseks** (*zero-day*). Nimi tähendab, et t
 
 Näide: detsembris 2021 avalikustati laialt kasutatud Java-teegis Apache Log4j haavatavus (**Log4Shell**, CVE-2021-44228). Ründajad hakkasid seda koheselt ära kasutama, enne kui kõik süsteemid jõudsid parandust saada.
 
-Mida firma sellises olukorras teeb? Paigaldab uuenduse nii kiiresti kui võimalik. Kui parandust veel pole, rakendab ajutise leevenduse (nt keelab ohtliku funktsiooni). Sellepärast ei piisa ühest kaitsest. Sellest räägime [järgmises tunnis](./ohud).
+Mida firma sellises olukorras teeb? Paigaldab uuenduse nii kiiresti kui võimalik. Kui parandust veel pole, rakendab ajutise leevenduse (nt keelab ohtliku funktsiooni). Sellepärast ei piisa ühest kaitsest. Sellest räägime [järgmises peatükis](./ohud).
 
 ## Läbistustestimine: kontrollitud rünnak
 
@@ -128,20 +128,30 @@ Mari ülemus mõtleb: "Kuidas me teame, et meie kaitse toimib?" Ta palkab firma,
 
 Selles kursuses ründevahendeid ei kasutata. Mõiste tundmine aitab mõista, kuidas organisatsioonid oma kaitset kontrollivad.
 
-## Praktiline töö: kolm olukorda, üks riskitabel
+## Ülesanne: kolm olukorda, üks riskitabel
 
-Õpetaja annab lühikesed olukorrad Mari firmast. Igaühe kohta:
+Siin on kolm lühikest olukorda Mari firmast. Loe need ja vasta igaühe kohta ülaltoodud mõistetega.
+
+**Olukord A.** Failiserveris on kaust `Palgad`. Seadistus on selline, et kõik 20 töötajat saavad kausta lugeda ja ka muuta.
+
+**Olukord B.** Siim kasutab firma e-posti jaoks sama parooli, mis ühes väikeses internetipoes. Pood teatab andmelekkest ja lekkinud paroolid on avalikud.
+
+**Olukord C.** Firma on kogunud kontori Wi-Fi paroolid ühte tabelisse, mida hoitakse kõigile avatud ühiskaustas.
+
+Igaühe kohta vasta:
 
 1. Mis on **kaitstav vara**?
 2. Milles seisneb **nõrkus**?
 3. Mis **oht** seda ära kasutaks?
 4. Mis oleks **mõju** organisatsioonile?
 5. Milline CIA osa rikutaks?
-6. Kas kirjeldatud tegevus on **lubatud turvatestimine** või **loata tegevus**? Põhjenda.
 
-Seejärel koosta **riskitabel** vähemalt kolme olukorra kohta ülaltoodud kujul (vara, oht, nõrkus, tõenäosus, mõju, risk, meede).
+Seejärel otsusta kahe tegevuse kohta, kas see on **lubatud turvatestimine** või **loata tegevus**, ja põhjenda:
 
-**Esitatav töö:** riskitabel. **Seos: HK 4.1.**
+- **X.** Firma tellib turvafirmalt kirjaliku lepinguga kontori Wi-Fi turvalisuse kontrolli. Leping nimetab testitava võrgu ja ajavahemiku.
+- **Y.** Jaan proovib õhtul omal algatusel firma serveri sisselogimisparoole, "et näha, kas need on tugevad". Kellelegi ta ei ütle.
+
+**Kaitsmiseks:** koosta oma märkmetesse riskitabel olukordade A, B ja C kohta (vara, oht, nõrkus, tõenäosus, mõju, risk, meede). Ole valmis seda õpetajale suuliselt selgitama.
 
 ## Kokkuvõte
 

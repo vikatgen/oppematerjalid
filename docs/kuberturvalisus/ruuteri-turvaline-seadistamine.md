@@ -1,13 +1,13 @@
 ---
 title: Riistvara turvaline seadistamine
-description: "Tund 10: kontori ruuter, mis jäi Mari nädalal turvaauguks. Haldusparool, haldusligipääs, püsivara uuendused ja mittevajalikud funktsioonid; varasemate turvameetmete kinnistamine."
+description: "Peatükk 5: kontori ruuter, mis jäi Mari nädalal turvaauguks. Haldusparool, haldusligipääs, püsivara uuendused ja mittevajalikud funktsioonid; varasemate turvameetmete kinnistamine."
 outline: deep
 ---
 
 # Riistvara turvaline seadistamine
 
 ::: info Õpiväljund
-Pärast tundi oskad selgitada riistvara seadistusriski, teha ruuteril turvamuudatuse ja kontrollida tulemust (HK 4.1 ja HK 4.2).
+Pärast peatüki lugemist oskad selgitada riistvara seadistusriski, teha ruuteril turvamuudatuse ja kontrollida tulemust (HK 4.1 ja HK 4.2).
 :::
 
 Tarkvarast on lihtne mõelda "uuendus ja viirusetõrje". Riistvara, nagu ruuter, kaamera ja printer, jääb sageli seadistamata, sest "see lihtsalt töötab". Aga [Mari halval nädalal](./ohud) algas reedene juhtum just kontori ruuterist.
@@ -23,7 +23,7 @@ Selle järel sai ta:
 - pääseda sisevõrgu seadmetele ligi;
 - kasutada ruuterit teiste rünnakute käivitamiseks. Täpselt nii tegi [Mirai](./ohud) tuhandete ruuterite ja kaameratega.
 
-Ruuteri ebaturvaline seadistus on täpselt see **risk**, mille [tunnis 6](./pohimoisted) riskitabelisse kirjutasid: vara (ruuter), oht (loata ligipääs), nõrkus (tehaseparool), mõju (kogu võrk).
+Ruuteri ebaturvaline seadistus on täpselt see **risk**, mille [põhimõistete peatükis](./pohimoisted) riskitabelisse kirjutasid: vara (ruuter), oht (loata ligipääs), nõrkus (tehaseparool), mõju (kogu võrk).
 
 ## Viis asja, mida ruuteril kontrollida
 
@@ -31,7 +31,7 @@ Ruuteri ebaturvaline seadistus on täpselt see **risk**, mille [tunnis 6](./pohi
 
 **Probleem:** tehase vaikeparool (`admin`/`admin` jms) on avalikult teada. Nimekirju on interneti täis.
 
-**Mida teha:** muuda haldusparool pikaks ja unikaalseks. Hoia seda paroolihalduris (vt [kontode tund](./kontod-ja-oigused)). Pärast parooli muutmist **kontrolli**, et uus parool töötab ja vana enam mitte.
+**Mida teha:** muuda haldusparool pikaks ja unikaalseks. Hoia seda paroolihalduris (vt [kontode peatükk](./kontod-ja-oigused)). Pärast parooli muutmist **kontrolli**, et uus parool töötab ja vana enam mitte.
 
 ### 2. Haldusligipääs
 
@@ -58,7 +58,7 @@ Ruuteri ebaturvaline seadistus on täpselt see **risk**, mille [tunnis 6](./pohi
 **Mida teha:** kasuta WPA2 või WPA3 ja tugevat Wi-Fi parooli. Külalistele tee eraldi **külalisvõrk**.
 
 ::: tip Külalisvõrk
-Külalised ja töötajate seadmed ei pea olema samas võrgus. Külalisvõrk annab internetti, kuid ei lase ligi sisevõrgu seadmetele. Nii ei paljasta külalise nakatunud telefon firmaserverit. See lahendaks ka [tunni 9](./tooarvuti-turvaseadistused) olukorra 3.
+Külalised ja töötajate seadmed ei pea olema samas võrgus. Külalisvõrk annab internetti, kuid ei lase ligi sisevõrgu seadmetele. Nii ei paljasta külalise nakatunud telefon firmaserverit. See lahendaks ka [tööarvuti peatüki](./tooarvuti-turvaseadistused) olukorra 3.
 :::
 
 | Riskipunkt | Turvaline seadistus |
@@ -77,25 +77,33 @@ Ruuteri seadistamisel võib minna valesti: unustad uue parooli, blokeerid endale
 2. Tee **ühe muudatuse korraga** ja kontrolli tulemust. Kui teed viis muudatust ja miski lakkab töötamast, ei tea sa, milline neist oli.
 3. Tea, kuidas ruuter **tehaseseadetele taastada** (tavaliselt resetinupp), kui juurdepääs kaob. Pärast taastamist on haldusparool jälle tehase oma, seega tuleb see uuesti muuta.
 
-## Praktiline töö: Mari kontori ruuteri parandamine
+## Ülesanne: Mari kontori uus ruuter
 
-Töö tehakse **kooli tööst eraldatud laboriruuteriga**. Ära kunagi muuda kooli või kodu töötavat ruuterit.
+Mari kontor on saanud uue ruuteri. Seadistus on selline:
 
-Töötage 2–3 liikme rühmades. Õpetaja on seadistanud ruuteris tahtlikud vead, just sellised nagu Mari kontori ruuteril.
+| Seadistus | Väärtus |
+| --- | --- |
+| Haldusparool | `admin` (tehase vaikeparool) |
+| Haldusligipääs | Kättesaadav ka internetist (kaughaldus sees), HTTP |
+| Püsivara | Aastast 2019. Tootja toetus lõppes 2022 |
+| Funktsioonid | Telnet, UPnP ja WPS on sees |
+| Wi-Fi | Üks võrk töötajatele ja külalistele. WPA2, parool `kontor2020` |
 
-1. **Algseis.** Logi ruuterisse (õpetaja annab aadressi ja esialgse parooli). Pane kirja, millised on haldusparool, haldusligipääs, püsivara versioon, Wi-Fi turvalisus ja lahtised funktsioonid.
-2. **Riskid.** Tuvasta vähemalt kolm ebaturvalist seadistust ja kirjuta iga kohta, milline on risk ja mõju (nagu Mari reede).
-3. **Parandus.** Paranda vähemalt **kaks** seadistust (nt muuda haldusparool, keela kaughaldus, lülita välja Telnet).
-4. **Kontroll.** Kontrolli, et muudatus mõjus: logi uue parooliga sisse, proovi vana parooli, proovi haldusliidesesse sisenemist keelatud kohast.
-5. **Dokumentatsioon.** Täida [vorm](./dokumenteerimisvorm). Iga õpilane kirjutab oma protokolli ise ja märgib, mida just tema tegi.
+Seadistus on väljamõeldud, kuid sarnaseid olukordi leidub päriselt.
 
-Rühmad vahetavad tööpunkte, et igaüks saaks teha vähemalt ühe muudatuse ja ühe kontrolli. Ülejäänud aja saab lõpetada varasemaid arvutitöid või korrata.
+Vasta:
 
-::: warning Saladused
-Haldusparooli, Wi-Fi parooli ega taastamiskoodi ei kirjutata protokolli. Kirjuta "parool muudetud, uus parool pikkusega 16 märki", mitte parool ise.
+1. Nimeta vähemalt **kolm** ebaturvalist seadistust. Kirjuta iga kohta **risk** ja **mõju** kontorile.
+2. Milline seadistus on **kõige ohtlikum** ja miks? Mida parandad esimesena?
+3. Kuidas veendud pärast iga muudatust, et see **tegelikult** mõjus?
+4. Mis võib parandamisel **valesti minna** (nt blokeerid endale ligipääsu) ja kuidas selle vastu end kaitsed?
+5. Kuidas aitaks **külalisvõrk** selle kontori puhul?
+
+::: warning Ära katseta päris ruuteril
+Ära muuda ühtegi töötavat ruuterit (kooli, töökoha ega kodu oma) selle ülesande jaoks. Ülesanne on analüüs.
 :::
 
-**Esitatav töö:** ruuteri seadistusprotokoll ja vajaduse korral parandatud varasemad tööd. **Seos: HK 4.1 ja HK 4.2.**
+**Kaitsmiseks:** ole valmis suuliselt selgitama oma riske, järjestust ja kontrollimise viisi.
 
 ## Kokkuvõte
 

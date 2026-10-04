@@ -1,16 +1,16 @@
 ---
 title: Tööarvuti turvaseadistused
-description: "Tund 9: Siimu arvuti valmis tööks. Turvauuendused, viirusetõrje, tulemüür ja automaatne väljalogimine ning ekraanilukustuse ja väljalogimise erinevus."
+description: "Peatükk 4: Siimu arvuti valmis tööks. Turvauuendused, viirusetõrje, tulemüür ja automaatne väljalogimine ning ekraanilukustuse ja väljalogimise erinevus."
 outline: deep
 ---
 
 # Tööarvuti turvaseadistused
 
 ::: info Õpiväljund
-Pärast tundi oskad kontrollida ja seadistada tööarvuti põhilisi turvameetmeid (uuendused, viirusetõrje, tulemüür, automaatne lukustus) ning koostada tööprotokolli (HK 4.2).
+Pärast peatüki lugemist oskad kontrollida ja seadistada tööarvuti põhilisi turvameetmeid (uuendused, viirusetõrje, tulemüür, automaatne lukustus) ning koostada tööprotokolli (HK 4.2).
 :::
 
-Siimu konto on [eelmises tunnis](./kontod-ja-oigused) seadistatud. Nüüd on tema **arvuti** kord. Uue töötaja arvuti on valmis alles siis, kui sellel on põhilised turvameetmed sees ja need on **kontrollitud**. Seadistamine ilma kontrollimiseta ei tõesta midagi.
+Siimu konto on [eelmises peatükis](./kontod-ja-oigused) seadistatud. Nüüd on tema **arvuti** kord. Uue töötaja arvuti on valmis alles siis, kui sellel on põhilised turvameetmed sees ja need on **kontrollitud**. Seadistamine ilma kontrollimiseta ei tõesta midagi.
 
 Mõtle neljale olukorrale, mis Siimu esimesel kuul juhtuvad. Iga olukord vajab oma meedet.
 
@@ -79,21 +79,24 @@ Lukustatud arvutis on Siimu seanss endiselt aktiivne. Jagatud arvuti või tundli
 
 Sama põhimõte kehtib **veebirakenduse seansile**. Panga-, e-posti- ja töörakendused logivad kasutaja välja, kui ta teatud aja tegevusetult istub. Mida tundlikumad andmed, seda lühem aeg. Kui seanss aegub, peab Siim uuesti autentima. Sama kordub iga kord, kui Siim sisse logib (vt [autentimine](./kontod-ja-oigused)).
 
-## Praktiline töö: Siimu arvuti valmis tööks
+## Ülesanne: Siimu arvuti seis
 
-Töö tehakse õpetaja antud virtuaalmasinas. Dokumenteeri iga punkt [vormi](./dokumenteerimisvorm) järgi.
+Siim on töötanud kolm nädalat. Sina vaatad tema arvuti seisu üle ja leiad järgmist:
 
-1. **Algseis.** Kontrolli ja pane kirja:
-   - kas automaatsed uuendused on sees ja kas on ootel uuendusi;
-   - kas viirusetõrje on aktiivne ja uuendatud;
-   - kas tulemüür on sees;
-   - mis on tegevusetuse lukustuse aeg (kui üldse).
-2. **Uuendus.** Tee õpetaja ettevalmistatud tarkvarauuendus. Kontrolli, et uuendus tõesti paigaldus (versiooninumber muutus).
-3. **Lukustus.** Seadista arvuti lukustuma tegevusetuse korral (nt 5 minuti pärast). Kontrolli, jättes arvuti puutumata.
-4. **Seansi aegumine.** Õpperakenduses seadista või katseta seansi aegumist ja kirjuta, mis juhtus.
-5. **Vahe.** Selgita ühe lausega lukustuse ja väljalogimise erinevust.
+- Windowsi uuendusi on ootel kolm nädalat, sest Siim on neid "hiljem" teinud.
+- Viirusetõrje on sees, aga selle viimane uuendus oli kaks kuud tagasi.
+- Tulemüür on välja lülitatud, sest Siim ei saanud ühte programmi tööle.
+- Ekraanilukustust ei ole seadistatud.
+- Siim jagab vahel arvutit praktikandiga.
 
-**Esitatav töö:** algseis, muudatused ja toimivuse kontroll. **Seos: HK 4.2.**
+Vasta:
+
+1. Järjesta neli esimest probleemi tähtsuse järgi ja põhjenda järjestust.
+2. Iga meetme kohta: kuidas kontrollid pärast parandust, et see **tegelikult** toimib, mitte ainult ei ole seadistatud?
+3. Millal piisab Siimul **ekraanilukustusest** ja millal peab ta **välja logima**? Too üks näide mõlema kohta.
+4. Siim ütleb: "Tulemüür segas, lülitasin välja." Mida sa talle vastad ja mida teed, et programm ikka töötaks?
+
+**Kaitsmiseks:** ole valmis suuliselt selgitama oma järjestust ja kontrollide valikut.
 
 ## Kokkuvõte
 

@@ -1,13 +1,13 @@
 ---
 title: Kokkuvõttev praktiline hindamine
-description: "Tund 11: individuaalne praktiline hindamine. Kuidas töö on üles ehitatud ja mida hinnatakse."
+description: "Peatükk 6: individuaalne kaitsmine õpetajale. Kuidas kaitsmine on üles ehitatud ja mida hinnatakse."
 outline: deep
 ---
 
 # Kokkuvõttev praktiline hindamine
 
 ::: info Eesmärk
-Näitad iseseisvalt, et oskad selgitada küberturberiskide mõju ja rakendada ning dokumenteerida lihtsaid turvameetmeid (HK 4.1 ja HK 4.2).
+Näitad iseseisvalt, et oskad selgitada küberturberiskide mõju ning valida, põhjendada ja kontrollida lihtsaid turvameetmeid (HK 4.1 ja HK 4.2).
 :::
 
 ## Hindamiskriteeriumid
@@ -17,49 +17,40 @@ Näitad iseseisvalt, et oskad selgitada küberturberiskide mõju ja rakendada ni
 | **HK 4.1** | Loetled peamised küberturberiskid tarkvara ja riistvara konfigureerimisel ning selgitad nende mõju organisatsioonile. |
 | **HK 4.2** | Rakendad lihtsamaid turvameetmeid, nagu paroolipoliitika, tarkvara uuendused ja õiguste piiramine, ning dokumenteerid oma tegevused. |
 
-Mõlemad kriteeriumid peavad olema saavutatud. Hea riskikirjeldus ei asenda tegemata praktilist tööd.
+Mõlemad kriteeriumid peavad olema saavutatud.
 
-## Läbiv olukord
+## Kuidas see toimub
 
-Kogu kursuse jooksul oled valmistanud ette **uue töötaja Siimu arvuti ja Mari kontori võrgu turvaliseks kasutamiseks**: riskid kaardistatud, ohud tuttavad, konto, arvuti ja ruuter seadistatud. Lõpphindamisel on sama olukord, kuid uute andmete ja ettevalmistatud keskkonnaga: uus töötaja, uus juhtum, uued vead.
-
-## Töö ülesehitus (90 minutit)
+Hindamine on **individuaalne suuline kaitsmine** õpetajale. Selleks valmistad kodus ette eelnevate peatükkide ülesannete vastused (riskitabel, paroolid ja õigused, tööarvuti, ruuter). Neid vastuseid kasutad kaitsmisel.
 
 | Aeg | Mida teed |
 | --- | --- |
-| 10 minutit | Õpetaja juhendab ja annab ülesande |
-| 60 minutit | Töötad iseseisvalt: analüüsid lühikest juhtumit ja parandad ettevalmistatud keskkonnas seadistusi |
-| 20 minutit | Lõpetad dokumentatsiooni ja põhjendad oma valikuid |
+| 5 minutit | Õpetaja annab uue lühikese juhtumi |
+| 10 minutit | Valmistud ette: analüüsid juhtumit |
+| 15 minutit | Selgitad õpetajale suuliselt ja vastad küsimustele |
 
-Sa ei pea kõiki kursuse tegevusi uuesti läbi tegema. Hindamisel kasutatakse ka eelnevate praktikumide tõendeid.
+## Mida pead suutma
 
-## Mida pead esitama
-
-1. **Riskianalüüs.** Lühike juhtum: nimeta vara, oht, nõrkus, risk ja mõju organisatsioonile. Kaasa nii tarkvara kui riistvara seadistusrisk.
-2. **Parandused.** Tee vähemalt kaks turvaparandust ettevalmistatud keskkonnas (nt paroolipoliitika, õiguste piiramine, uuendus, lukustus).
-3. **Kontroll.** Iga muudatuse kohta: kuidas kontrollisid ja mis oli tegelik tulemus.
-4. **Põhjendus.** Miks valisid just need meetmed ja miks ühest meetmest ei piisa.
-5. **Tõendid.** Ekraanipilt, käsu väljund või kirjeldatud kontroll.
-
-Dokumenteeri [dokumenteerimisvormi](./dokumenteerimisvorm) järgi.
+1. **Riskianalüüs.** Nimeta uues juhtumis vara, oht, nõrkus, risk ja mõju organisatsioonile. Kaasa nii **tarkvara** kui **riistvara** seadistusrisk.
+2. **Meetmed.** Vali vähemalt **kaks** turvameedet (nt paroolipoliitika, õiguste piiramine, uuendus, lukustus, ruuteri haldus) ja põhjenda valikut.
+3. **Kontroll.** Iga meetme kohta selgita, kuidas veendud, et see **tegelikult** toimib, mitte ainult ei ole seadistatud.
+4. **Põhjendus.** Miks need meetmed ja miks ühest meetmest ei piisa.
 
 ## Hindamise põhimõtted
 
 | Osa | Mis tõendab |
 | --- | --- |
-| Võrguülesanded | Võrguskeem, protokollide selgitus, koormuse mõõtmine ja arvutus on kujundav tagasiside ja tõendavad alateemade läbimist |
 | HK 4.1 | Riskianalüüs, mis käsitleb nii tarkvara kui riistvara ja konkreetset mõju |
-| HK 4.2 | Praktilised tööd: paroolipoliitika, uuendused, õiguste piiramine, dokumenteerimine |
-| Lõppülesanne | Iseseisev töö. Varasemad tõendid täiendavad seda |
+| HK 4.2 | Meetmete valik, põhjendus ja kontrolli selgitus |
 
-Paaris- ja rühmatöö sobivad õppimiseks, kuid **iga õpilase oskus peab olema individuaalselt tõendatud**.
+Kaitsmine on **individuaalne**: iga õpilane vastab ise. Paaris või rühmas õppimine on kodus lubatud, aga kaitsmisel vastad sina.
 
-## Enne hindamist kontrolli
+## Enne kaitsmist kontrolli
 
-- [ ] Mul on olemas eelmiste tööde protokollid (riskitabel, paroolipoliitika ja õigused, tööarvuti, ruuter).
-- [ ] Oskan oma sõnadega selgitada, miks igat meedet kasutasin.
-- [ ] Tean, kuidas kontrollida, et meede tegelikult toimib, mitte ainult seadistatud.
-- [ ] Minu dokumentatsioonis ei ole paroole ega muid saladusi.
+- [ ] Mul on olemas oma vastused eelmiste peatükkide ülesannetele.
+- [ ] Oskan oma sõnadega selgitada, miks igat meedet kasutaksin.
+- [ ] Tean, kuidas kontrollida, et meede tegelikult toimib.
+- [ ] Oskan eristada ohtu, nõrkust, riski ja mõju.
 
 ## Kui mõni oskus jääb tõendamata
 

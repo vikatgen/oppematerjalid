@@ -1,16 +1,16 @@
 ---
 title: Küberohud ja kaitsemeetmete valimine
-description: "Tund 7: halb nädal Mari kontoris. Andmepüük, pahavara, lunavara ja DDoS ning seadistusvead tarkvaras ja riistvaras, nende mõju ja sobivad kaitsemeetmed."
+description: "Peatükk 2: halb nädal Mari kontoris. Andmepüük, pahavara, lunavara ja DDoS ning seadistusvead tarkvaras ja riistvaras, nende mõju ja sobivad kaitsemeetmed."
 outline: deep
 ---
 
 # Küberohud ja kaitsemeetmete valimine
 
 ::: info Õpiväljund
-Pärast tundi oskad selgitada peamisi küberohte ja nende mõju organisatsioonile, seostada ohu, ebaturvalise seadistuse, tagajärje ja sobiva kaitsemeetme ning põhjendada, miks ühest meetmest ei piisa (HK 4.1).
+Pärast peatüki lugemist oskad selgitada peamisi küberohte ja nende mõju organisatsioonile, seostada ohu, ebaturvalise seadistuse, tagajärje ja sobiva kaitsemeetme ning põhjendada, miks ühest meetmest ei piisa (HK 4.1).
 :::
 
-[Eelmises tunnis](./pohimoisted) õppisid mõisteid. Nüüd vaatame, kuidas ohud päriselt välja näevad. Kujutle halba nädalat Mari kontoris. Iga päev juhtub üks asi ja iga asi on üks küberoht.
+[Põhimõistete peatükis](./pohimoisted) õppisid mõisteid. Nüüd vaatame, kuidas ohud päriselt välja näevad. Kujutle halba nädalat Mari kontoris. Iga päev juhtub üks asi ja iga asi on üks küberoht.
 
 ## Esmaspäev: andmepüük
 
@@ -139,18 +139,22 @@ flowchart LR
     F --> G[Vara]
 ```
 
-## Praktiline töö: juhtumianalüüs
+## Ülesanne: kaks juhtumit
 
-Õpetaja annab lühikesed juhtumid tarkvara ja riistvara kohta (samas stiilis nagu Mari nädal). Igaühe kohta:
+Loe kaks lühikest juhtumit Mari firmast. Üks on tarkvara, teine riistvara.
+
+**Juhtum 1 (tarkvara).** Failiserveri operatsioonisüsteemi ei ole pool aastat uuendatud, sest "uuendus võib asju katki teha". Ühel hommikul on failid krüpteeritud ja ekraanil on lunanõue. Varukoopiaid ei ole tehtud.
+
+**Juhtum 2 (riistvara).** Kontoris on turvakaamera. Selle haldusleht on internetist kättesaadav ja parool on tehase vaikeparool. Kaamera on suunatud ruumile, kus on avatud ka raamatupidamise dokumendid.
+
+Igaühe kohta:
 
 1. Nimeta **oht** ja **ebaturvaline seadistus**.
 2. Kirjelda **tagajärg** organisatsioonile.
 3. Vali **vähemalt kaks sobivat meedet** ja põhjenda, miks.
 4. Selgita, miks **ühest meetmest ei piisa**.
 
-Täienda eelmise tunni riskitabelit uute ridadega, nii et see hõlmaks nii tarkvara kui riistvara.
-
-**Esitatav töö:** täiendatud riskitabel. **Seos: HK 4.1.**
+**Kaitsmiseks:** täienda põhimõistete peatüki riskitabelit uute ridadega nii, et see hõlmaks nii tarkvara kui riistvara. Ole valmis seletama oma meetmete valikut.
 
 ## Kokkuvõte
 

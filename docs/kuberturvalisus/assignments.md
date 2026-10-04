@@ -1,25 +1,25 @@
 # Küberturvalisuse ülesanded
 
-Iga kohtumise lõpus esitad ühe töö. Töö kirjeldus on vastavas tunnis, siin on kontroll-loend. Praktilisi töid dokumenteeri [vormi](/kuberturvalisus/dokumenteerimisvorm) järgi.
+Iga peatüki lõpus on üks analüüsiülesanne. Ülesande kirjeldus on vastavas peatükis, siin on kontroll-loend. Tööd tehakse kodus ja **kaitstakse suuliselt õpetajale**: kirjalikku vormi ei täida. Mõtle iga vastuse kohta valmis, mida selgitaksid.
 
 ---
 
-## 6. Riskitabel (HK 4.1)
+## 1. Riskitabel (HK 4.1)
 
-**Tund:** [Küberturvalisuse põhimõisted](/kuberturvalisus/pohimoisted)
+**Peatükk:** [Küberturvalisuse põhimõisted](/kuberturvalisus/pohimoisted)
 
 **Kontroll:**
 
-- [ ] Vähemalt kolm rida: vara, oht, nõrkus, tõenäosus, mõju, risk, meede
+- [ ] Riskitabel on koostatud kolme olukorra kohta: vara, oht, nõrkus, tõenäosus, mõju, risk, meede
 - [ ] Mõisted on õigesti kasutatud (oht ja nõrkus ei ole segamini)
 - [ ] Märgitud on, milline CIA osa on ohus
 - [ ] Eristatud on lubatud turvatestimine loata tegevusest
 
 ---
 
-## 7. Täiendatud riskitabel (HK 4.1)
+## 2. Täiendatud riskitabel (HK 4.1)
 
-**Tund:** [Küberohud ja kaitsemeetmete valimine](/kuberturvalisus/ohud)
+**Peatükk:** [Küberohud ja kaitsemeetmete valimine](/kuberturvalisus/ohud)
 
 **Kontroll:**
 
@@ -29,47 +29,47 @@ Iga kohtumise lõpus esitad ühe töö. Töö kirjeldus on vastavas tunnis, siin
 
 ---
 
-## 8. Paroolipoliitika ja õiguste protokoll (HK 4.2)
+## 3. Paroolid ja õigused (HK 4.2)
 
-**Tund:** [Kontod, paroolid ja ligipääsuõigused](/kuberturvalisus/kontod-ja-oigused)
-
-**Kontroll:**
-
-- [ ] Algseis, muudatus ja kontroll on kirjas
-- [ ] Paroolinõude puhul on kontrollitud nii tagasilükatud kui vastuvõetud parool
-- [ ] Õiguste puhul on kontrollitud nii lubatud kui keelatud tegevust
-- [ ] Protokollis ei ole paroole ega saladusi
-
----
-
-## 9. Tööarvuti tööprotokoll (HK 4.2)
-
-**Tund:** [Tööarvuti turvaseadistused](/kuberturvalisus/tooarvuti-turvaseadistused)
+**Peatükk:** [Kontod, paroolid ja ligipääsuõigused](/kuberturvalisus/kontod-ja-oigused)
 
 **Kontroll:**
 
-- [ ] Algseis (uuendused, viirusetõrje, tulemüür, lukustus) on kirjas
-- [ ] Uuendus on tehtud ja versioon kontrollitud
-- [ ] Lukustus on seadistatud ja toimimist on kontrollitud
-- [ ] Lukustuse ja väljalogimise erinevus on selgitatud
+- [ ] Iga parooli puhul on otsus (lubatud või mitte) põhjendatud poliitika järgi
+- [ ] MFA kaks tegurit on nimetatud ja on selgitatud, miks see kaitseb lekke korral
+- [ ] On nimetatud olukord, kus MFA üksi ei aita
+- [ ] Õigused on igale töötajale ja kaustale määratud vähimate õiguste põhimõtte järgi
 
 ---
 
-## 10. Ruuteri seadistusprotokoll (HK 4.1 ja HK 4.2)
+## 4. Tööarvuti seis (HK 4.2)
 
-**Tund:** [Riistvara turvaline seadistamine](/kuberturvalisus/ruuteri-turvaline-seadistamine)
+**Peatükk:** [Tööarvuti turvaseadistused](/kuberturvalisus/tooarvuti-turvaseadistused)
 
 **Kontroll:**
 
-- [ ] Vähemalt kolm riski tuvastatud ja mõju selgitatud
-- [ ] Vähemalt kaks seadistust parandatud
-- [ ] Iga muudatuse tulemus on kontrollitud
-- [ ] Minu enda panus on protokollis nähtav
+- [ ] Probleemid on järjestatud ja järjestust on põhjendatud
+- [ ] Iga meetme kohta on nimetatud kontroll, mis tõendab, et see toimib
+- [ ] Lukustuse ja väljalogimise erinevus on selgitatud näidetega
+- [ ] On vastus Siimu väitele "lülitasin tulemüüri välja"
 
 ---
 
-## 11. Kokkuvõttev praktiline hindamine
+## 5. Ruuter (HK 4.1 ja HK 4.2)
 
-**Tund:** [Kokkuvõttev praktiline hindamine](/kuberturvalisus/lopphindamine)
+**Peatükk:** [Riistvara turvaline seadistamine](/kuberturvalisus/ruuteri-turvaline-seadistamine)
 
-Individuaalne töö, mis tõendab HK 4.1 ja HK 4.2.
+**Kontroll:**
+
+- [ ] Vähemalt kolm riski on tuvastatud ja mõju selgitatud
+- [ ] On valitud kõige ohtlikum seadistus ja põhjendatud, miks see on esimene
+- [ ] Iga muudatuse kontrollimise viis on nimetatud
+- [ ] On nimetatud, mis võib parandamisel valesti minna
+
+---
+
+## 6. Kokkuvõttev kaitsmine
+
+**Peatükk:** [Kokkuvõttev praktiline hindamine](/kuberturvalisus/lopphindamine)
+
+Individuaalne suuline kaitsmine õpetajale. Tõendab HK 4.1 ja HK 4.2.

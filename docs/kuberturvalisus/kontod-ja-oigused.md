@@ -1,13 +1,13 @@
 ---
 title: Kontod, paroolid ja ligipääsuõigused
-description: "Tund 8: Siimu esimene päev. Kuidas ta sisse logib, kuidas me kaitseme tema parooli ja mida tal firmas tohib teha: autentimine, autoriseerimine, paroolipoliitika, paroolihaldur, MFA ja vähimad õigused."
+description: "Peatükk 3: Siimu esimene päev. Kuidas ta sisse logib, kuidas me kaitseme tema parooli ja mida tal firmas tohib teha: autentimine, autoriseerimine, paroolipoliitika, paroolihaldur, MFA ja vähimad õigused."
 outline: deep
 ---
 
 # Kontod, paroolid ja ligipääsuõigused
 
 ::: info Õpiväljund
-Pärast tundi oskad eristada autentimist ja autoriseerimist, rakendada paroolipoliitikat ja õiguste piiramist ning dokumenteerida tulemuse (HK 4.2).
+Pärast peatüki lugemist oskad eristada autentimist ja autoriseerimist, rakendada paroolipoliitikat ja õiguste piiramist ning dokumenteerida tulemuse (HK 4.2).
 :::
 
 Siim alustab esmaspäeval. Tema arvutit valmistad ette sina. Esimene küsimus: **kuidas Siim sisse logib ja mida ta pärast sisselogimist tohib teha?**
@@ -110,34 +110,36 @@ Miks? Kui Siimu konto satub ründaja kätte (andmepüük, nõrk parool), saab ta
 
 Tavakasutaja töötab argipäeval **tavakonto** all, mitte administraatorina.
 
-## Praktiline töö: Siimu kasutaja seadistamine
+## Ülesanne: Siimu kasutaja
 
-Töö tehakse õpetaja antud taastatavas virtuaalmasinas. Valitud süsteemi konkreetsed sammud annab õpetaja. Sina oled firma IT-inimene ja valmistad Siimu konto ette.
+Sina oled firma IT-inimene ja valmistad Siimu konto ette. Siin on kolm analüüsiülesannet.
 
-**A. Paroolipoliitika**
+**A. Paroolipoliitika.** Firma poliitika on pikkus vähemalt 12 märki, ei nõuta sümbolite segu, lekkinud ja tuntud paroolid on keelatud. Otsusta iga parooli kohta, kas poliitika seda lubaks, ja põhjenda:
 
-1. Dokumenteeri **algseis**: milline on praegune paroolinõue (minimaalne pikkus, lukustus)?
-2. Seadista uus nõue (nt minimaalne pikkus 12, lukustus pärast 5 ebaõnnestunud katset).
-3. **Kontrolli:** proovi luua liiga lühike parool. Süsteem peab selle tagasi lükkama. Proovi luua nõuet täitev parool. Süsteem peab selle vastu võtma.
+| Parool | Lubatud? | Põhjus |
+| --- | --- | --- |
+| `Siim2026!` | | |
+| `kollane-kass-sööb-hommikul-kalja` | | |
+| `parool123` | | |
+| `Qw3!` | | |
+| `JaanAastad1990` | | |
 
-**B. Paroolihaldur ja MFA**
+**B. Paroolihaldur ja MFA.** Siimu parool on lekkinud. Selgita oma sõnadega:
 
-1. Loo testkonto andmetega paroolihaldurisse uus kirje ja kasuta paroolihalduri genereeritud parooli.
-2. Õpetaja demonstreerib MFA-d. Selgita oma sõnadega, millised tegurid osalesid ja miks see kaitseb ka siis, kui parool lekib.
+1. Mis on kaks tegurit, mida MFA nõuab?
+2. Miks MFA kaitseb olukorras, kus ründaja teab Siimu parooli, aga tema telefoni ei ole?
+3. Üks olukord, kus MFA üksi ei aita (nt kui Siim sisestab kinnituskoodi võltslehele). Mida ta peaks lisaks tegema?
 
-**C. Õiguste piiramine**
+**C. Õiguste piiramine.** Firmas on neli töötajat ja neli kausta. Vali igale töötajale iga kausta kohta **ligipääsuõigus**: ei ole ligipääsu, ainult lugemine või lugemine ja muutmine. Põhjenda, miks nii (vähimate õiguste põhimõte).
 
-1. Loo test-kaust ja testkasutaja ("Siim").
-2. Anna testkasutajale ainult **lugemisõigus**.
-3. Kontrolli mõlemat: **lubatud tegevus õnnestub** (fail avaneb) ja **keelatud tegevus ebaõnnestub** (faili muutmine või kustutamine annab veateate).
+| Töötaja | `Lepingud` | `Palgad` | `Müügiaruanded` | `Üldinfo` |
+| --- | --- | --- | --- | --- |
+| Siim (müügiesindaja) | | | | |
+| Jaan (raamatupidaja) | | | | |
+| Mari (kontoriadministraator) | | | | |
+| Juhataja | | | | |
 
-::: warning Saladused ei kuulu tööle
-Ära lisa dokumentatsiooni päris paroole, taastamiskoode ega muid saladusi. Ekraanipildil kata need kinni.
-:::
-
-Dokumenteeri iga osa [dokumenteerimisvormi](./dokumenteerimisvorm) järgi.
-
-**Esitatav töö:** paroolipoliitika seadistuse ja õiguste kontrolli protokoll. **Seos: HK 4.2.**
+**Kaitsmiseks:** ole valmis suuliselt selgitama oma vastuseid ja põhjendama, miks ühele töötajale piiratud õigused on ohutumad kui täisõigused.
 
 ## Kokkuvõte
 
