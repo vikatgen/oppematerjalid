@@ -10,10 +10,6 @@ outline: deep
 Pärast kohtumist oskad tõendada võrgu toimimist, leida ja parandada ühe seadistusvea ning anda üle dokumenteeritud võrguprojekti.
 :::
 
-::: danger Kavandatud, mitte läbi proovitud
-Individuaalsete veafailide ja kontroll-lehe sisu valmistab ette õpetaja. Selle kohtumise ülesanded täpsustuvad pärast kohtumiste 5–10 läbiproovimist.
-:::
-
 ## Mis Karli keskuses nüüd juhtub?
 
 Karli keskus avatakse nädala pärast. Karl ei hakka ise iga päev võrku haldama. Mirjam peab seda **dokumentatsiooni järgi** edasi arendama ja vea korral parandama. Täna kontrollime kahte asja:

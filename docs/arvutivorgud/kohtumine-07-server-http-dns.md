@@ -10,10 +10,6 @@ outline: deep
 Pärast kohtumist oskad seadistada serveri staatilise aadressiga, teha veebilehe kättesaadavaks IP kaudu, seejärel nime kaudu, ning eristada IP-ühenduse, HTTP-teenuse ja DNS-i viga.
 :::
 
-::: warning Kontrollimata tegevused
-Serveri **Services** vaated ja nupud on kirjutatud Packet Traceri tavapärase kasutajaliidese järgi. Kontrolli neid oma versioonis enne õppijatega kasutamist.
-:::
-
 ## Mis Karli keskuses nüüd juhtub?
 
 Mirjam tahab, et mängijad näeksid broneeringute lehte. Karl lisab serveri Staff võrku ja paneb sinna lihtsa lehe. Kõigepealt proovitakse seda **numbriga** (IP kaudu). Mängijad aga ei taha numbreid meelde jätta. Nad tahavad kirjutada `gaming.test`. Selleks on vaja kolmandat asja, nimeteenust.

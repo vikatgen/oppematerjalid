@@ -72,10 +72,6 @@ Simulaator ei asenda päris seadmeid. Ruumiplaan, kaablipikkused, WiFi levi ja k
 
 Esimesed neli kohtumist on **ettevalmistus**: joonistad, kavandad ja arvutad paberil. Võrgu ehitamine algab viiendal kohtumisel.
 
-::: warning Läbi proovimata
-Kohtumised 5–11 on kirjutatud kavandi järgi. Käsud, liidesenimed ja Packet Traceri vaated vajavad enne kasutamist läbikatsetamist. Kohtumised 8–11 on eriti kontrollimata (välisvõrk, WiFi, ACL).
-:::
-
 ## Töövahendid
 
 - **Cisco Packet Tracer**: simulaator, kus ehitad võrgu. Paigaldus on teise kohtumise lõpus, vt [kohtumine 2](./kohtumine-02-seadmed-ja-teekonnad#packet-traceri-paigaldus-ja-kontroll).

@@ -10,10 +10,6 @@ outline: deep
 Pärast kohtumist oskad ühendada kaks väikest LAN-i ruuteriga, anda arvutitele käsitsi aadressi ja gateway, seadistada ruuteri liidesed ning kontrollida liiklust sama võrgu ja teise võrgu seadmega.
 :::
 
-::: warning Kontrollimata käsud
-Käsud ja liidesenimed (`GigabitEthernet0/0` jne) on selles juhendis näited tüüpilisest Cisco ruuterist. Täpne ruuteri mudel ja liidesenimed fikseeritakse labori katsetamisel. Kui sinu ruuteril on teised nimed, vaata neid käsuga `show ip interface brief` ja asenda nimed oma omadega.
-:::
-
 ## Mis Karli keskuses nüüd juhtub?
 
 Neljandal kohtumisel valmis aadressitabel. Nüüd on Karlil esimene päris hetk: ta ehitab võrgu, kus Henri ja Kadri arvuti **tõesti** saavad omavahel rääkida, ja seejärel ühendab need Mirjami võrguga.
@@ -120,34 +116,79 @@ Cisco käsurida töötab **režiimidena**. Mõni käsk töötab ainult õiges re
 | Üldseadistus | `Router(config)#` | Seadistuste muutmine |
 | Liidese seadistus | `Router(config-if)#` | Ühe liidese seadistamine |
 
-Sisesta järjest:
+::: tip Kirjuta käsud ise
+Kopeerimine ei õpeta midagi: käsk jõuab ekraanile, aga mitte pähe. Kirjuta iga käsk käsitsi. Käsurida aitab sind: **Tab** lõpetab käsu ära, **`?`** näitab, mis võiks järgmiseks tulla, ja käske võib lühendada (`conf t` tähendab `configure terminal`). Kui käsk annab veateate, loe seda: tavaliselt ütleb see, mis on valesti.
+:::
+
+Seadistame ruuteri neljas väikeses sammus. Iga sammu järel vaata, mis käsurea alguses muutus.
+
+### Samm 1: mine seadistamise režiimi
+
+**Mida teeme ja miks:** ruuteri seadistust saab muuta ainult kõrgema õigusega režiimis. Kõigepealt läheme sinna.
 
 ```text
 enable
 configure terminal
-hostname R-Center
-interface GigabitEthernet0/0
- ip address 192.168.10.1 255.255.255.0
- no shutdown
- exit
-interface GigabitEthernet0/1
- ip address 192.168.20.1 255.255.255.0
- no shutdown
- exit
-end
 ```
 
-Mida iga käsk teeb:
+Esimene käsk viib `Router>` režiimist `Router#` režiimi. Teine viib sealt üldseadistusse (`Router(config)#`). Kontroll: käsurea tähis lõpeb nüüd tekstiga `(config)#`.
 
-| Käsk | Režiim | Mida teeb | Miks |
-| --- | --- | --- | --- |
-| `enable` | kasutaja | Läheb haldaja režiimi | Seadistamiseks on vaja kõrgemat õigust |
-| `configure terminal` | haldaja | Läheb üldseadistusse | Muudatusi saab teha ainult siin |
-| `hostname R-Center` | üldseadistus | Annab ruuterile nime | Käsurealt on näha, millist seadet seadistad |
-| `interface GigabitEthernet0/0` | üldseadistus | Valib liidese | Käsud kehtivad ainult sellele liidesele |
-| `ip address 192.168.10.1 255.255.255.0` | liides | Annab liidesele aadressi ja maski | See on Gaming võrgu gateway |
-| `no shutdown` | liides | Lülitab liidese sisse | Ilma selleta liides ei tööta |
-| `end` | mis tahes | Tagasi haldaja režiimi | |
+### Samm 2: anna ruuterile nimi
+
+**Mida teeme ja miks:** nimi on käsurea alguses näha. Kui sul on mitu seadet, näed kohe, millist neist seadistad.
+
+```text
+hostname R-Center
+```
+
+Käsurea algus muutub `R-Center(config)#`.
+
+### Samm 3: Gaming liides
+
+**Mida teeme ja miks:** ruuteri ühendus Gaming võrguga on **liides**. Anname talle aadressi, mille valisime neljandal kohtumisel Gaming võrgu gateway'ks (`192.168.10.1`), ja lülitame sisse.
+
+```text
+interface GigabitEthernet0/0
+```
+
+See valib liidese. Käsurea algus muutub `R-Center(config-if)#`: nüüd kehtivad käsud ainult sellele liidesele.
+
+```text
+ip address 192.168.10.1 255.255.255.0
+```
+
+See annab liidesele aadressi ja maski. Ruuter on nüüd Gaming võrgus seade nr 1.
+
+```text
+no shutdown
+```
+
+See lülitab liidese sisse. Ilma selleta jääb liides välja lülitatuks ja tuli punaseks.
+
+```text
+exit
+```
+
+See viib tagasi üldseadistusse.
+
+### Samm 4: Staff liides
+
+**Proovi ise.** Tee sama teise liidesega. Liides on `GigabitEthernet0/1` ja aadress `192.168.20.1` (maski `255.255.255.0`). Kirjuta käsud ise sama kuju järgi nagu eelmises sammus.
+
+::: details Kontrolli oma käske
+```text
+interface GigabitEthernet0/1
+ip address 192.168.20.1 255.255.255.0
+no shutdown
+exit
+```
+:::
+
+Lõpuks mine tagasi haldaja režiimi:
+
+```text
+end
+```
 
 `192.168.10.1` on aadress, mille valisime neljandal kohtumisel Gaming võrgu gateway'ks. Ruuter on nüüd Gaming võrgus seade nr 1.
 

@@ -10,10 +10,6 @@ outline: deep
 Pärast kohtumist oskad lisada eraldi aadressivahemikuga juhtmevaba külalisvõrgu, seadistada WiFi kaitse ning kontrollida, et külaline saab aadressi ja jõuab välise teenuseni.
 :::
 
-::: danger Kavandatud, mitte läbi proovitud
-See kohtumine on kavandatud plaani järgi, kuid ei ole veel konkreetses Packet Traceri failis kontrollitud. Pääsupunkti mudel, sülearvuti WiFi-moodul ja ruuteri liidesed vajavad piloodis kinnitamist. Ära kasuta seda õppijatega enne läbikatsetamist.
-:::
-
 ## Mis Karli keskuses nüüd juhtub?
 
 Oskar tuleb keskusesse oma sülearvutiga ja küsib: "Mis on WiFi parool?" Karl annab talle Mirjami WiFi parooli, sest ta ei oska muud teha. Mirjam ehmub: nüüd on Oskar Staff võrgus ja näeb serverit.
@@ -56,24 +52,43 @@ Packet Traceri vaikimisi sülearvutil ei pruugi olla juhtmevaba moodulit. Kui ni
 
 ### Ruuteri Guest liides
 
+Anname Guest võrgule oma liidese ja oma DHCP pooli. See on sama, mida tegid kohtumistel 5 ja 6, nii et kirjuta käsud ise.
+
+**Samm 1: liides.** Seadistamise režiimis (`enable`, `configure terminal`) anna kolmandale liidesele Guest võrgu gateway:
+
 ```text
-enable
-configure terminal
 interface GigabitEthernet0/2
- ip address 192.168.30.1 255.255.255.0
- no shutdown
- exit
+ip address 192.168.30.1 255.255.255.0
+no shutdown
+exit
+```
+
+Kontroll: `show ip interface brief` näitab liidest olekuga **up / up**.
+
+**Samm 2: välistused.** Välista `.1–.20` ja `.201–.254`, nagu teistes võrkudes:
+
+```text
 ip dhcp excluded-address 192.168.30.1 192.168.30.20
 ip dhcp excluded-address 192.168.30.201 192.168.30.254
+```
+
+**Samm 3: pool.** Loo pool nimega `GUEST`. Võrk on `192.168.30.0 255.255.255.0` ja gateway `192.168.30.1`:
+
+```text
 ip dhcp pool GUEST
- network 192.168.30.0 255.255.255.0
- default-router 192.168.30.1
- dns-server <välise DNS-serveri aadress>
- exit
+network 192.168.30.0 255.255.255.0
+default-router 192.168.30.1
+```
+
+**Samm 4: DNS.** Guest kasutab **välist** DNS-i, mitte keskuse oma serverit, et külaline ei vajaks mingit erandit Staff serverisse minekuks. Aadress on **õpetaja antud**:
+
+```text
+dns-server <välise DNS-serveri aadress>
+exit
 end
 ```
 
-Pane `<välise DNS-serveri aadress>` asemele **õpetaja antud aadress**. Guest kasutab **välist** DNS-i, mitte keskuse omaserverit, et külaline ei vajaks mingit erandit Staff serverisse minekuks.
+Kirjuta `<välise DNS-serveri aadress>` asemele õpetaja antud aadress.
 
 ### Pääsupunkti WiFi
 

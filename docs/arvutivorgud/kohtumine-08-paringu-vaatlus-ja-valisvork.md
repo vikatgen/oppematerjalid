@@ -10,10 +10,6 @@ outline: deep
 Pärast kohtumist oskad Simulation Mode'is jälgida DNS-i ja HTTP päringut, eristada nime lahendamist ja veebipäringut, seostada teenuse, transpordiprotokolli, pordi, IP ja MAC-aadressi ning selgitada välisvõrgu rolli.
 :::
 
-::: warning Kontrollimata osa
-Välisvõrgu failid (`08-start.pkt` jne) valmistab ette õpetaja. Selle kohtumise sammud tuleb enne õppijatega kasutamist labori piloodis üle kontrollida. Pakettide kuvamise nimed on kirjutatud tavapärase Packet Traceri kasutajaliidese järgi.
-:::
-
 ## Mis Karli keskuses nüüd juhtub?
 
 Karli keskuses töötab nüüd leht `gaming.test`. Henri küsib: "Aga mis juhtub, kui ma kirjutan `gaming.test` ja vajutan Enter? Kuidas mu arvuti teab, kuhu minna?"

@@ -10,10 +10,6 @@ outline: deep
 Pärast kohtumist oskad rakendada külalisvõrgule ligipääsupoliitika, tõendada lubatud ja keelatud ühenduste toimimist, seadistada ruuteri haldusparooli ning arvutada mängukeskuse võrgukoormust.
 :::
 
-::: danger Kavandatud, mitte läbi proovitud
-ACL-i käsud on tüüpilised Cisco IOS käsud, kuid neid ei ole selle labori Packet Traceri failis veel kontrollitud. Käske, reeglite järjekorda ja DHCP-liikluse säilimist tuleb piloodis testida enne õppijatega kasutamist. See on kursuse kõige tihedam kohtumine.
-:::
-
 ## Mis Karli keskuses nüüd juhtub?
 
 Eelmisel kohtumisel jõudis Oskar internetti, aga `ping 192.168.20.10` vastas ka. Mirjam küsib: "Kas Oskar näeb minu serverit?" Karl vaatab ja vastus on **jah**. See on probleem.
@@ -54,30 +50,83 @@ Reeglite järjekord on oluline, sest esimene sobiv võidab:
 4. **Keela Guest → ruuter ise** (haldus).
 5. **Luba ülejäänu** (internet ja väline DNS/HTTP).
 
+Ehitame loendi sammhaaval. Kirjuta käsud ise ja vaata, kuidas käsurea algus muutub.
+
+### Samm 1: loo loend
+
 ```text
 enable
 configure terminal
 ip access-list extended GUEST-IN
- permit udp any eq bootpc any eq bootps
- deny ip 192.168.30.0 0.0.0.255 192.168.10.0 0.0.0.255
- deny ip 192.168.30.0 0.0.0.255 192.168.20.0 0.0.0.255
- deny ip any host 192.168.30.1
- permit ip 192.168.30.0 0.0.0.255 any
- exit
-interface GigabitEthernet0/2
- ip access-group GUEST-IN in
- end
 ```
 
-| Rida | Mida see teeb |
-| --- | --- |
-| `permit udp any eq bootpc any eq bootps` | Lubab DHCP päringu (kliendi port 68 → serveri port 67) |
-| `deny ip 192.168.30.0 0.0.0.255 192.168.10.0 0.0.0.255` | Keelab Guest võrgu liikluse Gaming võrku |
-| `deny ip 192.168.30.0 0.0.0.255 192.168.20.0 0.0.0.255` | Keelab Guest võrgu liikluse Staff võrku |
-| `deny ip any host 192.168.30.1` | Keelab Guest võrgu liikluse ruuteri enda aadressile (haldus) |
-| `permit ip 192.168.30.0 0.0.0.255 any` | Lubab ülejäänud liikluse (internet) |
+See loob laiendatud loendi nimega `GUEST-IN`. Käsurea algus muutub `(config-ext-nacl)#`: nüüd lisanduvad käsud loendi ridadeks.
 
-`0.0.0.255` on **vastupidine mask** (*wildcard mask*): see ütleb, millised aadressi osad võivad erineda. `192.168.30.0 0.0.0.255` tähendab "kõik aadressid `192.168.30.x`". Selle põhimõtte oled juba õppinud: kolm esimest arvu peavad olema samad, viimane võib olla mis tahes.
+### Samm 2: luba DHCP (reegel 1)
+
+```text
+permit udp any eq bootpc any eq bootps
+```
+
+See lubab DHCP päringu: kliendi port 68 (`bootpc`) serveri porti 67 (`bootps`). Pane see **esimeseks**, sest muidu keelab mõni järgmine rida külalise aadressipäringu.
+
+### Samm 3: keela Guest → Gaming (reegel 2)
+
+```text
+deny ip 192.168.30.0 0.0.0.255 192.168.10.0 0.0.0.255
+```
+
+Käsk keelab liikluse Guest võrgust (`192.168.30.x`) Gaming võrku (`192.168.10.x`). Osa `0.0.0.255` on **vastupidine mask** (*wildcard mask*): see ütleb, millised aadressi osad võivad erineda. `192.168.30.0 0.0.0.255` tähendab "kõik aadressid `192.168.30.x`". Põhimõte on sama, mida õppisid maskiga: kolm esimest arvu peavad olema samad, viimane võib olla mis tahes.
+
+### Samm 4: keela Guest → Staff (reegel 3)
+
+**Proovi ise.** Tee sama Staff võrgu (`192.168.20.0`) jaoks.
+
+::: details Kontrolli oma käsku
+```text
+deny ip 192.168.30.0 0.0.0.255 192.168.20.0 0.0.0.255
+```
+:::
+
+### Samm 5: keela Guest → ruuter ise (reegel 4)
+
+```text
+deny ip any host 192.168.30.1
+```
+
+See keelab liikluse ruuteri enda Guest-aadressile. Nii ei pääse külaline ruuterit seadistama. `host` tähendab ühte kindlat aadressi.
+
+### Samm 6: luba ülejäänud (reegel 5)
+
+```text
+permit ip 192.168.30.0 0.0.0.255 any
+```
+
+Alles nüüd lubame ülejäänud liikluse (internet, väline DNS ja HTTP). Kui see rida puuduks, keelaks loendi lõpus peidetud "keela kõik" ka interneti.
+
+```text
+exit
+```
+
+### Samm 7: vaata loendit
+
+```text
+show access-lists
+```
+
+Näed viit rida järjekorras. See on hea hetk kontrollida, et järjekord on õige (DHCP esimesena, `permit ip ... any` viimasena).
+
+### Samm 8: rakenda loend Guest liidesele
+
+Seni on loend ainult olemas, aga ei tee midagi. Seome selle liidesega ja ütleme, millises suunas see kehtib:
+
+```text
+interface GigabitEthernet0/2
+ip access-group GUEST-IN in
+end
+```
+
+`in` tähendab, et filter kehtib ruuterisse **sisenevale** liiklusele. Kontroll: `show ip interface GigabitEthernet0/2` peab näitama, et sisenev loend on `GUEST-IN`.
 
 ::: warning Käsud kontrollida
 `bootpc` ja `bootps` on DHCP portide nimed. Kui Packet Tracer neid nimesid ei tunne, kasuta numbreid (`eq 68`, `eq 67`). Kontrolli käsu kuju oma versioonis.
@@ -123,12 +172,23 @@ Reegel külalisvõrgu eest ruuterisse (rida 4 ülal) kaitseb ruuteri seadistust.
 
 Seadistame ruuterile parooli, et seadistust ei saaks muuta igaüks, kes selleni jõuab:
 
+**Samm 1: haldaja režiimi parool.**
+
 ```text
 configure terminal
 enable secret <labori parool>
+```
+
+Pärast seda küsib ruuter parooli, kui keegi annab käsu `enable`. Parool hoitakse krüpteeritult.
+
+**Samm 2: ülejäänud paroolide krüpteerimine.**
+
+```text
 service password-encryption
 end
 ```
+
+See krüpteerib ka teised paroolid, mis muidu paistaksid seadistuses selge tekstina.
 
 Parooli kohta:
 

@@ -10,10 +10,6 @@ outline: deep
 Pärast kohtumist oskad selgitada, miks DHCP-d vaja on, seadistada ruuteril kahe võrgu aadressipoolid ning kontrollida, et klient sai õige aadressi, maski ja gateway.
 :::
 
-::: warning Kontrollimata käsud
-Käsud on tüüpilised Cisco IOS käsud. Katseta neid enne õppijatega kasutamist oma Packet Traceri versioonis.
-:::
-
 ## Mis Karli keskuses nüüd juhtub?
 
 Viiendal kohtumisel andis Karl kolmele arvutile aadressid käsitsi. See oli kerge. Nüüd on keskusesse tulemas **kümme uut arvutit**. Kümme korda sama protseduur:
@@ -81,37 +77,81 @@ Neid nelja ingliskeelset sõna (*Discover, Offer, Request, Acknowledge*) näed k
 
 Ava `05-lan-routing.pkt`, salvesta uue nimega `06-dhcp.pkt`.
 
-Ruuteri CLI-s:
+Seadistame DHCP ruuteril sammhaaval. Kirjuta käsud ise.
+
+### Samm 1: mine seadistamise režiimi
 
 ```text
 enable
 configure terminal
+```
+
+### Samm 2: välista aadressid, mida DHCP ei tohi anda
+
+**Mida teeme ja miks:** `.1–.20` on mõeldud ruuterile ja serveritele ning `.201–.254` jätame varuks. Kui DHCP annaks nende aadresse välja, tekiks aadresside konflikt.
+
+```text
 ip dhcp excluded-address 192.168.10.1 192.168.10.20
+```
+
+Käsk välistab aadressid esimesest teiseni (siin `.1` kuni `.20`). Kontroll: käsk ei anna veateadet.
+
+**Proovi ise.** Lisa veel kolm välistust: `192.168.10.201` kuni `192.168.10.254`, ning samad kaks vahemikku Staff võrgus (`192.168.20.x`).
+
+::: details Kontrolli oma käske
+```text
 ip dhcp excluded-address 192.168.10.201 192.168.10.254
 ip dhcp excluded-address 192.168.20.1 192.168.20.20
 ip dhcp excluded-address 192.168.20.201 192.168.20.254
+```
+:::
+
+### Samm 3: loo Gaming pool
+
+**Mida teeme ja miks:** pool ütleb, millised aadressid ja millised võrguandmed (gateway ja DNS) kliendile antakse. Gaming võrgule teeme oma pooli.
+
+```text
 ip dhcp pool GAMING
- network 192.168.10.0 255.255.255.0
- default-router 192.168.10.1
- dns-server 192.168.20.10
- exit
-ip dhcp pool STAFF
- network 192.168.20.0 255.255.255.0
- default-router 192.168.20.1
- dns-server 192.168.20.10
- exit
-end
 ```
 
-| Käsk | Mida teeb |
-| --- | --- |
-| `ip dhcp excluded-address A B` | Välistab aadressid A kuni B väljastamisest |
-| `ip dhcp pool GAMING` | Loob pooli nimega GAMING |
-| `network 192.168.10.0 255.255.255.0` | Mis aadressid kuuluvad poolile |
-| `default-router 192.168.10.1` | Mis gateway antakse kliendile |
-| `dns-server 192.168.20.10` | Mis DNS antakse kliendile |
+See loob pooli nimega GAMING. Käsurea algus muutub `(dhcp-config)#`.
 
-Pane tähele: `dns-server` aadress `192.168.20.10` on **serveri aadress**, mida me veel ei ole ehitanud. Nüüd me **kirjutame selle plaani**. Selle kasutamise kontrollime järgmisel kohtumisel.
+```text
+network 192.168.10.0 255.255.255.0
+```
+
+Mis aadressid kuuluvad poolile (võrguaadress ja mask).
+
+```text
+default-router 192.168.10.1
+```
+
+Mis gateway antakse kliendile.
+
+```text
+dns-server 192.168.20.10
+```
+
+Mis DNS antakse kliendile. Aadress on **serveri aadress**, mida me veel ei ole ehitanud. Kirjutame selle plaani, ja selle kasutamise kontrollime järgmisel kohtumisel.
+
+```text
+exit
+```
+
+### Samm 4: loo Staff pool
+
+**Proovi ise.** Loo pool nimega `STAFF`. Võrk on `192.168.20.0 255.255.255.0`, gateway `192.168.20.1`, DNS jääb samaks (`192.168.20.10`). Lõpeta käsuga `exit` ja seejärel `end`.
+
+::: details Kontrolli oma käske
+```text
+ip dhcp pool STAFF
+network 192.168.20.0 255.255.255.0
+default-router 192.168.20.1
+dns-server 192.168.20.10
+exit
+end
+```
+:::
 
 ## Kliendi seadistamine ja kontroll
 
