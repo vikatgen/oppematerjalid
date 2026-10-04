@@ -7,3 +7,7 @@ docs/.vitepress/dist
 CLAUDE.md
 .claude
 .cursor
+
+# Local planning notes and OS files
+/planning
+.DS_Store
