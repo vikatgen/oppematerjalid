@@ -1,5 +1,7 @@
 # Terminal ja shell
 
+Operatsioonisüsteemi tuuma, käivitamise ja Bashi seostest loe peatükis [Operatsioonisüsteemi alused: kernelist Bashini](/serverid-ja-vorgud/operatsioonisusteemi-alused).
+
 ## Õpieesmärgid
 
 Selle peatüki lõpuks peaks õppija:

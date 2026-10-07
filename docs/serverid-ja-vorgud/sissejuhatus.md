@@ -18,6 +18,10 @@ Sinu ülesandeks saab: **ehita, turva, jälgi ja anna üle** see keskkond. Sa ei
 
 Iga järgnev teema on üks samm sellel teekonnal: üks konkreetne asi, mida meeskond sinult ootab, ja üks konkreetne "miks" selle taga. Kui midagi jääb arusaamatuks, on see materjali viga, mitte sinu oma — ütle julgelt, mis kohast aru ei saanud, siis saame selle koha selgemaks kirjutada.
 
+## Operatsioonisüsteemi alusmõisted
+
+Enne praktilisi serveriteemasid loe peatükki [Operatsioonisüsteemi alused: kernelist Bashini](./operatsioonisusteemi-alused). Seal vaatame tuuma, süsteemikutseid, arvuti käivitamist, kettajaotisi, failisüsteeme ja Bashi.
+
 ## Mida see valikaine katab
 
 1. [Server ja tema oma aadress](./server-ja-oma-ip-aadress) — mis on server, ja kust tuleb aadress, millega teda üldse leida saab

@@ -4,6 +4,8 @@
 See moodul tutvustab Linuxi põhitõdesid tarkvaraarendaja vaatenurgast. Kooliarvutites töötab **WSL** (Windows Subsystem for Linux), kus igal õpilasel on oma Linuxi keskkond.
 :::
 
+Operatsioonisüsteemi tuuma, käivitamise ja Bashi seostest loe peatükis [Operatsioonisüsteemi alused: kernelist Bashini](/serverid-ja-vorgud/operatsioonisusteemi-alused).
+
 ## Miks seda moodulit vajame?
 
 Arendajana puutud tihti kokku Linuxi-põhiste tööriistadega: terminal, Docker, serverid ja CI/CD keskkonnad. Enne kui saad neid kasutada, pead mõistma, kuidas Linux kasutajaid, gruppe ja õigusi haldab.
