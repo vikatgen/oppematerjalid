@@ -535,6 +535,7 @@ export default withMermaid({
                 collapsed: true,
                 items: [
                     { text: "Sissejuhatus", link: "/serverid-ja-vorgud/sissejuhatus" },
+                    { text: "Operatsioonisüsteemi alused: kernelist Bashini", link: "/serverid-ja-vorgud/operatsioonisusteemi-alused" },
                     {
                         text: "1. Server",
                         collapsed: true,
