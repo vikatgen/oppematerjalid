@@ -1,18 +1,18 @@
 ---
 title: "Guest WiFi ehitamine"
-description: "Kohtumine 9: Oskar tahab keskuses WiFi-t. Pääsupunkt, SSID, WPA2, Guest ruuteriliides oma aadressivahemikuga ning DHCP ja välise teenuse kontroll."
+description: "Kohtumine 9: Oskar tahab keskuses WiFi-t. Pääsupunkt, SSID, WPA2, Guest ruuteriliides oma aadressivahemikuga ning DHCP ja sisemise teenuse kontroll."
 outline: deep
 ---
 
 # 9. Guest WiFi ehitamine
 
 ::: info Õpiväljund
-Pärast kohtumist oskad lisada eraldi aadressivahemikuga juhtmevaba külalisvõrgu, seadistada WiFi kaitse ning kontrollida, et külaline saab aadressi ja jõuab välise teenuseni.
+Pärast kohtumist oskad lisada eraldi aadressivahemikuga juhtmevaba külalisvõrgu, seadistada WiFi kaitse ning kontrollida, et külaline saab aadressi ja avab olemasoleva sisemise serveri lehe.
 :::
 
 ## Mis Karli keskuses nüüd juhtub?
 
-Oskar tuleb keskusesse oma sülearvutiga ja küsib: "Mis on WiFi parool?" Karl annab talle Mirjami WiFi parooli, sest ta ei oska muud teha. Mirjam ehmub: nüüd on Oskar Staff võrgus ja näeb serverit.
+Oskar tuleb keskusesse oma sülearvutiga ja küsib: "Mis on WiFi parool?" Karl kaalub tema ühendamist Staff võrku. Mirjam juhib tähelepanu, et siis jõuaks külaline ka töötajate serverini. Senises laboris on Staff seadmed kaabliga; nüüd lisame külaliste jaoks esimese WiFi-pääsupunkti.
 
 Karl otsustab: **külalistele oma võrk**. Täna ehitame selle. **Aga:** ehitamine ei ole veel kaitse. Selle kohtumise lõpuks on külalisvõrk eraldi, aga **ligipääsupiirang** tuleb kohtumisel 10. Seda võrku ei nimeta me veel turvaliseks.
 
@@ -29,7 +29,11 @@ SSID nimi **ei eralda** võrku. "Guest" nimega WiFi võib olla samas võrgus Mir
 
 ## Ehitamine
 
-Ava `08-external.pkt` ja salvesta `09-guest.pkt`.
+Ava oma `08-observation.pkt` ja salvesta koopia nimega `09-guest.pkt`. Kontrolli, et Gaming ja Staff kliendid on endiselt DHCP-l ning `http://gaming.test` avaneb. Välist serverit selles etapis veel pole.
+
+Guest kasutab **selle tunni jooksul sisemist DNS-i `192.168.20.10`**. Välise DNS-serveri ehitad ise [praktilises töös 9A](./valise-testvorgu-ehitamine) ning muudad siis Guest DNS-aadressi. Staff ligipääsu keelame alles pärast seda.
+
+Kontrolli, et ruuteri kolmas LAN-liides on Guest jaoks vaba. Allpool on näidisnimi `GigabitEthernet0/2`: leia tegelik nimi ruuteri portide juurest või `show ip interface brief` väljundist. Gaming ja Staff kaablid jäävad oma kohtadele.
 
 ```mermaid
 flowchart TB
@@ -63,7 +67,7 @@ no shutdown
 exit
 ```
 
-Kontroll: `show ip interface brief` näitab liidest olekuga **up / up**.
+Kontrollimiseks anna `end` ja seejärel `show ip interface brief`: Guest liides peab olema **up / up**. Seejärel mine käsuga `configure terminal` tagasi üldseadistusse, et lisada välistused.
 
 **Samm 2: välistused.** Välista `.1–.20` ja `.201–.254`, nagu teistes võrkudes:
 
@@ -80,15 +84,15 @@ network 192.168.30.0 255.255.255.0
 default-router 192.168.30.1
 ```
 
-**Samm 4: DNS.** Guest kasutab **välist** DNS-i, mitte keskuse oma serverit, et külaline ei vajaks mingit erandit Staff serverisse minekuks. Aadress on **õpetaja antud**:
+**Samm 4: DNS.** Kasuta praegu olemasoleva sisemise serveri aadressi:
 
 ```text
-dns-server <välise DNS-serveri aadress>
+dns-server 192.168.20.10
 exit
 end
 ```
 
-Kirjuta `<välise DNS-serveri aadress>` asemele õpetaja antud aadress.
+See annab Oskarile sama DNS-i nagu Gaming ja Staff klientidele. DNS-teenus peab `SRV-Staff` seadmel olema sisse lülitatud.
 
 ### Pääsupunkti WiFi
 
@@ -113,23 +117,28 @@ ipconfig
 ```
 
 - Aadress peab olema `192.168.30.x` (vahemikus `.21–.200`).
-- Gateway `192.168.30.1`.
-- DNS peab olema välise DNS-serveri aadress.
+- Mask peab olema `255.255.255.0`.
+- Vaikelüüs peab olema `192.168.30.1`.
+- DNS peab olema praegu `192.168.20.10`; kontrolli seda **IP Configuration** vaates.
 
-Siis ava brauseris **välise testlehe** (aadress annab õpetaja). Peab avanema.
+Ruuteril kontrolli haldaja režiimis `show ip dhcp binding` ja `show ip dhcp pool`: leia Oskari tegelik aadress ning pool `GUEST`. Pooli nimi on silt; õige alamvõrgu valib server päringu saabumise liidese järgi.
 
-**Mida see ei tõenda:** et Oskar **ei pääse** Mirjami võrku. Seda ei ole veel seadistatud. Proovi kirjutada Oskari arvutil `ping 192.168.20.10` (serveri aadress): tulemus oleks tõenäoliselt, et **vastab**. Kirjuta see üles, see on järgmise kohtumise lähtekoht.
+Ava Oskari brauseris kõigepealt `http://192.168.20.10`, seejärel `http://gaming.test`. Mõlemad peavad avanema. Kui IP töötab, aga nimi mitte, kontrolli DNS-aadressi ja serveri DNS-teenust.
+
+**See on veel piiramata külalisvõrk.** Oskar pääseb Staff serverisse ja kasutab sealset DNS-i. Kirjuta see tulemus üles. Töö 9A käigus lisame välise teenuse ja vahetame Guest DNS-i; kohtumisel 10 keelame ligipääsu sisevõrkudesse.
 
 ## Mis juhtuks, kui…
 
-Proovi kahte viga ja kirjuta, mida Oskar näeks:
+Salvesta esmalt toimiv fail. Proovi koopia peal ühte viga korraga ja kirjuta, mida Oskar näeks:
 
 | Muudatus | Mida näed | Mida see Oskarile tähendab |
 | --- | --- | --- |
 | Sülearvutis on vale WiFi parool | Ühendus ei õnnestu, aadressi ei tule | "WiFi ei võta mind vastu" |
-| Guest DHCP pool puudub või `default-router` on vale | Sülearvuti ühendub WiFi-ga, aga aadressi ei saa või internetti ei pääse | "WiFi on olemas, aga internet ei tööta" |
+| Guest DHCP pool puudub või `default-router` on vale | Sülearvuti ühendub WiFi-ga, aga aadressi ei saa või Staff serverisse ei pääse | "WiFi on olemas, aga serveri leht ei avane" |
 
 Esimene viga on **WiFi kaitse** küsimus, teine **võrgu** küsimus. Mängija, töötaja ja külaline ei eristaks neid, aga Karl peab.
+
+Vale lüüsi katsel küsi pärast pooli muutmist kliendil **Static → DHCP** abil uus seadistus ja kontrolli tegelikku lüüsi. Pärast iga katset taasta seaded, ühenda õige WiFi parooliga ja uuenda vajadusel DHCP-seadistust. Enne järgmisele kohtumisele minekut peavad õige IP, mask, lüüs ja sisemine DNS ning sisemise lehe avamine taas töötama.
 
 ## Esialgne riskikirjeldus
 
@@ -143,8 +152,9 @@ Nüüd, kui külalisvõrk töötab, kirjuta üles **esimene risk**:
 
 - Fail `09-guest.pkt`.
 - Guest parameetrite tabel: IP, mask, gateway, DNS, SSID, krüpteering.
-- Ekraanipilt või kirjeldus, kuidas külaline avas välise testlehe.
+- Ekraanipilt või kirjeldus, kuidas külaline avas sisemise lehe IP ja nime kaudu.
 - Esimene risk (tabel ülal).
+- Taastatud toimiv fail; Gaming ja Staff kliendid ning nende sisemine DNS jäävad eelmise tunni seadistusse. Salvesta ruuteri seadistus käsuga `copy running-config startup-config` ja seejärel `.pkt` fail.
 
 ## Kokkuvõte
 
@@ -154,3 +164,7 @@ Nüüd, kui külalisvõrk töötab, kirjuta üles **esimene risk**:
 | SSID | WiFi võrgu nimi |
 | WPA2 | Krüpteering ja parool WiFi kaitseks |
 | Guest võrk | Eraldi võrk, oma aadressivahemik (192.168.30.0/24) |
+
+## Järgmine samm
+
+Jätka oma failiga [töös 9A: ehitame välise testvõrgu](./valise-testvorgu-ehitamine). Alles pärast selle valmimist mine külalisvõrgu piirangute juurde.

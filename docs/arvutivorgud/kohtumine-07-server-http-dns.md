@@ -28,11 +28,13 @@ Sellel kohtumisel ehitame mõlemad ja õpime kontrollima, **kumb osa** on katki,
 
 Analoogia: telefoniraamat. Sa tead nime, aga helistamiseks on vaja numbrit. Raamat annab numbri. DNS on see raamat.
 
-Analoogia piir: DNS ei "leia inimest". Ta ütleb ainult aadressi. Kui server on välja lülitatud, annab DNS ikka õige aadressi, aga serverist vastust ei tule.
+Analoogia piir: DNS ei "leia inimest". Ta ütleb ainult aadressi. Kui veebiteenus on välja lülitatud, võib töötav DNS endiselt õige aadressi anda, kuid veebileht ei avane. Meie laboris on mõlemad teenused samas seadmes: kogu seadme väljalülitamisel kaob ka selle DNS-teenus.
 
 ## 1. samm: serveri lisamine
 
 Ava `06-dhcp.pkt` ja salvesta `07-services.pkt`.
+
+**Enne jätkamist kontrolli:** kõik eelmise tunni olemasolevad ja uued tavalised arvutid kasutavad DHCP-d, mõlema LAN-i kliendid saavad oma võrgu `.21–.200` aadressi ning Gaming klientide lüüs on pärast veakatset taas `192.168.10.1`. Staff võrgu `192.168.20.10` peab olema vaba: kui see oli varem Mirjami arvutil, on Mirjam nüüd DHCP-l. Ära muuda teiste klientide aadresse näidisnumbrite järgi.
 
 1. Lisa **End Devices → Server**. Nimeta `SRV-Staff`.
 2. Ühenda `SW-Staff` kommutaatoriga sirge kaabliga.
@@ -42,7 +44,7 @@ Ava `06-dhcp.pkt` ja salvesta `07-services.pkt`.
    - Gateway: `192.168.20.1`
    - DNS: `192.168.20.10` (server on ka ise DNS-server)
 
-Miks mitte DHCP? DHCP võib aadressi hiljem **muuta**, siis ei leia keegi enam serverit. Seepärast on `.10` DHCP-st välistatud (kohtumine 6).
+Selles laboris kasutame serveril **staatilist aadressi**, et DHCP-poolides antud DNS-aadress ja DNS-kirjed jääksid õigeks. Tavalise dünaamilise rendi korral võib server saada hiljem teise aadressi. Päris võrgus võib püsiva aadressi tagada ka DHCP-reservatsiooniga, kuid seda me siin ei seadista. `.10` välistus takistab selle jagamist teistele klientidele; aadressi määrame serveril eraldi.
 
 **Kontroll:** Henri arvutist `ping 192.168.20.10`.
 
@@ -70,19 +72,19 @@ Lehe ilu ei ole võrgunduse oluline osa, piisab lihtsast tekstist.
 1. Ava server → **Services** → **DNS**. Veendu, et DNS on **On**.
 2. Lisa kirje: **Name** `gaming.test`, **Address** `192.168.20.10`. Vajuta **Add**.
 
-**Kontroll:** Henri arvutil ava brauseris `http://gaming.test`. Peab avanema sama leht.
+**Kontroll:** vaata Henri arvuti **IP Configuration** vaates, et DNS-server on `192.168.20.10`. Seejärel ava brauseris `http://gaming.test`. Peab avanema sama leht. Korda IP ja nime kaudu avamist ka Staff kliendil ning ühel eelmisel tunnil lisatud uuel kliendil.
 
-Kui nimi ei avane, aga IP avaneb, on viga **nimeteenuses**, mitte võrgus.
+Kui IP kaudu leht avaneb, kuid sama leht nime kaudu mitte, kontrolli esmalt kliendi DNS-aadressi, DNS-teenust ja kirjet.
 
-## 4. samm: uuendame DHCP rendi
+## 4. samm: kontrollime kliendi DNS-aadressi
 
-Kui arvuti sai DHCP-st aadressi juba enne, kui serveri DNS oli seadistatud, võib tal DNS-aadress puududa. Uuenda arvuti seadistust: lülita **IP Configuration** vaates DHCP-lt Static'ile ja tagasi DHCP-le. Siis küsib arvuti andmed uuesti.
+Eelmises tunnis määrasime DHCP-poolides DNS-serveriks `192.168.20.10`. Klient sai selle aadressi kätte ka siis, kui DNS-serverit veel polnud. DNS-teenuse käivitamine ei muuda DHCP seadistust ega nõua iseenesest rendi uuendamist.
 
-Kontrolli `ipconfig` tulemusest, et DNS on `192.168.20.10`.
+Kontrolli arvuti **Desktop → IP Configuration** vaates, et DNS-server on `192.168.20.10`. Kui muutsid DHCP-poolis DNS-aadressi või kliendil on vana seadistus, vali **Static → DHCP**, et küsida võrguandmed uuesti. Kontrolli seejärel saadud DNS-aadressi ning proovi `nslookup gaming.test` ja veebilehe avamist nime kaudu. Õige DNS-aadress üksi ei tõenda, et DNS-teenus töötab.
 
 ## ICMP ja diagnostikakäsud
 
-Kui midagi ei tööta, pead leidma, **kus** ahel katki on. Selleks kasutame käske, mis põhinevad **ICMP**-l (*Internet Control Message Protocol*). See ei kanna kasutaja andmeid. See on võrguseadmete oma teateprotokoll: "kas oled seal?", "sihtkoht ei ole kättesaadav".
+Kui midagi ei tööta, pead leidma, **kus** ahel katki on. `ping` ja siin kasutatav `tracert` aitavad ühendust uurida **ICMP** (*Internet Control Message Protocol*) abil. ICMP kannab võrgu juht- ja veateateid, näiteks „kas oled seal?” või „sihtkoht pole kättesaadav”. `nslookup` kasutab aga **DNS-i**, mitte ICMP-d.
 
 | Küsimus | Käsk (arvuti Command Prompt) | Mida näitab |
 | --- | --- | --- |
@@ -104,7 +106,7 @@ flowchart TD
     D -->|vastab| X5[Kõik töötab<br/>kontrolli brauseris<br/>http://gaming.test]
 ```
 
-Kui `ping` serveri aadressile töötab, aga `http://gaming.test` ei ava, siis võrk on korras ja viga on **nimeteenuses**.
+Edukas `ping` näitab IP-ühendust, kuid ei tõenda HTTP ega DNS-i toimimist. Kui **HTTP IP kaudu töötab**, aga sama leht nime kaudu ei avane, uuri nimelahendust. DNS-päringu ebaõnnestumine võib tähendada ka seda, et liiklus DNS-serverini ei jõua.
 
 ::: warning Vastuseta ping ei tähenda, et server ei tööta
 Mõned seadmed ja tulemüürid on seadistatud ICMP-le **mitte vastama**. `tracert` väljundis näed siis ridu `* * *`. Ainult vastuseta ping ei ole tõend, et seade või veebiteenus ei tööta. Kontrolli ka teisel viisil, näiteks brauseris. Seda mõtet kasutame ka kohtumisel 10, kui tõendame, et Guest ei pääse serverisse: ainult "ping ei vasta" ei tõenda midagi.
@@ -123,17 +125,19 @@ Allolev tabel on selle kohtumise kõige tähtsam tööriist.
 
 ## Mis juhtuks, kui…
 
-Proovi kolme viga ja kirjuta, mida mängija näeks:
+Salvesta esmalt toimiv töö. Tee veakatsed **eraldi failikoopias**, üks viga korraga. Iga katse järel taasta seaded ja kontrolli lehe avanemist mõlema LAN-i kliendist.
 
-1. DNS-kirje kustutatud. Mängija kirjutab `gaming.test` ja leht ei avane. Aga IP kaudu avaneb. Mängija ei saa aru, miks, kuni Karl selle ära parandab.
-2. HTTP välja lülitatud. `ping` töötab, leht ei avane.
-3. Serveri aadress muudetud DHCP-ks (nii et ta saab uue aadressi). DNS-kirje viitab nüüd vanale aadressile. Mida mängija näeb?
+1. **DNS-teenus välja lülitatud.** Enne katset lisa serveri DNS-i uus kirje `katse.gaming.test` → `192.168.20.10`, kuid ära seda nime veel kliendilt ava. Lülita DNS välja ja proovi seda uut nime: nimelahendus peaks ebaõnnestuma, kuid `http://192.168.20.10` peab endiselt avanema. Taasta DNS ja kontrolli sama nime uuesti. Varem kasutatud `gaming.test` võib kliendi vahemälust veel töötada.
+2. **HTTP välja lülitatud.** `ping` ja `nslookup gaming.test` võivad töötada, kuid värske veebipäring ei õnnestu. Lülita HTTP tagasi sisse ja korda brauserikontrolli.
+
+**Valikuline laiendus:** serveri DHCP-le lülitamine võib rikkuda korraga nii veebiteenuse leidmise kui DNS-serverini jõudmise, sest see seade pakub mõlemat teenust. See pole ühe DNS-kirje vea katse. Uuri seda ainult failikoopias ja taasta serveri staatiline `.10` aadress, mask, lüüs ning DNS enne jätkamist.
 
 ## Esitatav töö
 
 - Fail `07-services.pkt`.
 - Brauserikontroll **mõlemast võrgust** (Gaming ja Staff): ekraanipilt või kirjeldus, et leht avaneb nii IP kui nime kaudu.
 - Lühike selgitus oma sõnadega: kuidas eristada IP-ühenduse, HTTP-teenuse ja DNS-i viga.
+- Tõend ühe veakatse ja taastamise kohta. Esitatavas failis on server staatilise `.10` aadressiga, DNS ja HTTP sisse lülitatud ning kliendid endiselt DHCP-l.
 
 ## Kokkuvõte
 

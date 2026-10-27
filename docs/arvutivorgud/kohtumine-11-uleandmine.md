@@ -21,20 +21,22 @@ Karli keskus avatakse nädala pärast. Karl ei hakka ise iga päev võrku haldam
 
 | Aeg | Tegevus |
 | --- | --- |
-| 20 min | Lõpeta oma võrk ja koormusülesanne, kui need on pooleli |
+| 20 min | Lõpeta pooleliolev võrgutöö ja korda toimivuse kontrolle |
 | 30 min | Individuaalne veaotsing |
 | 25 min | Võrgu üleandmise kontroll ja lühiselgitused |
 | 15 min | Riskitabel ja enesehindamine |
 
 ## 1. Individuaalne veaotsing
 
-Õpetaja annab sulle **koopia** võrgust, kus on **üks viga**. Viga võib olla:
+Tee koos paarilisega toimivast **enda ehitatud võrgust koopia**. Õpetaja valib varem harjutatud vealiigi ning üks paariline muudab koopias ühte seadet, teine otsib ja parandab vea. Seejärel vahetage rolle. Toimiv algfail jääb alles; õpetajal pole vaja vigast võrgufaili ette valmistada. Viga võib olla:
 
 - vale IP või mask;
 - vale gateway;
 - vale DHCP seadistus;
 - vale DNS;
-- vale ACL reegel.
+- vale ligipääsupiirang: leia õpetaja antud tavakeelse reeglitabeli ja näidise abil erinevus. Reeglite mälu järgi koostamist ei nõuta.
+
+Kasuta kliendi **praegust** DHCP-aadressi, mitte varasemast tabelist meelde jäänud `.21` või `.22` väärtust. Enne kliendi parameetrite parandamist erista, kas viga on DHCP-poolis või ainult kliendis. Kui muudad pooli lüüsi või DNS-i, küsi kliendil pärast muudatust seadistus uuesti ja kontrolli saadud väärtust.
 
 Sinu töö:
 
@@ -54,25 +56,34 @@ Sinu töö:
 
 ## 2. Üleandmise kontroll
 
-Keegi teine peab saama sinu võrgu üle võtta. Kontrollime:
+Keegi teine peab saama sinu võrgu üle võtta. Koormusarvutus on eraldi valikuline lisaharjutus, mitte selle kohtumise hindamisnõue. Kontrollime:
 
 | Dokument | Kas on olemas? |
 | --- | --- |
 | Töötav `.pkt` fail | |
 | Füüsiline skeem | |
 | Loogiline skeem | |
-| Aadressitabel ja DHCP plaan | |
+| Aadressitabel: staatilised aadressid, DHCP-poolid, välistused, DNS-id ja viimati kontrollitud kliendiaadressid | |
 | Ligipääsumaatriks | |
 | Kontrolliprotokoll (lubatud ja keelatud testid) | |
 | Riskianalüüs (vähemalt 3 riski) | |
-| Seadmete loend ja koormushinnang | |
+| Seadmete loend | |
 | Muudatuste päevik ja taastamise juhis | |
 
-**Taastamise juhis** ütleb: kui võrk läheb katki, mida teha. Näiteks "ava viimane toimiv fail `10-isolated.pkt` ja kontrolli aadressitabelit".
+**Taastamise juhis** ütleb, kuidas toimiv seis tagasi saada. Märgi toimiva `.pkt` faili nimi, vajadusel kliendil DHCP-seadistuse uuesti küsimine ning järelkontrollid: renditabel, kliendi IP/mask/lüüs/DNS, sisemine HTTP Gamingust ja Staffist, välise lehe avanemine Guestist ning sisemise teenuse keeld Guestile.
+
+DHCP-kliendi hetke-IP on **vaatluse tulemus**, mitte lubadus, et klient saab alati sama aadressi. Üleandmisel peavad plaanis eraldi nähtuma:
+
+- Gaming ja Staff DHCP-vahemikud `.21–.200`, oma LAN-i lüüs ja sisemine DNS `192.168.20.10`;
+- Guest DHCP-vahemik `.21–.200`, lüüs `192.168.30.1` ning välise DNS-serveri aadress;
+- staatiline server `192.168.20.10`, ruuteri liidesed ja nende välistused;
+- enda ehitatud väline server `203.0.113.10`, ruuterite ühendus ja edasi-/tagasiteed; selles suletud laboris NAT-i ei kasutata.
+
+Viimase kontrolli ajal peab serveri aadress olema taastatud ning kõik veakatsete muudatused eemaldatud. Salvesta ruuteri seadistus ja lõplik fail.
 
 Suure rühma korral selgitatakse paarides kontroll-lehe abil. Õpetaja vaatleb praktilist tööd ja kontrollib kirjalikke põhjendusi.
 
-Kui kasutasid mõnes etapis **valmis vahefaili**, märgi see dokumentatsiooni ja näita, mida selles etapis ise muutsid. Valmis faili avamine ei asenda oma seadistamist.
+Juhendit järgides jätkad alati enda salvestatud failist. Märgi muudatuste päevikusse, mida igas etapis ise lisasid, ja säilita viimase toimiva etapi koopia.
 
 ## 3. Riskitabel
 

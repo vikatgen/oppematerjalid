@@ -1,292 +1,182 @@
 ---
-title: "Guest eraldamine ja mängukeskuse koormus"
-description: "Kohtumine 10: Oskar ei tohi jõuda Mirjami serverisse. ACL-i põhimõte, filtri rakendamine Guest liidesele, lubatud ja keelatud testid, haldusparool ning koormusarvutus."
+title: "Külaline pääseb välisvõrku, aga töötajate serverisse mitte"
+description: "Kohtumine 10: otsustame, mida külaline tohib teha, rakendame juhendi abil valmis piirangu ja kontrollime nelja tulemust."
 outline: deep
 ---
 
-# 10. Guest eraldamine ja mängukeskuse koormus
+<script setup>
+import './guest-figures.css'
+</script>
+
+# 10. Külaline pääseb välisvõrku, aga töötajate serverisse mitte
 
 ::: info Õpiväljund
-Pärast kohtumist oskad rakendada külalisvõrgule ligipääsupoliitika, tõendada lubatud ja keelatud ühenduste toimimist, seadistada ruuteri haldusparooli ning arvutada mängukeskuse võrgukoormust.
+Pärast kohtumist oskad juhendi abil rakendada külalisvõrgu piirangu ning kontrollidega näidata, et külaline pääseb välisele lehele, kuid töötajate serverisse mitte.
 :::
 
-## Mis Karli keskuses nüüd juhtub?
+## Probleem: Oskar pääseb liiga kaugele
 
-Eelmisel kohtumisel jõudis Oskar internetti, aga `ping 192.168.20.10` vastas ka. Mirjam küsib: "Kas Oskar näeb minu serverit?" Karl vaatab ja vastus on **jah**. See on probleem.
+Kohtumisel 9 ühendasime Oskari sülearvuti Guest võrku ja töös 9A ehitasime välise testserveri. Ta sai automaatselt võrguandmed ja avas välise testlehe. Aga ta sai avada ka töötajate serveri lehe aadressil `http://192.168.20.10`.
 
-Täna paneme külalisvõrgule **reegli**: Guest võib jõuda internetti, aga mitte keskuse sisevõrkudesse.
+Mirjam küsib: „Külalisel pole töötajate serverisse asja. Kas saame selle ligipääsu ära võtta nii, et väline leht töötaks edasi?”
 
-## ACL: ligipääsureeglite loend
+Täna teeme just seda. **Sina otsustad, mida lubada, rakendad koos õpetajaga valmis reeglid ja kontrollid tulemust.** Käske ei pea mälu järgi kirjutama. Kopeerimine on lubatud, kui tead, millist seadet muudad ja mis peaks muutuma.
 
-**ACL** (*Access Control List*) on ruuteri reeglite loend, mis ütleb, millised paketid läbi lastakse ja millised blokeeritakse. See on nagu uksehoidja, kellel on nimekiri: "Ainult need võivad sisse."
+## Enne alustamist
 
-Kolm põhimõtet:
+1. Ava oma toimiv `09a-external.pkt` ja salvesta koopia nimega `10-isolated.pkt`.
+2. Kontrolli Oskari WiFi ühendust. Ta peab olema võrgus `Karli-Guest`.
+3. Välise testlehe nimi on `valis.test` ja DNS-serveri IP `203.0.113.10`; need seadistasid ise töös 9A.
+4. Õpetaja näitab, milline `R-Center` ruuteri liides on ühendatud Guest pääsupunktiga. Allpool on näidisnimi `GigabitEthernet0/2`; kui sinu mudelil on teine nimi, annab õpetaja sobiva käsu.
 
-1. **Reegleid loetakse ülevalt alla.** Esimene sobiv reegel otsustab. Kui pakett sobib reegliga, lõpetatakse lugemine.
-2. **Lõpus on peidetud "keela kõik".** Kui ükski reegel ei sobi, pakett keelatakse. Sellepärast peab loend ka **lubama** kõik, mida vaja.
-3. **Suund loeb.** Reegel kehtib ruuterisse **sisenevale** liiklusele (*in*) või väljuvale (*out*) liidesel. Me kasutame Guest liidesel **sisenevat** suunda: pakett filtreeritakse kohe, kui see Guest võrgust ruuterisse jõuab.
+Ruuterid, serverid ja kõik kolm DHCP-pooli on sinu senistes töödes seadistatud. Õpetaja kontrollib enne tegevust ka ruuteri ja pääsupunkti halduse piiranguid. Kui väline leht praegu ei tööta, paranda see õpetajaga enne uute reeglite lisamist.
 
-**Piir:** ACL on **pakettfilter** õppelabori jaoks, mitte tulemüür tootmiskeskkonnas. Päris keskkonnas on rohkem vajalik.
+## 1. Lepime kokku, mida külaline tohib teha
 
-## Kohustuslik ligipääsupoliitika
-
-See on ligipääsumaatriks kohtumisest 3, mille nüüd rakendame:
-
-| Kust | Kuhu | Nõue |
+| Oskari tegevus | Meie otsus | Miks? |
 | --- | --- | --- |
-| Guest | DHCP | Saab IP, maski, gateway ja DNS-i |
-| Guest | Väline DNS ja HTTP | Töötab |
-| Guest | Gaming seadmed | **Keelatud** |
-| Guest | Staff arvuti ja server | **Keelatud** |
-| Guest | Võrguseadmete haldus | **Keelatud** |
+| Küsib DHCP-lt võrguandmeid | **Lubatud** | Muidu ei saa uus külaline võrku kasutada |
+| Avab välise testlehe ja kasutab välist DNS-i | **Lubatud** | See on külalisvõrgu eesmärk |
+| Ühendub Gaming arvutitega | **Keelatud** | Külaline ei vaja mänguarvutitele ligipääsu |
+| Avab Staff serveri või ühendub töötajate arvutitega | **Keelatud** | Töötajate seadmed jäävad töötajatele |
+| Muudab ruuteri või pääsupunkti seadistust võrgu kaudu | **Keelatud** | Külaline ei halda keskuse võrku |
 
-### Reeglid ja nende järjekord
+<figure class="guest-figure" aria-labelledby="guest-path-caption">
+  <div class="guest-figure-title">Oskari liiklus jõuab kõigepealt ruuterini</div>
+  <div class="guest-path-start"><strong>Oskar · Guest</strong><span>→</span><strong>R-Center · kontrollib reegleid</strong></div>
+  <div class="guest-paths">
+    <div class="guest-allow"><strong>→ LUBATUD</strong><span>Väline leht ja väline DNS</span></div>
+    <div class="guest-deny"><strong>× KEELATUD</strong><span>Staff server ja Gaming arvutid</span></div>
+  </div>
+  <div class="guest-dhcp"><strong>DHCP jääb lubatuks:</strong> Oskar saab ruuterilt endiselt võrguandmed.</div>
+  <figcaption id="guest-path-caption">Ruuter kontrollib seda läbivat liiklust. Pääsupunkti enda halduse kaitset kontrollime tunnis õpetajaga eraldi.</figcaption>
+</figure>
 
-Reeglite järjekord on oluline, sest esimene sobiv võidab:
+**Ennusta:** kui keelaksime külalisele kogu liikluse, kas oleksime ülesande õigesti lahendanud? Selgita tabeli abil.
 
-1. **Luba DHCP** (kliendi päring ruuterisse). **Esimesena**, sest ilma selleta ei saa külaline aadressi. Kui see jääb viimaseks, on enne tulnud keelav reegel ja külaline ei saa aadressi.
-2. **Keela Guest → Gaming võrk.**
-3. **Keela Guest → Staff võrk.**
-4. **Keela Guest → ruuter ise** (haldus).
-5. **Luba ülejäänu** (internet ja väline DNS/HTTP).
+## 2. Kontrollime, kuidas võrk praegu töötab
 
-Ehitame loendi sammhaaval. Kirjuta käsud ise ja vaata, kuidas käsurea algus muutub.
+Tee allolevas tabelis neli kontrolli ja täida veerg **„Enne”**. „Väline leht” tähendab sinu töö 9A serverit: `http://valis.test` ehk `http://203.0.113.10`.
 
-### Samm 1: loo loend
+| Kontroll | Enne: tegelik tulemus | Pärast: tegelik tulemus | Pärast peab olema |
+| --- | --- | --- | --- |
+| Oskar küsib DHCP-seadistuse uuesti | | | Saab õige seadistuse |
+| Oskar avab välise testlehe **nime kaudu** | | | Avaneb |
+| Oskar avab `http://192.168.20.10` | | | Ei avane |
+| Mirjam avab `http://192.168.20.10` | | | Avaneb |
+
+DHCP kontrolliks ava Oskaril **Desktop → IP Configuration** ja vali **Static → DHCP**. Vaata, kas IP jääb vahemikku `192.168.30.21–192.168.30.200`, mask on `255.255.255.0`, lüüs on `192.168.30.1` ja DNS on nüüd **`203.0.113.10`**. Kui näed veel `192.168.20.10`, lõpeta töö 9A DNS-i vahetamise samm enne piirangu lisamist.
+
+Veebilehe kontrolliks kasuta arvuti **Desktop → Web Browser** vaadet. Enne piirangu lisamist peaksid mõlemad arvutid Staff serveri lehe avama.
+
+## 3. Kuidas ruuter meie otsustest aru saab?
+
+Ruuter vajab otsuseid kindlas käsuvormis. Neid nimetatakse **ligipääsureegliteks** ehk **ACL-iks** (*Access Control List*).
+
+Näiteks meie otsus **„Luba arvutil DHCP-serverilt võrguandmeid küsida”** on ruuteri jaoks:
+
+```text
+permit udp any eq 68 any eq 67
+```
+
+Loeme seda vasakult paremale:
+
+| Käsu osa | Lihtne tähendus |
+| --- | --- |
+| `permit` | Luba |
+| `udp` | See rida puudutab UDP liiklust; DHCP kasutab UDP-d |
+| esimene `any` | Saatja IP võib olla ükskõik milline, sest uuel kliendil pole veel õiget IP-d |
+| `eq 68` | Saatja port peab olema 68: DHCP kliendi port |
+| teine `any` | Saaja aadressi siin ei piirata: klient võib alles serverit otsida |
+| `eq 67` | Saaja port peab olema 67: DHCP serveri port |
+
+`eq` tähendab „võrdub”. Pordid 68 ja 67 tähistavad siin kliendi ja serveri DHCP suhtlust, mitte jagatavaid IP-aadresse. Ruuter võib neid numbreid näidata nimedega `bootpc` ja `bootps`. Neid nimesid ega numbreid ei pea pähe õppima.
+
+**Reeglite järjekord loeb:** ruuter loeb ülevalt alla ning esimene sobiv reegel otsustab. Näiteks tuleb vajalik DHCP suhtlus lubada enne ruuteri Guest-aadressi keelamist. Kasutame õpetajaga etteantud järjekorda.
+
+## 4. Rakendame valmis reeglid koos õpetajaga
+
+Ava **R-Center → CLI**. Õpetaja aitab vajadusel jõuda käsureale `R-Center>`. Kui oled juba `R-Center#` real, alusta käsust `configure terminal`.
+
+Kopeeri järgmine plokk. Loe enne selle all olevast tabelist, mida iga rida teeb:
 
 ```text
 enable
 configure terminal
 ip access-list extended GUEST-IN
-```
-
-See loob laiendatud loendi nimega `GUEST-IN`. Käsurea algus muutub `(config-ext-nacl)#`: nüüd lisanduvad käsud loendi ridadeks.
-
-### Samm 2: luba DHCP (reegel 1)
-
-```text
-permit udp any eq bootpc any eq bootps
-```
-
-See lubab DHCP päringu: kliendi port 68 (`bootpc`) serveri porti 67 (`bootps`). Pane see **esimeseks**, sest muidu keelab mõni järgmine rida külalise aadressipäringu.
-
-### Samm 3: keela Guest → Gaming (reegel 2)
-
-```text
+permit udp any eq 68 any eq 67
 deny ip 192.168.30.0 0.0.0.255 192.168.10.0 0.0.0.255
-```
-
-Käsk keelab liikluse Guest võrgust (`192.168.30.x`) Gaming võrku (`192.168.10.x`). Osa `0.0.0.255` on **vastupidine mask** (*wildcard mask*): see ütleb, millised aadressi osad võivad erineda. `192.168.30.0 0.0.0.255` tähendab "kõik aadressid `192.168.30.x`". Põhimõte on sama, mida õppisid maskiga: kolm esimest arvu peavad olema samad, viimane võib olla mis tahes.
-
-### Samm 4: keela Guest → Staff (reegel 3)
-
-**Proovi ise.** Tee sama Staff võrgu (`192.168.20.0`) jaoks.
-
-::: details Kontrolli oma käsku
-```text
 deny ip 192.168.30.0 0.0.0.255 192.168.20.0 0.0.0.255
-```
-:::
-
-### Samm 5: keela Guest → ruuter ise (reegel 4)
-
-```text
 deny ip any host 192.168.30.1
-```
-
-See keelab liikluse ruuteri enda Guest-aadressile. Nii ei pääse külaline ruuterit seadistama. `host` tähendab ühte kindlat aadressi.
-
-### Samm 6: luba ülejäänud (reegel 5)
-
-```text
 permit ip 192.168.30.0 0.0.0.255 any
+end
 ```
 
-Alles nüüd lubame ülejäänud liikluse (internet, väline DNS ja HTTP). Kui see rida puuduks, keelaks loendi lõpus peidetud "keela kõik" ka interneti.
+| Rida algab | Mida teeme? |
+| --- | --- |
+| `enable`, seejärel `configure terminal` | Läheme ruuteri seadistamise režiimi, nagu eelmistes tundides |
+| `ip access-list extended GUEST-IN` | Loome nimega `GUEST-IN` reeglistiku. `extended` on selle liik: saab arvestada nii saatjat, saajat kui ka porte |
+| `permit udp ...` | Lubame DHCP päringu |
+| `deny ip ... 192.168.10.0 ...` | Keelame Guest → Gaming liikluse |
+| `deny ip ... 192.168.20.0 ...` | Keelame Guest → Staff liikluse |
+| `deny ip any host 192.168.30.1` | Keelame muu liikluse ruuteri Guest-aadressile; eelnev DHCP erand jääb lubatuks |
+| `permit ip 192.168.30.0 ... any` | Lubame ülejäänud Guest liikluse, sealhulgas välise lehe ja välise DNS-i |
+| `end` | Väljume seadistamisest |
 
-```text
-exit
-```
+`deny` tähendab „keela” ja `host` üht aadressi. Kirjapaar `192.168.30.0 0.0.0.255` tähistab selles käsus kogu Guest `/24` võrku. Teised samakujulised paarid tähistavad Gaming ja Staff võrku. **Täna kasutame valmis kuju; seda maski ise arvutama ei pea.**
 
-### Samm 7: vaata loendit
+Vaata koos õpetajaga tulemust:
 
 ```text
 show access-lists
 ```
 
-Näed viit rida järjekorras. See on hea hetk kontrollida, et järjekord on õige (DHCP esimesena, `permit ip ... any` viimasena).
-
-### Samm 8: rakenda loend Guest liidesele
-
-Seni on loend ainult olemas, aga ei tee midagi. Seome selle liidesega ja ütleme, millises suunas see kehtib:
+Nüüd on reeglid olemas, kuid need tuleb veel Guest ühendusel kasutusele võtta. Ütle enne järgmist plokki, milline liides sinu failis Guest pääsupunktini viib. Seejärel rakenda õpetajaga:
 
 ```text
+configure terminal
 interface GigabitEthernet0/2
 ip access-group GUEST-IN in
 end
 ```
 
-`in` tähendab, et filter kehtib ruuterisse **sisenevale** liiklusele. Kontroll: `show ip interface GigabitEthernet0/2` peab näitama, et sisenev loend on `GUEST-IN`.
+- `interface ...` valib Guest liidese.
+- `ip access-group GUEST-IN in` paneb meie reeglid kontrollima **Guest võrgust ruuterisse saabuvat liiklust**.
+- `end` lõpetab seadistamise.
 
-::: warning Käsud kontrollida
-`bootpc` ja `bootps` on DHCP portide nimed. Kui Packet Tracer neid nimesid ei tunne, kasuta numbreid (`eq 68`, `eq 67`). Kontrolli käsu kuju oma versioonis.
+Kui näed veateadet, peatu ja näita seda õpetajale. Ära muuda teiste LAN-ide ega välisvõrgu liidest.
+
+## 5. Kontrollime, mis muutus
+
+Täida nüüd sama nelja kontrolli tabeli veerg **„Pärast”**. Küsi Oskaril DHCP-seadistus uuesti ning kontrolli kõiki nelja parameetrit, mitte ainult varem saadud IP olemasolu.
+
+**Õige tulemus:** Oskar avab välise lehe, kuid Staff serveri lehte ei ava. Mirjam avab sama Staff serveri lehe endiselt. Nii näitad, et server töötab ja piirang puudutab külalist.
+
+::: tip Kui midagi ei lähe ootuspäraselt
+- **Oskar ei saa võrguandmeid:** kontrolli õpetajaga WiFi ühendust ja DHCP lubavat rida.
+- **Oskar ei ava ka välist lehte:** kontrolli, kas reeglistiku lõpus on ülejäänud liiklust lubav rida. Kui leht avaneb IP, aga mitte nime kaudu, vaata välist DNS-aadressi.
+- **Oskar avab ikka Staff serveri lehe:** kontrolli Staff keeldu ja seda, kas reeglid rakendati õigele liidesele.
+- **Mirjam ei ava serveri lehte:** kontrolli kõigepealt serveri HTTP-teenust ja Mirjami ühendust. See ei ole soovitud tulemus.
 :::
 
-### Kontroll pärast reeglite lisamist
+Ruuteri Guest-aadressi `192.168.30.1` ping on nende reeglite järel keelatud. Selle ebaõnnestumine üksi ei näita, et välisühendus või DHCP on katki.
 
-Esimene kontroll on **DHCP**. Pärast filtri lisamist lülita Oskari sülearvuti WiFi välja ja uuesti sisse (või lülita DHCP-st Static'ile ja tagasi). Kas ta saab ikka `192.168.30.x` aadressi? Kui ei saa, on DHCP reegel puudu või vales järjekorras.
-
-## Testmaatriks
-
-Kuidas tõestame, et poliitika töötab? Testime **nii lubatud kui keelatud** tegevusi. Üksnes "ping ei vasta" ei tõenda midagi: ka ruuter, mis on välja lülitatud, ei vasta.
-
-**Õige tõend** on: sama teenus **töötab ühest kohast ja ei tööta teisest**. Näiteks HTTP server Staff võrgus.
-
-| # | Kust | Mida teeb | Oodatav tulemus | Tegelik |
-| --- | --- | --- | --- | --- |
-| 1 | Henri-PC (Gaming) | Avab `http://gaming.test` | Avaneb | |
-| 2 | Mirjam-PC (Staff) | Avab `http://gaming.test` | Avaneb | |
-| 3 | Oskar-Laptop (Guest) | Avab `http://192.168.20.10` | **Ei avane** | |
-| 4 | Oskar-Laptop | `ping 192.168.10.21` (Gaming) | **Ei vasta** | |
-| 5 | Oskar-Laptop | Avab välise testlehe | Avaneb | |
-| 6 | Oskar-Laptop | Saab DHCP-st aadressi | Saab | |
-| 7 | Oskar-Laptop | Katse ühenduda ruuteri halduseni | **Ei õnnestu** | |
-
-Read 1 ja 3 koos on tõend: sama server ja sama leht on Staffist kättesaadav ja Guestist mitte. Rida 5 tõendab, et külalisele **lubatud** teenus jääb kasutatavaks. Poliitika, mis blokeerib kõik, on sama vigane kui poliitika, mis ei blokeeri midagi.
-
-## Mis juhtuks, kui…
-
-1. **DHCP-reegel on viimane, mitte esimene.** Tõsta `permit udp ...` loendi lõppu ja lase Oskari sülearvutil aadress uuesti küsida. Kas ta saab? Vaata, miks. Esimeseks sobib reegel, mis keelab, ja DHCP päring ei jõua kunagi lubava reegli juurde. Külalisele paistab see nii: "WiFi-ga ühendus on, aga internetti ei ole."
-2. **Viimane `permit ip ... any` puudub.** Vaata, mis Oskari välise lehega juhtub. Loendi lõpus on peidetud "keela kõik", nii et ka internet katkeb. Külaline ei saa enam midagi teha. See on turvaline, aga mängukeskus ei vaja seda.
-
-Mõlemal juhul taasta algne loend.
-
-## Võrguseadme haldus
-
-Reegel külalisvõrgu eest ruuterisse (rida 4 ülal) kaitseb ruuteri seadistust. Aga **pääsupunkti enda haldus** on eraldi küsimus. Pääsupunkt asub samas Guest võrgus ja sinna sisenevat liiklust ruuteri ACL **ei filtreeri**, sest see ei läbi ruuterit. Seepärast:
-
-- Vaata pääsupunkti haldusvõimalusi ja keela kaughaldus, kui mudel seda lubab.
-- Märgi dokumentatsiooni, **milliseid** piiranguid sa ei suutnud rakendada.
-
-### Ruuteri haldusparool
-
-Seadistame ruuterile parooli, et seadistust ei saaks muuta igaüks, kes selleni jõuab:
-
-**Samm 1: haldaja režiimi parool.**
-
-```text
-configure terminal
-enable secret <labori parool>
-```
-
-Pärast seda küsib ruuter parooli, kui keegi annab käsu `enable`. Parool hoitakse krüpteeritult.
-
-**Samm 2: ülejäänud paroolide krüpteerimine.**
-
-```text
-service password-encryption
-end
-```
-
-See krüpteerib ka teised paroolid, mis muidu paistaksid seadistuses selge tekstina.
-
-Parooli kohta:
-
-- Kasuta labori jaoks mõeldud parooli, mitte oma päris parooli.
-- `enable secret` hoiab parooli krüpteeritult. Seda parooli küsitakse, kui keegi ruuteris `enable` käsu annab.
-- **Kaugele ligipääsu** ei ava me lihtsalt "testimiseks". Kui kaughaldus pole vajalik, jääb see sisse lülitamata.
-
-Pärast seadistust kontrolli: vaata `show running-config` väljundist, et parool on krüpteeritud ja et kaughaldus ei ole lubatud.
-
-## Mängukeskuse koormus
-
-Eelmine osa oli **turve**. Nüüd vaatame **võimsust**: kas keskuse internetiühendus jaksab, kui sinna tuleb 20 mängijat? Mõisted (Mbit/s ja MB/s, ribalaius, edastuskiirus, viivitus, paketikadu) õppisid [kohtumisel 3](./kohtumine-03-vorguplaan-ja-packet-tracer#kui-suurt-uhendust-keskus-vajab). Siin teeme arvutuse.
-
-Packet Traceris ei ehita me 20 arvutit ja simulatsiooniaeg ei ole päris kiiruse tõend. Seepärast **arvutame**.
-
-### Mida arvutuseks vaja on
-
-1. **Kes ja mida teeb?** (mäng, video, uuendus)
-2. **Kui palju igaüks vajab?** (Mbit/s alla ja üles)
-3. **Kui paljud teevad seda korraga?** (samaaegsus)
-
-Kõik need on **eeldused**. Hea arvutuse tunnus on see, et eeldused on kirjas ja neid saab muuta. Kui Karl ütleb "meil tuleb tegelikult 25 mängijat", muudad ühe numbri ja arvutad uuesti.
-
-Eeldused:
-
-| Tegevus | Eeldus (ühe mängija kohta) | Alla | Üles | Allikas |
-| --- | --- | --- | --- | --- |
-| Online mäng | Karli enda eeldus | 3 Mbit/s | 1 Mbit/s | Eeldus, **ei ole mõõdetud** |
-| 1080p video (5 mängijat korraga) | Netflixi soovitus | 5 Mbit/s | | [Netflix](https://help.netflix.com/en/node/306) |
-| Mängu uuendus (üks mängija korraga) | Karli eeldus | 50 Mbit/s | | Eeldus |
-
-::: tip Eeldus, mitte reegel
-Netflixi 5 Mbit/s on 1080p jaoks soovitus. Päris video võib vajada vähem või rohkem. Mängunumbrid on Karli oma valik. Seepärast kirjutad iga arvu kõrvale, kust see on.
-:::
-
-### Arvutuskäik
-
-**Alla ja üles eraldi.** Internetiühendus on tihti **asümmeetriline**: allalaadimine on kiirem kui üleslaadimine. Mäng vajab mõlemat, seepärast arvuta suunad eraldi.
-
-```text
-Alla:  20 × 3 + 5 × 5 + 1 × 50 = 60 + 25 + 50 = 135 Mbit/s
-Üles:  20 × 1                                  =  20 Mbit/s
-```
-
-**Lisa varu.** Päris liiklus on ebaühtlane ja ühendus ei jõua kunagi täis kiiruseni. Lisa **20% varu**. See on valik, mitte seadus, nii et kirjuta see eeldusena üles.
-
-```text
-Alla:  135 × 1,2 = 162 Mbit/s
-Üles:   20 × 1,2 =  24 Mbit/s
-```
-
-Karli keskus vajab ühendust, mis annab vähemalt umbes **162 Mbit/s alla ja 24 Mbit/s üles**, **kui eeldused vastavad tõele**.
-
-### Kitsaskoht
-
-Isegi kui ühenduse allalaadimine on piisav, võib mõni teine osa ahelas piirata. **Kitsaskoht** on osa, mis piirab kogu ahelat.
-
-Karli internetipakkuja pakub paketti **200 Mbit/s alla ja 10 Mbit/s üles**. Võrdle:
-
-| Suund | Vaja | Pakett annab | Piisab? |
-| --- | --- | --- | --- |
-| Alla | 162 Mbit/s | 200 Mbit/s | Jah |
-| Üles | 24 Mbit/s | 10 Mbit/s | **Ei** |
-
-Siin on kitsaskoht **üleslaadimine**. Kommutaatori kiirendamine ei aitaks. Karl peab leidma paketi, mis annab üles vähemalt 24 Mbit/s.
-
-### Miks ainult mängijate arvust ei piisa
-
-| Keskus | Mängijaid | Tegevus | Ligikaudne vajadus alla |
-| --- | --- | --- | --- |
-| A | 20 | Kõik mängivad (3 Mbit/s) | 60 Mbit/s |
-| B | 5 | Kõik vaatavad korraga 4K videot (15 Mbit/s) | 75 Mbit/s |
-
-Väiksem keskus vajab rohkem. Tegelik vajadus sõltub sellest, **mida** mängijad teevad, **mitu neist korraga**, **mis suunas** ja **kui palju varu** on vaja. (4K video 15 Mbit/s põhineb samuti Netflixi soovitusel.)
-
-### Mõõtmine
-
-Üks lühike mõõtmine päris keskkonnas (failiedastuse aeg, `ping`) või õpetaja antud mõõteandmed. Kui kasutad õpetaja andmeid, märgi, et õppija ise ei mõõtnud.
+Kui vajad taastamist, ava salvestatud `09a-external.pkt` koopia ja korda juhendit õpetajaga. Esita toimiv tulemus.
 
 ## Esitatav töö
 
-- Fail `10-isolated.pkt`.
-- Täidetud testmaatriks (7 rida).
-- Haldusmuudatuse protokoll: mida seadistasid, miks ja kuidas kontrollisid.
-- Koormusarvutus eeldustega: alla ja üles eraldi, varu ning kitsaskoht.
+- Fail `10-isolated.pkt`. Salvesta ruuteri seadistus käsuga `copy running-config startup-config`, kinnita pakutud sihtnimi Enteriga ja salvesta ka `.pkt` fail.
+- Nelja kontrolli **tegelikud tulemused enne ja pärast** piirangu rakendamist.
+- Lühike selgitus: millise riski vähendasid ning millised kaks kontrolli koos tõendavad, et Staff server töötab, aga külaline ei pääse sellele ligi?
 
-**Kontroll:** keelatud sisemine HTTP ebaõnnestub Guestist, sama teenus töötab Gamingust ja Staffist, väline teenus Guestist jääb tööle.
+Paaris töötades vahetage seadistaja ja kontrollija rolli. Mõlemad peavad oskama tulemust oma sõnadega põhjendada. Õpetaja kontrollib lisaks Gaming võrgu ja võrguseadmete halduse kaitset.
 
-Kui filter vajab rohkem aega, lõpetatakse see siin ning mõõtmine ja arvutus viiakse üheteistkümnenda kohtumise esimesse 20 minutisse. **Guest eraldamisest ei loobuta.**
+## Mõtesta
 
-## Kokkuvõte
+1. Miks peab DHCP pärast piirangu lisamist edasi töötama?
+2. Miks ei piisa tõendist „Oskaril leht ei avane”?
+3. Kas WiFi nimi `Karli-Guest` üksi keelaks Staff serverisse pääsemise?
 
-| Mõiste | Tähendus |
-| --- | --- |
-| ACL | Ruuteri reeglite loend |
-| Reeglite järjekord | Esimene sobiv reegel otsustab |
-| Vastupidine mask | `0.0.0.255` tähendab "viimane arv võib olla mis tahes" |
-| Testmaatriks | Lubatud ja keelatud tegevuste tulemused |
-| Ribalaius | Maksimaalne võimalik edastus |
-| Kitsaskoht | Ahela aeglaseim lüli, mis piirab tervikut |
-| Asümmeetriline ühendus | Allalaadimine on kiirem kui üleslaadimine |
+## Soovi korral hiljem
+
+Kui põhiosa on tehtud, saad eraldi [võrgukoormuse lisaharjutuses](./lisaharjutus-vorgukoormus) arvutada, kui suurt ühendust mängukeskus vajab. See ei kuulu selle kohtumise kohustusliku töö hulka.

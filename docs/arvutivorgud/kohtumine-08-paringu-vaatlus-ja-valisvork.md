@@ -1,20 +1,22 @@
 ---
-title: "Päringu vaatlemine ja välisvõrgu lisamine"
-description: "Kohtumine 8: Karl vaatab Simulation Mode'is samm-sammult, mis juhtub kui Henri avab gaming.test. DNS, TCP, UDP, pordid, TCP/IP ja OSI seosed ning välisvõrgu lisamine."
+title: "Vaatame, kuidas DNS ja HTTP töötavad"
+description: "Kohtumine 8: Karl vaatab Simulation Mode'is samm-sammult, mis juhtub kui Henri avab gaming.test. DNS, TCP, UDP, pordid ning IP ja MAC-aadresside seosed olemasolevas võrgus."
 outline: deep
 ---
 
-# 8. Päringu vaatlemine ja välisvõrgu lisamine
+# 8. Vaatame, kuidas DNS ja HTTP töötavad
 
 ::: info Õpiväljund
-Pärast kohtumist oskad Simulation Mode'is jälgida DNS-i ja HTTP päringut, eristada nime lahendamist ja veebipäringut, seostada teenuse, transpordiprotokolli, pordi, IP ja MAC-aadressi ning selgitada välisvõrgu rolli.
+Pärast kohtumist oskad Simulation Mode'is jälgida DNS-i ja HTTP päringut, eristada nime lahendamist ja veebipäringut, seostada teenuse, transpordiprotokolli, pordi, IP ja MAC-aadressi ning kirjeldada päringu teekonda olemasolevas võrgus.
 :::
 
 ## Mis Karli keskuses nüüd juhtub?
 
 Karli keskuses töötab nüüd leht `gaming.test`. Henri küsib: "Aga mis juhtub, kui ma kirjutan `gaming.test` ja vajutan Enter? Kuidas mu arvuti teab, kuhu minna?"
 
-Täna ei ehita me midagi uut. Me **vaatame**, mis juhtub, ühe päringu kaupa. Seejärel lisame keskuse võrgule **välisvõrgu**.
+Täna **vaatame ja katsetame** oma olemasolevas võrgus. Välisvõrgu ehitame pärast WiFi lisamist [eraldi praktilises töös 9A](./valise-testvorgu-ehitamine).
+
+Ava oma `07-services.pkt` ja salvesta koopia nimega `08-observation.pkt`. Enne vaatlust kontrolli, et server on `192.168.20.10`, HTTP ja DNS töötavad ning leht avaneb nii Gaming kui Staff kliendist. Kliendid jäävad DHCP-le. Kirjuta Henri **praegune** IP üles: see ei pea olema `.21`.
 
 ## Simulation Mode
 
@@ -27,6 +29,8 @@ Kuidas kasutada:
 3. Ava Henri arvutil **Web Browser** ja kirjuta `http://gaming.test`.
 4. Vajuta **Auto Capture / Play** või **Capture / Forward** nuppu, et paketid samm-sammult liiguksid.
 5. Klõpsa paketile (värviline ümbrik), et näha selle sisu.
+
+Kui DNS-päringut ei ilmu, võib aadress olla kliendi vahemälus. Lisa serveri DNS-i uus, veel kasutamata nimi (näiteks `vaatlus.gaming.test`) sama aadressiga `192.168.20.10` ja ava see. Ka uus DHCP-ga klient sobib vaatlemiseks. Ära muuda selle pärast töötavaid DHCP-poole.
 
 Paketi vaates saad vaadata, mida iga kiht (rakendus, transport, võrk, ühendus) paketile lisas.
 
@@ -93,9 +97,9 @@ Sama järjekorda kasutasid kohtumisel 7.
 
 ## TCP ja UDP
 
-Mõlemad on **transpordiprotokollid**: nad hoolitsevad pakettide kohaletoimetamise eest. Nad töötavad erinevalt.
+Mõlemad on **transpordiprotokollid**, mis seovad andmed lähte- ja sihtpordiga. TCP lisab töökindla järjestatud andmevoo, UDP ise kohaletoimetamist ega järjekorda ei taga.
 
-**TCP** loob enne andmete saatmist **ühenduse**, kolme sammuga, ja kinnitab iga tüki kättesaamist:
+**TCP** loob enne andmete saatmist **ühenduse**, kolme sammuga, ning kasutab saabunud andmete kinnitusi ja vajadusel uuesti saatmist. Üks kinnitus võib hõlmata mitut andmetükki:
 
 ```mermaid
 sequenceDiagram
@@ -119,7 +123,7 @@ Seda näed Simulation Mode'is, kui jälgid TCP pakette.
 | **Kinnitus** | Jah, kaotatud paketid saadetakse uuesti | Ei |
 | **Kasutus** | Veebileht, e-post, failid | DNS päring, DHCP, mõned mängud ja videokõned |
 
-**Analoogia piir:** TCP ei ole "kiirem" ega UDP "halvem". TCP annab **usaldusväärsuse** (kõik jõuab kohale õiges järjekorras), UDP annab **väiksema viivituse** (ei oota kinnitust). Reaalajamängus on viivitus tihti olulisem kui ühe kaduma läinud paketi uuesti saatmine: kui sekundi tagune asend jõuaks hilja kohale, ei vaja seda enam keegi.
+**Analoogia piir:** TCP ei ole "kiirem" ega UDP "halvem". TCP annab ühenduse toimimise korral **järjestatud ja uuesti saatmisega andmevoo**; UDP ei lisa ise ühenduse loomist, kinnitusi ega uuesti saatmist. UDP ei taga väiksemat viivitust: tulemus sõltub võrgust ja rakendusest. Reaalajamängus on viivitus tihti olulisem kui ühe kaduma läinud paketi uuesti saatmine: kui sekundi tagune asend jõuaks hilja kohale, ei vaja seda enam keegi.
 
 ## Port
 
@@ -128,7 +132,7 @@ Server pakub mitut teenust korraga, aga ta on ainult üks seade ühe IP-ga. **Po
 | Teenus | Transport | Port |
 | --- | --- | --- |
 | HTTP (veebileht) | TCP | 80 |
-| DNS | UDP | 53 |
+| DNS (selle katse tavapärane päring) | UDP; DNS kasutab ka TCP-d | 53 |
 | DHCP (server / klient) | UDP | 67 / 68 |
 
 Henri päring serverisse näeb välja nii:
@@ -138,9 +142,9 @@ Henri arvuti:  192.168.10.21  port 52814   →   Server:  192.168.20.10  port 80
 ```
 
 - **Sihtport 80** tähendab: "tahan rääkida veebiserveriga".
-- **Lähteport 52814** on juhuslik number, mille Henri arvuti selleks päringuks valis. Nii teab arvuti, et vastus kuulub just sellele brauseri vahelehele, mitte mõnele teisele programmile.
+- **Lähteport 52814** on juhuslik number, mille Henri arvuti selleks päringuks valis. Koos IP-aadresside ja sihtpordiga aitab see operatsioonisüsteemil seostada vastuse õige ühendusega. Üks brauser võib kasutada mitut ühendust; port ei tähista otseselt üht brauseri vahelehte.
 
-(Aadressid ja pordi number on näited. Simulation Mode näitab sinu päris numbreid.)
+Aadressid ja pordinumber on **näited**. Kasuta oma vaatluses DHCP-ga saadud tegelikku IP-d ja Simulation Mode'is nähtavaid porte. DHCP jagatav IP-vahemik `.21–.200` ning transpordipordid, näiteks `53` ja `80`, on eri asjad.
 
 ## Kolm aadressi: MAC, IP ja port
 
@@ -154,9 +158,9 @@ Pakett vajab **kolme erinevat aadressi**, sest igaüks vastab eri küsimusele:
 
 Lihtne võrdlus on kuller, kes viib paki suurde büroohoonesse. **IP-aadress** on hoone aadress tänaval. **Port** on kontori number hoones. **MAC-aadress** on uksehoidja nimi, kellele kuller paki esimesena annab.
 
-**MAC-aadress** on võrgukaardi unikaalne aadress, mis on valmistatud kaardi sisse. See on kuus paari tähti ja numbreid, näiteks `3C:22:FB:A1:5E:90`. Esimesed kolm paari näitavad tootjat. MAC-aadress kehtib **ainult kohalikus võrgus**.
+**MAC-aadress** on võrguliidese andmesidekihi aadress, näiteks `3C:22:FB:A1:5E:90`. Tootja määratud aadressi algus võib näidata tootjat, kuid olemas on ka kohalikult määratud ja muudetavad MAC-aadressid. Ruuter ei kasuta algset Etherneti päist kogu teekonna lõpuni: järgmises LAN-is moodustab ta uue kaadri.
 
-**Põhireegel:** **sihtkoha IP-aadress** viitab lõppsihtkohale ja jääb kogu teekonna vältel samaks. **MAC-aadress** viitab järgmisele seadmele ja muutub igal hüppel. Henri paketi teekond serverini:
+**Meie kahe LAN-i vahel ilma NAT-ita:** lähte- ja siht-IP jäävad samaks, kuid ruuter vahetab järgmisse LAN-i saatmisel kaadri MAC-aadressid. Kommutaator ise neid iga pordi juures ümber ei kirjuta. Päris interneti piiril kasutatav aadressitõlge ehk NAT võib muuta ka IP-aadressi; seda me selles katses ei kasuta. Henri paketi teekond serverini:
 
 | Hüpe | Lähte IP | Siht IP | MAC |
 | --- | --- | --- | --- |
@@ -189,75 +193,18 @@ OSI kolm ülemist kihti (5, 6, 7) on TCP/IP-s üks "rakendus", kaks alumist (1, 
 
 ## Mis juhtuks, kui…
 
-Tee Simulation Mode'is kaks katset ja kirjuta, millise sammu juures pakett peatub:
+Tee Simulation Mode'is kaks katset **toimiva faili koopias**, üks viga korraga. Kliendid jäävad DHCP-le.
 
-1. Muuda Henri arvutil DNS-serveri aadress valeks (nt `192.168.20.99`) ja ava `http://gaming.test`. DNS-päring läheb teele, vastust ei tule ja HTTP-päringuni ei jõuta. `http://192.168.20.10` avaneb ikka.
-2. Lülita serveril HTTP välja ja ava `http://192.168.20.10`. DNS-i selles ei kasutata. TCP ühendus ei õnnestu või leht ei tule.
+1. Lisa DNS-i veel kasutamata nimi `katse8.gaming.test` → `192.168.20.10`. Enne selle kliendilt küsimist lülita serveri DNS välja. Ava uus nimi ning vaata DNS-päringut ja vastuse puudumist. `http://192.168.20.10` peab endiselt avanema. Taasta DNS ja kontrolli uue nime toimimist.
+2. Lülita serveril HTTP välja ja ava `http://192.168.20.10`. Selle IP kaudu päringu jaoks pole nimelahendust vaja. Jälgi, kas TCP ühendus ebaõnnestub või HTTP-vastust ei tule. Taasta HTTP ja kontrolli lehte uuesti.
 
-Vaata mõlemal juhul, **milline pakett kaob** ja kus. Nii näed oma silmaga, miks "leht ei avane" võib tähendada mitut erinevat asja.
-
-## Välisvõrgu lisamine
-
-Seni oli kõik keskuse sees. Nüüd ühendame keskuse **välisvõrguga**.
-
-**Välisvõrk** on keskuse väline osa. Packet Traceris simuleerib seda õpetaja ettevalmistatud osa: internetipakkuja ruuter ja väline test-server, kus on DNS ja veebileht. See **ei ole päris internet**, vaid simulatsioon. Dokumentatsiooni jaoks mõeldud aadressid (näiteks vahemik `203.0.113.0/24`, mis on spetsiaalselt näidete jaoks reserveeritud) ei ole tegelike seadmete aadressid.
-
-Sinu ülesanne ei ole välisvõrku **nullist ehitada**. Pead aru saama:
-
-- mis on välisvõrgu roll ("sinu keskuse võrk jõuab teise võrku");
-- kuidas keskuse ruuter seda ühendab (keskuse ruuteril on **neljas liides**, mis viib välja);
-- milliseid seadmeid õpetaja on lisanud (märgitud skeemil).
-
-### Privaatne ja avalik aadress: NAT
-
-Keskuse aadressid (`192.168.x.x`) on **privaataadressid**: need kehtivad ainult kohalikus võrgus (vt [kohtumine 4](./kohtumine-04-ipv4-ja-aadressiplaan)). Internetis neid ei marsruudita. Kuidas siis Henri pääseb välisvõrku?
-
-Ruuter töötab vahendajana. Kui Henri päring läheb välja, kirjutab ruuter selle peale **oma avaliku aadressi** ja jätab meelde, kes selle saatis. Vastus tuleb ruuterile ja ruuter annab selle Henrile. Seda nimetatakse **NAT-iks** (*Network Address Translation*). Seepärast paistavad kõik keskuse arvutid välisvõrgus **üheainsa** aadressiga.
-
-```mermaid
-flowchart LR
-    H1["Henri<br/>192.168.10.21"] --> R
-    K1["Kadri<br/>192.168.10.22"] --> R
-    M1["Mirjam<br/>192.168.20.21"] --> R
-    R["Ruuter<br/>sees: 192.168.10.1, 192.168.20.1<br/>väljas: avalik aadress"] --> I((Välisvõrk))
-```
-
-Selles laboris on NAT või selle sarnane lahendus **õpetaja poolt ette valmistatud**. Sina pead aru saama, et see on olemas ja miks, ei pea seda nullist seadistama.
-
-### Samm-sammult
-
-Õpetaja annab kas:
-
-- **kontrollitud vahefaili** (`08-start.pkt`), kuhu kantakse sinu senised seadistused õpetaja juhise järgi, või
-- **valmis stardifaili** välisvõrguga.
-
-Seejärel kontrollid:
-
-1. Skeemil on välisvõrk märgitud ja eristatud keskuse võrgust.
-2. Keskuse ruuteri liides välisvõrgu suunas on **up**.
-3. Henri arvutist `ping` välisvõrgu testserverisse.
-4. Henri arvutist avaneb brauseris välise teenuse leht nime kaudu (nime annab õpetaja).
+Kirjuta mõlemal juhul, milline oodatud vastus puudus ja mida tegelikult nägid. Varem külastatud nime või lehe vahemälu võib katset mõjutada. Enne töö salvestamist peavad sisemine HTTP ja DNS mõlemast LAN-ist jälle töötama.
 
 ## Esitatav töö
 
-- Fail `08-external.pkt`.
-- Kommenteeritud päringuteekond: Henri avab `gaming.test`. Kirjuta tabelina sammud (DNS, TCP, HTTP), igal sammul teenus, transpordiprotokoll, port ja IP.
-- Töötav väline testleht Henri arvutist.
-- Lühike selgitus: mille poolest erineb välisvõrk "päris internetist"?
+- Oma fail `08-observation.pkt`, kus DNS ja HTTP on katsete järel taastatud.
+- Ühe vaadeldud päringu teekond: DNS, TCP ja HTTP; kirjuta nähtud IP-aadressid ning pordid üles.
+- Üks võrdlus: kas sama leht avaneb IP kaudu ja nime kaudu, kui DNS ei tööta?
+- Üks tähelepanek MAC-aadresside kohta enne ja pärast ruuterit.
 
-**Kontroll:** seosta teenus, transpordiprotokoll, port, IP ja MAC.
-
-## Kokkuvõte
-
-| Mõiste | Tähendus |
-| --- | --- |
-| Simulation Mode | Näitab pakettide teekonda sündmuse haaval |
-| TCP | Usaldusväärne, kinnitusega |
-| UDP | Kinnituseta, väiksem viivitus |
-| Port | Number, mis näitab teenust serveris |
-| MAC-aadress | Seadme aadress kohalikus võrgus |
-| ARP | "Kes on selle IP-aadress MAC?" |
-| NAT | Ruuter tõlgib privaataadressid ühe avaliku alla |
-| Kiht | Üks ülesanne võrgus (rakendus, transport, internet, võrguliides) |
-| OSI | Seitsmekihiline selgitusmudel, TCP/IP on neljakihiline |
-| Välisvõrk | Keskuse välised ühendused (laboris simuleeritud) |
+Järgmisel kohtumisel lisad samasse projekti Guest WiFi. Välist serverit ega õpetaja valmistatud võrgufaili selle tunni jaoks vaja pole.

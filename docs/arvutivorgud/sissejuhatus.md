@@ -1,6 +1,6 @@
 ---
 title: Arvutivõrgud ja küberturvalisus
-description: Aine ülevaade. Ehitad Packet Traceris mängukeskuse võrgu, mis on jaotatud kolmeks võrguks ja kaitstud külalisvõrgu piiranguga. 11 kohtumist, õpiväljund ja hindamine.
+description: Aine ülevaade. Ehitad Packet Traceris mängukeskuse võrgu, mis on jaotatud kolmeks võrguks ja kaitstud külalisvõrgu piiranguga. 11 põhiteemat ja eraldi välisvõrgu ehitamise töö, õpiväljund ja hindamine.
 outline: deep
 ---
 
@@ -15,7 +15,7 @@ Selgitad küberturbe riske ja häid tavasid nii tarkvara kui riistvara konfigure
 | **HK 4.1** | Loetled peamised küberturberiskid tarkvara ja riistvara konfigureerimisel ning selgitad nende mõju organisatsioonile. |
 | **HK 4.2** | Rakendad lihtsamaid turvameetmeid, nagu paroolipoliitika, tarkvara uuendused ja õiguste piiramine, ning dokumenteerid oma tegevused. |
 
-Kursus koosneb **11 kohtumisest** (11 × 90 minutit). Kogu kursuse jooksul ehitad ühte projekti: **mängukeskuse võrku**. Võrku ehitad simulaatoris, mitte päris seadmetel, nii et midagi ei saa katki minna ja eksida tohib.
+Kursus sisaldab **11 nummerdatud põhiteemat ja nende vahel eraldi praktilist tööd 9A**. Igaühele on kavandatud 90 minutit: koos välisvõrgu ehitamisega on plaanis 12 töökohtumist. Töö 9A toimub pärast Guest WiFi lisamist ja enne ligipääsupiiranguid. Kogu kursuse jooksul ehitad ühte projekti: **mängukeskuse võrku**. Võrku ehitad simulaatoris, mitte päris seadmetel, nii et midagi ei saa katki minna ja eksida tohib.
 
 ## Läbiv lugu: Karli mängurite tuba
 
@@ -47,7 +47,7 @@ Töötav mängukeskuse võrk, mida saab avada, testida ja dokumentatsiooni järg
 4. Ligipääsumaatriks: kes tohib millise teenuseni jõuda.
 5. Kontrolliprotokoll: nii lubatud kui keelatud tegevuste tegelikud tulemused.
 6. Vähemalt kolme riski analüüs.
-7. Seadmete loend ja põhjendatud koormushinnang.
+7. Seadmete loend. Koormusarvutust saab harjutada eraldi valikulises lisaharjutuses.
 8. Muudatuste päevik ja taastamise juhis.
 
 ::: warning See on lähteplaan, mitte ehitusprojekt
@@ -65,10 +65,13 @@ Simulaator ei asenda päris seadmeid. Ruumiplaan, kaablipikkused, WiFi levi ja k
 | 5 | [Esimesed LAN-id ja nende ühendamine](./kohtumine-05-esimesed-lanid) | `05-lan-routing.pkt` |
 | 6 | [DHCP](./kohtumine-06-dhcp) | `06-dhcp.pkt` |
 | 7 | [Sisemine server: HTTP ja DNS](./kohtumine-07-server-http-dns) | `07-services.pkt` |
-| 8 | [Päringu vaatlemine ja välisvõrk](./kohtumine-08-paringu-vaatlus-ja-valisvork) | `08-external.pkt` |
+| 8 | [DNS-i ja HTTP vaatlemine](./kohtumine-08-paringu-vaatlus-ja-valisvork) | `08-observation.pkt` |
 | 9 | [Guest WiFi](./kohtumine-09-guest-wifi) | `09-guest.pkt` |
-| 10 | [Guest eraldamine ja koormus](./kohtumine-10-guest-eraldamine-ja-koormus) | `10-isolated.pkt`, testmaatriks |
+| 9A | [Ehitame ise välise testvõrgu](./valise-testvorgu-ehitamine) | `09a-external.pkt` |
+| 10 | [Külalisvõrgu piirang](./kohtumine-10-guest-eraldamine-ja-koormus) | `10-isolated.pkt`, neli enne/pärast kontrolli |
 | 11 | [Üleandmine ja individuaalne kontroll](./kohtumine-11-uleandmine) | Projektikomplekt, veaprotokoll |
+
+Kõik praktilised failid lood ise: õpetaja valmis võrgufaile kursus ei eelda.
 
 Esimesed neli kohtumist on **ettevalmistus**: joonistad, kavandad ja arvutad paberil. Võrgu ehitamine algab viiendal kohtumisel.
 

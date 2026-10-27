@@ -34,7 +34,7 @@ Iga neljast arvust on **oktett**. Vahemik 0–255 tuleb sellest, et iga oktett o
 
 Mängukeskuse sisevõrgus kasutame aadresse, mis algavad `192.168`. Need on **privaataadressid**: need on mõeldud kohalikeks võrkudeks ega kehti internetis. Sama aadress võib samaaegselt olla tuhandes erinevas kohalikus võrgus, sest need ei ole omavahel nähtavad.
 
-**Avalik IP-aadress** on seevastu internetis ainulaadne. Selle saab ruuter oma internetipakkujalt. Privaataadressi seade pääseb internetti ruuteri kaudu, mis vahendab (seda nimetatakse NAT-iks ja vaatame seda [kohtumisel 8](./kohtumine-08-paringu-vaatlus-ja-valisvork)).
+**Avalik IP-aadress** on seevastu internetis ainulaadne. Selle saab ruuter oma internetipakkujalt. Päris internetiga ühendamisel kasutatakse privaataadresside jaoks sageli ruuteri aadressitõlget ehk NAT-i. Meie [töö 9A välisvõrk](./valise-testvorgu-ehitamine) on suletud simulatsioon, kus ruuteritele antakse teekonnad käsitsi; NAT-i seal vaja pole.
 
 Privaatsed vahemikud on kokku lepitud ([RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918)):
 

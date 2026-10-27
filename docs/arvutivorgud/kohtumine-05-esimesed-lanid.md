@@ -89,7 +89,7 @@ flowchart TB
     SS --- M[Mirjam-PC<br/>192.168.20.21]
 ```
 
-1. Lisa teine kommutaator (`SW-Staff`), arvuti (`Mirjam-PC`) ja **ruuter** (Network Devices → Routers). Vali ruuter, millel on vähemalt kolm Etherneti liidest (õpetaja ütleb mudeli).
+1. Lisa teine kommutaator (`SW-Staff`), arvuti (`Mirjam-PC`) ja **ruuter** (Network Devices → Routers). Vali **2911**, mille kolm GigabitEtherneti liidest sobivad Gaming, Staff ja hiljem Guest jaoks. Töö 9A ajal saad sellele lisada eraldi serial-mooduli.
 2. Ühenda `Mirjam-PC` ja `SW-Staff` sirge kaabliga.
 3. Ühenda `SW-Gaming` ruuteri esimese liidesega (`GigabitEthernet0/0`) ja `SW-Staff` teise liidesega (`GigabitEthernet0/1`). Kasuta sirget kaablit.
 

@@ -22,7 +22,7 @@ Täna teeme kolm asja:
 
 1. koostame plaani, mis ütleb, **kes mida võib**;
 2. selgitame, **kui suurt internetiühendust** keskus vajab ja mida tähendab "aeglane";
-3. avame Packet Traceris valmis skeemi, et näha, kuidas selline plaan ehitatuna välja näeb.
+3. koostame Packet Traceris ise seadmete esialgse paigutuse.
 
 ## Miks kolm võrku?
 
@@ -173,11 +173,11 @@ Mõõtmisel tuleb olla ettevaatlik:
 - WiFi kiirus sõltub kaugusest, seintest ja teistest seadmetest. Sama mõõtmine kaks korda võib anda erineva tulemuse.
 - Kirjuta iga mõõtmise juurde alati tingimused: kaabel või WiFi, kellaaeg, taustaprogrammid.
 
-Packet Traceris ei saa päris kiirust mõõta, sest simulatsiooniaeg ei kajasta päris võrgu kiirust. Seepärast arvutame kohtumisel 10 ühenduse vajaduse, kasutades just neid mõisteid.
+Packet Traceris ei saa päris kiirust mõõta, sest simulatsiooniaeg ei kajasta päris võrgu kiirust. Neid mõisteid saad hiljem kasutada [valikulises võrgukoormuse harjutuses](./lisaharjutus-vorgukoormus).
 
 ## Packet Traceri tutvustus
 
-Packet Tracer on programm, kus saab joonistada ja seadistada võrgu ning seda **simuleerida**. Täna ehitame veel ei midagi, vaid **avame õpetaja etteantud skeemi** ja vaatame, kuidas see on tehtud.
+Packet Tracer on programm, kus saab joonistada ja seadistada võrgu ning seda **simuleerida**. Täna **lisad ise tühjale töölauale seadmed**, et õppida nende vaateid tundma. Kaablid ja IP-seadistuse teeme kohtumisel 5; õpetaja valmisfaili vaja pole.
 
 Pärast kohtumist on sul see sama failitüüp (`.pkt`), mis hiljem on sinu projekt.
 
@@ -204,11 +204,11 @@ Kui klõpsad seadmele, avaneb selle aken. Seal on vaated, mida kasutame hiljem:
 | **CLI** | Käsurida (ruuteritel ja kommutaatoritel) |
 | **Desktop** | Arvuti töölaud (arvutitel), kust saab IP-seadistust, brauserit ja käsurida avada |
 
-Täna **ei muuda** sa midagi. Oluline on, et tead, kust midagi leiad.
+Täna paigutad ja nimetad seadmeid, kuid ei seadista veel IP-aadresse ega ruuteri CLI-d.
 
 ## Praktiline töö
 
-1. **Ava etteantud fail.** Õpetaja annab faili `03-vaatlus.pkt`. Ava see Packet Traceris.
+1. **Loo oma skeem.** Vali **File → New**. Lisa **End Devices** alt kaks PC-d ja üks Server, **Network Devices → Switches** alt kaks kommutaatorit ning **Routers** alt üks **2911** ruuter. Nimeta need `Henri-PC`, `Mirjam-PC`, `SRV-Staff`, `SW-Gaming`, `SW-Staff` ja `R-Center`. Paiguta Gaming seadmed ühele ja Staff seadmed teisele poole ruuterit. Kaableid ega aadresse praegu vaja pole.
 2. **Leia seadmed ja nende nimed.** Tee tabel: seadme nimi, tüüp (arvuti, kommutaator, ruuter, pääsupunkt, server), võrk, kuhu ta kuulub (Gaming, Staff, Guest).
 3. **Ava vähemalt kolme seadme aken.** Vaata, mis vaated seal on. Ava ruuteri **CLI** vaade ainult vaatamiseks. Käske ei sisesta.
 4. **Salvesta koopia** nimega `03-vaatlus-sinunimi.pkt`.
@@ -216,7 +216,7 @@ Täna **ei muuda** sa midagi. Oluline on, et tead, kust midagi leiad.
    - Füüsiline skeem (kaablid ja seadmed). Võid kasutada Packet Traceri skeemi lähtekohana.
    - Loogiline skeem (võrgud ja reeglid).
    - Ligipääsumaatriks (tabel nagu ülal, sinu täienduste või muudatustega).
-6. **Vasta:** miks ei saa külaline Mirjami arvutisse minna isegi siis, kui WiFi nimi on "Guest"?
+6. **Vasta:** kas WiFi nimi "Guest" üksi takistab külalisel Mirjami arvutisse jõudmist? Millist piirangut plaanis vaja on?
 7. **Ühikud:** (a) Kui kaua võtab 250 MB faili allalaadimine 50 Mbit/s ühendusega? (b) Kui kaua võtab 2 GB fail 100 Mbit/s ühendusega? (1 GB = 1000 MB.) Näita arvutuskäik.
 8. **Mõisted:** mängija ütleb "mäng lagiseb". Millised kolm eri asja see võib tähendada ja millega sa neid mõõdaksid?
 

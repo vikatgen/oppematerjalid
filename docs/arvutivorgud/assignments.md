@@ -7,8 +7,8 @@ description: Mängukeskuse võrgu projekti kontroll-loend. Iga kohtumise tõend,
 
 Kursuse ülesanne on üks projekt: **Karli mängukeskuse võrk**. Iga kohtumise lõpus esitad ühe tõendi. Töö kirjeldus on vastavas kohtumises, siin on kontroll-loend. Kõik tõendid kokku moodustavad üleantava projektikomplekti.
 
-::: warning Valmis vahefail ei asenda tegemist
-Kui kasutad mõnes etapis valmis vahefaili, märgi see dokumentatsiooni ja tõenda, mida selles etapis ise muutsid.
+::: info Jätka oma senisest failist
+Lood võrgu ise ja salvestad iga etapi uue nimega. Õpetaja ettevalmistatud võrgufaili vaja pole. Kui töö jääb pooleli, jätka oma viimasest salvestusest või lõpeta see juhendi abil.
 :::
 
 ---
@@ -76,9 +76,14 @@ Kui kasutad mõnes etapis valmis vahefaili, märgi see dokumentatsiooni ja tõen
 **Kohtumine:** [DHCP](./kohtumine-06-dhcp)
 
 - [ ] `06-dhcp.pkt`
-- [ ] Mõlema võrgu klient on saanud aadressi, maski, gateway ja DNS-i
-- [ ] Välistused on seadistatud ja põhjendatud
-- [ ] Mõlema võrgu klient jõuab teise võrgu seadmeni
+- [ ] Kõik olemasolevad tavalised arvutid ja kummassegi LAN-i lisatud uus klient kasutavad DHCP-d
+- [ ] Iga kliendi tegelik IP, mask, vaikelüüs ja DNS-aadress on tabelis; IP kuulub oma LAN-i `.21–.200` vahemikku ning sama LAN-i aadressid ei kordu
+- [ ] Mõlema pooli alamvõrk, lüüs ja DNS ning kõik neli välistust on kontrollitud; serveri `192.168.20.10` on vaba ja välistatud
+- [ ] Ruuteri renditabelist on leitud klientide aadressid
+- [ ] Sama LAN-i ja teise LAN-i ühenduvus on kontrollitud ning mõlemast LAN-ist tehtud katsete lähte- ja sihtseadmed ning tulemused on kirjas
+- [ ] Vale lüüsi katse ennustus, vaatlus ja põhjendus on kirjas; pärast kliendiseadistuse uuendamist ning vea taastamist on ühenduvus uuesti kontrollitud
+- [ ] Oskad põhjendada serveriaadressi välistamist, eristada `default-router` käsku ruuteri liidese IP seadistamisest ning DNS-aadressi saamist DNS-teenuse toimimisest
+- [ ] Ruuteri seadistus ja `.pkt` fail on salvestatud ning taasavamise järel kontrollitud
 
 ---
 
@@ -89,17 +94,19 @@ Kui kasutad mõnes etapis valmis vahefaili, märgi see dokumentatsiooni ja tõen
 - [ ] `07-services.pkt`
 - [ ] Leht avaneb IP kaudu ja nime kaudu mõlemast kliendivõrgust
 - [ ] Veaotsingu selgitus: kuidas eristada IP, HTTP ja DNS viga
+- [ ] Server on staatilisel `192.168.20.10` aadressil; Gaming/Staff kliendid jäävad DHCP-le ja kasutavad seda DNS-aadressi
+- [ ] Veakatse järel on DNS ja HTTP taastatud ning leht avaneb mõlemast LAN-ist
 
 ---
 
-## 8. Päringu teekond ja välisvõrk
+## 8. Päringu vaatlemine
 
-**Kohtumine:** [Päringu vaatlus ja välisvõrk](./kohtumine-08-paringu-vaatlus-ja-valisvork)
+**Kohtumine:** [DNS-i ja HTTP vaatlemine](./kohtumine-08-paringu-vaatlus-ja-valisvork)
 
-- [ ] `08-external.pkt`
-- [ ] Päringu teekond: DNS, TCP, HTTP, igal sammul protokoll, port ja IP
-- [ ] Väline testleht avaneb
-- [ ] Selgitatud, mille poolest erineb simuleeritud välisvõrk päris internetist
+- [ ] Oma `08-observation.pkt`
+- [ ] Vaatluse DNS/TCP/HTTP sammud ja tegelikud IP-d ning pordid on kirjas
+- [ ] DNS-i veakatse ja IP kaudu kontroll on tehtud; DNS ja HTTP on taastatud
+- [ ] MAC-aadresside muutumise kohta on üks tähelepanek
 
 ---
 
@@ -107,22 +114,38 @@ Kui kasutad mõnes etapis valmis vahefaili, märgi see dokumentatsiooni ja tõen
 
 **Kohtumine:** [Guest WiFi](./kohtumine-09-guest-wifi)
 
-- [ ] `09-guest.pkt`
-- [ ] Guest parameetrite tabel (IP, mask, gateway, DNS, SSID, krüpteering)
-- [ ] Külaline avab välise testlehe
-- [ ] Esimene risk on kirjeldatud
+- [ ] Oma `09-guest.pkt`
+- [ ] Oskar on WiFi-ga ühendatud ja saab Guest DHCP-st õige IP, maski ning lüüsi
+- [ ] Guest DNS on selles etapis sisemine `192.168.20.10`
+- [ ] Oskar avab sisemise lehe nii IP kui nime kaudu; esialgne ligipääsurisk on kirjeldatud
+- [ ] Gaming/Staff töötavad edasi ning veakatsed on taastatud
 
 ---
 
-## 10. Guest eraldamine ja koormus
+## 9A. Välise testvõrgu ehitamine
 
-**Kohtumine:** [Guest eraldamine ja koormus](./kohtumine-10-guest-eraldamine-ja-koormus)
+**Praktiline töö:** [Ehitame ise välise testvõrgu](./valise-testvorgu-ehitamine)
 
-- [ ] `10-isolated.pkt`
-- [ ] Testmaatriks on täidetud nii lubatud kui keelatud tegevuste kohta
-- [ ] Sama sisemine teenus töötab Gamingust ja Staffist ning ei tööta Guestist
-- [ ] Haldusmuudatuse protokoll (haldusparool, kaughalduse piirang)
-- [ ] Koormusarvutus eeldustega: alla ja üles eraldi, varu ja kitsaskoht
+- [ ] Oma `09a-external.pkt`, kus oled lisanud R-Outside ja SRV-Outside
+- [ ] Ruuterite ühendus on up/up ning edasi- ja tagasiteed töötavad
+- [ ] Server `203.0.113.10` pakub DNS-i ja HTTP-d; `valis.test` kirje on mõlemas DNS-serveris
+- [ ] Guest DNS on muudetud aadressile `203.0.113.10`, klient on seadistuse uuesti küsinud
+- [ ] Guest, Gaming ja Staff avavad välise lehe; Gaming/Staff sisemine leht töötab edasi
+- [ ] Töö lõppkontroll on täidetud; mõlemad ruuterid ja fail on salvestatud
+
+---
+
+## 10. Külalisvõrgu piirang
+
+**Kohtumine:** [Külaline pääseb välisvõrku, aga töötajate serverisse mitte](./kohtumine-10-guest-eraldamine-ja-koormus)
+
+- [ ] Toimiv ja salvestatud `10-isolated.pkt`
+- [ ] Nelja kontrolli tegelikud tulemused enne ja pärast: Guest DHCP, Guest väline leht, Guest Staff leht ja Staff kliendi sama serverileht
+- [ ] Oskar saab õige IP, maski, lüüsi ja välise DNS-i ning avab välise lehe nime kaudu
+- [ ] Staff serveri leht avaneb Mirjamilt, kuid ei avane Oskarilt samal IP-aadressil
+- [ ] Oskad nimetada riski, rakendatud piirangu ja põhjendada kontrollide tulemust
+
+Reeglite rakendamine on juhendatud. Käsusüntaksi mälu järgi kirjutamist ei nõuta. Gaming võrgu ja haldusjuurdepääsu lisakontrollid teeb õpetaja. [Koormusarvutus](./lisaharjutus-vorgukoormus) on valikuline hilisem harjutus.
 
 ---
 
@@ -131,6 +154,8 @@ Kui kasutad mõnes etapis valmis vahefaili, märgi see dokumentatsiooni ja tõen
 **Kohtumine:** [Üleandmine](./kohtumine-11-uleandmine)
 
 - [ ] Kogu projektikomplekt on koos (vt üleandmise kontrolltabel)
+- [ ] Staatilised aadressid ja DHCP-vahemikud on eristatud; Gaming/Staff sisemine DNS ning Guest väline DNS on dokumenteeritud
+- [ ] Taastamise juhis sisaldab kliendiseadistuse uuendamist ja lubatud/keelatud teenuste järelkontrolle
 - [ ] Individuaalne veaprotokoll: sümptom, põhjus, parandus, järelkontroll
 - [ ] Riskitabel vähemalt kolme riskiga
 - [ ] Enesehindamine
