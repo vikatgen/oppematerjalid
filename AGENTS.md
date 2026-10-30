@@ -37,4 +37,4 @@ Each topic folder contains content pages and an `assignments.md` file with exerc
 - Language/locale is `et-EE` (Estonian)
 - Base URL path is `/oppematerjalid/`
 - Node 20 is used in CI
-- No test suite or linter is configured — this is a docs-only project
+- No linter is configured. `npm test` (node:test) checks the pure simulation logic of interactive components, see `docs/.vitepress/components/README.md`

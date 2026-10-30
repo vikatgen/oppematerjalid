@@ -240,6 +240,22 @@ export default withMermaid({
                 ]
             },
             {
+                text: "M6. Veebirakendused",
+                collapsed: true,
+                items: [
+                    { text: "Sissejuhatus", link: "/veebirakendused/sissejuhatus" },
+                    {
+                        text: "Backend",
+                        collapsed: true,
+                        items: [
+                            { text: "1. Päringu ja vastuse tsükkel", link: "/veebirakendused/backend/01-paringu-ja-vastuse-tsukkel" },
+                            { text: "2. Kihid: kes mida teeb?", link: "/veebirakendused/backend/02-kihiline-arhitektuur" },
+                            { text: "3. DTO: mis tohib sisse ja välja?", link: "/veebirakendused/backend/03-dto" },
+                        ]
+                    },
+                ]
+            },
+            {
                 text: "M7. Tarkvarasüsteemide testimine",
                 collapsed: true,
                 items: [
