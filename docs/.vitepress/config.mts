@@ -259,6 +259,9 @@ export default withMermaid({
                             { text: "9. Küpsised, sessioonid ja tokenid", link: "/veebirakendused/backend/09-sessioonid-ja-tokenid" },
                             { text: "10. OAuth: logi sisse Google'iga", link: "/veebirakendused/backend/10-oauth" },
                             { text: "11. API turvalisus", link: "/veebirakendused/backend/11-api-turvalisus" },
+                            { text: "12. Välised teenused: maksed ja webhook", link: "/veebirakendused/backend/12-valised-teenused" },
+                            { text: "13. Taustatööd ja järjekorrad", link: "/veebirakendused/backend/13-taustatood-ja-jarjekorrad" },
+                            { text: "14. Konfiguratsioon ja saladused", link: "/veebirakendused/backend/14-konfiguratsioon" },
                         ]
                     },
                 ]

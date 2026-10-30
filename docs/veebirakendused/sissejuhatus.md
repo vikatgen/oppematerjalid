@@ -81,11 +81,14 @@ Paljud mõisted on kergemini mõistetavad, kui võrrelda neid restoraniga. Kasut
 9. [Küpsised, sessioonid ja tokenid](./backend/09-sessioonid-ja-tokenid): kuidas server mäletab, et oled sisse loginud?
 10. [OAuth: logi sisse Google'iga](./backend/10-oauth): miks meie server ei näe kunagi sinu parooli?
 11. [API turvalisus](./backend/11-api-turvalisus): CORS, CSRF ja päringute piirang.
+12. [Välised teenused: maksed ja webhook](./backend/12-valised-teenused): kust server teab, et makse tuli?
+13. [Taustatööd ja järjekorrad](./backend/13-taustatood-ja-jarjekorrad): kuidas 300 tagasimakset tehakse ilma ootamata ja topelt maksmata?
+14. [Konfiguratsioon ja saladused](./backend/14-konfiguratsioon): kuidas sama kood jookseb eri keskkondades ja paroolid ei satu Giti?
 
 ::: details Tulevad lehed
-- Välised teenused: maksed, webhook ja topeltmakse kaitse
-- Taustatööd ja järjekorrad
-- API dokumentatsioon, logimine, konfiguratsioon, testid
+- Logimine ja jälgitavus
+- API leping (OpenAPI)
+- Testimine backend'is
 - Sõnastik
 :::
 
