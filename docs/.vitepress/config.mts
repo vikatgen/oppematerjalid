@@ -252,6 +252,9 @@ export default withMermaid({
                             { text: "2. Kihid: kes mida teeb?", link: "/veebirakendused/backend/02-kihiline-arhitektuur" },
                             { text: "3. DTO: mis tohib sisse ja välja?", link: "/veebirakendused/backend/03-dto" },
                             { text: "4. Middleware ja veatöötlus", link: "/veebirakendused/backend/04-middleware-ja-veatootlus" },
+                            { text: "5. Andmebaas ja seosed", link: "/veebirakendused/backend/05-andmebaas-ja-seosed" },
+                            { text: "6. ORM ja migratsioonid", link: "/veebirakendused/backend/06-orm-ja-migratsioonid" },
+                            { text: "7. Tehingud ja konkurents", link: "/veebirakendused/backend/07-tehingud-ja-konkurents" },
                         ]
                     },
                 ]

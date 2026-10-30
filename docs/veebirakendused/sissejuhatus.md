@@ -74,10 +74,11 @@ Paljud mõisted on kergemini mõistetavad, kui võrrelda neid restoraniga. Kasut
 2. [Kihid: kes mida teeb?](./backend/02-kihiline-arhitektuur): miks kood on jagatud route'ideks, controller'iteks, service'iteks ja repository'deks?
 3. [DTO: mis tohib sisse ja välja minna?](./backend/03-dto): miks ei tohi klient ise endale ürituse omanikku määrata?
 4. [Middleware ja veatöötlus](./backend/04-middleware-ja-veatootlus): miks on kontrollide järjekord tähtis ja kuidas veast saab korralik vastus?
+5. [Andmebaas ja seosed](./backend/05-andmebaas-ja-seosed): tabelid, võtmed ja miks andmebaas mõnikord ütleb „ei”.
+6. [ORM ja migratsioonid](./backend/06-orm-ja-migratsioonid): kuidas kood andmebaasiga räägib ja kuidas muudatus jõuab igasse andmebaasi?
+7. [Tehingud ja konkurents](./backend/07-tehingud-ja-konkurents): kuidas viimane pilet läheb täpselt ühele ostjale?
 
 ::: details Tulevad lehed
-- Andmebaas, ORM, migratsioonid ja repository muster
-- Tehingud: kuidas sada ostjat ei osta sama viimast piletit
 - Autentimine, autoriseerimine, sessioonid, OAuth ("Logi sisse Google'iga")
 - Turvalisus: CORS, CSRF, päringute piirang
 - Välised teenused: maksed, webhook ja topeltmakse kaitse

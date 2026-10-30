@@ -6,6 +6,9 @@ import PublishSimulator from "../components/backend/PublishSimulator.vue";
 import RequestSimulator from "../components/backend/RequestSimulator.vue";
 import DtoPlayground from "../components/backend/DtoPlayground.vue";
 import MiddlewareOrder from "../components/backend/MiddlewareOrder.vue";
+import SchemaExplorer from "../components/backend/SchemaExplorer.vue";
+import MigrationLab from "../components/backend/MigrationLab.vue";
+import TransactionSimulator from "../components/backend/TransactionSimulator.vue";
 
 /** Globaalsed komponendid: markdownis saab kasutada `<PublishSimulator />` ilma impordita. */
 export default {
@@ -16,5 +19,8 @@ export default {
         app.component("RequestSimulator", RequestSimulator);
         app.component("DtoPlayground", DtoPlayground);
         app.component("MiddlewareOrder", MiddlewareOrder);
+        app.component("SchemaExplorer", SchemaExplorer);
+        app.component("MigrationLab", MigrationLab);
+        app.component("TransactionSimulator", TransactionSimulator);
     },
 } satisfies Theme;
