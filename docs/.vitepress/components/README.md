@@ -31,6 +31,9 @@ Olemasolevad:
 | `SessionSimulator` | backend 9: küpsised, sessioonid ja tokenid | `StepSimulator`, sessioon vs JWT kolmes olukorras |
 | `OAuthSimulator` | backend 10: OAuth | `StepSimulator`, kihid Brauser, Meie server, Google |
 | `SecuritySimulator` | backend 11: API turvalisus | `StepSimulator`, päritolu × tegevus (CORS, SameSite, Origin kontroll, piirang) |
+| `PaymentSimulator` | backend 12: välised teenused | `StepSimulator`, kihid Brauser, Meie server, Stripe. Iga samm kannab tellimuse seisu (`state`) |
+| `JobSimulator` | backend 13: taustatööd ja järjekorrad | `StepSimulator`, kihid Meie server, Järjekord, Worker, Stripe. `state`: järjekord ja tagasimaksete arv |
+| `EnvLab` | backend 14: konfiguratsioon | Oma komponent (`.env` redaktor, kontroll uueneb kohe, saladused peidetud). Loogika `envSimulation.mjs`-is |
 
 Kui teema ei ole samm-sammult teekond (nt redaktor või järjestamine), tee oma komponent, aga hoia sama kuju: puhas loogika eraldi, testid, samad CSS-muutujad (`--vp-c-*`), mobiilivaade ja `aria-live` tulemuse juures.
 

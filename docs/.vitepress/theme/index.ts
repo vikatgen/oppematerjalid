@@ -13,6 +13,9 @@ import AccessMatrix from "../components/backend/AccessMatrix.vue";
 import SessionSimulator from "../components/backend/SessionSimulator.vue";
 import OAuthSimulator from "../components/backend/OAuthSimulator.vue";
 import SecuritySimulator from "../components/backend/SecuritySimulator.vue";
+import PaymentSimulator from "../components/backend/PaymentSimulator.vue";
+import JobSimulator from "../components/backend/JobSimulator.vue";
+import EnvLab from "../components/backend/EnvLab.vue";
 
 /** Globaalsed komponendid: markdownis saab kasutada `<PublishSimulator />` ilma impordita. */
 export default {
@@ -30,5 +33,8 @@ export default {
         app.component("SessionSimulator", SessionSimulator);
         app.component("OAuthSimulator", OAuthSimulator);
         app.component("SecuritySimulator", SecuritySimulator);
+        app.component("PaymentSimulator", PaymentSimulator);
+        app.component("JobSimulator", JobSimulator);
+        app.component("EnvLab", EnvLab);
     },
 } satisfies Theme;
