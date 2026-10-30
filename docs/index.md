@@ -26,6 +26,9 @@ Digiteenused, netikett, failide jagamine (OneDrive, SharePoint), meeskonnatöö,
 ### [Valdkonna töömaailm](/toomaailm/sissejuhatus)
 Tööturu toimimine, haridus ja palk, töösuhte õigused ja lepingud, oskused ja karjäärivõimalused, raha, aeg ja inimesed.
 
+### [M6. Veebirakendused](/veebirakendused/sissejuhatus)
+Kuidas veebirakendus seest töötab, piletimüügi näitel: päringu teekond, backend'i kihid ja DTO (edasi andmebaas, sisselogimine, turvalisus). Kontseptsioonid on seletatud tavaelu näidetega, kood on valikuline. *(Pilootversioon.)*
+
 ### [IT-taristu](/it-taristu/sissejuhatus)
 IT roll organisatsioonis, teenusekvaliteet ja SLA, litsentsid, etalonturve, taristu ülesehitus ja toimimine, standardid ja audit, teenusetaseme mittevastavus, meeskonna rollid.
 
