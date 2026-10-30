@@ -251,6 +251,7 @@ export default withMermaid({
                             { text: "1. Päringu ja vastuse tsükkel", link: "/veebirakendused/backend/01-paringu-ja-vastuse-tsukkel" },
                             { text: "2. Kihid: kes mida teeb?", link: "/veebirakendused/backend/02-kihiline-arhitektuur" },
                             { text: "3. DTO: mis tohib sisse ja välja?", link: "/veebirakendused/backend/03-dto" },
+                            { text: "4. Middleware ja veatöötlus", link: "/veebirakendused/backend/04-middleware-ja-veatootlus" },
                         ]
                     },
                 ]

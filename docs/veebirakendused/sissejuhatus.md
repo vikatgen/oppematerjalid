@@ -73,9 +73,9 @@ Paljud mõisted on kergemini mõistetavad, kui võrrelda neid restoraniga. Kasut
 1. [Päringu ja vastuse tsükkel](./backend/01-paringu-ja-vastuse-tsukkel): mis juhtub, kui ostja avab ürituste lehe?
 2. [Kihid: kes mida teeb?](./backend/02-kihiline-arhitektuur): miks kood on jagatud route'ideks, controller'iteks, service'iteks ja repository'deks?
 3. [DTO: mis tohib sisse ja välja minna?](./backend/03-dto): miks ei tohi klient ise endale ürituse omanikku määrata?
+4. [Middleware ja veatöötlus](./backend/04-middleware-ja-veatootlus): miks on kontrollide järjekord tähtis ja kuidas veast saab korralik vastus?
 
 ::: details Tulevad lehed
-- Middleware ja veatöötlus
 - Andmebaas, ORM, migratsioonid ja repository muster
 - Tehingud: kuidas sada ostjat ei osta sama viimast piletit
 - Autentimine, autoriseerimine, sessioonid, OAuth ("Logi sisse Google'iga")

@@ -23,6 +23,7 @@ Olemasolevad:
 | `RequestSimulator` | backend 1: päringu ja vastuse tsükkel | `StepSimulator` |
 | `PublishSimulator` | backend 2: kihid | `StepSimulator` |
 | `DtoPlayground` | backend 3: DTO | Oma komponent (JSON-i redaktor, tulemus uueneb kohe), sest samme pole. Loogika on ikka eraldi `dtoSimulation.mjs`-is |
+| `MiddlewareOrder` | backend 4: middleware ja veatöötlus | Oma komponent (järjestamise ülesanne nooltega, 4 päringut kontrollitakse korraga). Loogika `middlewareSimulation.mjs`-is |
 
 Kui teema ei ole samm-sammult teekond (nt redaktor või järjestamine), tee oma komponent, aga hoia sama kuju: puhas loogika eraldi, testid, samad CSS-muutujad (`--vp-c-*`), mobiilivaade ja `aria-live` tulemuse juures.
 
