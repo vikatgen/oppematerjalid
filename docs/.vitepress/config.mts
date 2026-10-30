@@ -255,6 +255,10 @@ export default withMermaid({
                             { text: "5. Andmebaas ja seosed", link: "/veebirakendused/backend/05-andmebaas-ja-seosed" },
                             { text: "6. ORM ja migratsioonid", link: "/veebirakendused/backend/06-orm-ja-migratsioonid" },
                             { text: "7. Tehingud ja konkurents", link: "/veebirakendused/backend/07-tehingud-ja-konkurents" },
+                            { text: "8. Autentimine ja autoriseerimine", link: "/veebirakendused/backend/08-autentimine-ja-autoriseerimine" },
+                            { text: "9. Küpsised, sessioonid ja tokenid", link: "/veebirakendused/backend/09-sessioonid-ja-tokenid" },
+                            { text: "10. OAuth: logi sisse Google'iga", link: "/veebirakendused/backend/10-oauth" },
+                            { text: "11. API turvalisus", link: "/veebirakendused/backend/11-api-turvalisus" },
                         ]
                     },
                 ]
@@ -310,8 +314,6 @@ export default withMermaid({
                     { text: "URL, domeen ja DNS", link: "/veebiarendus/url-domeen-ja-dns" },
                     { text: "HTTP päring ja vastus", link: "/veebiarendus/http-paring-ja-vastus" },
                     { text: "Meetodid ja staatusekoodid", link: "/veebiarendus/meetodid-ja-staatusekoodid" },
-                    { text: "Küpsised ja sessioonid", link: "/veebiarendus/kupsised-ja-sessioonid" },
-                    { text: "Päritolu ja CORS", link: "/veebiarendus/cors" },
                     { text: "HTTP/1.1, HTTP/2 ja HTTP/3", link: "/veebiarendus/http-versioonid" },
                     { text: "Network-paneel", link: "/veebiarendus/network-paneel" },
                 ]

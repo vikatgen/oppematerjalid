@@ -77,10 +77,12 @@ Paljud mõisted on kergemini mõistetavad, kui võrrelda neid restoraniga. Kasut
 5. [Andmebaas ja seosed](./backend/05-andmebaas-ja-seosed): tabelid, võtmed ja miks andmebaas mõnikord ütleb „ei”.
 6. [ORM ja migratsioonid](./backend/06-orm-ja-migratsioonid): kuidas kood andmebaasiga räägib ja kuidas muudatus jõuab igasse andmebaasi?
 7. [Tehingud ja konkurents](./backend/07-tehingud-ja-konkurents): kuidas viimane pilet läheb täpselt ühele ostjale?
+8. [Autentimine ja autoriseerimine](./backend/08-autentimine-ja-autoriseerimine): kes sa oled ja mida sa tohid?
+9. [Küpsised, sessioonid ja tokenid](./backend/09-sessioonid-ja-tokenid): kuidas server mäletab, et oled sisse loginud?
+10. [OAuth: logi sisse Google'iga](./backend/10-oauth): miks meie server ei näe kunagi sinu parooli?
+11. [API turvalisus](./backend/11-api-turvalisus): CORS, CSRF ja päringute piirang.
 
 ::: details Tulevad lehed
-- Autentimine, autoriseerimine, sessioonid, OAuth ("Logi sisse Google'iga")
-- Turvalisus: CORS, CSRF, päringute piirang
 - Välised teenused: maksed, webhook ja topeltmakse kaitse
 - Taustatööd ja järjekorrad
 - API dokumentatsioon, logimine, konfiguratsioon, testid

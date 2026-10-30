@@ -27,7 +27,7 @@ Digiteenused, netikett, failide jagamine (OneDrive, SharePoint), meeskonnatöö,
 Tööturu toimimine, haridus ja palk, töösuhte õigused ja lepingud, oskused ja karjäärivõimalused, raha, aeg ja inimesed.
 
 ### [M6. Veebirakendused](/veebirakendused/sissejuhatus)
-Kuidas veebirakendus seest töötab, piletimüügi näitel: päringu teekond, backend'i kihid ja DTO (edasi andmebaas, sisselogimine, turvalisus). Kontseptsioonid on seletatud tavaelu näidetega, kood on valikuline. *(Pilootversioon.)*
+Kuidas veebirakendus seest töötab, piletimüügi näitel: päringu teekond, backend'i kihid, DTO, middleware, andmebaas ja migratsioonid, tehingud, sisselogimine (sessioonid, OAuth) ja API turvalisus. Kontseptsioonid on seletatud tavaelu näidetega ja interaktiivsete katsetega, kood on valikuline.
 
 ### [IT-taristu](/it-taristu/sissejuhatus)
 IT roll organisatsioonis, teenusekvaliteet ja SLA, litsentsid, etalonturve, taristu ülesehitus ja toimimine, standardid ja audit, teenusetaseme mittevastavus, meeskonna rollid.
@@ -37,7 +37,7 @@ IT roll organisatsioonis, teenusekvaliteet ja SLA, litsentsid, etalonturve, tari
 **[Testimine II](/testimine-ii/sissejuhatus):** nõuetest testiplaanini, testimisvahendid, ühiktestid ja mock-klassid, integratsioonitestid, mõõtmised, veaaruanded ja testiaruanne.
 
 ### [Veebiarendus](/veebiarendus/sissejuhatus)
-Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL ja DNS, päringud/vastused, meetodid ja staatusekoodid, küpsised/sessioonid, CORS, HTTP versioonid ja Network-paneel.
+Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL ja DNS, päringud/vastused, meetodid ja staatusekoodid, HTTP versioonid ja Network-paneel.
 
 ### [JavaScript](/javascript/sissejuhatus-moodulisse)
 JavaScripti alused, brauseri- ja Node.js-i keskkond ning praktilised töövahendid: programmilise lahenduse kavandamine, DOM, sündmused, andmed, asünkroonsus ja serverirakendused.

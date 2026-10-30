@@ -27,6 +27,10 @@ Olemasolevad:
 | `SchemaExplorer` | backend 5: andmebaas ja seosed | Oma komponent (tegevused kuhjuvad, tabelid näitavad lisatud, muudetud ja kustutatud ridu). Loogika `schemaSimulation.mjs`-is |
 | `MigrationLab` | backend 6: ORM ja migratsioonid | Oma komponent (failid ja kolm andmebaasi). Loogika `migrationSimulation.mjs`-is |
 | `TransactionSimulator` | backend 7: tehingud ja konkurents | `StepSimulator`, kihid Ostja A, Ostja B, Andmebaas. Iga samm kannab andmebaasi seisu (`db`) |
+| `AccessMatrix` | backend 8: autentimine ja autoriseerimine | Oma komponent (tegevused × kasutajad, lahter avaneb klõpsuga). Loogika `accessSimulation.mjs`-is |
+| `SessionSimulator` | backend 9: küpsised, sessioonid ja tokenid | `StepSimulator`, sessioon vs JWT kolmes olukorras |
+| `OAuthSimulator` | backend 10: OAuth | `StepSimulator`, kihid Brauser, Meie server, Google |
+| `SecuritySimulator` | backend 11: API turvalisus | `StepSimulator`, päritolu × tegevus (CORS, SameSite, Origin kontroll, piirang) |
 
 Kui teema ei ole samm-sammult teekond (nt redaktor või järjestamine), tee oma komponent, aga hoia sama kuju: puhas loogika eraldi, testid, samad CSS-muutujad (`--vp-c-*`), mobiilivaade ja `aria-live` tulemuse juures.
 

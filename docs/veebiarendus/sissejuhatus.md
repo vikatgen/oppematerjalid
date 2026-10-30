@@ -1,6 +1,6 @@
 ---
 title: Veebiarendus
-description: "Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL/DNS, päringud/vastused, meetodid, küpsised, CORS ja HTTP versioonid."
+description: "Mine süvitsi HTTP-protokolli: veebipäringu teekond, URL/DNS, päringud/vastused, meetodid, HTTP versioonid ja Network-paneel."
 outline: deep
 ---
 
@@ -40,10 +40,10 @@ Kui rakendus ei saa andmeid, pead oskama eristada:
 2. [URL, domeen ja DNS](./url-domeen-ja-dns.md)
 3. [HTTP päring ja vastus](./http-paring-ja-vastus.md)
 4. [HTTP meetodid ja staatusekoodid](./meetodid-ja-staatusekoodid.md)
-5. [Küpsised ja sessioonid](./kupsised-ja-sessioonid.md)
-6. [Päritolu ja CORS](./cors.md)
-7. [HTTP/1.1, HTTP/2 ja HTTP/3](./http-versioonid.md)
-8. [Päringu uurimine Network-paneelis](./network-paneel.md)
+5. [HTTP/1.1, HTTP/2 ja HTTP/3](./http-versioonid.md)
+6. [Päringu uurimine Network-paneelis](./network-paneel.md)
+
+Küpsised, sessioonid ja CORS on koondatud moodulisse **M6. Veebirakendused**: [Küpsised, sessioonid ja tokenid](/veebirakendused/backend/09-sessioonid-ja-tokenid) ja [API turvalisus](/veebirakendused/backend/11-api-turvalisus).
 
 ## Seos teiste teemadega
 
